@@ -7,6 +7,8 @@ from menus.menu_add_f import menu_add
 from menus.menu_use_f import menu_use
 from menus.menu_remove_f import menu_remove
 from bitcoin.menu_bitcoin_f import *
+from parmanode.uninstall_parmanode import *
+
 def menu_main():
     import config.variables_f 
     while True:
@@ -167,17 +169,6 @@ def sned_sats():
 {orange}
 ########################################################################################
 
-""")
-    enter_continue()
-
-def uninstall_parmanode():
-    set_terminal()
-    print(f"""
-########################################################################################
-{cyan}
-    Coming soon
-{orange}
-########################################################################################
 """)
     enter_continue()
 

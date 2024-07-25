@@ -41,13 +41,7 @@ debug("pause")
 ########################################################################################
 from pathlib import Path
 from config.variables_f import *
-input("zzzz -1")
-try:
-    from parmanode.install import *
-except Exception as e:
-    input(e)
-    pass
-input("zzzz 0")
+from parmanode.install import *
 from parmanode.intro_f import * 
 from parmanode.motd_f import motd 
 from parmanode.menu_main_f import *
@@ -68,9 +62,10 @@ if check_updates((0, 0, 1)) == "outdated":    #pass compiling version as int lis
     suggestupdate()
 
 ########################################################################################
-input("zzzz")
+input("test")
+uninstall_parmanode()
+quit()
 exe = HOME / "parmanode4win" / "run_parmanode.exe"
-
 install_program(exe)
 success(f"Parmanode has been installed")
 quit()

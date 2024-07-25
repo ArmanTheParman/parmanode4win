@@ -128,7 +128,7 @@ def proforma(choice):
     else:
         invalid()
 
-def yesorno(message):
+def yesorno(message, Q=False):
     while True:
         set_terminal()
         print(f"""{orange}
@@ -152,7 +152,8 @@ def yesorno(message):
         set_terminal()
 
         if choice.upper() in {"Q", "EXIT"}: 
-            quit()
+            if Q == True: quit()
+            invalid()
         elif choice.upper() == "Y":
             return True
         elif choice.upper() == "N":
