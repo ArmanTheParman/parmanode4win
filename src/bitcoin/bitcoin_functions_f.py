@@ -28,21 +28,21 @@ def download_bitcoin():
 If it freezes, someitmes hitting <enter> breathes life into it for some reason. 
 I don't know why. Windows, pfffff, I hate it.
 
-If that doesn't work, hit{red} <control>{cyan}c{orange} and Parmanode will try again.{orange}
+If that doesn't work, hit{red} <control>{yellow}c{cyan} and Parmanode will try again.{orange}
                     """)
 
             if not download(url, str(bitcoinpath)): 
-                answer = announce(f""""Download failed - It happens (you should be using Linux btw)
+                answer = announce(f"""Download failed - It happens (you should be using Linux BTW)
 {cyan}{url}{orange}, trying again. {red}Q{orange} to abort""")
                 if answer.upper() == "Q": return False
                 else: continue
             if not download(url2, str(bitcoinpath)):
-                answer = announce(f""""Download failed - It happens (you should b suine using Linxux btw)
+                answer = announce(f"""Download failed - It happens (you should b suine using Linxux BTW)
 {cyan}{url2}{orange}, trying again. {red}Q{orange} to abort""")
                 if answer.upper() == "Q": return False
                 else: continue
             if not download(url3, str(bitcoinpath)):
-                answer = announce(f"""Download failed - It happens (you should b suine using Linxux btw)
+                answer = announce(f"""Download failed - It happens (you should b suine using Linxux BTW)
 {cyan}{url3}{orange}, trying again. {red}Q{orange} to abort""")
                 if answer.upper() == "Q": return False
                 else: continue
