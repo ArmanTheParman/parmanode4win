@@ -62,13 +62,7 @@ if check_updates((0, 0, 1)) == "outdated":    #pass compiling version as int lis
     suggestupdate()
 
 ########################################################################################
-input("test")
-uninstall_parmanode()
-quit()
-exe = HOME / "parmanode4win" / "run_parmanode.exe"
-install_program(exe)
-success(f"Parmanode has been installed")
-quit()
+
 
 ########################################################################################
 

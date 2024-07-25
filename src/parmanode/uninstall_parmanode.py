@@ -21,8 +21,8 @@ def uninstall_parmanode():
         delete_directory(dp)
         pn_dir = pp / "parmanode"
         delete_directory(pn_dir)
-        p4w_dir = pp / "parmanode4win"
-        delete_directory(p4w_dir)
+#        p4w_dir = pp / "parmanode4win"
+#        delete_directory(p4w_dir)
 
     success(f"Parmanode has been uninstalled. {red}Happy now?{orange}")
 
