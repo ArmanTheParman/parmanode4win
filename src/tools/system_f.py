@@ -26,7 +26,8 @@ def check_updates(compiled_version):
     pco.remove("last_used=")
     pco.add(f"last_used={date}")
 
-    url = "https://raw.githubusercontent.com/ArmanTheParman/Parmanode/master/version.conf" 
+    url = "https://raw.githubusercontent.com/ArmanTheParman/parmanode4win/main/version.conf"
+
     params = {'_': int(time.time())}  # Adding a unique timestamp parameter
     try:
         response = requests.get(url, params=params).text.split('\n')
