@@ -2,7 +2,6 @@ import subprocess
 from config.variables_f import *
 from tools.screen_f import set_terminal
 
-#should also test for installes done and then recommend restart Parmanode or reboot.
 
 def check_chocolatey():
     if subprocess.run(["choco", "--version"], check=True):
@@ -20,7 +19,6 @@ def install_chocolatey():
         )
         if subprocess.run(["powershell", "-Command", command], check=True):
             print("Chocolatey installed successfully.")
-            pco.add("need_restart=True")
 
     except subprocess.CalledProcessError as e:
         return False
@@ -45,7 +43,6 @@ def install_git_with_chocolatey():
     try:
         subprocess.run(["choco", "install", "git", "-y"], check=True)
         print("git installed successfully.")
-        pco.add("need_restart=True")
     except subprocess.CalledProcessError as e:
         raise Exception(f"Failed to install git with Chocolatey: {e.stderr}")
 
@@ -55,7 +52,6 @@ def install_curl_with_chocolatey():
     try:
         subprocess.run(["choco", "install", "curl", "-y"], check=True)
         print("curl installed successfully.")
-        pco.add("need_restart=True")
     except subprocess.CalledProcessError as e:
         raise Exception(f"Failed to install curl with Chocolatey: {e.stderr}")
 
@@ -73,7 +69,6 @@ def install_gpg_with_chocolatey():
     try:
         subprocess.run(["choco", "install", "gpg", "-y"], check=True)
         print("gpg installed successfully.")
-        pco.add("need_restart=True")
     except subprocess.CalledProcessError as e:
         raise Exception(f"Failed to install gog with Chocolatey: {e.stderr}")
 
@@ -114,12 +109,6 @@ def dependency_check():
             install_gpg_with_chocolatey()
 
         # Additional logic for downloading and installing Bitcoin Core can be added here
-        
-        if pco.grep("need_restart"):
-            set_terminal()
-            pco.remove("need_restart")
-            print("Because a dependency was installed, please restart Parmanode.") 
-            quit()
         
         return True
         

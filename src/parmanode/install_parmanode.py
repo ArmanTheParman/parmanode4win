@@ -1,6 +1,6 @@
 from config.variables_f import *
 from tools.screen_f import *
-from bitcoin.uninstall_bitcoin_f import *
+from dependencies.chocolatey_f import *
 import os
 import shutil
 import winshell
@@ -37,13 +37,29 @@ def install_program(source_exe:str, icon_path=None):
 
 def install_parmanode():
 
-    if yesorno(f"""This will install the {cyan}Parmanode{orange} executable to the Program
-    files directory, and create a shortcut on your Desktop."""): 
+    if yesorno(f"""
+{cyan}                             P A R M A N O D E 4 W I N {orange}
+
+{red}
+    If you choose to proceed, the following will happen...
+
+{green}
+    1){orange} The{cyan} Parmanode4Win{orange} script files (written open source code) will be
+    downloaded to your computer.
+{green}    
+    2){orange} An executable file which was created ('compiled') by that code will be moved 
+    to the 'Program files' folder.
+{green}
+    3){orange} A shorcut to the program file will be left on your Desktop.
+{green}               
+    4){orange} Some dependencies will be installed, these are programs Parmanode4Win needs to
+    function properly.
+           
+
+{cyan}              - chocolatey{orange} (application package manager for Windows, it's great)
+{cyan}              - curl {orange} 
+{cyan}              - git {orange} 
+{cyan}              - gpg {orange}""", h=42): 
         pass
     else:
         return False
-
-    exe = HOME / "parmanode4win" / "run_parmanode.exe"
-    icon = pp / "parmanode4win" / "src" / "parmanode" / "pn_icon.png"
-    install_program(exe, icon)
-    success(f"Parmanode has been installed")

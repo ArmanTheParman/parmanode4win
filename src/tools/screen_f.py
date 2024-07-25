@@ -53,6 +53,8 @@ def choose(message=None):
         print(f"{yellow}Type your{cyan} choice{yellow}, or{green} <enter>{yellow} to continue, or {red}(q){yellow} to quit.")
     if message == "xmq":
         print(f"{yellow}Type your{cyan} choice{yellow} from above options, or:{green} (m){yellow} for main,{red} (q){yellow} to quit.")
+    if message == "xq":
+        print(f"{yellow}Type your{cyan} choice{yellow} from above options, or:{red} (q){yellow} to quit.")
 
     choice = input()
     return choice 
@@ -128,12 +130,11 @@ def proforma(choice):
     else:
         invalid()
 
-def yesorno(message, Q=False):
+def yesorno(message, h=40, Q=False):
     while True:
-        set_terminal()
+        set_terminal(h)
         print(f"""{orange}
 ########################################################################################
-
 
     {message}
 
@@ -143,7 +144,6 @@ def yesorno(message, Q=False):
                                
 
 {cyan}                                n){orange}        nah    
-
 
 
 ########################################################################################   
