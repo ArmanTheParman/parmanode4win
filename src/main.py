@@ -67,9 +67,9 @@ if check_updates((0, 0, 1)) == "outdated":    #pass compiling version as int lis
 ########################################################################################
 
 
-#intro()
-#instructions()
-#motd()
+intro()
+instructions()
+motd()
 menu_main()
 
 #print("intro done, exiting")
