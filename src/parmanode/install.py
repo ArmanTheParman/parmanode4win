@@ -11,10 +11,10 @@ def create_shortcut(target, shortcut_path, icon_path=None):
         shortcut.IconLocation = icon_path
     shortcut.save()
 
-def install_program(source_exe):
-    program_dir = os.path.join(os.environ['ProgramFiles'], 'YourProgramName')
+def install_program(source_exe:str):
+    program_dir = os.path.join(os.environ['ProgramFiles'], 'Parmanode4Win')
     desktop = winshell.desktop()
-    shortcut_path = os.path.join(desktop, 'YourProgram.lnk')
+    shortcut_path = os.path.join(desktop, 'Parmanode4Win.lnk')
 
     # Create program directory if it doesn't exist
     if not os.path.exists(program_dir):
@@ -29,6 +29,5 @@ def install_program(source_exe):
 
     print(f'Installation complete. Shortcut created at {shortcut_path}')
 
-if __name__ == '__main__':
-    source_exe = 'path_to_your_executable.exe'
-    install_program(source_exe)
+# usage
+# install_program('path_to_exe')
