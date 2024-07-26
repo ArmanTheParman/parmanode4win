@@ -31,7 +31,7 @@ debug("pause")
 ########################################################################################
 
 from pmodules import *
-parmanode_variables
+parmanode_variables()
 make_parmanode_directories()
 make_parmanode_files()
 bitcoin_variables()
