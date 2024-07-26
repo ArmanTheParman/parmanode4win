@@ -1,4 +1,4 @@
-import os, shutil
+from pmodules import *
 
 def uninstall_bitcoin():
 

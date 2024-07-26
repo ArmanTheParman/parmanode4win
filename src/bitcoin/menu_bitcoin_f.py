@@ -1,3 +1,4 @@
+from pmodules import *
 from bitcoin.bitcoin_functions_f import *
 
 def menu_bitcoin():

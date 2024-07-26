@@ -1,4 +1,5 @@
-import os, subprocess
+import subprocess
+from pmodules import *
 from parmanode.menu_main_f import *
 from parmanode.dirty_shitcoiner import *
 

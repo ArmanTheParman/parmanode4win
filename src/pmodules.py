@@ -2,6 +2,11 @@ import requests, time, atexit, platform, sys, ctypes, psutil, os
 import zipfile, subprocess, os, ctypes, subprocess
 from colorama import Fore, Style, init #init need to toggle autoreset on/off
 from pathlib import Path
+import os
+import shutil
+import winshell
+from win32com.client import Dispatch
+from dependencies.chocolatey_f import *
 
 ########################################################################################
 #directories
@@ -842,3 +847,63 @@ def desktop_shortcut():
     icon = pp / "parmanode4win" / "src" / "parmanode" / "pn_icon.png"
     install_program(exe, icon)
     ico.add("parmanode4win-end")
+
+
+def create_shortcut(target, shortcut_path, icon_path=None):
+    shell = Dispatch('WScript.Shell')
+    shortcut = shell.CreateShortcut(shortcut_path)
+    shortcut.TargetPath = target
+    if icon_path:
+        shortcut.IconLocation = icon_path
+    shortcut.save()
+
+def install_program(source_exe:str, icon_path=None):
+    program_dir = os.path.join(os.environ['ProgramFiles'], 'Parmanode4Win')
+    desktop = winshell.desktop()
+    shortcut_path = os.path.join(desktop, 'Parmanode4Win.lnk')
+
+    if not os.path.exists(program_dir):
+        os.makedirs(program_dir)
+    
+    # Copy the executable to the program directory
+    target_exe = os.path.join(program_dir, os.path.basename(source_exe))
+    shutil.copyfile(source_exe, target_exe)
+
+    # Create a shortcut on the desktop
+    create_shortcut(target_exe, shortcut_path, icon_path)
+    input("zzzz shortcut created")
+    print(f'Installation complete. Shortcut created at {shortcut_path}')
+
+
+def install_parmanode():
+
+    if not yesorno(f"""
+{cyan}                             P A R M A N O D E 4 W I N {orange}
+
+{red}
+    If you choose to proceed, the following will happen...
+
+{green}
+    1){orange} The{cyan} Parmanode4Win{orange} script files (written open source code) will be
+    downloaded to your computer.
+{green}    
+    2){orange} An executable file which was created ('compiled') by that code will be moved 
+    to the 'Program files' folder.
+{green}
+    3){orange} A shorcut to the program file will be left on your Desktop.
+{green}               
+    4){orange} Some dependencies will be installed, these are programs Parmanode4Win needs to
+    function properly.
+           
+
+{cyan}              - chocolatey{orange} (application package manager for Windows, it's great)
+{cyan}              - curl {orange} 
+{cyan}              - git {orange} 
+{cyan}              - gpg {orange}""", h=42): 
+        return False
+
+    git_clone_parmanode4win()
+    desktop_shortcut()
+    #    test_installation()
+    success(f"Parmanode3Win has been installed")
+    quit()
