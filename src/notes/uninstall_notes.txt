@@ -1,0 +1,7 @@
+Too complicated to delete the script directory if the script is running from it.
+I'll leave it for now even if there is an uninstallation.
+Or, I could never have it download in the first place and just run from exe alone.
+Having the repo downloaded is useful for updates though.
+
+Aktuahlly...
+If user is running Parmanode4Win.exe from Program Files, then it could delete the script directory.
