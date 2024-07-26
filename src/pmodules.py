@@ -1,6 +1,5 @@
 import requests, time, atexit, platform, sys, ctypes, psutil, os
 import zipfile, subprocess, os, ctypes, subprocess
-from colorama import Fore, Style, init #init need to toggle autoreset on/off
 from pathlib import Path
 import os
 import shutil
@@ -93,14 +92,22 @@ def make_parmanode_files():
 
 
 ########################################################################################
-#colours
+#parmanode_variables
 ########################################################################################
-#if colour resets after print statment, enable this: 
-#init(autoreset=True)
 
-def get_colours():
+def parmanode_variables():
+
+    global version 
+    version = "0.0.1"
     
+    get_IP_variables()
+    get_date_variable()
+
+    from colorama import Fore, Style, init #init need to toggle autoreset on/off
     global black, red, green, yellow, blue, magenta, cyan, white, reset
+
+    #if colour resets after print statment, enable this: 
+    #init(autoreset=True)
 
     # Basic colors
     black = Fore.BLACK
@@ -193,6 +200,9 @@ def get_date_variable():
 
 from pathlib import Path
 
+########################################################################################
+# Classes
+########################################################################################
 class config:
     def __init__(self, path: Path):
         if path.exists() == False:
@@ -254,7 +264,9 @@ class config:
         with self.file.open('w'):
             pass
 
-
+########################################################################################
+# Other functions
+########################################################################################
 
 def searchin(the_string, the_file: Path) -> bool:
 
@@ -295,7 +307,7 @@ def deleteline(the_string, the_file):
         return True
 
     except Exception as e:
-        debug(f"Exception when doing deleteline - {e}")
+        input(f"Exception when doing deleteline - {e}")
         return False
 
 def download(url, dir):
@@ -558,20 +570,6 @@ def colour_check():
     print(f"{bright_blue}green {reset}\"green\"")
     
 
-def proforma(choice): 
-    return True
-    """Just a template"""
-    choice = choose()
-    set_terminal()
-
-    if choice.upper() in {"Q", "EXIT"}: 
-        quit()
-    elif choice.upper() == "P":
-        return True
-    elif choice.upper() == "M":
-        menu_main()
-    else:
-        invalid()
 
 def yesorno(message, h=40, Q=False):
     while True:
@@ -772,9 +770,9 @@ def check_updates(compiled_version):
     params = {'_': int(time.time())}  # Adding a unique timestamp parameter
     try:
         response = requests.get(url, params=params).text.split('\n')
-        latest_winMajor = int(response[5].split("=")[1])
-        latest_winMinor = int(response[6].split("=")[1])
-        latest_winPatch = int(response[7].split("=")[1])
+        latest_winMajor = int(response[1].split("=")[1])
+        latest_winMinor = int(response[2].split("=")[1])
+        latest_winPatch = int(response[3].split("=")[1])
 
         if (latest_winMajor, latest_winMinor, latest_winPatch) > (compiled_version):
             return "outdated"

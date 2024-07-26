@@ -59,6 +59,7 @@ instructions()
 
 from parmanode.motd_f import motd 
 motd()
-
-from parmanode.menu_main_f import *
-menu_main()
+try:
+    from parmanode.menu_main_f import *
+    menu_main()
+except Exception as e: input(e)
