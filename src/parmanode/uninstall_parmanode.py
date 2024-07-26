@@ -21,7 +21,7 @@ def delete_parmanode4win_script_directory():
                     item.chmod(0o777)  # Change the file to writable before deleting
                     item.unlink()
             except Exception as e:
-                handle_remove_readonly(item.unlink if item.is_file() else item.rmdir, item)
+                handle_remove_readonly(lambda p: path.rmdir(), path)
     
     if path.exists() and path.is_dir():
         delete_directory_contents(path)
