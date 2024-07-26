@@ -6,7 +6,7 @@ import os
 import shutil
 import winshell
 from win32com.client import Dispatch
-from dependencies.chocolatey_f import *
+from chocolatey_f import *
 
 ########################################################################################
 #directories
@@ -34,8 +34,6 @@ def make_parmanode_directories():
 
 def make_parmanode_files():
     
-    from config.classes_f import config
-
     global tmp, pc, ic, rp_counter, motd_counter, pco, ico, dbo, db, before, after, difference 
 
     tmp = dp / "for_copying-can_delete.tmp"
