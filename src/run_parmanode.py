@@ -18,7 +18,7 @@ if not ctypes.windll.shell32.IsUserAnAdmin(): #is admin?
 ########################################################################################
 #DEBUG AND TESTING SECTION:
 ########################################################################################
-from tools.debugging_f import *
+from debugging_f import *
 #debug(some_function=colour_check)
 #debug("text")
 #need "d" argument in position [1] when running
@@ -28,8 +28,10 @@ debug("pause")
 ########################################################################################
 #Imports
 ########################################################################################
+
+global version
+version="0.0.1"
 from pathlib import Path
-from config.variables_f import *
 make_parmanode_directories()
 make_parmanode_files()
 get_colours()
@@ -39,11 +41,8 @@ bitcoin_variables()
 from parmanode.intro_f import * 
 from parmanode.motd_f import motd 
 from parmanode.menu_main_f import *
-from tools.system_f import *
 from bitcoin.bitcoin_functions_f import *
-from tools.drive_f import *
 from bitcoin.uninstall_bitcoin_f import *
-version="0.0.1"
 
 #########################################################################################
 

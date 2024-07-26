@@ -31,33 +31,14 @@ if platform.system() == "Windows":
 #Imports
 ########################################################################################
 from pathlib import Path
-from config.variables_f import *
+from pmodules import *
 from parmanode.intro_f import * 
 from parmanode.install_parmanode import *
 from parmanode.motd_f import motd 
 from parmanode.menu_main_f import *
-from tools.system_f import *
 from bitcoin.bitcoin_functions_f import *
-from tools.drive_f import *
 from bitcoin.uninstall_bitcoin_f import *
 import subprocess
-
-def git_clone_parmanode4win():
-    
-    p4w_dir = pp / "parmanode4win"
-    delete_directory(p4w_dir)
-
-    try:
-        subprocess.run(["git", "clone", f"https://github.com/armantheparman/parmanode4win {p4w_dir}"])
-    except:
-        input(e)
-
-def desktop_shortcut():
-
-    exe = HOME / "parmanode4win" / "src" / "parmanode" / "run_parmanode.exe"
-    icon = pp / "parmanode4win" / "src" / "parmanode" / "pn_icon.png"
-    install_program(exe, icon)
-    ico.add("parmanode4win-end")
 
 
 

@@ -823,3 +823,22 @@ def get_desktop_path():
         return desktop_path
     else:
         raise Exception("Desktop path could not be determined")
+
+
+def git_clone_parmanode4win():
+    
+    p4w_dir = pp / "parmanode4win"
+    delete_directory(p4w_dir)
+
+    try:
+        subprocess.run(["git", "clone", f"https://github.com/armantheparman/parmanode4win {p4w_dir}"])
+    except:
+        input(e)
+
+
+def desktop_shortcut():
+
+    exe = HOME / "parmanode4win" / "src" / "parmanode" / "run_parmanode.exe"
+    icon = pp / "parmanode4win" / "src" / "parmanode" / "pn_icon.png"
+    install_program(exe, icon)
+    ico.add("parmanode4win-end")

@@ -6,7 +6,6 @@ from bitcoin.menu_bitcoin_f import *
 from parmanode.uninstall_parmanode import *
 
 def menu_main():
-    import config.variables_f 
     while True:
         set_terminal(45, 88)
         print(f"""{orange}        
