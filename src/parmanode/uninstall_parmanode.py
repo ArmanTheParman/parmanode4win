@@ -1,5 +1,38 @@
 from pmodules import *
 from bitcoin.uninstall_bitcoin_f import *
+from pathlib import Path
+import os
+
+def delete_parmanode4win_script_directory():
+
+    path = pp / "parmanode4win" 
+
+    def handle_remove_readonly(func, path):
+        os.chmod(path, 0o777)
+        func(path)
+
+    def delete_directory_contents(directory):
+        for item in directory.iterdir():
+            try:
+                if item.is_dir():
+                    delete_directory_contents(item)
+                    item.rmdir()
+                else:
+                    item.chmod(0o777)  # Change the file to writable before deleting
+                    item.unlink()
+            except Exception as e:
+                handle_remove_readonly(item.unlink if item.is_file() else item.rmdir, item)
+    
+    if path.exists() and path.is_dir():
+        delete_directory_contents(path)
+        try:
+            path.rmdir()
+        except Exception as e:
+            handle_remove_readonly(path.rmdir, path)
+    else:
+        print(f"{path} directory does not exist")
+
+
 
 def uninstall_parmanode():
 
@@ -16,8 +49,6 @@ def uninstall_parmanode():
         exe_dir = Path(r"""c:\Program files"\Parmanode4win""")
         delete_directory(exe_dir)
         delete_directory(dp)
-        pn_dir = pp / "parmanode"
-        delete_directory(pn_dir)
         #delete desktop icon
         desktop = Path(get_desktop_path())
         shortcut = desktop / "Parmanode4Win.lnk" 
@@ -25,11 +56,8 @@ def uninstall_parmanode():
             try: shortcut.unlink()
             except: pass
         if yesorno("Also delete the parmanode4win script directory?"):
-            p4w_dir = pp / "parmanode4win"
-            delete_directory(p4w_dir)
+            delete_parmanode4win_script_directory()
 
     success(f"Parmanode has been uninstalled. {red}Happy now?{orange}")
 
     quit()
-
-        
