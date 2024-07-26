@@ -1,5 +1,4 @@
-from config.variables_f import *
-from tools.screen_f import *
+from pmodules import *
 from dependencies.chocolatey_f import *
 import os
 import shutil
@@ -37,6 +36,12 @@ def install_program(source_exe:str, icon_path=None):
 
 def install_parmanode():
 
+    from colorama import Fore
+    red = Fore.RED
+    green = Fore.GREEN
+    cyan = Fore.CYAN
+    orange = '\033[1m\033[38;2;255;145;0m'
+
     if yesorno(f"""
 {cyan}                             P A R M A N O D E 4 W I N {orange}
 
@@ -60,6 +65,6 @@ def install_parmanode():
 {cyan}              - curl {orange} 
 {cyan}              - git {orange} 
 {cyan}              - gpg {orange}""", h=42): 
-        pass
+        return True
     else:
         return False

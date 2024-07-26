@@ -1,15 +1,12 @@
-from config.variables_f import *
-from tools.screen_f import *
+from pmodules import *
 from bitcoin.uninstall_bitcoin_f import *
 
 def uninstall_parmanode():
 
-    if yesorno(f"""Are you sure you want to uninstall {cyan}Parmanode{orange}? That's insane!
+    if not yesorno(f"""Are you sure you want to uninstall {cyan}Parmanode{orange}? That's insane!
 
     You will have the option to individually select which applications you want to 
     remove or leave."""):
-        pass
-    else:
         return False
 
     if ico.grep("bitcoin-"):

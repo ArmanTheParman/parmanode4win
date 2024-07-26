@@ -4,14 +4,9 @@
 #suggestupdate()
 #instructions()
 ########################################################################################
-
+from pmodules import *
 import time
 from pathlib import Path
-from config.variables_f import * 
-from tools.debugging_f import *
-from tools.files_f import *
-from tools.screen_f import *
-from tools.system_f import *
 
 def intro():
     #later; hide messages option

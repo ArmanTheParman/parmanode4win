@@ -1,11 +1,6 @@
 import os, subprocess
 from parmanode.menu_main_f import *
 from parmanode.dirty_shitcoiner import *
-from config.variables_f import *
-from tools.screen_f import *
-from tools.files_f import *
-from tools.system_f import *
-from tools.drive_f import *
 
 def download_bitcoin():
     

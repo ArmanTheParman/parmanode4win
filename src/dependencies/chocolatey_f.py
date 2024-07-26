@@ -1,7 +1,4 @@
 import subprocess
-from config.variables_f import *
-from tools.screen_f import set_terminal
-
 
 def check_chocolatey():
     if subprocess.run(["choco", "--version"], check=True):

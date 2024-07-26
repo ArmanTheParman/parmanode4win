@@ -1,5 +1,3 @@
-from config.variables_f import *
-from tools.screen_f import *
 from bitcoin.install_bitcoin_f import *
 
 def menu_add():

@@ -1,5 +1,3 @@
-from config.variables_f import *
-from tools.screen_f import *
 from bitcoin.uninstall_bitcoin_f import *
 from parmanode.menu_main_f import *
 

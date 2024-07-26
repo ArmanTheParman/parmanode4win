@@ -1,4 +1,4 @@
-from tools.screen_f import *
+from pmodules import *
 
 def dirty_shitcoiner():
     while True:

@@ -1,4 +1,3 @@
-from tools.screen_f import *
 from bitcoin.bitcoin_functions_f import *
 
 def menu_bitcoin():

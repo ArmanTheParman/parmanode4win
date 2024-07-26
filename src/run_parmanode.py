@@ -30,6 +30,12 @@ debug("pause")
 ########################################################################################
 from pathlib import Path
 from config.variables_f import *
+make_parmanode_directories()
+make_parmanode_files()
+get_colours()
+bitcoin_variables()
+#get_IP_variables()
+#get_date_variable()
 from parmanode.intro_f import * 
 from parmanode.motd_f import motd 
 from parmanode.menu_main_f import *
@@ -37,7 +43,12 @@ from tools.system_f import *
 from bitcoin.bitcoin_functions_f import *
 from tools.drive_f import *
 from bitcoin.uninstall_bitcoin_f import *
-import subprocess
+version="0.0.1"
+
+#########################################################################################
+
+
+########################################################################################
 
 counter("rp")
 
@@ -46,6 +57,8 @@ if check_updates((0, 0, 1)) == "outdated":    #pass compiling version as int lis
 
 ########################################################################################
 
+d = get_desktop_path()
+input(d)
 
 ########################################################################################
 

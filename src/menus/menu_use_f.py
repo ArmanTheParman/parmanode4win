@@ -1,6 +1,3 @@
-from config.variables_f import *
-from tools.screen_f import *
-
 def menu_use():
 
     while True:

@@ -1,6 +1,3 @@
-from config.variables_f import *
-from tools.screen_f import *    
-from tools.files_f import *
 import os, shutil
 
 def uninstall_bitcoin():

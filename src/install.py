@@ -1,3 +1,7 @@
+from parmanode.install_parmanode import install_parmanode
+if not install_parmanode():
+    quit()
+
 import platform, ctypes, sys, os
 if platform.system() == "Windows":
     if sys.getwindowsversion().major < 10:
@@ -60,11 +64,10 @@ def desktop_shortcut():
 
 ##### Main installtion program begins #####
 
-if install_parmanode():
-    #directories made with variables module
-    git_clone_parmanode4win()
-    desktop_shortcut()
+#directories made with variables module
+git_clone_parmanode4win()
+desktop_shortcut()
 #    test_installation()
-    success(f"Parmanode4Win has been installed")
-    quit()
+success(f"Parmanode4Win has been installed")
+quit()
 

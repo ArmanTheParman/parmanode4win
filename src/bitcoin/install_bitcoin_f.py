@@ -1,11 +1,5 @@
-from config.variables_f import *
-from tools.files_f import download 
-from tools.files_f import * 
-from tools.debugging_f import *
-from tools.screen_f import *
 from bitcoin.bitcoin_functions_f import *
 from datetime import date
-from tools.drive_f import *
 
 def install_bitcoin():
 
