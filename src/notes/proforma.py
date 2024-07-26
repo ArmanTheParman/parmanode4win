@@ -5,7 +5,7 @@ def proforma(choice):
     set_terminal()
 
     if choice.upper() in {"Q", "EXIT"}: 
-        quit()
+        sys.exit()
     elif choice.upper() == "P":
         return True
     elif choice.upper() == "M":

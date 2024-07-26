@@ -102,7 +102,7 @@ def choose_drive():
 
         choice = choose("xpmq")
         if choice in {"q", "Q", "Quit", "exit", "EXIT"}: 
-            quit()
+            sys.exit() 
         elif choice in {"p", "P"}:
             return False
         elif choice in {"m", "M"}:
@@ -154,7 +154,7 @@ def choosen_drive_internal():
         choice = input()
         set_terminal()
         if choice.upper() in {"Q", "EXIT"}: 
-            quit()
+            sys.exit()
         elif choice.upper() == "P":
             return False
         elif choice.upper() == "M":
@@ -199,7 +199,7 @@ def get_custom_directory(app="bitcoin"):
 """)
         choice = choose()
         if choice.upper() in {"Q", "EXIT"}: 
-            quit()
+            sys.exit()
         elif choice.upper() == "P":
             return False
         elif choice.upper() == "M":
@@ -237,7 +237,7 @@ def bitcoin_folder_choice_confirm(folder):
 """)
         choice = choose()  
         if choice.upper() in {"Q", "EXIT"}: 
-            quit()
+             sys.exit()
         elif choice.upper() == "P":
             return False
         elif choice.upper() == "M":
@@ -278,7 +278,7 @@ def format_choice(app="bitcoin"):
 """)
         choice = choose()  
         if choice.upper() in {"Q", "EXIT"}: 
-            quit()
+            sys.exit()
         elif choice.upper() == "P":
             return False
         elif choice.upper() == "M":
@@ -313,7 +313,7 @@ def used_disk():
 """)    
         choice = choose()  
         if choice.upper() in {"Q", "EXIT"}: 
-            quit()
+             sys.exit()
         elif choice.upper() == "P":
             return False
         elif choice.upper() == "M":
@@ -399,7 +399,7 @@ def set_the_prune():
         prunevalue = choose("xpq")
         choice = prunevalue
         if choice.upper() in {"Q", "EXIT"}: 
-            quit()
+            sys.exit()
         elif choice.upper() == "P":
             return False
         elif not prunevalue.isnumeric():
@@ -500,7 +500,7 @@ def bitcoin_conf_exists():
     choice = choose("xmq")
 
     if choice.upper() in {"Q", "EXIT"}: 
-        quit()
+        sys.exit()
     elif choice.upper() in {"M", "A"}:
         menu_main()
     elif choice.upper() == "O":
@@ -585,7 +585,7 @@ def check_default_directory_exists() -> bool: #returns True only if directory do
         set_terminal()
 
         if choice.upper() in {"Q", "EXIT"}: 
-            quit()
+            sys.exit()
         elif choice.upper() == "P":
             return True
         elif choice.upper() in {"A", "M"}:

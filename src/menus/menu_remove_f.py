@@ -26,7 +26,7 @@ def menu_remove():
 """)
         choice = choose("xpmq")
         if choice in {"q", "Q", "Quit", "exit", "EXIT"}: 
-            quit()
+            sys.exit()
         elif choice in {"p", "P"}:
             return True
         elif choice in {"m", "M"}:

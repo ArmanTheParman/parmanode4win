@@ -78,7 +78,7 @@ def menu_main():
         elif choice.lower() == "ap":
             about_parmanode()
         elif choice.lower() in {"q", "quit", "exit"}:
-            quit()
+            sys.exit()
         else:
             invalid()
 

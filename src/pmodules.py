@@ -906,4 +906,4 @@ def install_parmanode():
     desktop_shortcut()
     #    test_installation()
     success(f"Parmanode3Win has been installed")
-    quit()
+    sys.exit()
