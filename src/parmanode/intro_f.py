@@ -9,41 +9,49 @@ import time
 
 def intro():
     #later; hide messages option
-    set_terminal()
+    set_terminal(h=46)
     if pco.grep("hide_intro"):
         return True
 
     while True:
         print(f"""{orange}
+              
 ########################################################################################
 
-           {cyan}                  P  A  R  M  A  N  O  D  E    {orange}
+        {cyan}               P  A  R  M  A  N  O  D  E{red}  4  W  I  N  {orange}
 
 ########################################################################################
-        
-    Welcome to PARMANODE, an easy AF way to install and run Bitcoin on your desktop
-    computer. Parmanode is Free Open Source Software (FOSS).
 
+{black}        
+    Welcome to{green} PARMANODE4WIN {black}, an easy AF way to install and run Bitcoin on your 
+    Windows desktop computer. Parmanode is Free Open Source Software {pink}(FOSS){black}.
 
-    Requirements:
+{cyan}
+    REQUIREMENTS: {black}
 
-            1) This version is for{green} Windows{orange}, tested on version 10 and above.
+            1) This version is for{green} Windows{black}, tested on version 10 and above.
             
             2) An external OR internal drive (1 Tb SSD recommended)
 
-            3) Users must not hold ANY shitcoins! (Honesty system)
+            3) Users must not hold ANY shitcoins! (honesty system)
 
+            4) Also, another requirement is that you promise to evenually {red} 
+               stop using Windows{black} for Bitcoin tasks, and migrate to 
+               Parmanode 4 Linux. Even Mac is better, I'll allow it, but it's 
+               not great. C'mon, you're a Bitcoiner.
 
-    To report bugs:
-                   - armantheparman@protonmail.com
+{cyan}
+    TO REPORT BUGS:
+ {black}                  - armantheparman@protonmail.com
 
                    - Telegram chat: https:/t.me/parmanode
 
+{orange}
 ########################################################################################
 
     Hit{cyan} <enter>{orange} to continue, or{cyan} (q){orange} to quit, then <enter>.
 
-    If you hold shitcoins, please hit{cyan} (s){orange} - be honest!
+    If you hold{red} shitcoins{orange}, please hit{cyan} (s){orange} - be honest!
 
     To hide this screen next time, type{pink} \"Free Ross\"{orange} then <enter>.
 """)
@@ -163,9 +171,11 @@ To hide this message next time, type in{pink} \"Free Ross\"{orange} then <enter>
 
 To continue on, just hit{cyan} <enter>{orange}.
 """)
-    choice = input().strip()    
+    choice = input()
     if choice in {'free ross' , "Free Ross"}:   
         pco.add("hide_instructions=True")
+        return True
     elif choice in {"q", "Q", "quit"}:
         exit()
-    return True
+    else:
+        return True

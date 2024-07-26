@@ -1,16 +1,13 @@
 from pmodules import *
 
 def motd():
-    
-    motd_header=f"""{orange}
-########################################################################################{cyan}
 
-                                Message of the Day
+    if pco.grep("motd_off"):
+        return True
+    with motd_counter.open('r') as f:
+        value = int(f.read().strip())
 
-{cyan}"""
 
-    motd_base=f"""{orange}########################################################################################
-"""
 
     motd_text = [f"""{cyan}
     People have DIED fighting for freedom.
@@ -391,13 +388,27 @@ def motd():
 """, f"""
     Money does not need utility. Money BUYS utility. That's the point of it.
 """]
-     
-    if pco.grep("motd_off"):
-        return True
-    with motd_counter.open('r') as f:
-        value = int(f.read().strip())
-    print("value is", value)
-    set_terminal() 
+
+ 
+    motdnum = value % len(motd_text)
+
+    if motdnum == 17 or motdnum == 18:
+        height = 50
+    else:
+        height = 45
+
+    motd_header=f"""{orange}
+    
+########################################################################################{cyan}
+
+{bright_magenta}                               Message of the Day #{motdnum} {cyan}
+
+{cyan}"""
+
+    motd_base=f"""{orange}########################################################################################
+"""
+
+    set_terminal(h=height) 
     print(motd_header)
     print(motd_text[value % len(motd_text)])
     print(motd_base)

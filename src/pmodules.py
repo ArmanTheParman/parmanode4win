@@ -516,8 +516,10 @@ def choose(message=None):
     return choice 
 
 def invalid():
-
-    return input() 
+    set_terminal()
+    return input(f"""{red}INVALID ENTRY {orange}
+                 
+Hit {cyan}<enter>{orange} to go back and try again""") 
 
 def please_wait(text: str):
     set_terminal()

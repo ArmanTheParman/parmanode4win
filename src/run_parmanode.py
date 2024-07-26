@@ -54,7 +54,8 @@ intro()
 instructions()
 
 from parmanode.motd_f import motd 
-motd()
+try: motd()
+except Exception as e: input(e)
 
 try:
     from parmanode.menu_main_f import *
