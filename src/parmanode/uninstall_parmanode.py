@@ -1,7 +1,7 @@
 from pmodules import *
 from bitcoin.uninstall_bitcoin_f import *
 from pathlib import Path
-import os
+import os, sys
 
 def delete_parmanode4win_script_directory():
 
@@ -60,4 +60,4 @@ def uninstall_parmanode():
 
     success(f"Parmanode has been uninstalled. {red}Happy now?{orange}")
 
-    quit()
+    sys.exit()
