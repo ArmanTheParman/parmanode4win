@@ -280,10 +280,10 @@ def searchin(the_string, the_file: Path) -> bool:
 
 def addline(the_string, the_file):
     if not isinstance(the_file, Path):
-        debug(f"the file {the_file} needs to be a Path object")
+        input(f"the file {the_file} needs to be a Path object")
         return False
     if not the_file.is_file():
-        debug(f"addline function - file, f{the_file} does not exist")
+        input(f"addline function - file, f{the_file} does not exist")
         return False
     with the_file.open('a') as f:
         f.write(the_string + '\n')
@@ -291,11 +291,11 @@ def addline(the_string, the_file):
 def deleteline(the_string, the_file):
     
     if not isinstance(the_file, Path):
-        debug(f"the file {the_file} needs to be a Path object")
+        input(f"the file {the_file} needs to be a Path object")
         return False
 
     if not the_file.is_file():
-        debug(f"addline function - file, f{the_file} does not exist")
+        input(f"addline function - file, f{the_file} does not exist")
         return False
 
     try:
