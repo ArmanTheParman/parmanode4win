@@ -19,7 +19,7 @@ def uninstall_parmanode():
         pn_dir = pp / "parmanode"
         delete_directory(pn_dir)
         #delete desktop icon
-        desktop = Path(get_desktop_path)
+        desktop = Path(get_desktop_path())
         shortcut = desktop / "Parmanode4Win.lnk" 
         shortcut.unlink()
         if yesorno("Also delete the parmanode4win script directory?"):
