@@ -819,14 +819,7 @@ def is_process_running(process_name):
 
 def get_desktop_path():
 
-    from win32com.shell import shell, shellcon
-
-    desktop_path = shell.SHGetFolderPath(0, shellcon.CSIDL_DESKTOP, None, 0)
-    if desktop_path:
-        return desktop_path
-    else:
-        raise Exception("Desktop path could not be determined")
-
+    return winshell.desktop()
 
 def git_clone_parmanode4win():
     
@@ -840,7 +833,6 @@ def git_clone_parmanode4win():
 
 
 def desktop_shortcut():
-
     exe = HOME / "parmanode4win" / "src" / "parmanode" / "run_parmanode.exe"
     icon = pp / "parmanode4win" / "src" / "parmanode" / "pn_icon.png"
     install_program(exe, icon)
@@ -869,7 +861,6 @@ def install_program(source_exe:str, icon_path=None):
 
     # Create a shortcut on the desktop
     create_shortcut(target_exe, shortcut_path, icon_path)
-    input("zzzz shortcut created")
     print(f'Installation complete. Shortcut created at {shortcut_path}')
 
 

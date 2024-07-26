@@ -37,14 +37,10 @@ make_parmanode_directories()
 make_parmanode_files()
 get_colours()
 bitcoin_variables()
+get_IP_variables()
 get_date_variable()
-#get_IP_variables()
-#get_date_variable()
 
 #########################################################################################
-
-
-########################################################################################
 
 
 
@@ -52,13 +48,11 @@ get_date_variable()
 
 counter("rp")
 
-input("zzzz5")
 try:
     if check_updates((0, 0, 1)) == "outdated":    #pass compiling version as int list argument
         suggestupdate()
 except Exception as e: input(e) 
 
-input("zzzz5")
 from parmanode.intro_f import * 
 intro()
 instructions()
@@ -68,5 +62,3 @@ motd()
 
 from parmanode.menu_main_f import *
 menu_main()
-
-#print("intro done, exiting")
