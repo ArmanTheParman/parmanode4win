@@ -351,10 +351,14 @@ def delete_directory_contents(path_given):
 
             if item.is_dir(): 
                 delete_directory(item)  # Recursively delete contents of subdirectories
-                if item.exists(): item.rmdir()            # Remove the now-empty SUBdirectory
+                if item.exists(): 
+                    try: item.rmdir()            # Remove the now-empty SUBdirectory
+                    except: os.chmod(item, 0o77) ; item.rmdir()
 
             else:
-                if item.exists(): item.unlink()  # Remove the file
+                if item.exists(): 
+                    try: item.unlink()  # Remove the file
+                    except: os.chmod(item, 0o77) ; item.unlink()
         return True
     else:
         raise ValueError(f"""unexpect type in delete_directory_contents()""")
@@ -386,13 +390,20 @@ def delete_directory(path_given):
     for item in path.iterdir(): #for a non-empty directory
 
         if item.is_dir(): 
-            delete_directory(item)  # Recursively delete contents of subdirectories
-            if item.exists(): item.rmdir()            # Remove the now-empty SUBdirectory
+            try: delete_directory(item)  # Recursively delete contents of subdirectories
+            except: os.chmod(item, 0o777) ; delete_directory(item)
+            if item.exists():
+                try: item.rmdir()            # Remove the now-empty SUBdirectory
+                except: os.chmod(item, 0o77) ; item.rmdir()
 
         else:
-            if item.exists(): item.unlink()  # Remove the file
+            if item.exists(): 
+                try: item.unlink()  # Remove the file
+                except: os.chmod(item, 0o77) ; item.unlink()
 
-    if path.exists(): path.rmdir()  # Path directory should be empty now, can delete
+    if path.exists(): 
+       try: path.rmdir()  # Path directory should be empty now, can delete
+       except: os.chmod(path, 0o77) ; path.rmdir()
     
     return True
        
