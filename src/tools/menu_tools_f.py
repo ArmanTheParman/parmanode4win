@@ -78,28 +78,30 @@ def whatsmyip():
 ########################################################################################
 
 
-    Your computer's IP address is:                   {cyan}             {IP} {orange}
+{black}    Your computer's IP address is:                   {cyan}             {IP} {orange}
 
 
-    Your computer's \"self\" IP address should be:                  127.0.0.1
+{black}    Your computer's \"self\" IP address should be:   {yellow}               127.0.0.1
 
 
-    For reference, every computer's default self IP address is    127.0.0.1 
-                                                            and   localhost
+{black}    For reference, every computer's default self IP address is  {yellow}  127.0.0.1 
+{black}                                                            and  {yellow} localhost
 
 
-    To access this computer from another computer ON THE SAME NETWORK, you can type 
-    in the terminal of the other computer:
-{green}
-        ssh {USER}@{IP}
-{orange}
-    Note that ssh needs to be enabled on this system. If it's a Windows machine, you 
-    may need to install a program called Putty to use it.
+{black}    To access this computer from another computer ON THE SAME NETWORK, you can type 
+{black}    in the terminal of the other computer:
 
-{bright_blue}
-    The EXTERNAL IP for your router (Your Home's IP not just this device):
 
-{green}                                                                   {extIP}{orange}
+{blue}    ssh {USER}@{IP}
+
+
+{black}    Note that ssh needs to be enabled on this system. If it's a Windows machine, you 
+{black}    may need to install a program called Putty to use it.
+
+
+{black}    The EXTERNAL IP for your router 
+{black}    (Your Home's IP not just this device):              {red}           {extIP}{orange}
+{green}                                          
 
 
 ########################################################################################
