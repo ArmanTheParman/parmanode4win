@@ -5,6 +5,7 @@ from menus.menu_remove_f import menu_remove
 from bitcoin.menu_bitcoin_f import *
 from parmanode.uninstall_parmanode import *
 from parmanode.about import *
+from tools.menu_tools_f import *
 
 def menu_main():
     while True:
@@ -108,16 +109,6 @@ def menu_education():
 """)
     enter_continue()
 
-def menu_tools():
-    set_terminal()
-    print(f"""
-########################################################################################
-{cyan}
-    Coming soon
-{orange}
-########################################################################################
-""")
-    enter_continue()
 
 def menu_settings():
     set_terminal()

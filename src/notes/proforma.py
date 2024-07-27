@@ -1,7 +1,7 @@
 
 def proforma(choice): 
     """Just a template"""
-    choice = choose()
+    choice = choose("xxxxxxxx")
     set_terminal()
 
     if choice.upper() in {"Q", "EXIT"}: 
