@@ -2,6 +2,7 @@ pip3 install colorama
 pip3 install requests
 pip3 install psutil
 pip3 install winshell (for installation)
+pip3 install win32com
 pip3 install pywin32 (for installation)
 
 DONT Install python3 from windows store
@@ -9,3 +10,4 @@ Ensure not a windows store version of python. Do "where python" to see if 'Micro
 
 To make an execuatble, need pyinstaller:
 pip install -U pyinstaller
+build command: "pyinstaller --onefile run_parmanode.py"

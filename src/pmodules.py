@@ -4,8 +4,18 @@ from pathlib import Path
 import os
 import shutil
 import winshell
-from win32com.client import Dispatch
+from win32com.client import Dispatch #for shortcut creation on install
 from chocolatey_f import *
+
+########################################################################################
+
+def cleanup():
+    """Will execute when Parmanode quits"""
+    print(f"{reset}")
+
+    #tmp.unlink() #deletes the file
+
+atexit.register(cleanup) 
 
 ########################################################################################
 #directories
@@ -33,7 +43,7 @@ def make_parmanode_directories():
 
 def make_parmanode_files():
     
-    global tmp, pc, ic, rp_counter, motd_counter, pco, ico, dbo, db, before, after, difference 
+    global tmp, pc, ic, rp_counter, motd_counter, pco, ico, dbo, db, before, after, difference, lockfile
 
     tmp = dp / "for_copying-can_delete.tmp"
     pc = dp / "parmanode.conf"
@@ -44,6 +54,7 @@ def make_parmanode_files():
     before = dp / "before.log"
     after = dp / "after.log"
     difference = dp/ "difference.log"
+    lockfile = dp / "lockfile"
 
     if not tmp.exists():
         tmp.touch()
@@ -796,13 +807,6 @@ def check_updates(compiled_version):
         print(f"error when checking update, {e}")
         return "error"
 
-def cleanup():
-    """Will execute when Parmanode quits"""
-    print(f"{reset}")
-    #tmp.unlink() #deletes the file
-
-atexit.register(cleanup) 
-
 def os_is():
     """Windows, Darwin, or Linux is returned"""
     return platform.system()
@@ -851,12 +855,15 @@ def desktop_shortcut():
 
 
 def create_shortcut(target, shortcut_path, icon_path=None):
-    shell = Dispatch('WScript.Shell')
-    shortcut = shell.CreateShortcut(shortcut_path)
-    shortcut.TargetPath = target
-    if icon_path:
-        shortcut.IconLocation = icon_path
-    shortcut.save()
+    try:
+        shell = Dispatch('WScript.Shell')
+        shortcut = shell.CreateShortcut(shortcut_path)
+        shortcut.TargetPath = target
+        if icon_path:
+            shortcut.IconLocation = icon_path
+        shortcut.save()
+    except:
+        pass
 
 def install_program(source_exe:str, icon_path=None):
     program_dir = os.path.join(os.environ['ProgramFiles'], 'Parmanode4Win')
