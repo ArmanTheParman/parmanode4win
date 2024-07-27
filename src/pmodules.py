@@ -7,43 +7,6 @@ import winshell
 from win32com.client import Dispatch #for shortcut creation on install
 from chocolatey_f import *
 
-########################################################################################
-
-def cleanup():
-    """Will execute when Parmanode quits"""
-    print(f"{reset}")
-
-    lockfile.unlink()
-    #tmp.unlink() 
-
-atexit.register(cleanup) 
-
-def lockfile():
-
-   if not lockfile.exists():
-        with lockfile.open('w') as f:
-            pid = os.getpid()
-            f.write(pid + '\n')
-        return True
-   else:
-        try:
-            with lockfile.open('r') as f:
-                pid = f.readline().strip()
-        except:
-                pid = None
-                return True
-            
-        if pid == os.getpid(): return True    
-
-        if pid in psutil.pids():
-            announce(f"""
-    Parmanode seems to be running already.
-    You shouldn't run a second instance at the same time, bad things can happen.
-    If you think this is wrong, delete this file manually and try again:
-
-    {cyan}{lockfile}{orange}""")
-
-        sys.exit()
 
 
 ########################################################################################
@@ -180,6 +143,71 @@ def parmanode_variables():
     blinkon = '\033[5m'
     blinkoff = Style.RESET_ALL
 
+########################################################################################
+
+def cleanup():
+    """Will execute when Parmanode quits"""
+    print(f"{reset}")
+
+    lockfile.unlink()
+    #tmp.unlink() 
+
+
+def lockfilefunction(once=False):
+
+   if not lockfile.exists():
+        with lockfile.open('w') as f:
+            pid = os.getpid()
+            f.write(str(pid) + '\n')
+        atexit.register(cleanup)            ##################### this needs to be exactly here so that lockfile exit doesn't delete the lockfile
+        input("zzzz lockfile doesn't exists. Created.")
+        return True
+   else:
+        try:
+            with lockfile.open('r') as f:
+                print(f"current pid is {os.getpid()}")
+                input("zzzz reading lockfile")
+                pid = f.readline().strip()
+                input(f"Lockfile value is {pid}")
+        except Exception as e:
+                pid = None
+                input(e)
+                return True
+        if int(pid) == os.getpid():
+            input(f"zzzz pid is the same as file pid, {pid}") ; return True    
+
+        if int(pid) in psutil.pids():
+            os.system('cls') # I think this clears the colours
+            print(f"""{orange}
+
+########################################################################################
+
+
+    Parmanode seems to be running already.
+
+    You shouldn't run a second instance at the same time, bad things can happen.
+    {cyan}    
+    Override?
+
+{cyan}                            y){orange}      Yeah
+
+
+{cyan}                            n){orange}      Nah
+
+
+########################################################################################
+
+    Make a choice then hit{red} <enter>{orange}""")
+            choice = input() 
+            if choice.lower() == "y": lockfile.unlink() ; return True
+            else: sys.exit()
+        else:
+            lockfile.unlink()
+            if once == True: 
+                return True
+            else:
+                lockfilefunction(once=True) # 'once=True' prevents riks of infinite loop
+        
 ########################################################################################
 #Bitcon variables
 ########################################################################################

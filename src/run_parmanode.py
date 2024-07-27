@@ -31,12 +31,13 @@ debug("pause")
 ########################################################################################
 
 from pmodules import *
-lockfile()
 parmanode_variables()
+
 make_parmanode_directories()
 make_parmanode_files()
 bitcoin_variables()
-
+try: lockfilefunction()
+except Exception as e: input(e)
 #########################################################################################
 
 
