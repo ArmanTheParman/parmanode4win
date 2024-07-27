@@ -101,7 +101,7 @@ def whatsmyip():
 
 {black}    The EXTERNAL IP for your router 
 {black}    (Your Home's IP not just this device):              {red}           {extIP}{orange}
-{green}                                          
+
 
 
 ########################################################################################
