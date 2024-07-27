@@ -625,6 +625,10 @@ def enter_continue(text=None):
     if text.upper() == "TRY AGAIN":
        print(f"{yellow}Hit{cyan} <enter>{yellow} to try again...{orange}") 
        return input()
+    if text.lower() == 'q':
+       thechoice = input()
+       if thechoice.lower() == 'q': sys.exit()
+       return thechoice
     else:
        print(text)
        return input()
