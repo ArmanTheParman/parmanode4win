@@ -37,9 +37,13 @@ def menu_education():
             if not mit_lectures(): return False
             else: continue
         elif choice.lower() == "w":
+            pass
         elif choice.lower() == "mm":
+            pass
         elif choice.lower() == "n":
+            pass
         elif choice.lower() == "s":
+            pass
         else:
             invalid()
 
