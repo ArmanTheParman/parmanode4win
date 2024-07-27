@@ -8,18 +8,18 @@ def menu_education():
 ########################################################################################
  
 {cyan}
-                            P A R M A N O D E - Education
+                                  E D U C A T I O N
 {black}
                     
-{yellow}                    (mit){black}      2018 MIT Lecture Series (With Tagde Dryja)
+{yellow}                 (mit){black}      2018 MIT Lecture Series (With Tagde Dryja)
 
-{yellow}                    (w){black}        How to connect your wallet to the node
+{yellow}                 (w){black}        How to connect your wallet to the node
 
-{yellow}                    (mm) {black}      Bitcoin Mentorship Info
+{yellow}                 (mm) {black}      Bitcoin Mentorship Info
 
-{yellow}                    (n)     {black}   Six reasons to run a node
+{yellow}                 (n)     {black}   Six reasons to run a node
 
-{yellow}                    (s)       {black} Separation of money and state
+{yellow}                 (s)       {black} Separation of money and state
 
 {cyan}
             .... more soon
