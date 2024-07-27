@@ -9,11 +9,11 @@ def menu_tools():
                                    T O O L S
  
 
-{green}          ppp) {black}      Connect to Parman's node over Tor 
+{green}          ppp) {black}            Connect to Parman's node over Tor 
 
-{green}          ip) {black}       What's my computer's IP?
+{green}          ip) {black}             What's my computer's IP?
 
-{green}          free ross) {black}       Delete hide-message preverences
+{green}          free ross) {black}      Delete hide-message preverences
 
 
 {orange}
