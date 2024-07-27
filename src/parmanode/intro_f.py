@@ -152,24 +152,26 @@ def instructions():
     print(f"""
 ########################################################################################
 
-                               {cyan}     Instructions{orange}
+                               {cyan}     Instructions{black}
 
-    1. Add individual programs from the{green} \"add\"{orange} menu. You don't need to install them 
+{yellow}    1.{black} Add individual programs from the{green} \"add\"{black} menu. You don't need to install them 
        all.
 
-    2. Each program has its{green} own menu{orange} nested under the \"use\" menu; various 
+{yellow}    2.{black} Each program has its{green} own menu{black} nested under the \"use\" menu; various 
        functions are available for you to make it easier to interact with the program.
        
-    3. Explore all the options from the main menu, there are hidden gems.
+{yellow}    3.{black} Explore all the options from the main menu, there are hidden gems.
 
-    4. You should reguarly{green} update{orange} Parmanode (the best way is from the Parmanode
+{yellow}    4.{black} You should reguarly{green} update{black} Parmanode (the best way is from the Parmanode
        menu). 
-
+{orange}
 ########################################################################################
-    
-To hide this message next time, type in{pink} \"Free Ross\"{orange} then <enter>.
 
-To continue on, just hit{cyan} <enter>{orange}.
+
+{black}
+    To hide this message next time, type in{pink} \"Free Ross\"{black} then{cyan} <enter>{black}.
+
+    To continue on, just hit{cyan} <enter>{black}.{orange}
 """)
     choice = input()
     if choice in {'free ross' , "Free Ross"}:   

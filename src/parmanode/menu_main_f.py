@@ -13,7 +13,7 @@ def menu_main():
         print(f"""{orange}        
 ########################################################################################
 #                                                                                      #
-#    P A R M A N O D E {red}4 W I N{orange} --> {bright_blue}Main Menu{orange}                                            #
+#    P A R M A N O D E {red}4 W I N{orange} --> {bright_blue}Main Menu{orange}                                           #
 #                                                                                      #
 #    Version: {bright_blue} {version}{orange}                                                                   #
 #                                                                                      #
