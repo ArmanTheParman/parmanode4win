@@ -1,15 +1,15 @@
 from pmodules import *
-from bitcoin.install_bitcoin_f import *
+from bitcoin.menu_bitcoin_f import *
 
 def menu_use():
 
     while True:
 
         if ico.grep("bitcoin-end"): 
-            use_bitcoin = f"#                  {green} (b){orange}            Bitcoin Core                                        #"
+            use_bitcoinmenu = f"#                  {green} (b){orange}            Bitcoin Core                                        #"
             bitcoinmenu = True
         else: 
-            use_bitcoin ="#                                                                                      #"
+            use_bitcoinmenu ="#                                                                                      #"
             bitcoinmenu = False
 
         print(f"""
@@ -20,7 +20,7 @@ def menu_use():
 ########################################################################################
 #                                                                                      #
 #                                                                                      #
-{use_bitcoin}
+{use_bitcoinmenu}
 #                                                                                      #
 #                                                                                      #
 ########################################################################################
@@ -34,7 +34,7 @@ def menu_use():
             return True
         elif choice.lower() in {"b", "bitcoin"}:
             if bitcoinmenu == False: continue
-            if not install_bitcoin(): return False
+            if not menu_bitcoin(): return False
             return True
         else:
             invalid()
