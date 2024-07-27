@@ -8,7 +8,6 @@ from win32com.client import Dispatch #for shortcut creation on install
 from chocolatey_f import *
 
 
-
 ########################################################################################
 #directories
 ########################################################################################

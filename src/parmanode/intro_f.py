@@ -154,17 +154,22 @@ def instructions():
 
                                {cyan}     Instructions{black}
 
-{yellow}    1.{black} Add individual programs from the{green} \"add\"{black} menu. You don't need to install them 
+
+{yellow}    1.{black} Use the KEYBOARD to make choices and <enter> to confirm. Your mouse is 
+               no good here.
+
+{yellow}    2.{black} Add individual programs from the{green} \"add\"{black} menu. You don't need to install them 
        all.
 
-{yellow}    2.{black} Each program has its{green} own menu{black} nested under the \"use\" menu; various 
+{yellow}    3.{black} Each program has its{green} own menu{black} nested under the \"use\" menu; various 
        functions are available for you to make it easier to interact with the program.
        
-{yellow}    3.{black} Explore all the options from the main menu, there are hidden gems.
+{yellow}    4.{black} Explore all the options from the main menu, there are hidden gems.
 
-{yellow}    4.{black} You should reguarly{green} update{black} Parmanode (the best way is from the Parmanode
+{yellow}    5.{black} You should reguarly{green} update{black} Parmanode (the best way is from the Parmanode
        menu). 
 {orange}
+
 ########################################################################################
 
 

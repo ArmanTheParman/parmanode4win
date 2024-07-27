@@ -31,7 +31,8 @@ debug("pause")
 ########################################################################################
 
 from pmodules import *
-parmanode_variables()
+try: parmanode_variables()
+except Exception as e: input(e)
 
 make_parmanode_directories()
 make_parmanode_files()
@@ -45,15 +46,17 @@ except Exception as e: input(e)
 ########################################################################################
 
 counter("rp")
-
 try:
     if check_updates((0, 0, 1)) == "outdated":    #pass compiling version as int list argument
         suggestupdate()
 except Exception as e: input(e) 
 
 from parmanode.intro_f import * 
-intro()
-instructions()
+try: intro()
+except Exception as e: input(e)
+
+try: instructions()
+except Exception as e: input(e)
 
 from parmanode.motd_f import motd 
 try: motd()
