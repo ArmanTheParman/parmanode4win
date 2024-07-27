@@ -11,6 +11,9 @@ def menu_tools():
 
 {green}          ppp) {black}      Connect to Parman's node over Tor 
 
+{green}          ip) {black}       What's my computer's IP?
+
+
 {orange}
 ########################################################################################
 """)
@@ -25,6 +28,9 @@ def menu_tools():
             return True
         elif choice.lower() == "ppp":
             connect_to_parman()
+            return True
+        elif choice.lower() == "ip":
+            whatsmyip()
             return True
         else:
             invalid()
