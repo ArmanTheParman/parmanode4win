@@ -13,9 +13,38 @@ def cleanup():
     """Will execute when Parmanode quits"""
     print(f"{reset}")
 
-    #tmp.unlink() #deletes the file
+    lockfile.unlink()
+    #tmp.unlink() 
 
 atexit.register(cleanup) 
+
+def lockfile():
+
+   if not lockfile.exists():
+        with lockfile.open('w') as f:
+            pid = os.getpid()
+            f.write(pid + '\n')
+        return True
+   else:
+        try:
+            with lockfile.open('r') as f:
+                pid = f.readline().strip()
+        except:
+                pid = None
+                return True
+            
+        if pid == os.getpid(): return True    
+
+        if pid in psutil.pids():
+            announce(f"""
+    Parmanode seems to be running already.
+    You shouldn't run a second instance at the same time, bad things can happen.
+    If you think this is wrong, delete this file manually and try again:
+
+    {cyan}{lockfile}{orange}""")
+
+        sys.exit()
+
 
 ########################################################################################
 #directories
