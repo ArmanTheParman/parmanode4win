@@ -13,6 +13,8 @@ def menu_tools():
 
 {green}          ip) {black}       What's my computer's IP?
 
+{green}          free ross) {black}       Delete hide-message preverences
+
 
 {orange}
 ########################################################################################
@@ -32,6 +34,10 @@ def menu_tools():
         elif choice.lower() == "ip":
             whatsmyip()
             return True
+        elif choice.lower() == "free ross":
+            pco.remove("hide_")
+            set_terminal()
+            enter_continue(f"""{orange}Preferences cleared. Hit{cyan} <enter>{orange} to continue.""")
         else:
             invalid()
 
