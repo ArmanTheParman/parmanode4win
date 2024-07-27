@@ -154,14 +154,14 @@ def instructions():
 
                                {cyan}     Instructions{orange}
 
-    1. Add individual programs from then{green} \"add\"{orange} menu. You don't need to install them 
+    1. Add individual programs from the{green} \"add\"{orange} menu. You don't need to install them 
        all.
 
-    2. Use programs from the{green} \"use\"{orange} menu. 
-
-    3. Each program has its{green} own menu{orange} nested under the \"use\" menu; various 
+    2. Each program has its{green} own menu{orange} nested under the \"use\" menu; various 
        functions are available for you to make it easier to interact with the program.
        
+    3. Explore all the options from the main menu, there are hidden gems.
+
     4. You should reguarly{green} update{orange} Parmanode (the best way is from the Parmanode
        menu). 
 
