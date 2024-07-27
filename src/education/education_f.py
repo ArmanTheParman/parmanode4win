@@ -86,7 +86,7 @@ def mit_lectures():
             desktop = get_desktop_path()
             fileto = Path(desktop)
             try:
-                subprocess.run(['cp', f"{filefrom}", f"{fileto}/"] check=True, capture_output=True)
+                result = subprocess.run(["cp", f"{filefrom}", f"{fileto}/"], check=True, capture_output=True)
                 enter_continue(f"The file has been copied to your desktop")
             except Exception as e:
                 input(e)
