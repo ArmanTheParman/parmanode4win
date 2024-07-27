@@ -15,7 +15,7 @@ from chocolatey_f import *
 
 def make_parmanode_directories():
 
-    global HOME, pp, dp, bitcoinpath
+    global HOME, pp, dp, bitcoinpath, p4w
 
     HOME=Path.home()
     
@@ -28,6 +28,8 @@ def make_parmanode_directories():
         dp.mkdir()
 
     bitcoinpath = pp / "bitcoin"
+
+    p4w = pp / "parmanode4win"
 
 ########################################################################################
 #files
