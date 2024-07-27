@@ -160,21 +160,17 @@ def lockfilefunction(once=False):
             pid = os.getpid()
             f.write(str(pid) + '\n')
         atexit.register(cleanup)            ##################### this needs to be exactly here so that lockfile exit doesn't delete the lockfile
-        input("zzzz lockfile doesn't exists. Created.")
         return True
    else:
         try:
             with lockfile.open('r') as f:
-                print(f"current pid is {os.getpid()}")
-                input("zzzz reading lockfile")
                 pid = f.readline().strip()
-                input(f"Lockfile value is {pid}")
         except Exception as e:
                 pid = None
                 input(e)
                 return True
         if int(pid) == os.getpid():
-            input(f"zzzz pid is the same as file pid, {pid}") ; return True    
+             return True    
 
         if int(pid) in psutil.pids():
             os.system('cls') # I think this clears the colours

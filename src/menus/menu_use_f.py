@@ -1,4 +1,5 @@
 from pmodules import *
+from bitcoin.install_bitcoin_f import *
 
 def menu_use():
 
@@ -33,7 +34,7 @@ def menu_use():
             return True
         elif choice.lower() in {"b", "bitcoin"}:
             if bitcoinmenu == False: continue
-            if not use_bitcoin(): return False
+            if not install_bitcoin(): return False
             return True
         else:
             invalid()
