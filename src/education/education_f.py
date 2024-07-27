@@ -1,7 +1,9 @@
 from pmodules import *
+import subprocess
 
 def menu_education():
     while True:
+        set_terminal()
         print(f""" 
 ########################################################################################
  
@@ -19,10 +21,10 @@ def menu_education():
 
 {yellow}                    (s)       {black} Separation of money and state
 
-
+{cyan}
             .... more soon
 
-
+{orange}
 ########################################################################################
 """)
         choice = choose("xpmq")
@@ -49,6 +51,7 @@ def menu_education():
 
 def mit_lectures():
     while True:
+        set_terminal()
         print(f""" 
 ########################################################################################
 {cyan}
@@ -58,8 +61,8 @@ def mit_lectures():
     works - not for the beginner. It wasn't until I watched this that I felt I truly
     understood many concepts, including Segwit.
 
-    The link to the website is:
-   {green} 
+    The link to the website is (highlight and copy with <control>c):
+   {blue} 
     https://ocw.mit.edu/courses/mas-s62-cryptocurrency-engineering-and-design-spring-2018/video_galleries/lecture-videos/
 {black}
     One day this might be taken down so I have also included a torrent to my own
@@ -83,10 +86,10 @@ def mit_lectures():
             desktop = get_desktop_path()
             fileto = Path(desktop)
             try:
-                os.system('cp', f"{filefrom}", f"{fileto}")
+                subprocess.run(['cp', f"{filefrom}", f"{fileto}/"] check=True, capture_output=True)
                 enter_continue(f"The file has been copied to your desktop")
-            except:
-                announce("Something went wrong, sorry.")
+            except Exception as e:
+                input(e)
             
         else:
             invalid()
