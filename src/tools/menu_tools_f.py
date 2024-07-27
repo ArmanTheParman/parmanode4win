@@ -65,6 +65,8 @@ def connect_to_parman():
     enter_continue()
 
 def whatsmyip():
+    import os
+    USER = os.getenv('USERNAME')
 
     input(f"""
 ########################################################################################
@@ -81,14 +83,13 @@ def whatsmyip():
 
 
     To access this computer from another computer ON THE SAME NETWORK, you can type 
-    in the terminal of the other computer (not Windows):
+    in the terminal of the other computer:
 {green}
         ssh {USER}@{IP}
 {orange}
-    ssh needs to be enabled on this system (it usually is be default).
+    Note that ssh needs to be enabled on this system. If it's a Windows machine, you 
+    may need to install a program called Putty to use it.
 
-    If you really want to use Windows (eww) to access this computer by ssh, you'll
-    have to install a program called Putty on the Windows machine.
 {bright_blue}
     The EXTERNAL IP for your router (Your Home's IP not just this device):
 

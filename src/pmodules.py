@@ -245,12 +245,16 @@ def get_internal_IP(toprint:bool=None):
         input(e)
 
 def get_IP_variables():
-    global IP, IP1, IP2, IP3, IP4
+    global IP, IP1, IP2, IP3, IP4, extIP
     IP = get_internal_IP()
     IP1 = IP.split(r'.')[0]
     IP2 = IP.split(r'.')[1]
     IP3 = IP.split(r'.')[2]
     IP4 = IP.split(r'.')[3]
+    
+    
+    try: extIP = subprocess.run(['curl', '-s', 'ifconfig.me'], text=True, capture_output=True, check=True).stdout.strip()
+    except: extIP = "N/A"
 
 ########################################################################################
 # Date
