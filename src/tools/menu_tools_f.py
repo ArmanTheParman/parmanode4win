@@ -36,6 +36,7 @@ def menu_tools():
             return True
         elif choice.lower() == "free ross":
             pco.remove("hide_")
+            pco.remove("motd_off=")
             set_terminal()
             enter_continue(f"""{orange}Preferences cleared. Hit{cyan} <enter>{orange} to continue.""")
         else:
