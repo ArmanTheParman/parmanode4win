@@ -14,7 +14,7 @@ def install_chocolatey():
             r'[System.Net.ServicePointManager]::SecurityProtocol -bor 3072; '
             r'iex ((New-Object System.Net.WebClient).DownloadString("https://chocolatey.org/install.ps1"))'
         )
-        if subprocess.run(["powershell", "-Command", command], check=True):
+        if subprocess.run("powershell", "-Command", command], check=True):
             print("Chocolatey installed successfully.")
 
     except subprocess.CalledProcessError as e:
@@ -24,7 +24,7 @@ def install_chocolatey():
 
 def check_git():
     try:
-        subprocess.run(["git", "--version"], check=True)
+        subprocess.run("git", "--version"], check=True)
         return True
     except (subprocess.CalledProcessError, FileNotFoundError):
         return False

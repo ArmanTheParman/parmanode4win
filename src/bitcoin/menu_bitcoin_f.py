@@ -24,9 +24,7 @@ def menu_bitcoin():
             output1=f"""                                Bitcoin is{red} NOT running{orange}""" 
 
         output2=f"""                                Sync'ing to the {drive} drive"""
-        stop=f"{red}"
         output2=f"""                                Will sync to the {drive} drive"""
-        start=f"{green}"
 
         #    output4=f"""                   Bitcoin Data Usage: {red}$(du -shL $HOME/.bitcoin | cut -f1)"{orange}"""
         set_terminal()

@@ -410,7 +410,8 @@ def motd():
 
     set_terminal(h=height) 
     print(motd_header)
-    print(motd_text[value % len(motd_text)])
+    try: print(motd_text[value % len(motd_text)])
+    except: pass
     print(motd_base)
     choice = enter_continue()
     if choice in {"free ross", "Free Ross"}:
