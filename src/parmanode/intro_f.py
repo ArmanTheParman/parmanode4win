@@ -148,7 +148,7 @@ def instructions():
     if pco.grep("hide_instructions"):
         return True
 
-    set_terminal()
+    set_terminal(h=36)
     print(f"""
 ########################################################################################
 

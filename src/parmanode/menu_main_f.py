@@ -11,7 +11,7 @@ from parmanode.mentorship_f import *
 
 def menu_main():
     while True:
-        set_terminal(45, 88)
+        set_terminal(46, 88)
         print(f"""{orange}        
 ########################################################################################
 #                                                                                      #

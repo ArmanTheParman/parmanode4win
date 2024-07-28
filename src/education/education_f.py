@@ -61,51 +61,51 @@ def menu_education():
             pass
         elif choice.lower() == "mm":
             internetbrowser("https://armantheparman.com/mentorship/")
-            announce(f"Browser should have open the page.")
+            announce(f"Browser should have opened the page.")
             continue
         elif choice.lower() == "o":
             internetbrowser("https://armantheparman.com/bitcoin-english")
-            announce(f"Browser should have open the page.")
+            announce(f"Browser should have opened the page.")
             continue
         elif choice.lower() == "wbo":
             internetbrowser("https://armantheparman.com/why-bitcoin-only/")
-            announce(f"Browser should have open the page.")
+            announce(f"Browser should have opened the page.")
             continue
         elif choice.lower() == "om":
             internetbrowser("https://armantheparman.com/onemoney/")
-            announce(f"Browser should have open the page.")
+            announce(f"Browser should have opened the page.")
             continue
         elif choice.lower() == "fud":
             internetbrowser("https://armantheparman.com/fud/")
-            announce(f"Browser should have open the page.")
+            announce(f"Browser should have opened the page.")
             continue
         elif choice.lower() == "n":
             internetbrowser("https://armantheparman.com/why-should-you-run-your-own-bitcoin-node/")
-            announce(f"Browser should have open the page.")
+            announce(f"Browser should have opened the page.")
             continue
         elif choice.lower() == "s":
             internetbrowser("https://armantheparman.com/joinus/")
-            announce(f"Browser should have open the page.")
+            announce(f"Browser should have opened the page.")
             continue
         elif choice.lower() == "z":
             internetbrowser("https://armantheparman.com/zerotrust/")
-            announce(f"Browser should have open the page.")
+            announce(f"Browser should have opened the page.")
             continue
         elif choice.lower() == "prv":
             internetbrowser("https://armantheparman.com/private-key-info/")
-            announce(f"Browser should have open the page.")
+            announce(f"Browser should have opened the page.")
             continue
         elif choice.lower() == "utxo":
             internetbrowser("https://armantheparman.com/utxo/")
-            announce(f"Browser should have open the page.")
+            announce(f"Browser should have opened the page.")
             continue
         elif choice.lower() == "blk":
             internetbrowser("https://armantheparman.com/blockchain/")
-            announce(f"Browser should have open the page.")
+            announce(f"Browser should have opened the page.")
             continue
         elif choice.lower() == "mine":
             internetbrowser("https://armantheparman.com/mining/")
-            announce(f"Browser should have open the page.")
+            announce(f"Browser should have opened the page.")
             continue
         elif choice.lower() == "s":
             pass
