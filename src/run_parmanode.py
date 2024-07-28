@@ -42,7 +42,9 @@ bitcoin_variables()
 try: lockfilefunction()
 except Exception as e: input(e)
 #########################################################################################
-
+from sparrow.config import *
+make_sparrow_config()
+input()
 ########################################################################################
 
 counter("rp")
