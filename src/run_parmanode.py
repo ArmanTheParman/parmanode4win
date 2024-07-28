@@ -44,7 +44,7 @@ except Exception as e: input(e)
 #########################################################################################
 from sparrow.config import *
 make_sparrow_config()
-input()
+input("sparrow config make")
 ########################################################################################
 
 counter("rp")
