@@ -40,8 +40,7 @@ def install_bitcoin():
             input("format failed")
             return False 
 
-    if not download_bitcoin(): return False
-
+    if not download_bitcoin(): return False #also extracts and moves, zip left, unzipped dir deleted.
     if not verify_bitcoin(): return False
     if not make_symlinks(): return False
 

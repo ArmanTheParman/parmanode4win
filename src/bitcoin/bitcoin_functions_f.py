@@ -54,6 +54,7 @@ If that doesn't work, hit{red} <control>{yellow}c{cyan} and Parmanode will try a
         zippath = bitcoinpath / f"bitcoin-{bitcoinversion}-win64.zip"
         if not zippath.exists():
             input(f"""    Download seems to have failed, Parmanode doesn't detect it. Hit <enter>.""")
+            return False
         please_wait(f"{green}Unzipping Bitcoin{orange}")
         try:
             unzip_file(str(zippath), directory_destination=str(bitcoinpath)) 
@@ -641,10 +642,7 @@ def verify_bitcoin():
         keyfail = True
     
     #Hash the zip path
-    try:
-        print(str(zippath))
-    except Exception as e:
-        input(e)
+
     hashresult = subprocess.run(["certutil", "-hashfile", str(zippath), "sha256"], text=True, capture_output=True)    
     target_hash = "9719871a2c9a45c741e33d670d2319dcd3f8f52a6059e9c435a9a2841188b932"
 
