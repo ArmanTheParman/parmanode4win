@@ -36,7 +36,7 @@ def make_sparrow_config():
 
 #    sparrow_config2 = '"coreDataDir": "C:\\Users\\EXAMPLE_USERNAME\\AppData\\Roaming\\Bitcoin",'
     
-    sparrow_config3 = """"    coreAuth": "parman:parman",
+    sparrow_config3 = """    "coreAuth": "parman:parman",
     "useLegacyCoreWallet": false,
     "useProxy": false,
     "autoSwitchProxy": true,
