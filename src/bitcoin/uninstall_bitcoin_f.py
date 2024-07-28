@@ -6,20 +6,19 @@ def uninstall_bitcoin():
 
     try:
         if not delete_directory_contents(str(bitcoinpath)):
-            announce(fr"""Unable to emtpy {cyan} C:\....\parman_programs\bitcoin{orange} during Bitcoin uninstallation
+            announce(fr"""Unable to emtpy {cyan} C:\....\parman_programs\bitcoin{orange} during uninstallation.
     The directory may be in use, eg it might be open in a folder window, or in a 
     terminal, or it could be because you have another instance of Parmanode open. 
     Aborting.""")                 
-#            return False
+            return False
+            
 
     except Exception as e:
-            announce(fr"""Unable to emtpy {cyan} C:\....\parman_programs\bitcoin{orange} during Bitcoin uninstallation
+            announce(fr"""Unable to emtpy {cyan} C:\....\parman_programs\bitcoin{orange} during uninstallation.
     The directory may be in use, eg it might be open in a folder window, or in a 
     terminal, or it could be because you have another instance of Parmanode open. 
     Aborting.
-                    
     {e}                    """)                 
-
             return False 
 
     try: 
