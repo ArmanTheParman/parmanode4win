@@ -37,6 +37,8 @@ def menu_main():
 #                                                                                      #
 #{cyan}    (mm){orange}                 Mentorship with Parman - Info                                #
 #                                                                                      #
+#{cyan}    (i){orange}                  Inhericance planning with Parman                             #
+#                                                                                      #
 #{cyan}    (e)       {orange}           Education                                                    #
 #                                                                                      #
 #{cyan}    (d)             {orange}     Donate                                                       #
@@ -73,6 +75,9 @@ def menu_main():
             mentorship()
         elif choice.lower() == "e":
             menu_education()
+        elif choice.lower() == "i":
+            internetbrowser("https://armantheparman.com/parmanvault/")
+            announce(f"Browser should have open the page.")
         elif choice.lower() == "d":
             sned_sats()
         elif choice.lower() == "update":

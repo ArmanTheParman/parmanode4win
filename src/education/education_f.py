@@ -35,9 +35,11 @@ def menu_education():
 
 {yellow}               (blk)       {black} What's the point of a blockchain?
 
-{yellow}               (mine)       {black} What you need to know about mining
+{yellow}               (mine)       {black} What's the point of mining?
 
-{yellow}               (mit){black}      2018 MIT Lecture Series (With Tagde Dryja)
+{yellow}               (dec)       {black} What's the point of decentralisation?
+
+{yellow}               (mit){black}      2018 MIT Lecture Series (With Tagde Dryja) - {red}advanced
  
 {cyan}
             .... more soon
@@ -60,6 +62,7 @@ def menu_education():
             pass
         elif choice.lower() == "mm":
             internetbrowser("https://armantheparman.com/mentorship/")
+            announce(f"Browser should have open the page.")
             continue
         elif choice.lower() == "wbo":
             internetbrowser("https://armantheparman.com/why-bitcoin-only/")
