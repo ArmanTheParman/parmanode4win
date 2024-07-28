@@ -1,4 +1,5 @@
 from pmodules import *
+from sparrow.config import *
 
 def install_sparrow():
 
@@ -25,6 +26,7 @@ def install_sparrow():
 
     if not verify_sparrow(): return False
 
+    if not make_sparrow_config(): return False
     # does .sparrow wallet dir exist?
 
 
