@@ -34,7 +34,7 @@ def make_sparrow_config():
     "coreServer": "http://127.0.0.1:8332",
     "coreAuthType": "USERPASS","""
 
-    sparrow_config2 = '"coreDataDir": "C:\\Users\\Ginko\\AppData\\Roaming\\Bitcoin",'
+#    sparrow_config2 = '"coreDataDir": "C:\\Users\\EXAMPLE_USERNAME\\AppData\\Roaming\\Bitcoin",'
     
     sparrow_config3 = """"coreAuth": "parman:parman",
     "useLegacyCoreWallet": false,
@@ -54,5 +54,18 @@ def make_sparrow_config():
        if i == "\\":
          i = '/'
        coreDD = coreDD + i
-    print(coreDD)  
-    input("test sparrow config")
+    
+    sparrow_config2 = f'"coreDataDir": "{coreDD}",'
+    sparrow_config_final = f"{sparrow_config1}
+{sparrow_config2}
+{sparrow_config3}
+"
+    sparrow_config_dir = HOME / "Appdata" / "Roaming" / "Sparrow"
+
+    if not sparrow_config_dir.exists():
+        sparrow_config_dir.mkdir()
+      
+    sparrow_config_path = sparrow_config_dir / "config"
+
+    with sparrow_config_path.open('w') as f:
+        f.write(sparrow_config_final + '\n')
