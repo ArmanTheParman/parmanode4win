@@ -51,8 +51,8 @@ try:
         suggestupdate()
 except Exception as e: input(e) 
 
-from parmanode.intro_f import * 
-input("1 zzzz")
+try: from parmanode.intro_f import * 
+except Exception as e: input(e)
 try: intro()
 except Exception as e: input(e)
 

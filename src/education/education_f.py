@@ -1,13 +1,8 @@
 from pmodules import *
-input("ed zzzz")
 from parmanode.intro_f import *
-input("ed zzzz")
 from parmanode.mentorship_f import *
-input("ed zzzz")
 import subprocess
-
 def menu_education():
-    input("ed zzzz")
     while True:
         set_terminal(h=44)
         print(f""" 
@@ -53,7 +48,6 @@ def menu_education():
 """)
         choice = choose("xpmq")
         set_terminal()
-        input("ed zzzz")
         if choice.upper() in {"Q", "EXIT"}: 
             sys.exit()
         elif choice.upper() == "P":

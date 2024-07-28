@@ -3,8 +3,8 @@ from menus.menu_add_f import menu_add
 from menus.menu_use_f import menu_use
 from menus.menu_remove_f import menu_remove
 from bitcoin.menu_bitcoin_f import *
-from parmanode.uninstall_parmanode import *
-from parmanode.about import *
+from parmanode.uninstall_parmanode_f import *
+from parmanode.about_f import *
 from tools.menu_tools_f import *
 from education.education_f import *
 from parmanode.mentorship_f import *
@@ -54,7 +54,6 @@ def menu_main():
  Type your{cyan} choice{orange} without the brackets, and hit{green} <enter>{orange} 
  Or to quit, either hit{green} <control>-c{orange}, or type{cyan} q{orange} then{green} <enter>{orange}.
 """)
-        input("main zzzz")
         print(f"""
 
 {blinkon}{red}                      WARNING!! YOU DON'T HAVE ENOUGH BITCOIN {orange}{blinkoff}""")

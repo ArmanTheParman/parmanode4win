@@ -5,17 +5,14 @@
 #instructions()
 ########################################################################################
 from pmodules import *
-import time
-
+import time, sys
 def intro():
 
-    input("1a zzzz")
     #later; hide messages option
     set_terminal(h=46)
     if pco.grep("hide_intro"):
         return True
 
-    input("1b zzzz")
     while True:
         print(f"""{orange}
               
@@ -60,13 +57,12 @@ def intro():
 """)
         choice = input()
 
-        input("1c zzzz")
         if choice in {'s', 'S'}:
             dirty_shitcoiner() 
             set_terminal()
             return True
         elif choice in {'q', 'Q'}:
-            exit()
+            sys.exit()
         elif choice in {'Free Ross', 'free ross'}:
             pco.add("hide_intro=True")
             set_terminal()
@@ -187,6 +183,6 @@ def instructions():
         pco.add("hide_instructions=True")
         return True
     elif choice in {"q", "Q", "quit"}:
-        exit()
+        sys.exit()
     else:
         return True
