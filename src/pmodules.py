@@ -976,3 +976,11 @@ def install_parmanode():
     #    test_installation()
     success(f"Parmanode3Win has been installed")
     sys.exit()
+
+def internetbrowser(url):
+    try:
+        # Attempt to open the URL using webbrowser and suppress output
+        subprocess.run(['python', '-m', 'webbrowser', '-t', url], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        return True
+    except Exception as e:
+        return False

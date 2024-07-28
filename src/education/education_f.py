@@ -1,4 +1,6 @@
 from pmodules import *
+from parmanode.intro_f import *
+from parmanode.mentorship_f import *
 import subprocess
 
 def menu_education():
@@ -12,8 +14,6 @@ def menu_education():
 {black}
                     
 {yellow}                 (mit){black}      2018 MIT Lecture Series (With Tagde Dryja)
-
-{yellow}                 (w){black}        How to connect your wallet to the node
 
 {yellow}                 (mm) {black}      Bitcoin Mentorship Info
 
@@ -41,7 +41,7 @@ def menu_education():
         elif choice.lower() == "w":
             pass
         elif choice.lower() == "mm":
-            pass
+            mentorship() 
         elif choice.lower() == "n":
             pass
         elif choice.lower() == "s":
