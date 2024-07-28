@@ -55,7 +55,7 @@ def make_sparrow_config():
          i = '/'
        coreDD = coreDD + i
     
-   sparrow_config2 = f'    "coreDataDir": "{coreDD}",'
+    sparrow_config2 = f'    "coreDataDir": "{coreDD}",'
 
     sparrow_config_final = f"""{sparrow_config1}
 {sparrow_config2}
