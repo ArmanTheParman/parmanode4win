@@ -152,11 +152,11 @@ def instructions():
     print(f"""
 ########################################################################################
 
-                               {cyan}     Instructions{black}
+                               {cyan}     INSTRUCTIONS{black}
 
 
 {yellow}    1.{black} Use the KEYBOARD to make choices and <enter> to confirm. Your mouse is 
-               no good here.
+       no good here.
 
 {yellow}    2.{black} Add individual programs from the{green} \"add\"{black} menu. You don't need to install them 
        all.
