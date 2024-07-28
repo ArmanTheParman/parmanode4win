@@ -49,13 +49,13 @@ def make_sparrow_config():
   }"""
 
     bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).strip().split('=')[1]
-    coreDD = "    "
+    coreDD = ""
     for i in bitcoin_dir:
        if i == "\\":
          i = '/'
        coreDD = coreDD + i
     
-    sparrow_config2 = f'"coreDataDir": "{coreDD}",'
+    sparrow_config2 = f'    "coreDataDir": "{coreDD}",'
     sparrow_config_final = f"""{sparrow_config1}
 {sparrow_config2}
 {sparrow_config3}
