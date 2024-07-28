@@ -5,7 +5,7 @@ import subprocess
 
 def menu_education():
     while True:
-        set_terminal()
+        set_terminal(h=44)
         print(f""" 
 ########################################################################################
  
@@ -13,14 +13,32 @@ def menu_education():
                                   E D U C A T I O N
 {black}
                     
-{yellow}                 (mit){black}      2018 MIT Lecture Series (With Tagde Dryja)
+{yellow}               (mm) {black}      Bitcoin Mentorship Info
 
-{yellow}                 (mm) {black}      Bitcoin Mentorship Info
+{yellow}               (o) {black}      Not too technical overview of Bitcoin
 
-{yellow}                 (n)     {black}   Six reasons to run a node
+{yellow}               (wbo) {black}      Why Bitcoin Only
 
-{yellow}                 (s)       {black} Separation of money and state
+{yellow}               (om) {black}      Why money trends towards only one
 
+{yellow}               (fud) {black}      Debunking Bitcoin FUD
+
+{yellow}               (z) {black}      Parman's ZeroTrust Bitcoin Storage System 
+
+{yellow}               (prv) {black}      Bitcoin private key info
+
+{yellow}               (n)     {black}   Six reasons to run a node 
+
+{yellow}               (s)       {black} Separation of money and state 
+
+{yellow}               (utxo)       {black} What is a Bitcoin UTXO?
+
+{yellow}               (blk)       {black} What's the point of a blockchain?
+
+{yellow}               (mine)       {black} What you need to know about mining
+
+{yellow}               (mit){black}      2018 MIT Lecture Series (With Tagde Dryja)
+ 
 {cyan}
             .... more soon
 
@@ -41,13 +59,43 @@ def menu_education():
         elif choice.lower() == "w":
             pass
         elif choice.lower() == "mm":
-            mentorship() 
+            internetbrowser("https://armantheparman.com/mentorship/")
+            continue
+        elif choice.lower() == "wbo":
+            internetbrowser("https://armantheparman.com/why-bitcoin-only/")
+            continue
+        elif choice.lower() == "om":
+            internetbrowser("https://armantheparman.com/onemoney/")
+            continue
+        elif choice.lower() == "fud":
+            internetbrowser("https://armantheparman.com/fud/")
+            continue
         elif choice.lower() == "n":
-            pass
+            internetbrowser("https://armantheparman.com/why-should-you-run-your-own-bitcoin-node/")
+            continue
+        elif choice.lower() == "s":
+            internetbrowser("https://armantheparman.com/joinus/")
+            continue
+        elif choice.lower() == "z":
+            internetbrowser("https://armantheparman.com/zerotrust/")
+            continue
+        elif choice.lower() == "prv":
+            internetbrowser("https://armantheparman.com/private-key-info/")
+            continue
+        elif choice.lower() == "utxo":
+            internetbrowser("https://armantheparman.com/utxo/")
+            continue
+        elif choice.lower() == "blk":
+            internetbrowser("https://armantheparman.com/blockchain/")
+            continue
+        elif choice.lower() == "mine":
+            internetbrowser("https://armantheparman.com/mining/")
+            continue
         elif choice.lower() == "s":
             pass
         else:
             invalid()
+https://armantheparman.com/bitcoin-english/
 
 def mit_lectures():
     while True:
