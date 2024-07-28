@@ -56,10 +56,10 @@ def make_sparrow_config():
        coreDD = coreDD + i
     
     sparrow_config2 = f'"coreDataDir": "{coreDD}",'
-    sparrow_config_final = f"{sparrow_config1}
+    sparrow_config_final = f"""{sparrow_config1}
 {sparrow_config2}
 {sparrow_config3}
-"
+"""
     sparrow_config_dir = HOME / "Appdata" / "Roaming" / "Sparrow"
 
     if not sparrow_config_dir.exists():
