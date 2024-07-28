@@ -54,6 +54,7 @@ def menu_main():
  Type your{cyan} choice{orange} without the brackets, and hit{green} <enter>{orange} 
  Or to quit, either hit{green} <control>-c{orange}, or type{cyan} q{orange} then{green} <enter>{orange}.
 """)
+        input("main zzzz")
         print(f"""
 
 {blinkon}{red}                      WARNING!! YOU DON'T HAVE ENOUGH BITCOIN {orange}{blinkoff}""")

@@ -8,11 +8,14 @@ from pmodules import *
 import time
 
 def intro():
+
+    input("1a zzzz")
     #later; hide messages option
     set_terminal(h=46)
     if pco.grep("hide_intro"):
         return True
 
+    input("1b zzzz")
     while True:
         print(f"""{orange}
               
@@ -57,6 +60,7 @@ def intro():
 """)
         choice = input()
 
+        input("1c zzzz")
         if choice in {'s', 'S'}:
             dirty_shitcoiner() 
             set_terminal()

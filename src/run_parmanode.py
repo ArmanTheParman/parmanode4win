@@ -30,6 +30,7 @@ debug("pause")
 #Imports
 ########################################################################################
 
+
 from pmodules import *
 try: parmanode_variables()
 except Exception as e: input(e)
@@ -37,6 +38,7 @@ except Exception as e: input(e)
 make_parmanode_directories()
 make_parmanode_files()
 bitcoin_variables()
+
 try: lockfilefunction()
 except Exception as e: input(e)
 #########################################################################################
@@ -50,12 +52,12 @@ try:
 except Exception as e: input(e) 
 
 from parmanode.intro_f import * 
+input("1 zzzz")
 try: intro()
 except Exception as e: input(e)
 
 try: instructions()
 except Exception as e: input(e)
-
 from parmanode.motd_f import motd 
 try: motd()
 except Exception as e: input(e)
