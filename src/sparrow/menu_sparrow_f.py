@@ -1,4 +1,5 @@
 from pmodules import *
+import subprocess
 
 def menu_sparrow():
 
@@ -35,6 +36,8 @@ def menu_sparrow():
         elif choice.upper() == "M":
             return True
         elif choice.lower() == "start":
-            
+            sparrowexe = pp / sparrow / "Sparrow.exe"
+            subprocess.run(sparrowexe)
+            return True
         else:
             invalid()
