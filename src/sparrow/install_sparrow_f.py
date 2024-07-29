@@ -168,7 +168,8 @@ def make_sparrow_config():
          i = '/'
        coreDD = coreDD + i
 
-    sparrow_config = """{
+    #can't use f string because of true/false interpretation
+    sparrow_config1 = """{
     "mode": "ONLINE",
     "bitcoinUnit": "BTC",
     "unitFormat": "DOT",
@@ -197,9 +198,9 @@ def make_sparrow_config():
     "serverType": "BITCOIN_CORE",
     "publicElectrumServer": "ssl://bitcoin.lu.ke:50002|bitcoin.lu.ke",
     "coreServer": "http://127.0.0.1:8332",
-    "coreAuthType": "USERPASS",
-    "coreDataDir": "{coreDD}",' 
-    "coreAuth": "parman:parman",
+    "coreAuthType": "USERPASS","""
+    sparrow_config2 = f"""    "coreDataDir": "{coreDD}","""
+    sparrow_config3 = """    "coreAuth": "parman:parman",
     "useLegacyCoreWallet": false,
     "useProxy": false,
     "autoSwitchProxy": true,
@@ -210,9 +211,9 @@ def make_sparrow_config():
     "appWidth": 1083.0,
     "appHeight": 805.5
   }"""
-
+    sparrow_config_final = f"{sparrow_config1}\n{sparrow_config2}\n{sparrow_config3}"
       
     with sparrow_config_path.open('w') as f:
-        f.write(sparrow_config + '\n')
+        f.write(sparrow_config_final + '\n')
 
     return True
