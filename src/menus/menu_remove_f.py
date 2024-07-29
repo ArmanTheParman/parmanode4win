@@ -1,4 +1,5 @@
 from bitcoin.uninstall_bitcoin_f import *
+from sparrow.uninstall_sparrow_f import *
 from parmanode.menu_main_f import *
 
 def menu_remove():
@@ -8,6 +9,13 @@ def menu_remove():
     else: 
         rem_bitcoin ="#                                                                                      #"
         bitcoinmenu = False
+
+    if ico.grep("sparrow-"): 
+        rem_sparrow = f"#                  {green} (s){orange}            Sparrow Bitcoin Wallet                              #"
+        sparrowmenu = True
+    else: 
+        rem_sparrow ="#                                                                                      #"
+        sparrowmenu = False
 
     while True:
         set_terminal()
@@ -21,6 +29,8 @@ def menu_remove():
 #                                                                                      #
 {rem_bitcoin}
 #                                                                                      #
+{rem_sparrow}
+#                                                                                      #
 #                                                                                      #
 ########################################################################################
 """)
@@ -31,9 +41,17 @@ def menu_remove():
             return True
         elif choice in {"m", "M"}:
             return True
-        elif choice in {"b", "B", "Bitcoin", "bitcoin"}:
+        elif choice.lower() == "b":
             if bitcoinmenu == False: continue
             if not uninstall_bitcoin(): return False
+            return True
+        elif choice.lower() == "b":
+            if bitcoinmenu == False: continue
+            if not uninstall_bitcoin(): return False
+            return True
+        elif choice.lower() == "s":
+            if sparrowmenu == False: continue
+            if not uninstall_sparrow(): return False
             return True
         else:
             invalid()
