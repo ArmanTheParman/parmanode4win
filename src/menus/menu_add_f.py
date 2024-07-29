@@ -1,4 +1,5 @@
 from bitcoin.install_bitcoin_f import *
+from sparrow.install_sparrow_f import *
 
 def menu_add():
     if not ico.grep("bitcoin-end"):
@@ -9,7 +10,7 @@ def menu_add():
         bitcoinmenu = False
 
     if not ico.grep("sparrow-end"):
-        add_sparrow = f"#                  {green} (b){orange}            Sparrow                            #"
+        add_sparrow = f"#                  {green} (s){orange}            Sparrow                            #"
         sparrowmenu = True
     else: 
         add_sparrow ="#                                                                                      #"
@@ -46,6 +47,10 @@ def menu_add():
         elif choice in {"b", "B", "Bitcoin", "bitcoin"}:
             if bitcoinmenu == False : continue
             if not install_bitcoin(): return False
+            return True
+        elif choice.lower() = "s"
+            if sparrowmenu == False : continue
+            if not install_sparrow(): return False
             return True
         else:
             invalid()
