@@ -1,3 +1,4 @@
+from functions import *
 from bitcoin.install_bitcoin_f import *
 from sparrow.install_sparrow_f import *
 

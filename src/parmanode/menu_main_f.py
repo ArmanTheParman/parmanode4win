@@ -1,4 +1,5 @@
-from pmodules import *
+from variables import *
+from functions import *
 from menus.menu_add_f import menu_add
 from menus.menu_use_f import menu_use
 from menus.menu_remove_f import menu_remove

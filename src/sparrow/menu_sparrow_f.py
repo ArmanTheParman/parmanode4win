@@ -1,4 +1,5 @@
-from pmodules import *
+from variables import *
+from functions import *
 import subprocess
 
 def menu_sparrow():

@@ -1,4 +1,5 @@
-from pmodules import *
+from variables import *
+from functions import *
 
 def mentorship():
     set_terminal(h=45)

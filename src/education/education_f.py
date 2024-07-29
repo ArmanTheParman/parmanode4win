@@ -1,4 +1,5 @@
-from pmodules import *
+from variables import *
+from functions import *
 from parmanode.intro_f import *
 from parmanode.mentorship_f import *
 import subprocess

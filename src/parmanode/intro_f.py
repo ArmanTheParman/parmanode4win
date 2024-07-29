@@ -4,8 +4,10 @@
 #suggestupdate()
 #instructions()
 ########################################################################################
-from pmodules import *
+from variables import *
+from functions import *
 import time, sys
+
 def intro():
 
     #later; hide messages option

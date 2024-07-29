@@ -19,7 +19,7 @@ if not ctypes.windll.shell32.IsUserAnAdmin(): #is admin?
 ########################################################################################
 #DEBUG AND TESTING SECTION:
 ########################################################################################
-from debugging_f import *
+from debugging import *
 #debug(some_function=colour_check)
 #debug("text")
 #need "d" argument in position [1] when running
@@ -29,9 +29,10 @@ debug("pause")
 ########################################################################################
 #Imports
 ########################################################################################
-try: from pmodules import *
+try: from functions import *
 except Exception as e: input(e)
-
+try: from functions import *
+except Exception as e: input(e)
 ########################################################################################
 # Installer
 try:
@@ -50,7 +51,6 @@ if check_updates((0, 0, 1)) == "outdated":    #pass compiling version as int lis
 
 try: from parmanode.intro_f import * 
 except Exception as e: input(e)
-
 
 # causes slight delay
 get_IP_variables()

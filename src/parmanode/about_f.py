@@ -1,4 +1,5 @@
-from pmodules import *
+from variables import *
+from functions import enter_continue, set_terminal
 
 def about_parmanode():
     

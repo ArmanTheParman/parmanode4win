@@ -1,4 +1,5 @@
-from pmodules import *
+from variables import *
+from functions import *
 import time
 
 def uninstall_sparrow():

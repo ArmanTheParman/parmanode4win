@@ -1,7 +1,9 @@
-from pmodules import *
+from variables import *
+from functions import set_terminal, choose, invalid
 
 def dirty_shitcoiner():
     while True:
+        set_terminal()
         print(f"""
 ########################################################################################
 ########################################################################################

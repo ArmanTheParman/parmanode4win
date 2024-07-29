@@ -1,5 +1,5 @@
-from  pmodules import *
-
+from  variables import *
+from functions import *
 def menu_tools():
     while True:
         set_terminal()

@@ -1,12 +1,10 @@
-import requests, time, atexit, platform, sys, ctypes, psutil, os
-import zipfile, subprocess, os, ctypes, subprocess
 from pathlib import Path
-import os
+from variables import *
 import shutil
 import winshell
-from win32com.client import Dispatch #for shortcut creation on install
 from chocolatey_f import *
-
+import requests, time, atexit, platform, sys, ctypes, psutil, os
+import zipfile, subprocess, os, ctypes, subprocess
 
 ########################################################################################
 #directories
@@ -55,8 +53,6 @@ def make_parmanode_files():
 
     if not difference.exists():
         difference.touch()
-
-    
 
 ########################################################################################
 
@@ -118,12 +114,7 @@ def lockfilefunction(once=False):
                 return True
             else:
                 lockfilefunction(once=True) # 'once=True' prevents riks of infinite loop
-        
 
-
-########################################################################################
-#IP
-########################################################################################
 def get_internal_IP(toprint:bool=None):
     try:
         import socket 
@@ -150,85 +141,6 @@ def get_IP_variables():
     try: extIP = subprocess.run(['curl', '-s', 'ifconfig.me'], text=True, capture_output=True, check=True).stdout.strip()
     except: extIP = "N/A"
 
-########################################################################################
-# Date
-########################################################################################
-def get_date_variable():
-
-    from datetime import datetime
-    global date
-    date=datetime.now().date().strftime("%y-%m-%d")
-
-
-from pathlib import Path
-
-########################################################################################
-# Classes
-########################################################################################
-class config:
-    def __init__(self, path: Path):
-        if path.exists() == False:
-           path.touch() 
-
-        self.file = path
-        self.data = set()
-        with self.file.open('r') as f:
-            self.fulldata = f.read()
-            for line in self.fulldata.splitlines(True):
-                self.data.add(line)
-
-      #members:
-          # file 
-          # data - one line entries
-
-    def __repr__(self):
-        return f"Config {str(self.file)}: \n {self.data}"
-          
-    def read(self, datatype="set") -> set:
-        if datatype == "full":
-            return self.fulldata
-        elif datatype == "set":
-            return self.data    
-    
-    def write(self): #for adding variable contents to the file.
-        with self.file.open('w') as f:
-            for line in self.data:
-                f.write(line)
-
-    def add(self, toadd: str):
-        self.data.add(toadd + '\n')
-        self.write()
-    
-    def remove(self, toremove: str):
-        temp = self.data.copy()
-        for line in self.data:
-            if toremove in line:
-                temp.remove(line) 
-        self.data = temp
-        self.write()
-
-    def grep(self, checkstring: str, returnline=False): 
-        #print(checkstring, " -- the checkstring")
-        for line in self.data:
-            #print("lines..." , line)
-            if checkstring in line:
-                #print("found line..." , line)
-                if returnline == True: return line
-                #input("returning true")
-                return True
-        if returnline == True: return "" #match not found
-        #input("returning false.")
-        return False
-
-    def truncate(self):
-        self.data.clear()
-        self.fulldata = ""
-        with self.file.open('w'):
-            pass
-
-########################################################################################
-# Other functions
-########################################################################################
 
 def searchin(the_string, the_file: Path) -> bool:
 
@@ -736,16 +648,19 @@ def counter(type):
 
 
 def check_updates(compiled_version):
+
     if pco.grep("update_reminders_off"):
         return True
 
     if pco.grep(f"{date}"): return True #check updates only once a day to save loading time checking url
-    
+
+    input("a zzzz")
     pco.remove("last_used=")
     pco.add(f"last_used={date}")
 
     url = "https://raw.githubusercontent.com/ArmanTheParman/parmanode4win/main/version.conf"
 
+    input("a zzzz")
     params = {'_': int(time.time())}  # Adding a unique timestamp parameter
     try:
         response = requests.get(url, params=params).text.split('\n')
@@ -761,6 +676,8 @@ def check_updates(compiled_version):
     except Exception as e:
         print(f"error when checking update, {e}")
         return "error"
+
+    input("a zzzz")
 
 def os_is():
     """Windows, Darwin, or Linux is returned"""
@@ -879,98 +796,3 @@ def internetbrowser(url):
         return True
     except Exception as e:
         return False
-
-########################################################################################
-#parmanode_variables
-########################################################################################
-
-global version 
-version = "0.0.1"
-
-#directory related variables 
-global HOME, pp, dp, bitcoinpath, p4w
-HOME=Path.home()
-pp = HOME / "parman_programs"     
-dp = pp / "parmanode_config"
-bitcoinpath = pp / "bitcoin"
-p4w = pp / "parmanode4win" 
-
-#file related variables
-global tmp, pc, ic, rp_counter, motd_counter, pco, ico, dbo, db, before, after, difference, lockfile
-tmp = dp / "for_copying-can_delete.tmp"
-pc = dp / "parmanode.conf"
-ic = dp / "installed.conf"
-db = dp / "debug.log"
-rp_counter = dp / "rp_counter.conf"
-motd_counter = dp / "motd_counter.conf"
-before = dp / "before.log"
-after = dp / "after.log"
-difference = dp/ "difference.log"
-lockfile = dp / "lockfile"
-
-global pco, ico, dbo, tmpo, beforeo, aftero, differenceo 
-
-pco = config(pc) #parmanode conf object
-ico = config(ic) #installed conf object
-dbo = config(db) #debug log object
-tmpo = config(tmp) #temp config object - not config, but useful methods
-beforeo = config(before)
-aftero = config(after)
-differenceo = config(difference)
-
-from colorama import Fore, Style, init #init need to toggle autoreset on/off
-global black, red, green, yellow, blue, magenta, cyan, white, reset
-
-#if colour resets after print statment, enable this: 
-#init(autoreset=True)
-
-# Basic colors
-black = Fore.BLACK
-red = Fore.RED
-green = Fore.GREEN
-yellow = Fore.YELLOW
-blue = Fore.BLUE
-magenta = Fore.MAGENTA
-cyan = Fore.CYAN
-white = Fore.WHITE
-reset = Style.RESET_ALL
-
-global orange, pink, bright_black, grey, bright_red, bright_green, bright_yellow, bright_blue, bright_magenta, bright_cyan, bright_white
-# Additional colors
-orange = '\033[1m\033[38;2;255;145;0m'  # Manual for colors not in colorama
-pink = '\033[38;2;255;0;255m'
-bright_black = '\033[90m'
-grey = Fore.LIGHTBLACK_EX
-bright_red = Fore.LIGHTRED_EX
-bright_green = Fore.LIGHTGREEN_EX
-bright_yellow = Fore.LIGHTYELLOW_EX
-bright_blue = Fore.LIGHTBLUE_EX
-bright_magenta = Fore.LIGHTMAGENTA_EX
-bright_cyan = Fore.LIGHTCYAN_EX
-bright_white = Fore.LIGHTWHITE_EX
-
-global blinkon, blinkoff
-
-# Blink effects
-blinkon = '\033[5m'
-blinkoff = Style.RESET_ALL
-
-
-global drive_bitcoin, default_bitcoin_data_dir, bitcoin_dir, bitcoinversion
-
-bitcoinversion="26.1"
-
-drive_bitcoin = None
-
-# Default Windows Bitcoin data directory
-default_bitcoin_data_dir = Path.home() / "AppData" / "Roaming" / "Bitcoin"
-
-# get Bitcoin data dir variable
-if pc.exists() and pco.grep("bitcoin_dir") == True:
-    bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).split('=')[0].strip()
-    bitcoin_dir = Path(bitcoin_dir)
-else:
-    bitcoin_dir = None
-
-#########################################
-get_date_variable()

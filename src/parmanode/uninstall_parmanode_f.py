@@ -1,4 +1,5 @@
-from pmodules import *
+from variables import *
+from functions import *
 from bitcoin.uninstall_bitcoin_f import *
 from pathlib import Path
 import os, sys
