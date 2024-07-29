@@ -47,7 +47,7 @@ def download_sparrow():
     If it freezes, someitmes hitting <enter> breathes life into it for some reason. 
     I don't know why. Windows, pfffff, I hate it.
 
-    If that doesn't work, hit{red} <control>{yellow}c{cyan} and Parmanode will try again.{orange}
+    If that doesn't work, hit{red} <control>{green}c{cyan} and Parmanode will try again.{orange}
                         """)
 
         if not download(url, str(sparrowpath)): 
