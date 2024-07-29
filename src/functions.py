@@ -649,6 +649,26 @@ def counter(type):
             f.write(str(newcount) + '\n')
 
 
+def check_installer_updates(compiled_version):
+    url = "https://raw.githubusercontent.com/ArmanTheParman/parmanode4win/main/installer_version"
+    params = {'_': int(time.time())}  # Adding a unique timestamp parameter
+    try:
+        response = requests.get(url, params=params).text.split('.')
+        input(response)
+        latest_winMajor = int(response[0])
+        latest_winMinor = int(response[1])
+        latest_winPatch = int(response[2])
+
+        if [latest_winMajor, latest_winMinor, latest_winPatch] > compiled_version:
+            return "outdated"
+        else:
+            return "uptodate"
+
+    except:
+        return "error"
+
+
+    
 def check_updates(compiled_version, nah=False):
     if pco.grep("update_reminders_off"):
         return True
