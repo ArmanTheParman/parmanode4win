@@ -79,13 +79,13 @@ def download_sparrow():
             input(e)
         input("pause to test mv")
         #rename unzip folder
-        sparrowunzippedpath = sparrowpath / f"Sparrow-{sparrowversion}"
+        sparrowunzippedpath = sparrowpath / f"Sparrow"
         try:
             returncode = subprocess.run(["mv", f"""{str(sparrowunzippedpath)}/*""" , f"""{str(sparrowpath)}/*"""], check=True)
             delete_directory(sparrowunzippedpath)
         except Exception as e:
            input(e) 
-
+a
         
     except Exception as e:
         input(e)
