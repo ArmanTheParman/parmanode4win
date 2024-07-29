@@ -1,5 +1,6 @@
 from pmodules import *
 from bitcoin.menu_bitcoin_f import *
+from sparrow.menu_sparrow_f import *
 
 def menu_use():
 
@@ -9,8 +10,15 @@ def menu_use():
             use_bitcoinmenu = f"#                  {green} (b){orange}            Bitcoin Core                                        #"
             bitcoinmenu = True
         else: 
-            use_bitcoinmenu ="#                                                                                      #"
+            use_bitcoinmenu = "#                                                                                      #"
             bitcoinmenu = False
+
+        if ico.grep("sparrow-end"): 
+            use_sparrowmenu = f"#                  {green} (b){orange}            Sparrow Bitcoin Wallet                              #"
+            sparrowmenu = True
+        else: 
+            use_sparrow = "#                                                                                      #"
+            sparrowmenu = False
 
         print(f"""
 ########################################################################################
@@ -21,6 +29,8 @@ def menu_use():
 #                                                                                      #
 #                                                                                      #
 {use_bitcoinmenu}
+#                                                                                      #
+{use_sparrowmenu}
 #                                                                                      #
 #                                                                                      #
 ########################################################################################
@@ -35,6 +45,10 @@ def menu_use():
         elif choice.lower() in {"b", "bitcoin"}:
             if bitcoinmenu == False: continue
             if not menu_bitcoin(): return False
+            return True
+        elif choice.lower() in {"s", "sparrow"}:
+            if sparrowmenu == False: continue
+            if not menu_sparrow(): return False
             return True
         else:
             invalid()
