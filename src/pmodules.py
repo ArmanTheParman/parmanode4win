@@ -955,7 +955,7 @@ def install_parmanode():
       will be downloaded to your computer.
 {green}    
     2){orange} An executable file which was created ('compiled') from that code will be moved 
-      to the 'Program files \ Parmanode4Win' folder.
+      to the 'Program files \\ Parmanode4Win' folder.
 {green}
     3){orange} A shorcut to the program file executable will be left on your Desktop.
 {green}               
