@@ -77,7 +77,7 @@ def download_sparrow():
             unzip_file(str(sparrowzippath), directory_destination=str(sparrowpath)) 
         except Exception as e:
             input(e)
-
+        input("pause to test mv")
         #rename unzip folder
         sparrowunzippedpath = sparrowpath / f"Sparrow-{sparrowversion}"
         try:
