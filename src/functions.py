@@ -650,7 +650,6 @@ def counter(type):
 
 
 def check_updates(compiled_version, nah=False):
-
     if pco.grep("update_reminders_off"):
         return True
     
@@ -761,3 +760,52 @@ def internetbrowser(url):
         return True
     except Exception as e:
         return False
+
+def suggestupdate():
+
+    set_terminal()
+    print(f"""
+########################################################################################
+
+    Parmanode has detected there is a newer version of itself.
+
+    Have Parmanode update itself now?
+
+{cyan}
+                y){orange}             Yeah, this is cool
+{cyan}
+                n){orange}             Nah, I don't like improvements
+
+    
+    Type{pink} 'Free Ross'{orange} to never be reminded of updates again. 
+
+    Otherwise, just hit{green} <enter>{orange} to continue.
+
+########################################################################################
+""")
+    choice = choose("xeq")
+    if choice in {'free ross', 'Free Ross'}:
+        pco.add("update_reminders_off=True")#tested at the start of check_updates()
+    if choice.lower() == "y":
+        update_parmanode()
+        return True 
+    if choice.lower() == "n":
+        return True
+    elif choice == "q": quit()
+    return True
+
+
+def update_parmanode():
+    try:
+        current_dir = os.getcwd()
+        os.chdir(p4w)
+        os.system('git config pull.rebase false')
+        os.system('git config user.name winuser')
+        os.system('git config user.email winuser@parmanode.com')
+        os.system('git pull')
+        os.chdir(current_dir)
+    except:
+        announce("Parmanode encountered an error updating itself.")
+    finally:
+        os.chdir(current_dir)
+    success("Parmanode has been update")

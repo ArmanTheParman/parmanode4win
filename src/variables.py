@@ -7,7 +7,8 @@ from classes import config
 ########################################################################################
 
 global version 
-version = [0, 0, 1]
+version = [0, 0, 0]
+version_text=f"{str(version[0])}.{str(version[1])}.{str(version[2])}"
 installer_version = [0, 0, 1]
 
 from datetime import datetime

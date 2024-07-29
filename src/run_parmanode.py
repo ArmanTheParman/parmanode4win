@@ -41,11 +41,9 @@ except Exception as e: input(e)
 
 counter("rp")
 
-x = check_updates([0, 0, 1], nah = True)
-input(x)
-
 if check_updates([0, 0, 1]) == "outdated":    #pass compiling version as int list argument
-    suggestupdate()
+    try: suggestupdate()
+    except Exception as e: input(e)
 
 try: from parmanode.intro_f import * 
 except Exception as e: input(e)
