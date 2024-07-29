@@ -130,7 +130,6 @@ def get_internal_IP(toprint:bool=None):
         input(e)
 
 def get_IP_variables():
-    global IP, IP1, IP2, IP3, IP4, extIP
     IP = get_internal_IP()
     IP1 = IP.split(r'.')[0]
     IP2 = IP.split(r'.')[1]
@@ -141,7 +140,7 @@ def get_IP_variables():
     try: extIP = subprocess.run(['curl', '-s', 'ifconfig.me'], text=True, capture_output=True, check=True).stdout.strip()
     except: extIP = "N/A"
 
-    return IP
+    return {"IP": f"{IP}", "IP1": f"{IP1}", "IP2": f"{IP2}", "IP3": f"{IP3}", "IP4": f"{IP4}", "extIP": f"{extIP}"}
 
 
 def searchin(the_string, the_file: Path) -> bool:
@@ -433,7 +432,8 @@ def enter_continue(text=None):
     if text.upper() == "TRY AGAIN":
        print(f"{yellow}Hit{cyan} <enter>{yellow} to try again...{orange}") 
        return input()
-    if text.lower() == 'q':
+    if text.lower() == "q":
+       print(f"{yellow}Hit{cyan} <enter>{yellow} to continue...{orange}") 
        thechoice = input()
        if thechoice.lower() == 'q': sys.exit()
        return thechoice

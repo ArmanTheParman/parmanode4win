@@ -81,11 +81,11 @@ def whatsmyip():
     import os
     USER = os.getenv('USERNAME')
     IP = get_IP_variables()
-    input(f"""
-##################k######################################################################
+    print(f"""
+########################################################################################
 
 
-{black}    Your computer's IP address is:                   {cyan}             {IP} {orange}
+{black}    Your computer's IP address is:                   {cyan}             {IP["IP"]} {orange}
 
 
 {black}    Your computer's \"self\" IP address should be:   {yellow}               127.0.0.1
@@ -99,7 +99,7 @@ def whatsmyip():
 {black}    in the terminal of the other computer:
 
 
-{blue}    ssh {USER}@{IP}
+{blue}    ssh {USER}@{IP["IP"]}
 
 
 {black}    Note that ssh needs to be enabled on this system. If it's a Windows machine, you 
@@ -107,7 +107,7 @@ def whatsmyip():
 
 
 {black}    The EXTERNAL IP for your router 
-{black}    (Your Home's IP not just this device):              {red}           {extIP}{orange}
+{black}    (Your Home's IP not just this device):              {red}           {IP["extIP"]}{orange}
 
 
 
