@@ -17,7 +17,7 @@ def uninstall_sparrow():
         except: announce("Unable to delete config directory for some reason. Continuing.")
 
     try:
-        if not delete_directory_contents(str(sparrowpath)):
+        if not delete_directory(str(sparrowpath)):
             announce(fr"""Unable to emtpy {cyan} C:\....\parman_programs\sparrow{orange} during uninstallation.
         The directory may be in use, eg it might be open in a folder window, or in a 
         terminal, or it could be because you have another instance of Parmanode open. 
