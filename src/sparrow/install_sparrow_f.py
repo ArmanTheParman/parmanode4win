@@ -77,7 +77,6 @@ def download_sparrow():
             unzip_file(str(sparrowzippath), directory_destination=str(sparrowpath)) 
         except Exception as e:
             input(e)
-        input("pause to test mv")
         #rename unzip folder
         sparrowunzippedpath = sparrowpath / f"Sparrow"
         try:
@@ -85,7 +84,6 @@ def download_sparrow():
             delete_directory(sparrowunzippedpath)
         except Exception as e:
            input(e) 
-        input("after mv")
 
         
     except Exception as e:
@@ -158,7 +156,6 @@ both sha256 and gpg.{orange}
 def make_sparrow_config():
 
     global sparrow_config1, sparrow_config2, sparrow_config3
-
     sparrow_config_dir = HOME / "Appdata" / "Roaming" / "Sparrow"
     sparrow_config_path = sparrow_config_dir / "config"
     if not sparrow_config_dir.exists():
@@ -217,3 +214,5 @@ def make_sparrow_config():
       
     with sparrow_config_path.open('w') as f:
         f.write(sparrow_config + '\n')
+
+    return True
