@@ -29,17 +29,12 @@ debug("pause")
 ########################################################################################
 #Imports
 ########################################################################################
+try: from variables import *
+except Exception as e: input(e)
+
 try: from functions import *
 except Exception as e: input(e)
-try: from functions import *
-except Exception as e: input(e)
-########################################################################################
-# Installer
-try:
-    if not p4w.exists():
-        install_parmanode()
-except Exception as e: input(e)
-########################################################################################
+
 try: lockfilefunction()
 except Exception as e: input(e)
 ########################################################################################
