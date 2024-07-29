@@ -187,15 +187,19 @@ def deleteline(the_string, the_file):
 
 def download(url, dir):
     try:
-        os.getcwd()
+        initial_dir = os.getcwd()
         os.chdir(dir)
         try:
             subprocess.run(['curl', '-LO', url], check=True)  # other options: stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            os.chdir(initial_dir)
         except Exception as e:
             announce("download failed")
+            os.chdir(initial_dir)
             return False
+        os.chdir(initial_dir)
         return True
     except:
+        os.chdir(initial_dir)
         return False
 
 def unzip_file(zippath: str, directory_destination: str):
@@ -822,6 +826,7 @@ def update_parmanode():
         os.system('git config pull.rebase false')
         os.system('git config user.name winuser')
         os.system('git config user.email winuser@parmanode.com')
+        os.system('git stash')
         os.system('git pull')
         os.chdir(current_dir)
     except:
@@ -829,3 +834,12 @@ def update_parmanode():
     finally:
         os.chdir(current_dir)
     success("Parmanode has been update")
+
+def check_for_emergency():
+    url = "https://raw.githubusercontent.com/ArmanTheParman/parmanode4win/main/emergency.py"
+    download(url, str(p4w))
+    target = p4w / "emergency.py" 
+    if target.exists():
+        try: import emergency
+        except: pass
+    
