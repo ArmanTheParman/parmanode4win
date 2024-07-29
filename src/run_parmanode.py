@@ -29,18 +29,15 @@ debug("pause")
 ########################################################################################
 #Imports
 ########################################################################################
-
-
-from pmodules import *
-try: parmanode_variables()
+try: from pmodules import *
 except Exception as e: input(e)
 
 ########################################################################################
 # Installer
-
-if not p4w.exists():
-    install_parmanode()
-
+try:
+    if not p4w.exists():
+        install_parmanode()
+except Exception as e: input(e)
 ########################################################################################
 try: lockfilefunction()
 except Exception as e: input(e)
@@ -53,6 +50,10 @@ if check_updates((0, 0, 1)) == "outdated":    #pass compiling version as int lis
 
 try: from parmanode.intro_f import * 
 except Exception as e: input(e)
+
+
+# causes slight delay
+get_IP_variables()
 
 try: intro()
 except Exception as e: input(e)
