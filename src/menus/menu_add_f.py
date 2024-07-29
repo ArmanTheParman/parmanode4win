@@ -10,7 +10,7 @@ def menu_add():
         bitcoinmenu = False
 
     if not ico.grep("sparrow-end"):
-        add_sparrow = f"#                  {green} (s){orange}            Sparrow                            #"
+        add_sparrow = f"#                  {green} (s){orange}            Sparrow                                             #"
         sparrowmenu = True
     else: 
         add_sparrow ="#                                                                                      #"
