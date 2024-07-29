@@ -35,37 +35,34 @@ from pmodules import *
 try: parmanode_variables()
 except Exception as e: input(e)
 
-make_parmanode_directories()
-make_parmanode_files()
-bitcoin_variables()
+########################################################################################
+# Installer
 
+if not p4w.exists():
+    install_parmanode()
+
+########################################################################################
 try: lockfilefunction()
 except Exception as e: input(e)
-#########################################################################################
-
-
-
 ########################################################################################
 
 counter("rp")
-try:
-    if check_updates((0, 0, 1)) == "outdated":    #pass compiling version as int list argument
-        suggestupdate()
-except Exception as e: input(e) 
+
+if check_updates((0, 0, 1)) == "outdated":    #pass compiling version as int list argument
+    suggestupdate()
 
 try: from parmanode.intro_f import * 
 except Exception as e: input(e)
+
 try: intro()
 except Exception as e: input(e)
 
 try: instructions()
 except Exception as e: input(e)
-from parmanode.motd_f import motd 
-try: motd()
+
+
+try: from parmanode.motd_f import motd ; motd()
 except Exception as e: input(e)
 
-try:
-    from parmanode.menu_main_f import *
-    menu_main()
-except Exception as e:
-    input(e)
+try: from parmanode.menu_main_f import * ; menu_main()
+except Exception as e: input(e)

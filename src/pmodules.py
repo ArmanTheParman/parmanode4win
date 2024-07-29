@@ -11,14 +11,8 @@ from chocolatey_f import *
 ########################################################################################
 #directories
 ########################################################################################
-
 def make_parmanode_directories():
 
-    global HOME, pp, dp, bitcoinpath, p4w
-
-    HOME=Path.home()
-    
-    pp = HOME / "parman_programs"
     if not pp.exists():
         pp.mkdir() 
 
@@ -26,28 +20,13 @@ def make_parmanode_directories():
     if not dp.exists():
         dp.mkdir()
 
-    bitcoinpath = pp / "bitcoin"
-
-    p4w = pp / "parmanode4win"
-
 ########################################################################################
 #files
 ########################################################################################
 
 def make_parmanode_files():
     
-    global tmp, pc, ic, rp_counter, motd_counter, pco, ico, dbo, db, before, after, difference, lockfile
 
-    tmp = dp / "for_copying-can_delete.tmp"
-    pc = dp / "parmanode.conf"
-    ic = dp / "installed.conf"
-    db = dp / "debug.log"
-    rp_counter = dp / "rp_counter.conf"
-    motd_counter = dp / "motd_counter.conf"
-    before = dp / "before.log"
-    after = dp / "after.log"
-    difference = dp/ "difference.log"
-    lockfile = dp / "lockfile"
 
     if not tmp.exists():
         tmp.touch()
@@ -103,7 +82,47 @@ def parmanode_variables():
 
     global version 
     version = "0.0.1"
-    
+   
+    #directory related variables 
+    global HOME, pp, dp, bitcoinpath, p4w
+    HOME=Path.home()
+    dp = pp / "parmanode_config"
+    bitcoinpath = pp / "bitcoin"
+    p4w = pp / "parmanode4win" 
+    pp = HOME / "parman_programs"     
+
+    #file related variables
+    global tmp, pc, ic, rp_counter, motd_counter, pco, ico, dbo, db, before, after, difference, lockfile
+    tmp = dp / "for_copying-can_delete.tmp"
+    pc = dp / "parmanode.conf"
+    ic = dp / "installed.conf"
+    db = dp / "debug.log"
+    rp_counter = dp / "rp_counter.conf"
+    motd_counter = dp / "motd_counter.conf"
+    before = dp / "before.log"
+    after = dp / "after.log"
+    difference = dp/ "difference.log"
+    lockfile = dp / "lockfile"
+
+    def bitcoin_variables():
+
+        global drive_bitcoin, default_bitcoin_data_dir, bitcoin_dir, bitcoinversion
+
+        bitcoinversion="27.1"
+
+        drive_bitcoin = None
+
+        # Default Windows Bitcoin data directory
+        default_bitcoin_data_dir = Path.home() / "AppData" / "Roaming" / "Bitcoin"
+
+        # get Bitcoin data dir variable
+        if pco.grep("bitcoin_dir") == True:
+            bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).split('=')[1].strip()
+            bitcoin_dir = Path(bitcoin_dir)
+        else:
+            bitcoin_dir = None
+
+    bitcoin_variables()
     get_IP_variables()
     get_date_variable()
 
@@ -205,27 +224,6 @@ def lockfilefunction(once=False):
             else:
                 lockfilefunction(once=True) # 'once=True' prevents riks of infinite loop
         
-########################################################################################
-#Bitcon variables
-########################################################################################
-
-def bitcoin_variables():
-
-    global drive_bitcoin, default_bitcoin_data_dir, bitcoin_dir, bitcoinversion
-
-    bitcoinversion="27.1"
-
-    drive_bitcoin = None
-
-    # Default Windows Bitcoin data directory
-    default_bitcoin_data_dir = Path.home() / "AppData" / "Roaming" / "Bitcoin"
-
-    # get Bitcoin data dir variable
-    if pco.grep("bitcoin_dir") == True:
-        bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).split('=')[1].strip()
-        bitcoin_dir = Path(bitcoin_dir)
-    else:
-        bitcoin_dir = None
 
 
 ########################################################################################
@@ -953,17 +951,16 @@ def install_parmanode():
     If you choose to proceed, the following will happen...
 
 {green}
-    1){orange} The{cyan} Parmanode4Win{orange} script files (written open source code) will be
-    downloaded to your computer.
+    1){orange} The{cyan} Parmanode4Win{orange} script files (readable text open source code) 
+      will be downloaded to your computer.
 {green}    
-    2){orange} An executable file which was created ('compiled') by that code will be moved 
-    to the 'Program files' folder.
+    2){orange} An executable file which was created ('compiled') from that code will be moved 
+      to the 'Program files \ Parmanode4Win' folder.
 {green}
-    3){orange} A shorcut to the program file will be left on your Desktop.
+    3){orange} A shorcut to the program file executable will be left on your Desktop.
 {green}               
-    4){orange} Some dependencies will be installed, these are programs Parmanode4Win needs to
-    function properly.
-           
+    4){orange} Some dependencies programs will be installed - these are programs 
+      Parmanode4Win needs to function properly:
 
 {cyan}              - chocolatey{orange} (application package manager for Windows, it's great)
 {cyan}              - curl {orange} 
@@ -974,6 +971,9 @@ def install_parmanode():
     git_clone_parmanode4win()
     desktop_shortcut()
     #    test_installation()
+    make_parmanode_directories()
+    make_parmanode_files()
+    ico.add("parmanode-end")
     success(f"Parmanode3Win has been installed")
     sys.exit()
 
