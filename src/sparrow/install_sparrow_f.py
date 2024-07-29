@@ -77,9 +77,9 @@ def download_sparrow():
             unzip_file(str(sparrowzippath), directory_destination=str(sparrowpath)) 
         except Exception as e:
             input(e)
-        #rename unzip folder to "bitcoin"
-        sparrowunzippedpath = sparrowpath / f"Sparrow-{sparrowversion}"
 
+        #rename unzip folder
+        sparrowunzippedpath = sparrowpath / f"Sparrow-{sparrowversion}"
         try:
             returncode = subprocess.run(["mv", f"""{str(sparrowunzippedpath)}/*""" , f"""{str(sparrowpath)}/*"""], check=True)
             delete_directory(sparrowunzippedpath)
