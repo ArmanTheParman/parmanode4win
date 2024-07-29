@@ -22,7 +22,8 @@ bitcoinpath = pp / "bitcoin"
 p4w = pp / "parmanode4win" 
 
 #file related variables
-global tmp, pc, ic, rp_counter, motd_counter, pco, ico, dbo, db, before, after, difference, lockfile
+global tmp, pc, ic, rp_counter, motd_counter, pco, ico, dbo, db, before, after, difference, lockfile, tmpo, beforeo, aftero, differenceo 
+
 tmp = dp / "for_copying-can_delete.tmp"
 pc = dp / "parmanode.conf"
 ic = dp / "installed.conf"
@@ -33,8 +34,6 @@ before = dp / "before.log"
 after = dp / "after.log"
 difference = dp/ "difference.log"
 lockfile = dp / "lockfile"
-
-global pco, ico, dbo, tmpo, beforeo, aftero, differenceo 
 
 pco = config(pc) #parmanode conf object
 ico = config(ic) #installed conf object
