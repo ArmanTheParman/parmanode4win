@@ -1,6 +1,7 @@
 from variables import *
 from functions import *
 from bitcoin.uninstall_bitcoin_f import *
+from sparrow.uninstall_sparrow_f import *
 from pathlib import Path
 import os, sys
 
@@ -45,6 +46,9 @@ def uninstall_parmanode():
 
     if ico.grep("bitcoin-"):
         uninstall_bitcoin()
+    
+    if ico.grep("sparrow-"):
+        uninstall_sparrow()
     
     if yesorno("One last chance, this will delete the run_parmanode file and configuration files"):
         exe_dir = Path(r"""c:\Program files"\Parmanode4win""")
