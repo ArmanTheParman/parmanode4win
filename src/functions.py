@@ -649,28 +649,27 @@ def counter(type):
             f.write(str(newcount) + '\n')
 
 
-def check_updates(compiled_version):
+def check_updates(compiled_version, nah=False):
 
     if pco.grep("update_reminders_off"):
         return True
+    
+    if nah == False:
+        if pco.grep(f"{date}"): return True #check updates only once a day to save loading time checking url
 
-    if pco.grep(f"{date}"): return True #check updates only once a day to save loading time checking url
-
-    input("a zzzz")
     pco.remove("last_used=")
     pco.add(f"last_used={date}")
 
-    url = "https://raw.githubusercontent.com/ArmanTheParman/parmanode4win/main/version.conf"
+    url = "https://raw.githubusercontent.com/ArmanTheParman/parmanode4win/main/version"
 
-    input("a zzzz")
     params = {'_': int(time.time())}  # Adding a unique timestamp parameter
     try:
-        response = requests.get(url, params=params).text.split('\n')
-        latest_winMajor = int(response[1].split("=")[1])
-        latest_winMinor = int(response[2].split("=")[1])
-        latest_winPatch = int(response[3].split("=")[1])
+        response = requests.get(url, params=params).text.split('.')
+        latest_winMajor = int(response[0].split("=")[1])
+        latest_winMinor = int(response[1].split("=")[1])
+        latest_winPatch = int(response[2].split("=")[1])
 
-        if (latest_winMajor, latest_winMinor, latest_winPatch) > (compiled_version):
+        if [latest_winMajor, latest_winMinor, latest_winPatch] > compiled_version:
             return "outdated"
         else:
             return "uptodate"
@@ -679,7 +678,6 @@ def check_updates(compiled_version):
         print(f"error when checking update, {e}")
         return "error"
 
-    input("a zzzz")
 
 def os_is():
     """Windows, Darwin, or Linux is returned"""

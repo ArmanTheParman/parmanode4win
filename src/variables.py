@@ -7,7 +7,8 @@ from classes import config
 ########################################################################################
 
 global version 
-version = "0.0.1"
+version = [0, 0, 1]
+installer_version = [0, 0, 1]
 
 from datetime import datetime
 global date
