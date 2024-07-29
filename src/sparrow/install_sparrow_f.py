@@ -74,6 +74,7 @@ def download_sparrow():
             return False
         please_wait(f"{green}Unzipping Sparrow{orange}")
         try:
+            input("before unzip file")
             unzip_file(str(sparrowzippath), directory_destination=str(sparrowpath)) 
         except Exception as e:
             input(e)
