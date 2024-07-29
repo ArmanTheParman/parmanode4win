@@ -14,7 +14,7 @@ def menu_use():
             bitcoinmenu = False
 
         if ico.grep("sparrow-end"): 
-            use_sparrowmenu = f"#                  {green} (b){orange}            Sparrow Bitcoin Wallet                              #"
+            use_sparrowmenu = f"#                  {green} (s){orange}            Sparrow Bitcoin Wallet                              #"
             sparrowmenu = True
         else: 
             use_sparrow = "#                                                                                      #"
