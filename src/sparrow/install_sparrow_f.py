@@ -86,7 +86,7 @@ def download_sparrow():
             delete_directory(sparrowunzippedpath)
         except Exception as e:
            input(e) 
-a
+
         
     except Exception as e:
         input(e)
