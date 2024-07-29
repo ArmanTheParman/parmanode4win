@@ -14,12 +14,19 @@ def menu_sparrow():
 
 {green}
                          (s){orange}    Start/open Sparrow
-{cyan}
+{black}
     CONNECTION:
-{black}     
+         
          Parmanode has already configured to connect Sparrow to Bitcoin Core
          running on this machine.
+
+         If having connection issues, try the oldest trick in the book...
          
+                                - Sparrow restart
+                                - Bitcoin Core restart
+                                - Computer restart
+{blue}
+
          More connection options will come in the future.
 
 {orange}
