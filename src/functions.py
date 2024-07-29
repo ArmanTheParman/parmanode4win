@@ -664,9 +664,10 @@ def check_updates(compiled_version, nah=False):
     params = {'_': int(time.time())}  # Adding a unique timestamp parameter
     try:
         response = requests.get(url, params=params).text.split('.')
-        latest_winMajor = int(response[0].split("=")[1])
-        latest_winMinor = int(response[1].split("=")[1])
-        latest_winPatch = int(response[2].split("=")[1])
+        input(response)
+        latest_winMajor = int(response[0])
+        latest_winMinor = int(response[1])
+        latest_winPatch = int(response[2])
 
         if [latest_winMajor, latest_winMinor, latest_winPatch] > compiled_version:
             return "outdated"
