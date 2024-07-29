@@ -659,7 +659,6 @@ def check_updates(compiled_version, nah=False):
 
     pco.remove("last_used=")
     pco.add(f"last_used={date}")
-
     url = "https://raw.githubusercontent.com/ArmanTheParman/parmanode4win/main/version"
 
     params = {'_': int(time.time())}  # Adding a unique timestamp parameter
