@@ -48,7 +48,7 @@ def menu_add():
             if bitcoinmenu == False : continue
             if not install_bitcoin(): return False
             return True
-        elif choice.lower() = "s"
+        elif choice.lower() == "s":
             if sparrowmenu == False : continue
             if not install_sparrow(): return False
             return True
