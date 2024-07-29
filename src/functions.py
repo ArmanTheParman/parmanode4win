@@ -141,6 +141,8 @@ def get_IP_variables():
     try: extIP = subprocess.run(['curl', '-s', 'ifconfig.me'], text=True, capture_output=True, check=True).stdout.strip()
     except: extIP = "N/A"
 
+    return IP
+
 
 def searchin(the_string, the_file: Path) -> bool:
 

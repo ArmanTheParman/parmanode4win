@@ -47,9 +47,6 @@ if check_updates((0, 0, 1)) == "outdated":    #pass compiling version as int lis
 try: from parmanode.intro_f import * 
 except Exception as e: input(e)
 
-# causes slight delay
-get_IP_variables()
-
 try: intro()
 except Exception as e: input(e)
 

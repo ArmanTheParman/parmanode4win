@@ -1,5 +1,5 @@
 from  variables import *
-from functions import *
+from functions import * 
 def menu_tools():
     while True:
         set_terminal()
@@ -80,10 +80,9 @@ def connect_to_parman():
 def whatsmyip():
     import os
     USER = os.getenv('USERNAME')
-    get_IP_variables()
-
+    IP = get_IP_variables()
     input(f"""
-########################################################################################
+##################k######################################################################
 
 
 {black}    Your computer's IP address is:                   {cyan}             {IP} {orange}
