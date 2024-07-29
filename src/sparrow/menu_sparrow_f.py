@@ -13,7 +13,7 @@ def menu_sparrow():
 
 
 {green}
-                         (start){orange}    Start/open Sparrow
+                         (s){orange}    Start/open Sparrow
 {cyan}
     CONNECTION:
 {black}     
@@ -35,7 +35,7 @@ def menu_sparrow():
             return True
         elif choice.upper() == "M":
             return True
-        elif choice.lower() == "start":
+        elif choice.lower() in {"start", "s"}:
             sparrowexe = pp / "sparrow" / "Sparrow.exe"
             subprocess.run(sparrowexe)
             return True
