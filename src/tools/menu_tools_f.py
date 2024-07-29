@@ -80,6 +80,7 @@ def connect_to_parman():
 def whatsmyip():
     import os
     USER = os.getenv('USERNAME')
+    get_IP_variables()
 
     input(f"""
 ########################################################################################
