@@ -45,8 +45,7 @@ if check_updates([0, 0, 1]) == "outdated":    #pass compiling version as int lis
     try: suggestupdate()
     except Exception as e: input(e)
 
-check_for_emergency()
-input("after emergency")
+check_for_emergency("s")
 try: from parmanode.intro_f import * 
 except Exception as e: input(e)
 

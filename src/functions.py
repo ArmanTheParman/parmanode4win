@@ -185,12 +185,15 @@ def deleteline(the_string, the_file):
         input(f"Exception when doing deleteline - {e}")
         return False
 
-def download(url, dir):
+def download(url, dir, silent=False):
     try:
         initial_dir = os.getcwd()
         os.chdir(dir)
         try:
-            subprocess.run(['curl', '-LO', url], check=True)  # other options: stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            if silent == False:
+               subprocess.run(['curl', '-LO', url], check=True)  # other options: stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
+            else:
+               subprocess.run(['curl', '-LOs', url], check=True)  # other options: stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             os.chdir(initial_dir)
         except Exception as e:
             announce("download failed")
@@ -835,9 +838,12 @@ def update_parmanode():
         os.chdir(current_dir)
     success("Parmanode has been update")
 
-def check_for_emergency():
+def check_for_emergency(silence):
+
+    if silence == "s": x=True
+
     url = "https://raw.githubusercontent.com/ArmanTheParman/parmanode4win/main/emergency.py"
-    download(url, str(p4w))
+    download(url, str(p4w), silent=x)
     target = p4w / "emergency.py" 
     if target.exists():
         try: import emergency
