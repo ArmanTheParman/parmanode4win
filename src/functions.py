@@ -1,58 +1,10 @@
 from pathlib import Path
 from variables import *
 from config_f import *
-import shutil
 import winshell
 import requests, time, atexit, platform, sys, ctypes, psutil, os
 import zipfile, subprocess, os, ctypes, subprocess
 from win32com.client import Dispatch
-
-########################################################################################
-#directories
-########################################################################################
-def make_parmanode_directories():
-
-    if not pp.exists():
-        pp.mkdir() 
-
-    dp = pp / "parmanode_config"
-    if not dp.exists():
-        dp.mkdir()
-
-########################################################################################
-#files
-########################################################################################
-
-def make_parmanode_files():
-    
-    if not tmp.exists():
-        tmp.touch()
-
-    if not pc.exists():
-        pc.touch()
-
-    if not ic.exists():
-        ic.touch()
-
-    if not db.exists():
-        db.touch()
-
-    if not rp_counter.exists():
-        with rp_counter.open('w') as f:
-            f.write("0" + '\n')
-
-    if not motd_counter.exists():
-        with motd_counter.open('w') as f:
-            f.write("0" + '\n')
-
-    if not before.exists():
-        before.touch()
-
-    if not after.exists():
-        after.touch()
-
-    if not difference.exists():
-        difference.touch()
 
 ########################################################################################
 

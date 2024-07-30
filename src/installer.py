@@ -15,19 +15,59 @@ if not ctypes.windll.shell32.IsUserAnAdmin(): #is admin?
     except Exception as e:
         print(f"Failed to elevate: {e}")
         sys.exit(1)
+
 ########################################################################################
+try: from variables import *
+except Exception as e: input(e)
+input("variables done")
+########################################################################################
+if not pp.exists():
+    pp.mkdir() 
+if not dp.exists():
+    dp.mkdir()
+input("zzzz 0")
+if not tmp.exists():
+    tmp.touch()
+
+if not pc.exists():
+    pc.touch()
+
+if not ic.exists():
+    ic.touch()
+
+if not db.exists():
+    db.touch()
+
+if not rp_counter.exists():
+    with rp_counter.open('w') as f:
+        f.write("0" + '\n')
+
+if not motd_counter.exists():
+    with motd_counter.open('w') as f:
+        f.write("0" + '\n')
+
+if not before.exists():
+    before.touch()
+
+if not after.exists():
+    after.touch()
+
+if not difference.exists():
+    difference.touch()
 
 ########################################################################################
 #Imports
 ########################################################################################
 
-try: from variables import *
-except Exception as e: input(e)
+input("zzzz 0.5")
+from config_f import *
+input("zzzz 1")
 try: from functions import *
 except Exception as e: input(e)
 try: from installation_f import *
 except Exception as e: input(e)
 
+input("zzzz 0")
 def install_parmanode():
     textdir = str(Path.home() / "parman_programs")
 
@@ -58,9 +98,9 @@ def install_parmanode():
     4){orange} A shorcut to the program will be left on your Desktop.""", h=46): 
         return False
 
-    make_parmanode_directories()
-    make_parmanode_files()
-    from config_f import ico 
+    # make_parmanode_directories()
+    # make_parmanode_files()
+    # from config_f import ico 
 
     try:
         git_clone_parmanode4win()
