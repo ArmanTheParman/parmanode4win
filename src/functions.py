@@ -10,6 +10,8 @@ import zipfile, subprocess, os, ctypes, subprocess
 ########################################################################################
 def make_parmanode_directories():
 
+    input("zzzz a")
+
     if not pp.exists():
         pp.mkdir() 
 
@@ -17,6 +19,7 @@ def make_parmanode_directories():
     if not dp.exists():
         dp.mkdir()
 
+    input("zzzz b")
 
 ########################################################################################
 #files

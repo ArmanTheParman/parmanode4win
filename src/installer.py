@@ -19,12 +19,16 @@ if not ctypes.windll.shell32.IsUserAnAdmin(): #is admin?
 ########################################################################################
 #Imports
 ########################################################################################
+input("zzzz 0.5")
+try: from variables import *
+except Exception as e: input(e)
+input("zzzz 1")
 try: from functions import *
 except Exception as e: input(e)
-try: from functions import *
-except Exception as e: input(e)
+input("zzzz 2")
 try: from installation_f import *
 except Exception as e: input(e)
+input("zzzz 3")
 
 def install_parmanode():
 
