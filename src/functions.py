@@ -759,25 +759,26 @@ def git_clone_parmanode4win():
 
 
 def desktop_shortcut():
-    exe = p4w / "src" / "run_parmanode.py"
-    icon = p4w / "src" / "parmanode" / "pn_icon.png"
-    install_program(exe, icon_path=str(icon))
+    source = p4w / "src" / "run_parmanode.py"
+    icon_path = str(p4w / "src" / "parmanode" / "pn_icon.ico")
+    install_program(source, icon_path)
 
-def install_program(source:str, icon_path=None):
-    program_dir = p4w / "src"
-    desktop = winshell.desktop()
-    shortcut_path = os.path.join(desktop, 'Parmanode4Win.lnk')
-    target = str(os.path.join(program_dir, os.path.basename(source)))
+def install_program(source=None, icon_path=None):
+    desktop = Path(winshell.desktop())
+    shortcut_path = str(desktop / 'Parmanode4Win.lnk')
+    target = str(source)
 
     # Create a shortcut on the desktop
-    create_shortcut(target, shortcut_path, str(icon_path) if icon_path else None)
+    create_shortcut(target, shortcut_path, icon_path)
     return True
 
-def create_shortcut(target, shortcut_path, icon_path=None):
+def create_shortcut(target, shortcut_path, icon_path):
     try:
         shell = Dispatch('WScript.Shell')
         shortcut = shell.CreateShortcut(shortcut_path)
         shortcut.TargetPath = target
+        print(f"the icon path... {icon_path}")
+        input()
         if icon_path:
             shortcut.IconLocation = f"{icon_path},0"
         shortcut.save()
