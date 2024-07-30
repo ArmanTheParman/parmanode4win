@@ -1,5 +1,6 @@
 from variables import *
 from functions import enter_continue, set_terminal
+from config_f import *
 
 def about_parmanode():
     

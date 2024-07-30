@@ -2,6 +2,7 @@ from variables import *
 from functions import *
 from bitcoin.bitcoin_functions_f import *
 from datetime import date
+from config_f import *
 
 def install_bitcoin():
 

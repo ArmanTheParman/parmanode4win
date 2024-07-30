@@ -33,6 +33,9 @@ debug("pause")
 try: from variables import *
 except Exception as e: input(e)
 
+try: from config_f import *
+except Exception as e: input(e)
+
 try: from functions import *
 except Exception as e: input(e)
 

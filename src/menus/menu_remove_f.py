@@ -2,6 +2,7 @@ from functions import *
 from bitcoin.uninstall_bitcoin_f import *
 from sparrow.uninstall_sparrow_f import *
 from parmanode.menu_main_f import *
+from config_f import *
 
 def menu_remove():
     if ico.grep("bitcoin-"): 

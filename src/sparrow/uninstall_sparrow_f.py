@@ -1,5 +1,6 @@
 from variables import *
 from functions import *
+from config_f import *
 import time
 
 def uninstall_sparrow():

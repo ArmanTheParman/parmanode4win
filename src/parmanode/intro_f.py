@@ -7,6 +7,7 @@
 from variables import *
 from functions import *
 import time, sys
+from config_f import *
 
 def intro():
 

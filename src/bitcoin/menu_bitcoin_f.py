@@ -1,6 +1,7 @@
 from variables import *
 from functions import *
 from bitcoin.bitcoin_functions_f import *
+from config_f import *
 
 def menu_bitcoin():
 

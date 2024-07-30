@@ -1,6 +1,7 @@
 from functions import *
 from bitcoin.install_bitcoin_f import *
 from sparrow.install_sparrow_f import *
+from config_f import *
 
 def menu_add():
     if not ico.grep("bitcoin-end"):

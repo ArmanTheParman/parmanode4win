@@ -1,10 +1,11 @@
 from pathlib import Path
 from variables import *
+from config_f import *
 import shutil
 import winshell
-from chocolatey_f import *
 import requests, time, atexit, platform, sys, ctypes, psutil, os
 import zipfile, subprocess, os, ctypes, subprocess
+from win32com.client import Dispatch
 
 ########################################################################################
 #directories
@@ -17,7 +18,6 @@ def make_parmanode_directories():
     dp = pp / "parmanode_config"
     if not dp.exists():
         dp.mkdir()
-
 
 ########################################################################################
 #files
@@ -54,6 +54,19 @@ def make_parmanode_files():
     if not difference.exists():
         difference.touch()
 
+########################################################################################
+
+def get_bitcoin_dir():
+    if not pc.exists():
+        raise Exception("Parmanode config file does not exist")
+
+    if pc.exists() and pco.grep("bitcoin_dir") == True:
+        bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).split('=')[0].strip()
+        bitcoin_dir = Path(bitcoin_dir)
+    else:
+        bitcoin_dir = None
+
+    return bitcoin_dir
 ########################################################################################
 
 def cleanup():
@@ -661,7 +674,6 @@ def check_installer_updates(compiled_version):
     params = {'_': int(time.time())}  # Adding a unique timestamp parameter
     try:
         response = requests.get(url, params=params).text.split('.')
-        input(response)
         latest_winMajor = int(response[0])
         latest_winMinor = int(response[1])
         latest_winPatch = int(response[2])
@@ -738,46 +750,39 @@ def git_clone_parmanode4win():
     
     p4w_dir = pp / "parmanode4win"
     delete_directory(p4w_dir)
+    os.chdir(pp)
 
     try:
-        subprocess.run(["git", "clone", f"https://github.com/armantheparman/parmanode4win {p4w_dir}"])
-    except:
+        subprocess.run(["git", "clone", f"https://github.com/armantheparman/parmanode4win"])
+    
+    except Exception as e:
         input(e)
 
 
 def desktop_shortcut():
-    exe = HOME / "parmanode4win" / "src" / "parmanode" / "run_parmanode.exe"
-    icon = pp / "parmanode4win" / "src" / "parmanode" / "pn_icon.png"
-    install_program(exe, icon)
-    ico.add("parmanode4win-end")
+    source = p4w / "src" / "run_parmanode.py"
+    icon_path = str(p4w / "src" / "parmanode" / "pn_icon.ico")
+    install_program(source, icon_path)
 
+def install_program(source=None, icon_path=None):
+    desktop = Path(winshell.desktop())
+    shortcut_path = str(desktop / 'Parmanode4Win.lnk')
+    target = str(source)
 
-def create_shortcut(target, shortcut_path, icon_path=None):
+    # Create a shortcut on the desktop
+    create_shortcut(target, shortcut_path, icon_path)
+    return True
+
+def create_shortcut(target, shortcut_path, icon_path):
     try:
         shell = Dispatch('WScript.Shell')
         shortcut = shell.CreateShortcut(shortcut_path)
         shortcut.TargetPath = target
         if icon_path:
-            shortcut.IconLocation = icon_path
+            shortcut.IconLocation = f"{icon_path},0"
         shortcut.save()
-    except:
-        pass
-
-def install_program(source_exe:str, icon_path=None):
-    program_dir = os.path.join(os.environ['ProgramFiles'], 'Parmanode4Win')
-    desktop = winshell.desktop()
-    shortcut_path = os.path.join(desktop, 'Parmanode4Win.lnk')
-
-    if not os.path.exists(program_dir):
-        os.makedirs(program_dir)
-    
-    # Copy the executable to the program directory
-    target_exe = os.path.join(program_dir, os.path.basename(source_exe))
-    shutil.copyfile(source_exe, target_exe)
-
-    # Create a shortcut on the desktop
-    create_shortcut(target_exe, shortcut_path, icon_path)
-    print(f'Installation complete. Shortcut created at {shortcut_path}')
+    except Exception as e:
+        input(e)
 
 
 def internetbrowser(url):

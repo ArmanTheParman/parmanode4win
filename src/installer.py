@@ -15,50 +15,62 @@ if not ctypes.windll.shell32.IsUserAnAdmin(): #is admin?
     except Exception as e:
         print(f"Failed to elevate: {e}")
         sys.exit(1)
+########################################################################################
 
 ########################################################################################
 #Imports
 ########################################################################################
-try: from functions import *
-except Exception as e: input(e)
-try: from functions import *
-except Exception as e: input(e)
 
+try: from variables import *
+except Exception as e: input(e)
+try: from functions import *
+except Exception as e: input(e)
+try: from installation_f import *
+except Exception as e: input(e)
 
 def install_parmanode():
+    textdir = str(Path.home() / "parman_programs")
 
     if not yesorno(f"""
 {cyan}                             P A R M A N O D E 4 W I N {orange}
 
 {red}
-    If you choose to proceed, the following will happen...
+               If you choose to proceed, the following will happen...
 
 {green}
-    1){orange} The{cyan} Parmanode4Win{orange} script files (readable text open source code) 
-      will be downloaded to your computer.
-{green}    
-    2){orange} An executable file which was created ('compiled') from that code will be moved 
-      to the 'Program files \\ Parmanode4Win' folder.
+    1){orange} The directory with subfolders will be created:{cyan} 
+       
+              {textdir}
 {green}
-    3){orange} A shorcut to the program file executable will be left on your Desktop.
+    2){orange} The Parmanode4Win script files (readable text open source code) will be 
+       downloaded to your computer under the parman_programs directory.
 {green}               
-    4){orange} Some dependencies programs will be installed - these are programs 
-      Parmanode4Win needs to function properly:
+    3){orange} Some dependencies programs will be installed - these are programs 
+       Parmanode4Win needs to function properly:
 
-{cyan}              - chocolatey{orange} (application package manager for Windows, it's great)
+{cyan}              - chocolatey{black} (application package manager for Windows, it's great)
+{cyan}              - python {orange} 
+{cyan}              - python packages {orange} 
 {cyan}              - curl {orange} 
 {cyan}              - git {orange} 
-{cyan}              - gpg {orange}""", h=42): 
+{cyan}              - gpg {orange}
+{green}    
+    4){orange} A shorcut to the program will be left on your Desktop.""", h=46): 
         return False
 
     make_parmanode_directories()
     make_parmanode_files()
-    git_clone_parmanode4win()
-    desktop_shortcut()
-    #    test_installation()
-    ico.add("parmanode-end")
-    success(f"Parmanode4Win has been installed. Please run from the Desktop shortcut icon.")
-    sys.exit()
+    from config_f import ico 
+
+    try:
+        git_clone_parmanode4win()
+        dependency_check() 
+        test_installation()
+        desktop_shortcut()
+        ico.add("parmanode4win-end")
+        success(f"Parmanode4Win has been installed. Please run from the Desktop shortcut icon.")
+        sys.exit()
+    except Exception as e: input(e)
 
 ########################################################################################
 # Installer
@@ -73,10 +85,12 @@ if p4w.exists():
     sys.exit()
 
 
-if check_installer_updates() == "outdated":
+try: 
+    if check_installer_updates("0.0.1") == "outdated":
 
-    if not yesorno(f"""There is a newer version of this installer. You could stop and get that instead.
-    Do you want to quit this and get the newer, better version?"""):
-        sys.exit()
+        if not yesorno(f"""There is a newer version of this installer. You could stop and get that instead.
+        Do you want to quit this and get the newer, better version?"""):
+            sys.exit()
+except Exception as e: input(e)        
 
 install_parmanode()

@@ -1,5 +1,6 @@
 from variables import *
 from functions import set_terminal, choose, invalid
+from config_f import *
 
 def dirty_shitcoiner():
     while True:
