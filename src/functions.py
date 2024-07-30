@@ -745,11 +745,9 @@ def git_clone_parmanode4win():
 
 
 def desktop_shortcut():
-    exe = HOME / "parmanode4win" / "src" / "parmanode" / "run_parmanode.exe"
-    icon = pp / "parmanode4win" / "src" / "parmanode" / "pn_icon.png"
+    exe = p4w / "src" / "run_parmanode.py"
+    icon = p4w / "src" / "parmanode" / "pn_icon.png"
     install_program(exe, icon)
-    ico.add("parmanode4win-end")
-
 
 def create_shortcut(target, shortcut_path, icon_path=None):
     try:
@@ -762,22 +760,15 @@ def create_shortcut(target, shortcut_path, icon_path=None):
     except:
         pass
 
-def install_program(source_exe:str, icon_path=None):
-    program_dir = os.path.join(os.environ['ProgramFiles'], 'Parmanode4Win')
+def install_program(source:str, icon_path=None):
+    program_dir = p4w / "src"
     desktop = winshell.desktop()
     shortcut_path = os.path.join(desktop, 'Parmanode4Win.lnk')
-
-    if not os.path.exists(program_dir):
-        os.makedirs(program_dir)
-    
-    # Copy the executable to the program directory
-    target_exe = os.path.join(program_dir, os.path.basename(source_exe))
-    shutil.copyfile(source_exe, target_exe)
+    target = os.path.join(program_dir, os.path.basename(source))
 
     # Create a shortcut on the desktop
-    create_shortcut(target_exe, shortcut_path, icon_path)
-    print(f'Installation complete. Shortcut created at {shortcut_path}')
-
+    create_shortcut(target, shortcut_path, icon_path)
+    return True
 
 def internetbrowser(url):
     try:

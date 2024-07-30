@@ -59,8 +59,7 @@ def install_parmanode():
     dependency_check() 
     test_installation()
     desktop_shortcut()
-    #    test_installation()
-    ico.add("parmanode-end")
+    ico.add("parmanode4win-end")
     success(f"Parmanode4Win has been installed. Please run from the Desktop shortcut icon.")
     sys.exit()
 
