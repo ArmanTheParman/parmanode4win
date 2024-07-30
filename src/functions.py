@@ -2,7 +2,6 @@ from pathlib import Path
 from variables import *
 import shutil
 import winshell
-from chocolatey_f import *
 import requests, time, atexit, platform, sys, ctypes, psutil, os
 import zipfile, subprocess, os, ctypes, subprocess
 

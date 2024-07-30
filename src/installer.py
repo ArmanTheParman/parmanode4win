@@ -34,26 +34,28 @@ def install_parmanode():
     If you choose to proceed, the following will happen...
 
 {green}
-    1){orange} The{cyan} Parmanode4Win{orange} script files (readable text open source code) 
-      will be downloaded to your computer.
-{green}    
-    2){orange} An executable file which was created ('compiled') from that code will be moved 
-      to the 'Program files \\ Parmanode4Win' folder.
+    1){orange} The directory with subfolders will be created...{cyan} 
+       
+       {str(pp)}
 {green}
-    3){orange} A shorcut to the program file executable will be left on your Desktop.
+    2){orange} The{cyan} Parmanode4Win{orange} script files (readable text open source code) 
+      will be downloaded to your computer under the parman_programs directory.
 {green}               
-    4){orange} Some dependencies programs will be installed - these are programs 
+    3){orange} Some dependencies programs will be installed - these are programs 
       Parmanode4Win needs to function properly:
 
 {cyan}              - chocolatey{orange} (application package manager for Windows, it's great)
 {cyan}              - curl {orange} 
 {cyan}              - git {orange} 
-{cyan}              - gpg {orange}""", h=42): 
+{cyan}              - gpg {orange}
+{green}    
+    4){orange} A shorcut to the program will be left on your Desktop.""", h=42): 
         return False
 
     make_parmanode_directories()
     make_parmanode_files()
     git_clone_parmanode4win()
+    install_parmanode_dependencies()
     desktop_shortcut()
     #    test_installation()
     ico.add("parmanode-end")

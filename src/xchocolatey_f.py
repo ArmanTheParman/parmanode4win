@@ -1,3 +1,4 @@
+from functions import *
 import subprocess
 def check_chocolatey():
     if subprocess.run(["choco", "--version"], check=True):
@@ -20,6 +21,13 @@ def install_chocolatey():
 
     return True
 
+def check_python():
+    try:
+        subprocess.run(["python", "--version"], check=True)
+        return True
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return False
+
 def check_git():
     try:
         subprocess.run(["git", "--version"], check=True)
@@ -34,6 +42,14 @@ def check_curl():
     except (subprocess.CalledProcessError, FileNotFoundError):
         return False
     
+def install_python_with_chocolatey():
+    try:
+        subprocess.run(["choco", "install", "python", "-y"], check=True)
+        print("Python installed successfully.")
+    except subprocess.CalledProcessError as e:
+        raise Exception(f"Failed to install Python with Chocolatey: {e.stderr}")
+
+    return True
 def install_git_with_chocolatey():
     try:
         subprocess.run(["choco", "install", "git", "-y"], check=True)
@@ -70,41 +86,34 @@ def install_gpg_with_chocolatey():
     return True
 
 def dependency_check():
+
     try:
         # Check if Chocolatey is installed
-        if check_chocolatey():
-            pass
-            """Chocolatey is already installed."""
-        else:
-            print("Chocolatey is not installed. Installing Chocolatey...")
+        if not check_chocolatey():
+            if not yesorno("OK to install Chocolatey? (Necessary)"): return False
             install_chocolatey()
 
         # Check if git is installed
-        if check_git():
-            """git is already installed."""
-            pass
-        else:
-            print("git is not installed. Installing git with Chocolatey...")
+        if not check_git():
+            if not yesorno("OK to install git? (Necessary)"): return False
             install_git_with_chocolatey()
 
-        # Check if curl is installed
-        if check_curl():
-            """curl is already installed."""
-            pass
-        else:
-            print("curl is not installed. Installing curl with Chocolatey...")
+        if not check_curl():
+            if not yesorno("OK to install curl? (Necessary)"): return False
             install_curl_with_chocolatey()
 
         # Check if gpg is installed
-        if check_gpg():
-            """gpg is already installed."""
-            pass
-        else:
-            print("gpg is not installed. Installing gpg with Chocolatey...")
+        if not check_gpg():
+            if not yesorno("OK to install gpg? (Necessary)"): return False
             install_gpg_with_chocolatey()
 
-        # Additional logic for downloading and installing Bitcoin Core can be added here
+        # Check if pythone is installed
+        if not check_python():
+            if not yesorno("OK to install python? (Necessary)"): return False
+            install_python_with_chocolatey()
+
         
+
         return True
         
     except Exception as e:
