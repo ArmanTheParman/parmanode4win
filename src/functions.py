@@ -777,8 +777,6 @@ def create_shortcut(target, shortcut_path, icon_path):
         shell = Dispatch('WScript.Shell')
         shortcut = shell.CreateShortcut(shortcut_path)
         shortcut.TargetPath = target
-        print(f"the icon path... {icon_path}")
-        input()
         if icon_path:
             shortcut.IconLocation = f"{icon_path},0"
         shortcut.save()
