@@ -1,7 +1,6 @@
 from pathlib import Path
 from win32com.client import Dispatch #for shortcut creation on install
 from classes import config
-
 ########################################################################################
 #parmanode_variables
 ########################################################################################
@@ -26,7 +25,8 @@ bitcoinpath = pp / "bitcoin"
 p4w = pp / "parmanode4win" 
 
 #file related variables
-global tmp, pc, ic, rp_counter, motd_counter, pco, ico, dbo, db, before, after, difference, lockfile, tmpo, beforeo, aftero, differenceo 
+
+global tmp, pc, ic, rp_counter, motd_counter, db, before, after, difference, lockfile 
 
 tmp = dp / "for_copying-can_delete.tmp"
 pc = dp / "parmanode.conf"
@@ -39,13 +39,7 @@ after = dp / "after.log"
 difference = dp/ "difference.log"
 lockfile = dp / "lockfile"
 
-pco = config(pc) #parmanode conf object
-ico = config(ic) #installed conf object
-dbo = config(db) #debug log object
-tmpo = config(tmp) #temp config object - not config, but useful methods
-beforeo = config(before)
-aftero = config(after)
-differenceo = config(difference)
+
 
 from colorama import Fore, Style, init #init need to toggle autoreset on/off
 global black, red, green, yellow, blue, magenta, cyan, white, reset
@@ -93,11 +87,4 @@ drive_bitcoin = None
 
 # Default Windows Bitcoin data directory
 default_bitcoin_data_dir = Path.home() / "AppData" / "Roaming" / "Bitcoin"
-
-# get Bitcoin data dir variable
-if pc.exists() and pco.grep("bitcoin_dir") == True:
-    bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).split('=')[0].strip()
-    bitcoin_dir = Path(bitcoin_dir)
-else:
-    bitcoin_dir = None
 

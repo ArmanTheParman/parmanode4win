@@ -2,7 +2,7 @@ from functions import *
 import subprocess
 
 def check_chocolatey():
-    if subprocess.run(["choco", "--version"], check=True):
+    if subprocess.run(["choco", "--version"], stdout=subprocess.DEVNULL, check=True):
         return True
     else: 
         return False
@@ -56,7 +56,7 @@ def install_python_with_chocolatey():
 
 def check_pip():
     try:
-        subprocess.run(["pip", "--version"], check=True)
+        subprocess.run(["pip", "--version"], check=True, stdout=subprocess.DEVNULL) 
         return True
     except (subprocess.CalledProcessError, FileNotFoundError):
         return False
@@ -191,52 +191,61 @@ def test_installation():
     def ending():
         print(f"""{orange}
 ########################################################################################""")
-        enter_continue("q")
+        enter_continue("Hit <enter> to exit")
+        sys.exit()
 
     while True:
         set_terminal()
         print(f"""
 ########################################################################################{green}
-    Checking installtion....
+
+    Checking installation....
+{orange}
+########################################################################################
+
     {orange}
     """)
-        python_version = check_python
-        print(python_version)
-        print()
+        python_version = check_python_version().strip()
+        print(f"{green}Version of {python_version}{orange}")
         
         if check_pip() == True: 
-            print(f"{green} pip is installed")
+            print(f"{green}pip is installed")
         else:
-            print(f"{red} pip is not installed") 
+            print(f"{red}pip is not installed") 
             ending()
 
         if check_chocolatey() == True: 
-            print(f"{green} chocolatey is installed")
+            print(f"{green}chocolatey is installed")
         else:
-            print(f"{red} chocolatey is not installed") 
+            print(f"{red}chocolatey is not installed") 
             ending()
-
         if check_git() == True: 
-            print(f"{green} git is installed")
+            print(f"{green}git is installed")
         else:
-            print(f"{red} git is not installed") 
+            print(f"{red}git is not installed") 
             ending()
 
         if check_curl() == True: 
-            print(f"{green} curl is installed")
+            print(f"{green}curl is installed")
         else:
-            print(f"{red} curl is not installed") 
+            print(f"{red}curl is not installed") 
             ending()
 
         if check_gpg() == True: 
-            print(f"{green} gpg is installed")
+            print(f"{green}gpg is installed")
         else:
-            print(f"{red} gpg is not installed") 
+            print(f"{red}gpg is not installed") 
             ending()
 
         text = check_pip_dependencies(answer=True)
         print(text[0])
         if text[1] == False:
             ending()
+
+        if not p4w.exists():
+            print(f"{red}Parmanode4Win script directory is not installed") 
+            ending()
+
         else:
             success("The test for installing dependencies passed.")
+            break

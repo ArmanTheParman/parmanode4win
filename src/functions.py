@@ -10,16 +10,12 @@ import zipfile, subprocess, os, ctypes, subprocess
 ########################################################################################
 def make_parmanode_directories():
 
-    input("zzzz a")
-
     if not pp.exists():
         pp.mkdir() 
 
     dp = pp / "parmanode_config"
     if not dp.exists():
         dp.mkdir()
-
-    input("zzzz b")
 
 ########################################################################################
 #files
@@ -56,6 +52,19 @@ def make_parmanode_files():
     if not difference.exists():
         difference.touch()
 
+########################################################################################
+
+def get_bitcoin_dir():
+    if not pc.exists():
+        raise Exception("Parmanode config file does not exist")
+
+    if pc.exists() and pco.grep("bitcoin_dir") == True:
+        bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).split('=')[0].strip()
+        bitcoin_dir = Path(bitcoin_dir)
+    else:
+        bitcoin_dir = None
+
+    return bitcoin_dir
 ########################################################################################
 
 def cleanup():
@@ -663,7 +672,6 @@ def check_installer_updates(compiled_version):
     params = {'_': int(time.time())}  # Adding a unique timestamp parameter
     try:
         response = requests.get(url, params=params).text.split('.')
-        input(response)
         latest_winMajor = int(response[0])
         latest_winMinor = int(response[1])
         latest_winPatch = int(response[2])
@@ -740,10 +748,12 @@ def git_clone_parmanode4win():
     
     p4w_dir = pp / "parmanode4win"
     delete_directory(p4w_dir)
+    os.chdir(pp)
 
     try:
-        subprocess.run(["git", "clone", f"https://github.com/armantheparman/parmanode4win {p4w_dir}"])
-    except:
+        subprocess.run(["git", "clone", f"https://github.com/armantheparman/parmanode4win"])
+    
+    except Exception as e:
         input(e)
 
 
