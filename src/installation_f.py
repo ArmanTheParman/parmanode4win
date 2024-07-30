@@ -22,6 +22,7 @@ def install_chocolatey():
 
     return True
 
+
 def check_python_version():
     try:
         python_version = subprocess.run("python --version", check=True, text=True, capture_output=True).stdout
@@ -53,6 +54,37 @@ def install_python_with_chocolatey():
 
     return True
 
+def check_pip():
+    try:
+        subprocess.run(["pip", "--version"], check=True)
+        return True
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return False
+
+def install_pip_with_python():
+
+    if not check_python(): return False
+
+    try:
+        subprocess.run(["python", "get-pip.py"], check=True)
+        print("PIP installed successfully.")
+    except subprocess.CalledProcessError as e:
+        raise Exception(f"Failed to install pip with Python: {e.stderr}")
+
+    return True
+
+#def python_dependencies():
+def check_pip_dependencies():
+    try:
+        listofpackages = subprocess.run(["pip", "list"], check=True, capture_output=True, text=True).stdout.split()
+    except Exception as e:
+        raise Exception(f"{e}")
+
+    for i in {"colorama", "psutil", "pywin32", "requests", "urllib3", "setuptools", "winshell"}:
+        if i not in listofpackages:
+            try: subprocess.run(["pip", "install", f"{i}"], check=True)
+            except Exception as e:
+                raise Exception(f"{e}")
 def check_git():
     try:
         subprocess.run(["git", "--version"], check=True)
@@ -124,13 +156,25 @@ def dependency_check():
             if not yesorno("OK to install gpg? (Necessary)"): return False
             install_gpg_with_chocolatey()
 
-        # Check if pythone is installed
+        # Check if python is installed
         if not check_python():
             if not yesorno("OK to install python? (Necessary)"): return False
             install_python_with_chocolatey()
+
+        # Check if pip is installed
+        if not check_pip():
+            if not yesorno("OK to install pip? (Necessary)"): return False
+            install_pip_with_python()
+        
+        # Check and install a list of pip progrmams
+        try: check_pip_dependencies()
+        except Exception as e:
+            raise Exception(f"{e}")
 
         return True
         
     except Exception as e:
         print(f"An error occurred: {e}")
+
+
 
