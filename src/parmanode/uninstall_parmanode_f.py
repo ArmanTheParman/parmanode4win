@@ -60,6 +60,7 @@ def uninstall_parmanode():
                 try: shortcut.unlink()
                 except: pass
             delete_parmanode4win_script_directory()
+            delete_directory(dp)
         except Exception as e: 
             input(e) 
             sys.exit()
