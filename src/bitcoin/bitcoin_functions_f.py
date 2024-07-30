@@ -425,7 +425,6 @@ def set_the_prune():
 def make_bitcoin_conf():
     bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).split('=')[1].strip()
     bitcoin_dir = Path(bitcoin_dir)
-    print(bitcoin_dir)
 
     bitcoin_conf = bitcoin_dir / "bitcoin.conf"
     if bitcoin_conf.exists():
@@ -438,8 +437,6 @@ def make_bitcoin_conf():
             input(e)
 
     IP = get_IP_variables()
-
-    input(IP)
 
 # txindex will cause error if prune is not zero
     if pco.grep("prune_value="):
