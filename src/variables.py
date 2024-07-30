@@ -81,7 +81,7 @@ blinkoff = Style.RESET_ALL
 
 global drive_bitcoin, default_bitcoin_data_dir, bitcoin_dir, bitcoinversion
 
-bitcoinversion="26.1"
+bitcoinversion="27.1"
 
 drive_bitcoin = None
 
