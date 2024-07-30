@@ -439,6 +439,8 @@ def make_bitcoin_conf():
 
     IP = get_IP_variables()
 
+    input(IP)
+
 # txindex will cause error if prune is not zero
     if pco.grep("prune_value="):
         p = pco.grep("prune_value=", returnline=True).strip().split('=')[1]
@@ -471,7 +473,7 @@ rpcallowip=127.0.0.1
 rpcallowip=10.0.0.0/8
 rpcallowip=192.168.0.0/16
 rpcallowip=172.0.0.0/8
-rpcallowip={IP[1]}.{IP[2]}.0.0/16
+rpcallowip={str(IP["IP1"])}.{str(IP["IP2"])}.0.0/16
 rpcservertimeout=120"""
     try:
         bitcoin_confo = config(bitcoin_conf)

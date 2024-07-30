@@ -14,8 +14,6 @@ from datetime import datetime
 global date
 date=datetime.now().date().strftime("%y-%m-%d")
 
-global IP, IP1, IP2, IP3, IP4, extIP
-
 #directory related variables 
 global HOME, pp, dp, bitcoinpath, p4w
 HOME=Path.home()
