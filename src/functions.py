@@ -1,5 +1,6 @@
 from pathlib import Path
 from variables import *
+from config_f import *
 import shutil
 import winshell
 import requests, time, atexit, platform, sys, ctypes, psutil, os

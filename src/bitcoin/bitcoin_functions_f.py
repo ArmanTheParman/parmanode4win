@@ -3,6 +3,7 @@ from variables import *
 from functions import *
 from parmanode.menu_main_f import *
 from parmanode.dirty_shitcoiner_f import *
+from config_f import *
 
 def download_bitcoin():
     

@@ -3,6 +3,7 @@ from functions import *
 from parmanode.intro_f import *
 from parmanode.mentorship_f import *
 import subprocess
+from config_f import *
 def menu_education():
     while True:
         set_terminal(h=44)

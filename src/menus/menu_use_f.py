@@ -2,6 +2,7 @@ from variables import *
 from functions import *
 from bitcoin.menu_bitcoin_f import *
 from sparrow.menu_sparrow_f import *
+from config_f import *
 
 def menu_use():
 

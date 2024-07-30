@@ -4,6 +4,7 @@ from bitcoin.uninstall_bitcoin_f import *
 from sparrow.uninstall_sparrow_f import *
 from pathlib import Path
 import os, sys
+from config_f import *
 
 def delete_parmanode4win_script_directory():
 
