@@ -56,6 +56,7 @@ def install_parmanode():
     make_parmanode_files()
     git_clone_parmanode4win()
     install_parmanode_dependencies()
+    test_installation()
     desktop_shortcut()
     #    test_installation()
     ico.add("parmanode-end")

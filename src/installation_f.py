@@ -1,5 +1,6 @@
 from functions import *
 import subprocess
+
 def check_chocolatey():
     if subprocess.run(["choco", "--version"], check=True):
         return True
@@ -21,27 +22,28 @@ def install_chocolatey():
 
     return True
 
-def check_python():
+def check_python_version():
     try:
-        subprocess.run(["python", "--version"], check=True)
-        return True
-    except (subprocess.CalledProcessError, FileNotFoundError):
-        return False
-
-def check_git():
-    try:
-        subprocess.run(["git", "--version"], check=True)
-        return True
-    except (subprocess.CalledProcessError, FileNotFoundError):
-        return False
-
-def check_curl():
-    try:
-        subprocess.run(["curl", "--version"], check=True)
-        return True
-    except (subprocess.CalledProcessError, FileNotFoundError):
+        python_version = subprocess.run("python --version", check=True, text=True, capture_output=True).stdout
+        return python_version
+    except Exception as e:
+        input(e)
         return False
     
+def check_python():
+    try:
+        python_version = check_python_version()
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return False
+
+    if python_version == False: return False  
+
+    else:
+        if python_version > "3.12.0":
+            return True
+        else:
+            return False
+
 def install_python_with_chocolatey():
     try:
         subprocess.run(["choco", "install", "python", "-y"], check=True)
@@ -50,6 +52,14 @@ def install_python_with_chocolatey():
         raise Exception(f"Failed to install Python with Chocolatey: {e.stderr}")
 
     return True
+
+def check_git():
+    try:
+        subprocess.run(["git", "--version"], check=True)
+        return True
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return False
+
 def install_git_with_chocolatey():
     try:
         subprocess.run(["choco", "install", "git", "-y"], check=True)
@@ -58,6 +68,13 @@ def install_git_with_chocolatey():
         raise Exception(f"Failed to install git with Chocolatey: {e.stderr}")
 
     return True
+
+def check_curl():
+    try:
+        subprocess.run(["curl", "--version"], check=True)
+        return True
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return False
 
 def install_curl_with_chocolatey():
     try:
@@ -112,9 +129,8 @@ def dependency_check():
             if not yesorno("OK to install python? (Necessary)"): return False
             install_python_with_chocolatey()
 
-        
-
         return True
         
     except Exception as e:
         print(f"An error occurred: {e}")
+
