@@ -19,7 +19,7 @@ def menu_use():
             use_sparrowmenu = f"#                  {green} (s){orange}            Sparrow Bitcoin Wallet                              #"
             sparrowmenu = True
         else: 
-            use_sparrow = "#                                                                                      #"
+            use_sparrowmenu = "#                                                                                      #"
             sparrowmenu = False
 
         print(f"""

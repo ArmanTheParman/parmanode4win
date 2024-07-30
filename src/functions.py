@@ -61,7 +61,7 @@ def get_bitcoin_dir():
         raise Exception("Parmanode config file does not exist")
 
     if pc.exists() and pco.grep("bitcoin_dir") == True:
-        bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).split('=')[0].strip()
+        bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).split('=')[1].strip()
         bitcoin_dir = Path(bitcoin_dir)
     else:
         bitcoin_dir = None

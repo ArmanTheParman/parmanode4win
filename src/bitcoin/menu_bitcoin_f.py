@@ -44,7 +44,8 @@ def menu_bitcoin():
       (start){orange}    Start Bitcoind
 {red}
       (stop){orange}     Just use your mouse to close the Bitcoin window
-
+{blue}
+      (bc){orange}       View and edit bitcoin.conf in notepad
 
 {cyan}
    More options coming soon...
@@ -64,12 +65,15 @@ def menu_bitcoin():
             return True
         elif choice.lower() == "start":
             if isbitcoinrunning == True: continue
-            start_bitcoind()
-            continue
+            else:
+                start_bitcoind()
         elif choice.lower() == "stop":
             set_terminal()
             announce(f"""Use your mouse to stop Bitcoin from its window.""")
             continue 
+        elif choice.lower() == "bc":
+            thedir = get_bitcoin_dir()
+            os.system(f"notepad {thedir}/bitcoin.conf")
         else:
             invalid()
 
