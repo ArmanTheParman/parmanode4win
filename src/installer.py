@@ -51,11 +51,11 @@ def install_parmanode():
 {cyan}              - gpg {orange}""", h=42): 
         return False
 
+    make_parmanode_directories()
+    make_parmanode_files()
     git_clone_parmanode4win()
     desktop_shortcut()
     #    test_installation()
-    make_parmanode_directories()
-    make_parmanode_files()
     ico.add("parmanode-end")
     success(f"Parmanode4Win has been installed. Please run from the Desktop shortcut icon.")
     sys.exit()
