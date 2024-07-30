@@ -63,13 +63,9 @@ def install_parmanode():
     from config_f import ico 
 
     try:
-        input("zzzz a")
         git_clone_parmanode4win()
-        input("zzzz b")
         dependency_check() 
-        input("zzzz c")
         test_installation()
-        input("zzzz d")
         desktop_shortcut()
         input("zzzz e")
         ico.add("parmanode4win-end")

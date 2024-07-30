@@ -4,6 +4,7 @@ import shutil
 import winshell
 import requests, time, atexit, platform, sys, ctypes, psutil, os
 import zipfile, subprocess, os, ctypes, subprocess
+from win32com.client import Dispatch
 
 ########################################################################################
 #directories
@@ -760,7 +761,17 @@ def git_clone_parmanode4win():
 def desktop_shortcut():
     exe = p4w / "src" / "run_parmanode.py"
     icon = p4w / "src" / "parmanode" / "pn_icon.png"
-    install_program(exe, icon)
+    install_program(exe, icon_path=str(icon))
+
+def install_program(source:str, icon_path=None):
+    program_dir = p4w / "src"
+    desktop = winshell.desktop()
+    shortcut_path = os.path.join(desktop, 'Parmanode4Win.lnk')
+    target = str(os.path.join(program_dir, os.path.basename(source)))
+
+    # Create a shortcut on the desktop
+    create_shortcut(target, shortcut_path, str(icon_path) if icon_path else None)
+    return True
 
 def create_shortcut(target, shortcut_path, icon_path=None):
     try:
@@ -768,20 +779,11 @@ def create_shortcut(target, shortcut_path, icon_path=None):
         shortcut = shell.CreateShortcut(shortcut_path)
         shortcut.TargetPath = target
         if icon_path:
-            shortcut.IconLocation = icon_path
+            shortcut.IconLocation = f"{icon_path},0"
         shortcut.save()
-    except:
-        pass
+    except Exception as e:
+        input(e)
 
-def install_program(source:str, icon_path=None):
-    program_dir = p4w / "src"
-    desktop = winshell.desktop()
-    shortcut_path = os.path.join(desktop, 'Parmanode4Win.lnk')
-    target = os.path.join(program_dir, os.path.basename(source))
-
-    # Create a shortcut on the desktop
-    create_shortcut(target, shortcut_path, icon_path)
-    return True
 
 def internetbrowser(url):
     try:
