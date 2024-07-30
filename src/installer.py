@@ -23,7 +23,8 @@ try: from functions import *
 except Exception as e: input(e)
 try: from functions import *
 except Exception as e: input(e)
-
+try: from installation_f import *
+except Exception as e: input(e)
 
 def install_parmanode():
 
@@ -55,7 +56,7 @@ def install_parmanode():
     make_parmanode_directories()
     make_parmanode_files()
     git_clone_parmanode4win()
-    install_parmanode_dependencies()
+    dependency_check() 
     test_installation()
     desktop_shortcut()
     #    test_installation()

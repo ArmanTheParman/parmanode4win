@@ -74,11 +74,19 @@ def install_pip_with_python():
     return True
 
 #def python_dependencies():
-def check_pip_dependencies():
+def check_pip_dependencies(answer=False):
     try:
         listofpackages = subprocess.run(["pip", "list"], check=True, capture_output=True, text=True).stdout.split()
     except Exception as e:
         raise Exception(f"{e}")
+
+    if answer == True:
+       if {"colorama", "psutil", "pywin32", "requests", "urllib3", "setuptools", "winshell"}.issubset(set(listofpackages)):
+           text = f"{green}All pip dependencies installed{orange}"
+           return (text, True)
+       else:
+           text = f"{red}Some pip dependencies failed to install{orange}"
+           return (text, False)
 
     for i in {"colorama", "psutil", "pywin32", "requests", "urllib3", "setuptools", "winshell"}:
         if i not in listofpackages:
@@ -178,3 +186,57 @@ def dependency_check():
 
 
 
+def test_installation():
+
+    def ending():
+        print(f"""{orange}
+########################################################################################""")
+        enter_continue("q")
+
+    while True:
+        set_terminal()
+        print(f"""
+########################################################################################{green}
+    Checking installtion....
+    {orange}
+    """)
+        python_version = check_python
+        print(python_version)
+        print()
+        
+        if check_pip() == True: 
+            print(f"{green} pip is installed")
+        else:
+            print(f"{red} pip is not installed") 
+            ending()
+
+        if check_chocolatey() == True: 
+            print(f"{green} chocolatey is installed")
+        else:
+            print(f"{red} chocolatey is not installed") 
+            ending()
+
+        if check_git() == True: 
+            print(f"{green} git is installed")
+        else:
+            print(f"{red} git is not installed") 
+            ending()
+
+        if check_curl() == True: 
+            print(f"{green} curl is installed")
+        else:
+            print(f"{red} curl is not installed") 
+            ending()
+
+        if check_gpg() == True: 
+            print(f"{green} gpg is installed")
+        else:
+            print(f"{red} gpg is not installed") 
+            ending()
+
+        text = check_pip_dependencies(answer=True)
+        print(text[0])
+        if text[1] == False:
+            ending()
+        else:
+            success("The test for installing dependencies passed.")
