@@ -50,18 +50,18 @@ def uninstall_parmanode():
     if ico.grep("sparrow-"):
         uninstall_sparrow()
     
-    if yesorno("One last chance, this will delete the run_parmanode file and configuration files"):
-        exe_dir = Path(r"""c:\Program files"\Parmanode4win""")
-        delete_directory(exe_dir)
-        delete_directory(dp)
-        #delete desktop icon
-        desktop = Path(get_desktop_path())
-        shortcut = desktop / "Parmanode4Win.lnk" 
-        if shortcut.exists():
-            try: shortcut.unlink()
-            except: pass
-        if yesorno("Also delete the parmanode4win script directory?"):
+    if yesorno("One last chance, this will delete the configuration files and script directory"):
+        try:
+            #delete desktop icon
+            desktop = Path(get_desktop_path())
+            shortcut = desktop / "Parmanode4Win.lnk" 
+            if shortcut.exists():
+                try: shortcut.unlink()
+                except: pass
             delete_parmanode4win_script_directory()
+        except Exception as e: 
+            input(e) 
+            sys.exit()
 
     success(f"Parmanode has been uninstalled. {red}Happy now?{orange}")
 
