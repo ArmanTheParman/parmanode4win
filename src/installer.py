@@ -19,13 +19,11 @@ if not ctypes.windll.shell32.IsUserAnAdmin(): #is admin?
 ########################################################################################
 try: from variables import *
 except Exception as e: input(e)
-input("variables done")
 ########################################################################################
 if not pp.exists():
     pp.mkdir() 
 if not dp.exists():
     dp.mkdir()
-input("zzzz 0")
 if not tmp.exists():
     tmp.touch()
 
@@ -59,15 +57,12 @@ if not difference.exists():
 #Imports
 ########################################################################################
 
-input("zzzz 0.5")
 from config_f import *
-input("zzzz 1")
 try: from functions import *
 except Exception as e: input(e)
 try: from installation_f import *
 except Exception as e: input(e)
 
-input("zzzz 0")
 def install_parmanode():
     textdir = str(Path.home() / "parman_programs")
 
