@@ -71,13 +71,10 @@ def install_parmanode():
 
 
     {orange}This installer program will quickly and painlessley install Parmanode4Win 
-    on your computer. Select{green} 'y'{orange} with the keyboard
-    and <enter> to continue, or read some infor below if you're not in a hurry.
-    
-    The program will live in this directory... 
+    on your computer. The program will live in this directory... 
 
-              {textdir}
-{red}
+    {textdir}
+{orange}
     If you choose to proceed, the following will happen next...
 
 {green}
