@@ -565,7 +565,7 @@ def check_default_directory_exists() -> bool: #returns True only if directory do
         print(f"""
 ########################################################################################
 
-    Parmanode has detected that a Bitcoin data directory exists in the default
+    Parmanode has detected that a Bitcoin data directory exists in the{cyan} default{orange}
     location:
 {cyan} 
     {default_bitcoin_data_dir}
@@ -576,8 +576,6 @@ def check_default_directory_exists() -> bool: #returns True only if directory do
 
     You have choices...
     
-        {blue}u{orange}      to use this directory as is
-
         {red}x{orange}      to see the size of the directory, then return here.
 
         {red}delete{orange} to allow Parmanode to delete this directory.
@@ -606,10 +604,6 @@ def check_default_directory_exists() -> bool: #returns True only if directory do
             size_bytes = round(size_bytes, 2)
             announce (f"The directory is{cyan} {size_bytes} MB {orange}in size.")
             continue
-        elif choice.lower() == "u":
-            global use_existing_dir
-            use_existing_dir = True
-            return True
         elif choice.upper() == "DELETE":
             if delete_directory(default_bitcoin_data_dir): return True
         elif choice.upper() == "MOVE":
