@@ -6,6 +6,8 @@ import subprocess
 def install_audio():
 
     try: subprocess.run(["pip", "install", "pygame"], check=True)
+    try: subprocess.run(["pip", "install", "ffmpg"], check=True)
+    try: subprocess.run(["pip", "install", "moviepy"], check=True)
     except Exception as e: input(e)
     ico.add("audio-end")
     success("Audio for Parmanode has been installed")
