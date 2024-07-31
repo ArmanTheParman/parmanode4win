@@ -60,8 +60,8 @@ from audio.audio_f import *
 # try: install_audio()
 # except Exception as e: input(e)
 bfp = p4w / "src" / "audio" / "bpgtm.mp3"
-bpgtm = MusicPlayer(str(bfp), vol=0.5)
-bpgtm.play_music()
+bpgtm = MusicPlayer(str(bfp))
+bpgtm.play_music(vol=0.02)
 
 
 ########################################################################################
