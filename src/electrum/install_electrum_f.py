@@ -7,6 +7,8 @@ def install_electrum():
     
     sned_sats()
 
+    if not electrum_warning(): return False
+
     global electrumversion 
     electrumversion = "4.5.5"
     
@@ -91,6 +93,11 @@ both sha256 and gpg.{orange}
 
 """)
         enter_continue()
+        newpath = electrumpath / "electrum.exe"
+        try: moving = subprocess.run(["mv", str(exepath), str(newpath)], check=True, capture_output=True, text=True)
+        except:
+            print(moving.stdout)
+            enter_continue()
         return True
     else:
         announce(f"There was a problem verifying the signature file with Thomas V's signature. Aborting.")
@@ -125,3 +132,27 @@ def make_electrum_config():
         f.write(electrum_config + '\n')
 
     return True
+
+def electrum_warning():
+    if not yesorno(f"""
+    Please be aware that currently, {orange}Electrum Wallet {orange}automatically connects to
+    a public node.{red} DO NOT USE ELECTRUM IF YOU DON'T WANT THIS{orange}. Public nodes capture
+    your wallet addresses and potentially your location - not great. 
+
+    An alternative for now is Sparrow Bitcoin Wallet.
+{black}            
+
+    This problem exists because Electrum must connect to an Electrum SERVER, and 
+    can't connect to Bitcoin Core directly the way Saprrow can. There are good 
+    reasons for it and it's beside the point for now.
+            
+    In the future, Parmanode4Win will have an option to install your own Electrum 
+    Server, but it's not available just yet - I'm working as fast as I can. If you're
+    in a hurry, you can use Parmanode on a Mac or Linux - that version has many more 
+    features; The Windows one is lagging behind.
+{yellow}
+
+    Continue with installtion of Electrum WALLET?""", h=42):
+        return False
+    else:
+        return True

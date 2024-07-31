@@ -1,36 +1,25 @@
-
 from variables import *
 from functions import *
 from config_f import *
 import subprocess
 
-def menu_sparrow():
+def menu_electrum():
 
     while True:
 
         set_terminal()
         print(f"""{orange}
 ########################################################################################{cyan}
-                            Sparrow Bitcoin Wallet Menu{orange}                   
+                            Electrum Bitcoin Wallet Menu{orange}                   
 ########################################################################################
 
 
 {green}
-                         (s){orange}    Start/open Sparrow
+                         (s){orange}    Start/open Electrum 
 {black}
     CONNECTION:
          
-         Parmanode has already configured to connect Sparrow to Bitcoin Core
-         running on this machine.
-
-         If having connection issues, try the oldest trick in the book...
-         
-                                - Sparrow restart
-                                - Bitcoin Core restart
-                                - Computer restart
-{blue}
-
-         More connection options will come in the future.
+         Currently connecting to a PUBLIC NODE. Private options coming soon. 
 
 {orange}
 ########################################################################################
@@ -46,8 +35,8 @@ def menu_sparrow():
         elif choice.upper() == "M":
             return True
         elif choice.lower() in {"start", "s"}:
-            sparrowexe = pp / "sparrow" / "Sparrow.exe"
-            subprocess.run(sparrowexe)
+            electrumexe = pp / "electrum" / "electrum.exe"
+            subprocess.run(electrumexe)
             return True
         else:
             invalid()
