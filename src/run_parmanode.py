@@ -53,10 +53,17 @@ check_for_emergency("s")
 
 ########################################################################################
 
-try: from audio.install_audio_f import *
+from audio.install_audio_f import *
+from audio.audio_f import *
+
+# try: install_audio()
+# except Exception as e: input(e)
+try:
+    play_music()
+    input("<enter> to stop")
+    stop_music()
 except Exception as e: input(e)
-try: install_audio()
-except Exception as e: input(e)
+sys.exit()
 
 
 ########################################################################################
