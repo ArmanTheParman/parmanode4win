@@ -1,6 +1,7 @@
 from variables import *
 from functions import *
 from config_f import *
+from parmanode.sned_sats_f import *
 
 def install_sparrow():
 
@@ -19,6 +20,8 @@ def install_sparrow():
     sparrowzippath = sparrowpath / sparrowzip
     sparrowmanifestpath = sparrowpath / sparrowmanifest
     sparrowsigpath = sparrowpath / sparrowsig
+
+    sned_sats()
 
     if not sparrowpath.exists():
         sparrowpath.mkdir()
