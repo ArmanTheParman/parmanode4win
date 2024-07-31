@@ -6,6 +6,7 @@ from menus.menu_add_f import menu_add
 from menus.menu_use_f import menu_use
 from menus.menu_remove_f import menu_remove
 from bitcoin.menu_bitcoin_f import *
+from bitcoin.install_bitcoin_f import *
 from parmanode.uninstall_parmanode_f import *
 from parmanode.about_f import *
 from tools.menu_tools_f import *
@@ -67,7 +68,14 @@ def menu_main():
         elif choice.lower() in {"use", "u"}: 
             menu_use()
         elif choice.lower() in {"b", "bitcoin"}:
-            menu_bitcoin()
+            if pco.grep("bitcoin-end"):
+                menu_bitcoin()
+            elif pco.grep("bitcoin-start"):
+                announce(f"""Parmanode has detected a faulty installation of Bitcoin. You can 
+    decide to remove it or not in the next screen.""")
+                uninstall_bitcoin()
+            else:
+                install_bitcoin()
         elif choice.lower() in {"remove"}: 
             menu_remove()
         elif choice.lower() == "t":
