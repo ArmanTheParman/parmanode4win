@@ -4,14 +4,14 @@ from sparrow.install_sparrow_f import *
 from config_f import *
 
 def menu_add():
-    if not ico.grep("bitcoin-end"):
+    if not ico.grep("bitcoin-"):
         add_bitcoin = f"#                  {green} (b){orange}            Bitcoin Core                                        #"
         bitcoinmenu = True
     else: 
         add_bitcoin ="#                                                                                      #"
         bitcoinmenu = False
 
-    if not ico.grep("sparrow-end"):
+    if not ico.grep("sparrow-"):
         add_sparrow = f"#                  {green} (s){orange}            Sparrow Bitcoin Wallet                              #"
         sparrowmenu = True
     else: 
