@@ -53,7 +53,7 @@ check_for_emergency("s")
 
 ########################################################################################
 
-try: from audio.install_audio_f import install_audio
+try: from audio.install_audio_f import *
 except Exception as e: input(e)
 try: install_audio()
 except Exception as e: input(e)
