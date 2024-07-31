@@ -3,6 +3,7 @@ from functions import *
 from bitcoin.bitcoin_functions_f import *
 from datetime import date
 from config_f import *
+from parmanode.sned_sats_f import *
 
 def install_bitcoin():
 
@@ -20,6 +21,7 @@ def install_bitcoin():
     pco.remove("check_bitcoin_dir_flag")
     ico.add("bitcoin-start")
     
+    sned_sats()
     if not choose_drive(): return False 
 
     if pco.grep("check_bitcoin_dir_flag"):
