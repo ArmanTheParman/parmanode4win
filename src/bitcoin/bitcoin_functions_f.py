@@ -576,6 +576,8 @@ def check_default_directory_exists() -> bool: #returns True only if directory do
 
     You have choices...
     
+        {blue}u{orange}      to use this directory as is
+
         {red}x{orange}      to see the size of the directory, then return here.
 
         {red}delete{orange} to allow Parmanode to delete this directory.
@@ -597,13 +599,17 @@ def check_default_directory_exists() -> bool: #returns True only if directory do
         elif choice.upper() == "P":
             return True
         elif choice.upper() in {"A", "M"}:
-            menu_main()
+            return False
         elif choice.upper() == "X":
             size_bytes = sum(f.stat().st_size for f in default_bitcoin_data_dir.rglob('*') if f.is_file()) 
             size_bytes = size_bytes / (1024 * 1024) 
             size_bytes = round(size_bytes, 2)
             announce (f"The directory is{cyan} {size_bytes} MB {orange}in size.")
             continue
+        elif choice.lower() == "u":
+            global use_existing_dir
+            use_existing_dir = True
+            return True
         elif choice.upper() == "DELETE":
             if delete_directory(default_bitcoin_data_dir): return True
         elif choice.upper() == "MOVE":
