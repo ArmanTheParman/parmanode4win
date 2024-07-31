@@ -100,7 +100,7 @@ def choose_drive():
 {cyan}                (i){orange}     Use an INTERNAL drive
 
 {pink}
-    Note: Choose {cyan}internal{orange} if you want to use a custom path. Later, you can type the
+    Note: Choose {cyan}internal{pink} if you want to use a custom path. Later, you can type the
     drive letter of your choice when selecting the path.
 {orange}
 
