@@ -209,13 +209,13 @@ def get_custom_directory(app="bitcoin"):
             if not menu_main(): return False
         elif choice == "":
             return True 
-        elif choice.upper().startswith('C:\\'):
+        elif choice[0].isalpha() and choice[1] == ":":
             if not (confirm := bitcoin_folder_choice_confirm(choice)): return False
             if confirm == "try again": continue
             return confirm #bool
         else:
             set_terminal()
-            announce(r"    Drive C:\ expected in your path. Try again.", ec_text="try again")
+            announce(r"    Something was wrong with the path. Try again.", ec_text="try again")
             continue
             
 
