@@ -21,7 +21,7 @@ def menu_remove():
         sparrowmenu = False
 
     if ico.grep("electrum-"): 
-        rem_electrum = f"#                  {green} (e){orange}            Electrum Bitcoin Wallet                              #"
+        rem_electrum = f"#                  {green} (e){orange}           Electrum Bitcoin Wallet                              #"
         electrummenu = True
     else: 
         rem_electrum ="#                                                                                      #"
