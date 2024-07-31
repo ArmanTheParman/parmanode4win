@@ -9,7 +9,7 @@ def install_sparrow():
     sparrowversion = "1.9.1"
 
     if ico.grep("sparrow-end") or ico.grep("sparrow-start"):
-        announce("Parmanode thinks sparrow is already installed. Need to uninstall first.")
+        announce("Parmanode thinks Sparrow is already installed. Need to uninstall first.")
         return False
     
     global sparrowpath, sparrowzip, sparrowmanifest, sparrowsig, sparrowzippath, sparrowmanifestpath, sparrowsigpath
@@ -26,7 +26,7 @@ def install_sparrow():
     if not sparrowpath.exists():
         sparrowpath.mkdir()
     ico.add("sparrow-start") 
-    if not download_sparrow(): return False #also extracts and moves, zip left, unzipped dir deleted.
+    if not download_sparrow(): return False 
 
     if not verify_sparrow(): return False
 
