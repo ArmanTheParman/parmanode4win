@@ -379,10 +379,10 @@ def invalid():
                  
 Hit {cyan}<enter>{orange} to go back and try again""") 
 
-def please_wait(text: str):
+def please_wait(text=None):
     set_terminal()
     print()
-    print(text)
+    if text is not None: print(text)
     print(f"{cyan}Please wait...{orange}")
     print()
 

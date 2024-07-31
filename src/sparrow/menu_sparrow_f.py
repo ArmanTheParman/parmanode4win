@@ -47,7 +47,8 @@ def menu_sparrow():
             return True
         elif choice.lower() in {"start", "s"}:
             sparrowexe = pp / "sparrow" / "Sparrow.exe"
-            subprocess.run(sparrowexe)
+            subprocess.Popen(sparrowexe)
+            enter_continue("Sparrow will open in a moment. Hit <enter> to continue.")
             return True
         else:
             invalid()
