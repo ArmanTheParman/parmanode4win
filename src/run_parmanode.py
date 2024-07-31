@@ -4,6 +4,7 @@
 ########################################################################################
 
 import ctypes, sys, os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1' #must come before pygame import
 from pathlib import Path
 
 if not ctypes.windll.shell32.IsUserAnAdmin(): #is admin?
@@ -58,12 +59,9 @@ from audio.audio_f import *
 
 # try: install_audio()
 # except Exception as e: input(e)
-try:
-    play_music()
-    input("<enter> to stop")
-    stop_music()
-except Exception as e: input(e)
-sys.exit()
+bfp = p4w / "src" / "audio" / "bpgtm.mp3"
+bpgtm = MusicPlayer(str(bfp), vol=0.5)
+bpgtm.play_music()
 
 
 ########################################################################################

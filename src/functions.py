@@ -23,6 +23,7 @@ def get_bitcoin_dir():
 
 def cleanup():
     """Will execute when Parmanode quits"""
+    bpgtm.stop_music()
     print(f"{reset}")
 
     lockfile.unlink()

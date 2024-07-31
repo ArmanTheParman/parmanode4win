@@ -37,7 +37,11 @@ after = dp / "after.log"
 difference = dp/ "difference.log"
 lockfile = dp / "lockfile"
 
-
+########################################################################################
+# Audio
+global bpgtm
+bpgtm = None
+########################################################################################
 
 from colorama import Fore, Style, init #init need to toggle autoreset on/off
 global black, red, green, yellow, blue, magenta, cyan, white, reset
