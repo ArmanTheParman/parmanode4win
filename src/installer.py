@@ -69,18 +69,17 @@ def install_parmanode():
     if not yesorno(f"""
 {cyan}                             P A R M A N O D E 4 W I N {orange}
 
-{red}
-               If you choose to proceed, the following will happen...
-
-{green}
-    1){orange} The directory with subfolders will be created:{cyan} 
+    {orange} The Parmanode directories with subfolders have been created:{cyan} 
        
               {textdir}
+{red}
+               If you choose to proceed, the following will happen next...
 {green}
-    2){orange} The Parmanode4Win script files (readable text open source code) will be 
+{green}
+    1){orange} The Parmanode4Win script files (readable text open source code) will be 
        downloaded to your computer under the parman_programs directory.
 {green}               
-    3){orange} Some dependencies programs will be installed - these are programs 
+    2){orange} Some dependencies programs will be installed - these are programs 
        Parmanode4Win needs to function properly:
 
 {cyan}              - chocolatey{black} (application package manager for Windows, it's great)
@@ -90,12 +89,8 @@ def install_parmanode():
 {cyan}              - git {orange} 
 {cyan}              - gpg {orange}
 {green}    
-    4){orange} A shorcut to the program will be left on your Desktop.""", h=46): 
+    3){orange} A shorcut to the program will be left on your Desktop.""", h=46): 
         return False
-
-    # make_parmanode_directories()
-    # make_parmanode_files()
-    # from config_f import ico 
 
     try:
         git_clone_parmanode4win()
