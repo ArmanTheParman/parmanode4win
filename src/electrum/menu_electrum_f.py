@@ -36,7 +36,9 @@ def menu_electrum():
             return True
         elif choice.lower() in {"start", "s"}:
             electrumexe = pp / "electrum" / "electrum.exe"
+            please_wait()
             subprocess.run(electrumexe)
+            set_terminal()
             return True
         else:
             invalid()

@@ -2,6 +2,7 @@ from variables import *
 from functions import *
 from bitcoin.menu_bitcoin_f import *
 from sparrow.menu_sparrow_f import *
+from electrum.menu_electrum_f import *
 from config_f import *
 
 def menu_use():
@@ -22,6 +23,14 @@ def menu_use():
             use_sparrowmenu = "#                                                                                      #"
             sparrowmenu = False
 
+        if ico.grep("electrum-end"): 
+            use_electrummenu = f"#                  {green} (e){orange}            Electrum Bitcoin Wallet                             #"
+            electrummenu = True
+        else: 
+            use_electrummenu = "#                                                                                      #"
+            electrummenu = False
+        
+        set_terminal(h=38)
         print(f"""
 ########################################################################################
 #                                                                                      #
@@ -33,6 +42,8 @@ def menu_use():
 {use_bitcoinmenu}
 #                                                                                      #
 {use_sparrowmenu}
+#                                                                                      #
+{use_electrummenu}
 #                                                                                      #
 #                                                                                      #
 ########################################################################################
@@ -51,6 +62,10 @@ def menu_use():
         elif choice.lower() in {"s", "sparrow"}:
             if sparrowmenu == False: continue
             if not menu_sparrow(): return False
+            return True
+        elif choice.lower() in {"e", "electrum"}:
+            if electrummenu == False: continue
+            if not menu_electrum(): return False
             return True
         else:
             invalid()

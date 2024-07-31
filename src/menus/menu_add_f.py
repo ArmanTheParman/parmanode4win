@@ -20,7 +20,7 @@ def menu_add():
         sparrowmenu = False
 
     if not ico.grep("electrum-"):
-        add_electrum = f"#                  {green} (e){orange}           Electrum Bitcoin Wallet                              #"
+        add_electrum = f"#                  {green} (e){orange}            Electrum Bitcoin Wallet                             #"
         electrummenu = True
     else: 
         add_electrum ="#                                                                                      #"

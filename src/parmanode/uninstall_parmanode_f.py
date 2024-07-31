@@ -2,6 +2,7 @@ from variables import *
 from functions import *
 from bitcoin.uninstall_bitcoin_f import *
 from sparrow.uninstall_sparrow_f import *
+from electrum.uninstall_electrum_f import *
 from pathlib import Path
 import os, sys
 from config_f import *
@@ -50,6 +51,9 @@ def uninstall_parmanode():
     
     if ico.grep("sparrow-"):
         uninstall_sparrow()
+
+    if ico.grep("electrum-"):
+        uninstall_electrum()
     
     if yesorno("One last chance, this will delete the configuration files and script directory"):
         try:
