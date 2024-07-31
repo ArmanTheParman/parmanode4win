@@ -98,65 +98,30 @@ both sha256 and gpg.{orange}
 
 def make_electrum_config():
 
-    global electrum_config1, electrum_config2, electrum_config3
+    global electrum_config1
     electrum_config_dir = HOME / "Appdata" / "Roaming" / "electrum"
     electrum_config_path = electrum_config_dir / "config"
     if not electrum_config_dir.exists():
         electrum_config_dir.mkdir()
 
-    bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).strip().split('=')[1]
-    coreDD = ""
-    for i in bitcoin_dir:
-       if i == "\\":
-         i = '/'
-       coreDD = coreDD + i
+    electrum_config = """{
+    "auto_connect": false,
+    "check_updates": false,
+    "config_version": 3,
+    "decimal_point": 0,
+    "is_maximized": false,
+    "num_zeros": 0,
+    "oneserver": true,
+    "qt_gui_color_theme": "dark",
+    "rpcpassword": "JWn_CSr5PVOrSqrStD9HHw==",
+    "rpcuser": "user",
+    "server": "wsw6tua3xl24gsmi264zaep6seppjyrkyucpsmuxnjzyt3f3j6swshad.onion:50002:s",
+    "show_addresses_tab": true,
+    "show_notes_tab": false,
+    "show_utxo_tab": true 
+}"""
 
-    #can't use f string because of true/false interpretation
-    electrum_config1 = """{
-    "mode": "ONLINE",
-    "bitcoinUnit": "BTC",
-    "unitFormat": "DOT",
-    "blockExplorer": "https://mempool.space",
-    "feeRatesSource": "MEMPOOL_SPACE",
-    "fiatCurrency": "USD",
-    "exchangeSource": "COINGECKO",
-    "loadRecentWallets": true,
-    "validateDerivationPaths": true,
-    "groupByAddress": true,
-    "includeMempoolOutputs": true,
-    "notifyNewTransactions": true,
-    "checkNewVersions": false,
-    "theme": "LIGHT",
-    "openWalletsInNewWindows": false,
-    "hideEmptyUsedAddresses": false,
-    "showTransactionHex": true,
-    "showLoadingLog": true,
-    "showAddressTransactionCount": false,
-    "showDeprecatedImportExport": false,
-    "signBsmsExports": false,
-    "preventSleep": false,
-    "dustAttackThreshold": 1000,
-    "enumerateHwPeriod": 30,
-    "useZbar": true,
-    "serverType": "BITCOIN_CORE",
-    "publicElectrumServer": "ssl://bitcoin.lu.ke:50002|bitcoin.lu.ke",
-    "coreServer": "http://127.0.0.1:8332",
-    "coreAuthType": "USERPASS","""
-    electrum_config2 = f"""    "coreDataDir": "{coreDD}","""
-    electrum_config3 = """    "coreAuth": "parman:parman",
-    "useLegacyCoreWallet": false,
-    "useProxy": false,
-    "autoSwitchProxy": true,
-    "maxServerTimeout": 34,
-    "maxPageSize": 100,
-    "usePayNym": false,
-    "mempoolFullRbf": false,
-    "appWidth": 1083.0,
-    "appHeight": 805.5
-  }"""
-    electrum_config_final = f"{electrum_config1}\n{electrum_config2}\n{electrum_config3}"
-      
     with electrum_config_path.open('w') as f:
-        f.write(electrum_config_final + '\n')
+        f.write(electrum_config + '\n')
 
     return True
