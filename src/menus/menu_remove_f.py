@@ -1,6 +1,7 @@
 from functions import *
 from bitcoin.uninstall_bitcoin_f import *
 from sparrow.uninstall_sparrow_f import *
+from electrum.uninstall_electrum_f import *
 from parmanode.menu_main_f import *
 from config_f import *
 
@@ -19,6 +20,13 @@ def menu_remove():
         rem_sparrow ="#                                                                                      #"
         sparrowmenu = False
 
+    if ico.grep("electrum-"): 
+        rem_electrum = f"#                  {green} (e){orange}            Electrum Bitcoin Wallet                              #"
+        electrummenu = True
+    else: 
+        rem_electrum ="#                                                                                      #"
+        electrummenu = False
+
     while True:
         set_terminal()
         print(f"""
@@ -32,6 +40,8 @@ def menu_remove():
 {rem_bitcoin}
 #                                                                                      #
 {rem_sparrow}
+#                                                                                      #
+{rem_electrum}
 #                                                                                      #
 #                                                                                      #
 ########################################################################################
@@ -54,6 +64,10 @@ def menu_remove():
         elif choice.lower() == "s":
             if sparrowmenu == False: continue
             if not uninstall_sparrow(): return False
+            return True
+        elif choice.lower() == "e":
+            if electrummenu == False: continue
+            if not uninstall_electrum(): return False
             return True
         else:
             invalid()

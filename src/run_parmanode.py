@@ -52,11 +52,6 @@ if check_updates([0, 0, 1]) == "outdated":    #pass compiling version as int lis
 check_for_emergency("s")
 
 ########################################################################################
-from electrum.install_electrum_f import *
-install_electrum()
-from electrum.uninstall_electrum_f import *
-#uninstall_electrum() ; sys.exit()
-
 
 ########################################################################################
 
