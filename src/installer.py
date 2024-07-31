@@ -66,32 +66,29 @@ except Exception as e: input(e)
 def install_parmanode():
     textdir = str(Path.home() / "parman_programs")
 
-    if not yesorno(f"""
-{cyan}                             P A R M A N O D E 4 W I N {orange}
+    if not yesorno(f"""{cyan}                           P A R M A N O D E 4 W I N {orange}
+
+########################################################################################
 
 
-    {orange}This installer program will quickly and painlessley install Parmanode4Win 
-    on your computer. The program will live in this directory... 
+        {red}This installer program will quickly and painlessley install Parmanode4Win 
+        on your computer.
 
-    {textdir}
-{orange}
-    If you choose to proceed, the following will happen next...
 
 {green}
-            1){black} The Parmanode4Win script files (readable text open source code) will be 
-               downloaded to your computer under the parman_programs directory.
-{green}               
-            2){black} Some dependencies programs will be installed - these are programs 
-               Parmanode4Win needs to function properly:
+     1){black} The Parmanode4Win script files (readable text open source code) will be 
+          downloaded to your computer under this directory:
 
-{cyan}                      - chocolatey{black} (application package manager for Windows, it's great)
-{cyan}                      - python {black} 
-        {cyan}              - python packages {black} 
-{cyan}                      - curl {black} 
-{cyan}                      - git {black} 
-{cyan}                      - gpg {black}
+{cyan}                  {textdir}
+{green}               
+     2){black} Some dependencies programs will be installed - these are programs 
+        Parmanode4Win needs to function properly:
+
+{cyan}                  - chocolatey (application package manager for Windows, it's great)
+{cyan}                  - python and python packages {black} 
+{cyan}                  - curl, git and gpg programs {black} 
 {green}    
-            3){black} A shorcut to the program will be left on your Desktop.{orange}""", h=46): 
+     3){black} A shorcut to the program will be left on your Desktop.{orange}""", h=41): 
         return False
 
     try:
