@@ -25,9 +25,11 @@ class MusicPlayer:
 
         pygame.mixer.quit() 
     
-    def play_music(self, vol=0.5):
+    def play_music(self, vol=None):
+        if vol is not None:
+            self.vol = vol
         self._stop_event.clear()
-        self._music_thread = threading.Thread(target=self._play, args=(self.vol,))
+        self._music_thread = threading.Thread(target=self._play)
         self._music_thread.start()
     
     def stop_music(self):
