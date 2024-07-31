@@ -7,6 +7,10 @@ from parmanode.sned_sats_f import *
 
 def install_bitcoin():
 
+    set_terminal()
+
+    if not yesorno("Install Bitcoin?"): return False
+
     if ico.grep("bitcoin-end") or ico.grep("bitcoin-start"):
         announce("Please uninstall Bitcoin first")
         return False

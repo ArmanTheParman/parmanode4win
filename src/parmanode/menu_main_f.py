@@ -68,14 +68,16 @@ def menu_main():
         elif choice.lower() in {"use", "u"}: 
             menu_use()
         elif choice.lower() in {"b", "bitcoin"}:
-            if pco.grep("bitcoin-end"):
+            if ico.grep("bitcoin-end"):
                 menu_bitcoin()
-            elif pco.grep("bitcoin-start"):
+            elif ico.grep("bitcoin-start"):
                 announce(f"""Parmanode has detected a faulty installation of Bitcoin. You can 
     decide to remove it or not in the next screen.""")
                 uninstall_bitcoin()
-            else:
-                install_bitcoin()
+                continue
+            # else:
+            #     install_bitcoin()
+            #     continue
         elif choice.lower() in {"remove"}: 
             menu_remove()
         elif choice.lower() == "t":
