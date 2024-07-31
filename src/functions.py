@@ -792,7 +792,7 @@ def update_parmanode():
         announce("Parmanode encountered an error updating itself.")
     finally:
         os.chdir(current_dir)
-    success("Parmanode has been update")
+    success("Parmanode has been updated. Please restart Parmanode for changes to take effect.")
 
 def check_for_emergency(silence):
 
