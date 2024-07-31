@@ -69,27 +69,32 @@ def install_parmanode():
     if not yesorno(f"""
 {cyan}                             P A R M A N O D E 4 W I N {orange}
 
-    {orange} The Parmanode directories with subfolders have been created:{cyan} 
-       
+
+    {orange}This installer program will quickly and painlessley install Parmanode4Win 
+    on your computer. Select{green} 'y'{orange} with the keyboard
+    and <enter> to continue, or read some infor below if you're not in a hurry.
+    
+    The program will live in this directory... 
+
               {textdir}
 {red}
-               If you choose to proceed, the following will happen next...
-{green}
-{green}
-    1){orange} The Parmanode4Win script files (readable text open source code) will be 
-       downloaded to your computer under the parman_programs directory.
-{green}               
-    2){orange} Some dependencies programs will be installed - these are programs 
-       Parmanode4Win needs to function properly:
+    If you choose to proceed, the following will happen next...
 
-{cyan}              - chocolatey{black} (application package manager for Windows, it's great)
-{cyan}              - python {orange} 
-{cyan}              - python packages {orange} 
-{cyan}              - curl {orange} 
-{cyan}              - git {orange} 
-{cyan}              - gpg {orange}
+{green}
+            1){black} The Parmanode4Win script files (readable text open source code) will be 
+               downloaded to your computer under the parman_programs directory.
+{green}               
+            2){black} Some dependencies programs will be installed - these are programs 
+               Parmanode4Win needs to function properly:
+
+{cyan}                      - chocolatey{black} (application package manager for Windows, it's great)
+{cyan}                      - python {black} 
+        {cyan}              - python packages {black} 
+{cyan}                      - curl {black} 
+{cyan}                      - git {black} 
+{cyan}                      - gpg {black}
 {green}    
-    3){orange} A shorcut to the program will be left on your Desktop.""", h=46): 
+            3){black} A shorcut to the program will be left on your Desktop.{orange}""", h=46): 
         return False
 
     try:
