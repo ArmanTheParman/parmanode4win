@@ -417,7 +417,6 @@ def check_bitcoin_conf_exists_and_decide() -> list:
     bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).split('=')[1].strip()
     bitcoin_dir = Path(bitcoin_dir)
     bitcoin_conf = bitcoin_dir / "bitcoin.conf"
-
     if bitcoin_conf.exists():
         if not (result := _bitcoin_conf_exists()): return [False , None, None] #exiting
         if result.upper() == "YOLO": return [True, "use existing conf", bitcoin_conf]
@@ -429,9 +428,7 @@ def check_bitcoin_conf_exists_and_decide() -> list:
     else:
         return [True, "doesn't exist", bitcoin_conf]
             
-def make_bitcoin_conf(bitcoin_conf_object):
-
-    bitcoin_conf = Path(bitcoin_conf_object)
+def make_bitcoin_conf(bitcoin_conf):
 
     IP = get_IP_variables()
 
