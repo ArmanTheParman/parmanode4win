@@ -54,12 +54,14 @@ def install_bitcoin():
     if not make_symlinks(): return False
 
 
-    if not (decision := check_bitcoin_conf_exists_and_decide()): return False
+    decision_list = check_bitcoin_conf_exists_and_decide() # returns list (bool, str, Path)
+
+    if decision_list[0] == False: return False
     
-    if not decision.lower() == "use existing conf":
+    if not decision_list[1].lower() == "use existing conf":
         """bitcoin.conf doesn't exist or did and was delete"""
         if not prune_choice(): return False
-        if not make_bitcoin_conf(): return False
+        if not make_bitcoin_conf([decision_list[2]]): return False #decision_list[2] is a bitcoin_conf path object
     
     ico.add("bitcoin-end") 
     bitcoin_installed_success()
