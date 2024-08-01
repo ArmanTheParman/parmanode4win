@@ -431,7 +431,7 @@ def check_bitcoin_conf_exists_and_decide() -> list:
             
 def make_bitcoin_conf(bitcoin_conf_object):
 
-    bitcoin_conf = bitcoin_conf_object
+    bitcoin_conf = Path(bitcoin_conf_object)
 
     IP = get_IP_variables()
 
