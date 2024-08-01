@@ -101,10 +101,6 @@ def choose_drive():
 
 {blue}                (c){orange}     Use a CUSTOM location (internal or external drive)
 
-{pink}
-    Note: Choose {cyan}internal{pink} if you want to use a custom path. Later, you can type the
-    drive letter of your choice when selecting the path.
-{orange}
 
 
 ########################################################################################""")
@@ -128,7 +124,7 @@ def choose_drive():
             else: return True
         elif choice.lower() == "c":
             pco.remove("format_disk=True") #redundant
-            if not (result := get_custom_directory("bitcoin")): return False
+            if not (result := get_custom_directory()): return False
             if result == "try again": continue
             pco.add("drive_bitcoin=custom")
             if not pco.grep(fr"bitcoin_dir={default_bitcoin_data_dir}"):
@@ -179,7 +175,7 @@ def get_custom_directory():
 
     Please type in the path where you want the Bitcoin data to be stored. Be careful,
     and make sure you type the correct path EXACTLY, including the drive letter, and
-    colon.
+    colon (it can be an external drive).
 
     If the folder you type does not exist, it will be created. Don't mess this up.
 
@@ -417,19 +413,23 @@ def set_the_prune():
             pco.add(f"prune_value={prunevalue}")
             return True
 
-def make_bitcoin_conf():
+def check_bitcoin_conf_exists_and_decide():
     bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).split('=')[1].strip()
     bitcoin_dir = Path(bitcoin_dir)
-
     bitcoin_conf = bitcoin_dir / "bitcoin.conf"
+
     if bitcoin_conf.exists():
-        result = bitcoin_conf_exists()
-        if result == False: return False
-        if result == "YOLO": return True
-        try:
-            if result == "O": bitcoin_conf.unlink() #delete 
-        except Exception as e:
-            input(e)
+        if not (result := _bitcoin_conf_exists()): return False #exiting
+        if result.upper() == "YOLO": return "use existing conf" 
+        if result.upper() == "O":
+            try: 
+                bitcoin_conf.unlink() #delete 
+                return "overwrite"
+            except Exception as e: input(e)
+    else:
+        return "doesn't exist"
+            
+def make_bitcoin_conf():
 
     IP = get_IP_variables()
 
@@ -476,7 +476,7 @@ rpcservertimeout=120"""
         input(e)
     return True
 
-def bitcoin_conf_exists():
+def _bitcoin_conf_exists():
     set_terminal()
     print(f"""
 ########################################################################################
@@ -501,7 +501,7 @@ def bitcoin_conf_exists():
     if choice.upper() in {"Q", "EXIT"}: 
         sys.exit()
     elif choice.upper() in {"M", "A"}:
-        menu_main()
+        return False
     elif choice.upper() == "O":
         return "O"
     elif choice.upper() == "YOLO":

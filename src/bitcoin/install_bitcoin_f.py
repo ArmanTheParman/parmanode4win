@@ -53,16 +53,16 @@ def install_bitcoin():
     if not verify_bitcoin(): return False
     if not make_symlinks(): return False
 
-    try:
-        if not prune_choice(): return False
-    except Exception as e:
-        input(e)
+    bitcoin_conf = Path(pco.grep("bitcoin_dir=", returnline=True).split('=')[0].strip()) / "bitcoin.conf"
+    if bitcoin_conf.exists()
 
-    try:
-        if not make_bitcoin_conf(): return False
-    except Exception as e:
-        input(e)
+
+    if not (decision := check_bitcoin_conf_exists_and_decide()): return False
     
+    if not decision.lower() == "use existing conf":
+        """bitcoin.conf doesn't exist or did and was delete"""
+        if not prune_choice(): return False
+        if not make_bitcoin_conf(): return False
     
     ico.add("bitcoin-end") 
     bitcoin_installed_success()
