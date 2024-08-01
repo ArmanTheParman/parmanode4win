@@ -58,12 +58,12 @@ def download_electrum(url, urlasc):
 
         if not download(url, str(electrumpath)): 
             answer = announce(f"""Download failed - It happens (you should be using Linux BTW)
-{cyan}{url}{orange}, trying again. {red}Q{orange} to abort""")
+    Tying again. {red}Q{orange} to abort""")
             if answer.upper() == "Q": return False
             else: continue
         if not download(urlasc, str(electrumpath)):
             answer = announce(f"""Download failed - It happens (you should b suine using Linxux BTW)
-{cyan}{url2}{orange}, trying again. {red}Q{orange} to abort""")
+    Tying again. {red}Q{orange} to abort""")
             if answer.upper() == "Q": return False
             else: continue
         break
