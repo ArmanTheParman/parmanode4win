@@ -81,8 +81,8 @@ If that doesn't work, hit{red} <control>{green}c{cyan} and Parmanode will try ag
     return True
 
 def choose_drive():
-    set_terminal()
     while True:
+        set_terminal()
         print(f"""{orange}
 ########################################################################################
 
@@ -99,6 +99,8 @@ def choose_drive():
 
 {cyan}                (i){orange}     Use an INTERNAL drive
 
+{blue}                (c){orange}     Use a CUSTOM location (internal or external drive)
+
 {pink}
     Note: Choose {cyan}internal{pink} if you want to use a custom path. Later, you can type the
     drive letter of your choice when selecting the path.
@@ -108,24 +110,31 @@ def choose_drive():
 ########################################################################################""")
 
         choice = choose("xpmq")
-        if choice in {"q", "Q", "Quit", "exit", "EXIT"}: 
+        if choice.lower() in {"q", "quit", "exit"}: 
             sys.exit() 
-        elif choice in {"p", "P"}:
+        elif choice.lower() == "p":
             return False
-        elif choice in {"m", "M"}:
-            if not menu_main(): return False
-        elif choice in {"e", "E"}:
-            drive_bitcoin = "external" #global var
+        elif choice.lower() == "m":
+            return False
+        elif choice.lower() == "e":
             if not format_choice("bitcoin"): return False
             pco.add("drive_bitcoin=external")
             pco.add("check_bitcoin_dir_flag") #deleted later in installation, and uninstallation
             return True
-        elif choice in {"i", "I"}:
-            drive_bitcoin = "internal" #global var
+        elif choice.lower() == "i":
             pco.add("drive_bitcoin=internal")
             pco.remove("format_disk=True") #redundant
             if not choosen_drive_internal(): return False 
             else: return True
+        elif choice.lower() == "c":
+            pco.remove("format_disk=True") #redundant
+            if not (result := get_custom_directory("bitcoin")): return False
+            if result == "try again": continue
+            pco.add("drive_bitcoin=custom")
+            if not pco.grep(fr"bitcoin_dir={default_bitcoin_data_dir}"):
+                pco.add("check_bitcoin_dir_flag") #deleted later in installation, and uninstallation
+            if type(result) == bool: return result
+            else: return False
         else:
             invalid()
 
@@ -141,24 +150,9 @@ def choosen_drive_internal():
 
         {default_bitcoin_data_dir}{orange}
 
-    Hit{green} <enter>{orange} to continue
-{cyan}
-    or...{orange}
-    
-    Type {red}custom{orange} then <enter> to choose a custom path to where you want the 
-    data to go, and Parmanode will create a symlink from the above folder to your 
-    preferred target folder. This will "trick" Bitcoin to download to your preferred 
-    location even though it thinks it's downloading to the above default location. 
-    It's OK, it's ethical, and no coins will be harmed. 
-
-{cyan}
-    Most people will just keep it at the default location.
-{orange}
-    Hit{green} <enter>{orange} alone for that.
-    
 ########################################################################################
 """)
-        choice = input()
+        choice = choose("eq")
         set_terminal()
         if choice.upper() in {"Q", "EXIT"}: 
             sys.exit()
@@ -167,25 +161,16 @@ def choosen_drive_internal():
         elif choice.upper() == "M":
             if not menu_main(): return False
         elif choice == "": #default path chosen
-            h = str(HOME)
             default_path=fr"bitcoin_dir={default_bitcoin_data_dir}"
-            bitcoin_dir = default_bitcoin_data_dir #global variable
             pco.add(default_path)
             try: default_bitcoin_data_dir.mkdir()
             except: pass
-            del h
             return True
-        elif choice.upper() == "CUSTOM":
-            if not (result := get_custom_directory("bitcoin")): return False
-            if result == "try again": continue
-            pco.add("check_bitcoin_dir_flag") #deleted later in installation, and uninstallation
-            if type(result) == bool: return result
-            else: return False
         else:
             invalid()
 
         
-def get_custom_directory(app="bitcoin"):
+def get_custom_directory():
     example_dir = Path.home() / "some_folder"
     while True:
         set_terminal()
@@ -193,10 +178,17 @@ def get_custom_directory(app="bitcoin"):
 ########################################################################################
 
     Please type in the path where you want the Bitcoin data to be stored. Be careful,
-    and make sure you type the correct path EXACTLY. If the folder you type
-    does not exist, it will be created. Don't mess this up.
+    and make sure you type the correct path EXACTLY, including the drive letter, and
+    colon.
+
+    If the folder you type does not exist, it will be created. Don't mess this up.
+
+    If the folder is an existing bitcoin directory containing bitcoin data, then
+    you'll have the option to use that and continue syncing to it. You'll also have 
+    the option to keep or overwrite the bitcoin.conf file in that location. 
     
-    You can abort if you want, otherwise, type it in and hit{cyan} <enter>{orange}
+    You can abort if you want, otherwise, type the {cyan}FULL PATH OF THE FOLDER{orange},
+    and then hit{green} <enter>{orange}, 
 
     Example: 
     {cyan} 
@@ -210,7 +202,7 @@ def get_custom_directory(app="bitcoin"):
         elif choice.upper() == "P":
             return False
         elif choice.upper() == "M":
-            if not menu_main(): return False
+            return False
         elif choice == "":
             return True 
         elif choice[0].isalpha() and choice[1] == ":":
@@ -248,19 +240,18 @@ def bitcoin_folder_choice_confirm(folder):
         elif choice.upper() == "P":
             return False
         elif choice.upper() == "M":
-            if not menu_main(): return False
+            return False
         elif choice.upper() == "Y":
             pco.add(f"bitcoin_dir={folder}")
-            bitcoin_dir = Path(folder) #global variable 
             try:
                 if not Path(folder).exists(): Path(folder).mkdir(parents=True, exist_ok=True)
+                return True
             except Exception as e:
                 pco.remove("bitcoin_dir=")
                 set_terminal()
                 print("Unable to create directory. Please try again. Hit <enter> first.")
                 input()
                 return "try again"
-            return True 
         elif choice.upper() == "N":
             return "try again"
 
@@ -570,9 +561,14 @@ def check_default_directory_exists() -> bool: #returns True only if directory do
 {cyan} 
     {default_bitcoin_data_dir}
 {orange}
-    If you don't know why it's there, don't worry, there are several potential 
-    innocent reasons, for example, it could be from a previous installation, or it 
-    could have been auto-generated during a single bitcoin core execution.
+    This directory needs to be clear to enable the choices you've made so far. A 
+    symlink (shortcut) will be created here instead pointing to your target folder
+    for the Bitcoin data.
+    
+    If you don't know why this folder is there, don't worry, there are several 
+    potential innocent reasons, for example, it could be from a previous 
+    installation, or it could have been auto-generated during a single Bitcoin Core 
+    execution.
 
     You have choices...
     
@@ -616,7 +612,6 @@ def check_default_directory_exists() -> bool: #returns True only if directory do
             return True
         else:
             invalid()
-
 
 
 def verify_bitcoin():

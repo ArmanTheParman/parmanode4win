@@ -369,6 +369,8 @@ def choose(message=None):
         print(f"{yellow}Type your{cyan} choice{yellow} from above options, or:{green} (m){yellow} for main,{red} (q){yellow} to quit.")
     if message == "xq":
         print(f"{yellow}Type your{cyan} choice{yellow} from above options, or:{red} (q){yellow} to quit.")
+    if message == "eq":
+        print(f"{yellow}Hit {cyan} <enter>{yellow} to continue, or:{red} (q){yellow} to quit.")
 
     choice = input()
     return choice 

@@ -26,6 +26,7 @@ def install_bitcoin():
     ico.add("bitcoin-start")
     
     sned_sats()
+
     if not choose_drive(): return False 
 
     if pco.grep("check_bitcoin_dir_flag"):
