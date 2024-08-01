@@ -53,9 +53,6 @@ def install_bitcoin():
     if not verify_bitcoin(): return False
     if not make_symlinks(): return False
 
-    bitcoin_conf = Path(pco.grep("bitcoin_dir=", returnline=True).split('=')[0].strip()) / "bitcoin.conf"
-    if bitcoin_conf.exists()
-
 
     if not (decision := check_bitcoin_conf_exists_and_decide()): return False
     
