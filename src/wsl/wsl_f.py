@@ -56,6 +56,6 @@ def _unregister_all_wsl_distributions():
 def disable_wsl():
     _unregister_all_wsl_distributions()
     try:
-        subprocess.run(["powershell", "-Command", "Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux"], check=True)
+        subprocess.run(["powershell", "-Command", "Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart"], check=True)
         subprocess.run(["powershell", "-Command", "Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform"], check=True)
     except Exception as e: input(e)
