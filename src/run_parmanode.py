@@ -53,8 +53,8 @@ check_for_emergency("s")
 
 ########################################################################################
 from wsl.wsl_f import *
-#enable_wsl()
-disable_wsl()
+enable_wsl()
+#disable_wsl()
 ########################################################################################
 
 try: from parmanode.intro_f import * 
