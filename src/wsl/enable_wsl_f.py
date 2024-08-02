@@ -15,6 +15,8 @@ def enable_wsl():
     subprocess.run(["wsl", "--set-default-version", "2"], check=True)
     input("Default set. Hit <enter>")
 
+
+
 def install_docker():
     pass
     """
@@ -26,3 +28,23 @@ def install_docker():
     docker desktop file:
          c:\Program files\Docker\Docker\"docker desktop.exe"
     """
+
+    
+
+def _unregister_all_wsl_distributions():
+    try:
+        result = subprocess.run(['wsl', '--list', '--quiet'], capture_output=True, text=True, check=True)
+        distros = result.stdout.splitlines()
+
+        for distro in distros:
+            print(f"{red}Unregistering distros...{orange}")
+            subprocess.run(['wsl', '--unregister', distro], check=True)
+
+    except subprocess.CalledProcessError as e:
+        print(f"An error occurred: {e}")
+
+
+def disable_wsl():
+    _unregister_all_wsl_distributions()
+    subprocess.run("Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux", check=True)
+    subprocess.run("Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform", check=True)
