@@ -11,9 +11,6 @@ def enable_wsl():
     #new session in linun entered. type 'exit' to get out.
     #wsl --list, lists distros, and also docker
     #Look vor version2 of wsl. If not, instruct user to manually enable virualisation and give a website.
-    input("Install wsl done. Reboot needed.")
-    try: subprocess.run(["wsl", "--install", "-d", "debian"], check=True)
-    except Exception as e: input(e)
     input("install debian done. Hit <enter>")
     try: subprocess.run(["wsl", "--set-default-version", "2"], check=True)
     except Exception as e: input(e)
