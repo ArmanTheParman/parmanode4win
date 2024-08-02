@@ -4,7 +4,7 @@ from functions import *
 def enable_wsl():
     #Ensure that virtualization is enabled in your BIOS/UEFI settings. This is required for WSL 2.
 
-    try: subprocess.run(["wsl", "--install", "--no-launch"], check=True)
+    try: subprocess.run(["wsl", "--install", "-d", "debian", "--no-launch"], check=True)
     except Exception as e: input(e)
     #after that, check if any distro installed.  May not have, but may have. If none, install debian.
     #new username and password is prompted for.
@@ -54,11 +54,8 @@ def _unregister_all_wsl_distributions():
 
 
 def disable_wsl():
-    #_unregister_all_wsl_distributions()
-    input("zzzz1")
-    try: subprocess.run("Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux", check=True)
+    _unregister_all_wsl_distributions()
+    try:
+        subprocess.run(["powershell", "-Command", "Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux"], check=True)
+        subprocess.run(["powershell", "-Command", "Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform"], check=True)
     except Exception as e: input(e)
-    input("zzzz1")
-    try: subprocess.run("Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform", check=True)
-    except Exception as e: input(e)
-    input("zzzz1")
