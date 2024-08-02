@@ -52,7 +52,8 @@ if check_updates([0, 0, 1]) == "outdated":    #pass compiling version as int lis
 check_for_emergency("s")
 
 ########################################################################################
-
+from wsl import *
+enable_wsl()
 ########################################################################################
 
 try: from parmanode.intro_f import * 
