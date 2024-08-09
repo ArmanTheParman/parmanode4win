@@ -415,7 +415,12 @@ def motd():
     Accumulating Bitcoin helps it become the new world momey. Then no one can scam in 
     this way. They lose power. Join us.
     {bright_blue}
-    https://armantheparman.com/joinus/{cyan}"""]
+    https://armantheparman.com/joinus/{cyan}""", f"""
+    Don't trade Bitcoin 
+
+    That's not what it's for. 
+
+    Just because you can trade it doesn't mean you should, or are obliged to."""]
  
     motdnum = value % len(motd_text)
 
