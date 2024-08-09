@@ -371,7 +371,7 @@ def motd():
     Listening to 10,000 hours of podcasts of people talking about how they got into 
     Bitcoin and their price predictions is not research.
 
-    Research here ... {green}
+    Research here ... {bright_blue}
            
     https://armantheparman.com {cyan}
 """, f"""
@@ -401,8 +401,21 @@ def motd():
     print money to manage the economy is good for them.
 
     If you agree that's what evil people with such power would do, how do you know 
-    they haven't already?"""]
+    they haven't already?""", f"""
+    Bankers, and hidden people above them, are enriched not buy *earning* paper/fiat 
+    money, but by creating paper that everyone else has to work for, and using it to 
+    plunder the planet's assets.
 
+    Bankers are rich in assets not money. This is true power.
+
+    Everyone else is renting, or working to compete for those assets that bankers got 
+    for free. It's slavery.
+
+    We end this by opting out of the scam, and stop working for their money. 
+    Accumulating Bitcoin helps it become the new world momey. Then no one can scam in 
+    this way. They lose power. Join us.
+    {bright_blue}
+    https://armantheparman.com/joinus/{cyan}"""]
  
     motdnum = value % len(motd_text)
 
