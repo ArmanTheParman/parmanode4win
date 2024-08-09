@@ -420,7 +420,24 @@ def motd():
 
     That's not what it's for. 
 
-    Just because you can trade it doesn't mean you should, or are obliged to."""]
+    Just because you can trade it doesn't mean you should, or are obliged to.""", f"""
+    Scarcity is not what makes Bitcoin valuable...
+
+    It is simply a{yellow} MINIMUM REQUIREMENT{cyan} for a token to be considered a contender as 
+    worldwide dominant ubiquitously accepted money.
+
+    There are other minimum requirements, such as SUFFICIENT privacy, and SUFFICIENT
+    fungibility, and Bitcoin has them all. 
+
+    Once a token has met the minimum requirements, it is then not a competition of
+    which has better features, but instead, which has the best saleability. Whichever
+    has a dominant lead, due to how money evolves, increases dominance, until there
+    is only one winner.
+
+    It's a moot point, because nothing else has all the minimum requirements, so there 
+    is no competition to Bitcoin; "there is no second best".
+    {bright_blue}
+    https://armantheparman.com/onemoney/{cyan}"""]
  
     motdnum = value % len(motd_text)
 
