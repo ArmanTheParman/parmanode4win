@@ -389,7 +389,19 @@ def motd():
     Fuck society.
 """, f"""
     Money does not need utility. Money BUYS utility. That's the point of it.
-"""]
+""", f"""
+    If evil people were to ever gain the power to print money, then they could buy the 
+    planet's assets and all public companies, buy/influence politicians, groom 
+    political puppets, buy retail/commercial banks, buy media to control truth, invest 
+    in education/curriculums to control beliefs, and buy/influence/fund academia, 
+    control science publications, monopolise supply chains in energy and food, 
+    document all people with movement licenses/cirizenship, and form supragovernmental
+    bodies (WHO, WEF, UN) - and use all of that to manipulate the public into 
+    believing that they are free, their vote matters, and that having some people 
+    print money to manage the economy is good for them.
+
+    If you agree that's what evil people with such power would do, how do you know 
+    they haven't already?"""]
 
  
     motdnum = value % len(motd_text)
