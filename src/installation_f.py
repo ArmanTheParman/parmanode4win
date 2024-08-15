@@ -138,7 +138,7 @@ def install_gpg_with_chocolatey():
         subprocess.run(["choco", "install", "gpg4win", "--force", "-y"], check=True)
         print("""gpg installed successfully.""")
     except subprocess.CalledProcessError as e:
-        raise Exception(f"Failed to install gog with Chocolatey: {e.stderr}")
+        raise Exception(f"Failed to install gpg with Chocolatey: {e.stderr}")
 
     return True
 
