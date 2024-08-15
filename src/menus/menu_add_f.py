@@ -2,6 +2,7 @@ from functions import *
 from bitcoin.install_bitcoin_f import *
 from sparrow.install_sparrow_f import *
 from electrum.install_electrum_f import *
+from tor.install_tor_f import *
 from config_f import *
 
 def menu_add():
@@ -26,6 +27,13 @@ def menu_add():
         add_electrum ="#                                                                                      #"
         electrummenu = False
 
+    if not ico.grep("tor-"):
+        add_tor = f"#                  {green} (t){orange}            Tor                                                 #"
+        tormenu = True
+    else: 
+        add_tor ="#                                                                                      #"
+        tormenu = False
+
     while True:
         set_terminal(h=38)
         print(f"""
@@ -43,6 +51,7 @@ def menu_add():
 #                                                                                      #
 {add_electrum}
 #                                                                                      #
+{add_tor}
 #                                                                                      #
 #                                                                                      #
 #                                   {red}          ... more programs soon {orange}                  #
@@ -67,6 +76,10 @@ def menu_add():
         elif choice.lower() == "e":
             if electrummenu == False : continue
             if not install_electrum(): return False
+            return True
+        elif choice.lower() == "t":
+            if tormenu == False : continue
+            if not install_tor(): return False
             return True
         else:
             invalid()
