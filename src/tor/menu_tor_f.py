@@ -3,7 +3,7 @@ from functions import *
 from config_f import *
 from tor.tor_functions import *
 def menu_tor():
-   
+    input("debug") 
     while True:
         tortext = subprocess.run(["Get-Service", "-Name", "tor"], text=True, capture_output=True, check=True).stdout.strip()
         tmpo.write(tortext)
