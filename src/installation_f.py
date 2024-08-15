@@ -136,7 +136,10 @@ def install_gpg_with_chocolatey():
 
     try:
         subprocess.run(["choco", "install", "gpg4win", "-y"], check=True)
-        print("gpg installed successfully.")
+        print("""gpg installed successfully. You need to reboot the computer, and run 
+    the installer again, sorry! Exiting. Hit <enter>""")
+        input()
+        sys.exit()
     except subprocess.CalledProcessError as e:
         raise Exception(f"Failed to install gog with Chocolatey: {e.stderr}")
 
