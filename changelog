@@ -1,3 +1,5 @@
+v0.1.2
+    -gpg doesn't install, need gpg4win
 v0.1.1
     - Added extra option for user to install bitcoin to custom directory, internal or external
 v0.1.0
