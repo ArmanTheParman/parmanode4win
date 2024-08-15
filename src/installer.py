@@ -104,8 +104,9 @@ def install_parmanode():
 ########################################################################################
 # Installer
 if p4w.exists():
-    if not yesorno("""Parmanode4Win seems to already have been installed. You can attmpet
-    a full uninstall, before attempting a reinstall."""):
+    if not announce("""Parmanode4Win seems to already have been installed. You can attmpet
+    a full uninstall, before attempting a reinstall. If that doesn't work, make sure to 
+    manually delete any Parmanode directories in your home directory."""):
         sys.exit()
 
 if p4w.exists():
