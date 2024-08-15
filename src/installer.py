@@ -92,9 +92,9 @@ def install_parmanode():
         return False
 
     try:
-        git_clone_parmanode4win()
         dependency_check() 
         test_installation()
+        git_clone_parmanode4win()
         desktop_shortcut()
         ico.add("parmanode4win-end")
         success(f"Parmanode4Win has been installed. Please run from the Desktop shortcut icon.")
