@@ -3,11 +3,13 @@ from functions import *
 from config_f import *
 from tor.tor_functions import *
 def menu_tor():
-    input("debug") 
     while True:
         tortext = subprocess.run(["Get-Service", "-Name", "tor"], text=True, capture_output=True, check=True).stdout.strip()
+        input("debug") 
         tmpo.write(tortext)
+        input("debug") 
         running = tmpo.grep("tor", returnline=True)
+        input("debug") 
         if "Running" in running:
             runningmenu = f"Tor is{green} running{orange}"
             torrunning = True
