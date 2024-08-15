@@ -104,15 +104,9 @@ def install_parmanode():
 ########################################################################################
 # Installer
 if p4w.exists():
-    if not yesorno("""Parmanode4Win seems to already have been installed. You can attmpet
+    if not announce("""Parmanode4Win seems to already have been installed. You can attempt
     a full uninstall, before attempting a reinstall."""):
         sys.exit()
-
-if p4w.exists():
-    announce("""Remnants of Parmanode still exists. Aborting. 
-    You can call Parman for help.""")
-    sys.exit()
-
 
 try: 
     if check_installer_updates("0.0.1") == "outdated":
