@@ -135,7 +135,7 @@ def check_gpg():
 def install_gpg_with_chocolatey():
 
     try:
-        subprocess.run(["choco", "install", "gpg4win", "-y"], check=True)
+        subprocess.run(["choco", "install", "gpg4win", "--force", "-y"], check=True)
         print("""
               
     gpg installed successfully, but this silly program doesn't work unless you 
