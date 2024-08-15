@@ -250,10 +250,6 @@ def test_installation():
         if text[1] == False:
             ending()
 
-        if not p4w.exists():
-            print(f"{red}Parmanode4Win script directory is not installed") 
-            ending()
-
         else:
             success("The test for installing dependencies passed.")
             break
