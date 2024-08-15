@@ -83,10 +83,10 @@ def check_pip_dependencies(answer=False):
     if answer == True:
        if {"colorama", "psutil", "pywin32", "requests", "urllib3", "setuptools", "winshell"}.issubset(set(listofpackages)):
            text = f"{green}All pip dependencies installed{orange}"
-           return (text, True)
+           return [text, True]
        else:
            text = f"{red}Some pip dependencies failed to install{orange}"
-           return (text, False)
+           return [text, False]
 
     for i in {"colorama", "psutil", "pywin32", "requests", "urllib3", "setuptools", "winshell"}:
         if i not in listofpackages:
