@@ -1,7 +1,7 @@
 from variables import *
 from functions import *
 from config_f import *
-
+from tor.tor_functions import *
 def menu_tor():
    
     while True:
@@ -10,8 +10,10 @@ def menu_tor():
         running = tmpo.grep("tor", returnline=True)
         if "Running" in running:
             runningmenu = f"Tor is{green} running{orange}"
+            torrunning = True
         else:
             runningmenu = f"Tor is{red} not running{orange}"
+            torrunning = False
         tmpo.write("")
 
 
@@ -43,16 +45,13 @@ def menu_tor():
         elif choice.upper() == "M":
             return True
         elif choice.lower() == "start":
-            if isbitcoinrunning == True: continue
+            if torrunning == True: continue
             else:
-                start_bitcoind()
+                start_tor()
         elif choice.lower() == "stop":
-            set_terminal()
-            announce(f"""Use your mouse to stop Bitcoin from its window.""")
-            continue 
-        elif choice.lower() == "bc":
-            thedir = get_bitcoin_dir()
-            os.system(f"notepad {thedir}/bitcoin.conf")
+            if torrunning == False: continue
+            else:
+                stop_tor()
         else:
             invalid()
 
