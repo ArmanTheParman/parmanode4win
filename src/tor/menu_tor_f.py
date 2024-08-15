@@ -12,6 +12,7 @@ def menu_tor():
             runningmenu = f"Tor is{green} running{orange}"
         else:
             runningmenu = f"Tor is{red} not running{orange}"
+        tmpo.write("")
 
 
         set_terminal()
