@@ -6,7 +6,7 @@ def menu_tor():
     while True:
         tortext = subprocess.run(["powershell", "Get-Service -Name tor"], text=True, capture_output=True, check=True).stdout.strip()
         input("debug") 
-        tmpo.write(tortext)
+        tmpo.write(f"tortext")
         input("debug") 
         running = tmpo.grep("tor", returnline=True)
         input("debug") 
