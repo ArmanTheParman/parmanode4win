@@ -4,7 +4,7 @@ from config_f import *
 from tor.tor_functions import *
 def menu_tor():
     while True:
-        tortext = subprocess.run(["Get-Service", "-Name", "tor"], text=True, capture_output=True, check=True)#.stdout.strip()
+        tortext = subprocess.run(["powershell", "Get-Service -Name tor"], text=True, capture_output=True, check=True).stdout.strip()
         input("debug") 
         tmpo.write(tortext)
         input("debug") 
