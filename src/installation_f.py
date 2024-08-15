@@ -136,8 +136,13 @@ def install_gpg_with_chocolatey():
 
     try:
         subprocess.run(["choco", "install", "gpg4win", "-y"], check=True)
-        print("""gpg installed successfully. You need to reboot the computer, and run 
-    the installer again, sorry! Exiting. Hit <enter>""")
+        print("""
+              
+    gpg installed successfully, but this silly program doesn't work unless you 
+    reboot the computer. Do that and run the installer again, sorry! Exiting. 
+    Hit <enter>
+    
+     """)
         input()
         sys.exit()
     except subprocess.CalledProcessError as e:
