@@ -2,6 +2,7 @@ from functions import *
 from bitcoin.uninstall_bitcoin_f import *
 from sparrow.uninstall_sparrow_f import *
 from electrum.uninstall_electrum_f import *
+from tor.install_tor_f import *
 from parmanode.menu_main_f import *
 from config_f import *
 
@@ -27,6 +28,13 @@ def menu_remove():
         rem_electrum ="#                                                                                      #"
         electrummenu = False
 
+    if ico.grep("tor-"): 
+        rem_tor = f"#                  {green} (t){orange}            Tor                                                 #"
+        tormenu = True
+    else: 
+        rem_tor ="#                                                                                      #"
+        tormenu = False
+
     while True:
         set_terminal()
         print(f"""
@@ -43,6 +51,7 @@ def menu_remove():
 #                                                                                      #
 {rem_electrum}
 #                                                                                      #
+{rem_tor}
 #                                                                                      #
 ########################################################################################
 """)
@@ -68,6 +77,10 @@ def menu_remove():
         elif choice.lower() == "e":
             if electrummenu == False: continue
             if not uninstall_electrum(): return False
+            return True
+        elif choice.lower() == "t":
+            if tormenu == False: continue
+            if not uninstall_tor(): return False
             return True
         else:
             invalid()

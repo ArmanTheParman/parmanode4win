@@ -8,7 +8,7 @@ def install_tor():
 
     try:
         subprocess.run(["choco", "install", "tor", "-y"], check=True)
-        print("Tor installed successfully.")
+        success("Tor has been installed") 
     except subprocess.CalledProcessError as e:
         announce("Failed to install Tor")
         return False
@@ -22,3 +22,14 @@ def install_tor():
 
     ico.add("tor-end")
     return True
+
+def uninstall_tor():
+    set_terminal()
+    
+    try:
+        subprocess.run(["choco", "uninstall", "tor", "-y"], check=True)
+        pco.remove("tor-")
+        success("Tor has been uninstalled")
+    except subprocess.CalledProcessError as e:
+        announce("Failed to uninstall Tor")
+        return False
