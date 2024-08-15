@@ -8,13 +8,13 @@ def install_tor():
 
     try:
         subprocess.run(["choco", "install", "tor", "-y"], check=True)
+        ico.add("tor-end")
         success("Tor has been installed") 
     except subprocess.CalledProcessError as e:
         announce("Failed to install Tor")
         return False
 
     try:
-        subprocess.run(["tor",  "--service", "start"], check=True, stdout=subprocess.DEVNULL)
         subprocess.run(["tor", "--version"], check=True, stdout=subprocess.DEVNULL) 
     except (subprocess.CalledProcessError, FileNotFoundError):
         announce("Failed to install Tor")
@@ -28,7 +28,7 @@ def uninstall_tor():
     
     try:
         subprocess.run(["choco", "uninstall", "tor", "-y"], check=True)
-        pco.remove("tor-")
+        ico.remove("tor-")
         success("Tor has been uninstalled")
     except subprocess.CalledProcessError as e:
         announce("Failed to uninstall Tor")
