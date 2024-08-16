@@ -17,7 +17,6 @@ def menu_add():
             bitcoinmenu = True
             available.append(add_bitcoin)
         else: 
-            add_bitcoin ="#                                                                                      #"
             bitcoinmenu = False
 
         if not ico.grep("sparrow-"):
@@ -25,7 +24,6 @@ def menu_add():
             sparrowmenu = True
             available.append(add_sparrow)
         else: 
-            add_sparrow ="#                                                                                      #"
             sparrowmenu = False
 
         if not ico.grep("electrum-"):
@@ -33,7 +31,6 @@ def menu_add():
             electrummenu = True
             available.append(add_electrum)
         else: 
-            add_electrum ="#                                                                                      #"
             electrummenu = False
 
         if not ico.grep("tor-"):
@@ -41,7 +38,13 @@ def menu_add():
             tormenu = True
             available.append(add_tor)
         else: 
-            add_tor ="#                                                                                      #"
+            tormenu = False
+
+        if not ico.grep("wsl-"):
+            add_wsl = f"#                  {green} (t){orange}            WSL (required for Docker)                           #"
+            wslmenu = True
+            available.append(add_wsl)
+        else: 
             tormenu = False
 
         set_terminal(h=38)
