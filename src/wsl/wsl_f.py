@@ -32,8 +32,8 @@ def enable_wsl():
 
     try: 
 
-        subprocess.run(["wsl", "--install", "--no-distribution"], check=True) #"-no-launch" install fails.
-        subprocess.run(["wsl", "--install", "-d", "debian"], check=True) #"-no-launch" install fails.
+        subprocess.run(["powershell", "wsl --install --no-distribution"], check=True) #"-no-launch" install fails.
+        subprocess.run(["powershell", "wsl --install -d debian"], check=True) #"-no-launch" install fails.
         input("debug")
     except Exception as e: input(e)
     #after that, check if any distro installed.  May not have, but may have. If none, install debian.
