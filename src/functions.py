@@ -809,5 +809,7 @@ def check_for_emergency(silence):
     
 def tidy_up_before_starting():
     from installation_f import check_tor
+    input("before check_tor")
     if check_tor() == True and ico.grep("tor-end") == False:
         ico.add("tor-end")
+    input("after check tor")
