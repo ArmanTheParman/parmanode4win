@@ -26,7 +26,9 @@ def enable_wsl():
         subprocess.run(["powershell", "dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart"], check=True)
     except Exception as e: 
         pass
-
+    
+    input("exiting")
+    sys.exit()
 
     try: 
         subprocess.run(["powershell", "wsl --install"], check=True) 
