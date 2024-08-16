@@ -56,11 +56,11 @@ def menu_add():
 #                                                                                      #
 #                                                                                      #""")
 
-for i in available:
-    print(f"{i}")
-    print("#                                                                                      #")
+        for i in available:
+            print(f"{i}")
+            print("#                                                                                      #")
 
-print("""#                                                                                      #
+        print("""#                                                                                      #
 #                                                                                      #
 #                                   {red}          ... more programs soon {orange}                  #
 #                                                                                      #
