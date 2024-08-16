@@ -60,7 +60,7 @@ def menu_add():
             print(f"{i}")
             print("#                                                                                      #")
 
-        print("""#                                                                                      #
+        print(f"""#                                                                                      #
 #                                                                                      #
 #                                   {red}          ... more programs soon {orange}                  #
 #                                                                                      #
