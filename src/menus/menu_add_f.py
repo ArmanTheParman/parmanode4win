@@ -3,6 +3,7 @@ from bitcoin.install_bitcoin_f import *
 from sparrow.install_sparrow_f import *
 from electrum.install_electrum_f import *
 from tor.install_tor_f import *
+from wsl.wsl_f import *
 from config_f import *
 
 def menu_add():
@@ -41,7 +42,7 @@ def menu_add():
             tormenu = False
 
         if not ico.grep("wsl-"):
-            add_wsl = f"#                  {green} (t){orange}            WSL (required for Docker)                           #"
+            add_wsl = f"#                  {green} (w){orange}            WSL (required for Docker)                           #"
             wslmenu = True
             available.append(add_wsl)
         else: 
@@ -90,6 +91,10 @@ def menu_add():
         elif choice.lower() == "t":
             if tormenu == False : continue
             if not install_tor(): return False
+            return True
+        elif choice.lower() == "w":
+            if wslmenu == False : continue
+            if not enable_wsl(): return False
             return True
         else:
             invalid()
