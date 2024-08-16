@@ -60,6 +60,12 @@ def check_pip():
         return True
     except (subprocess.CalledProcessError, FileNotFoundError):
         return False
+def check_tor():
+    try:
+        subprocess.run(["tor", "--version"], check=True, stdout=subprocess.DEVNULL) 
+        return True
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return False
 
 def install_pip_with_python():
 
@@ -147,31 +153,29 @@ def dependency_check():
     try:
         # Check if Chocolatey is installed
         if not check_chocolatey():
-            if not yesorno("OK to install Chocolatey? (Necessary)"): return False
             install_chocolatey()
 
         # Check if git is installed
         if not check_git():
-            if not yesorno("OK to install git? (Necessary)"): return False
             install_git_with_chocolatey()
 
         if not check_curl():
-            if not yesorno("OK to install curl? (Necessary)"): return False
             install_curl_with_chocolatey()
 
         # Check if gpg is installed
         if not check_gpg():
-            if not yesorno("OK to install gpg? (Necessary)"): return False
             install_gpg_with_chocolatey()
 
         # Check if python is installed
         if not check_python():
-            if not yesorno("OK to install python? (Necessary)"): return False
             install_python_with_chocolatey()
 
         # Check if pip is installed
         if not check_pip():
-            if not yesorno("OK to install pip? (Necessary)"): return False
+            install_pip_with_python()
+
+        # Check if tor is installed
+        if not check_tor():
             install_pip_with_python()
         
         # Check and install a list of pip progrmams
@@ -212,6 +216,12 @@ def test_installation():
             print(f"{green}pip is installed")
         else:
             print(f"{red}pip is not installed") 
+            ending()
+
+        if check_tor() == True: 
+            print(f"{green}tor is installed")
+        else:
+            print(f"{red}tor is not installed") 
             ending()
 
         if check_chocolatey() == True: 
