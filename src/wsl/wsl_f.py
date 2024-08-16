@@ -30,7 +30,6 @@ def enable_wsl():
     
     try: 
         subprocess.run(["powershell", "wsl --set-default-version 2"], check=True) 
-        input("debug b")
     except Exception as e: pass
 
     try:
@@ -39,8 +38,7 @@ def enable_wsl():
         pass
 
     try: 
-        subprocess.run(["powershell", "wsl --install -d Debian"], check=True) 
-        input("debug a")
+        subprocess.run(["powershell", "wsl --install"], check=True) 
     except Exception as e: pass
 
     #after that, check if any distro installed.  May not have, but may have. If none, install debian.
@@ -48,13 +46,7 @@ def enable_wsl():
     #new session in linux entered. type 'exit' to get out.
     #wsl --list, lists distros, and also docker
     #Look vor version2 of wsl. If not, instruct user to manually enable virualisation and give a website.
-    input("install debian done. Hit <enter>")
-    try: 
-        subprocess.run(["wsl", "--set-default-version", "2"], check=True) 
-        input("debug2")
-    except Exception as e: input(e)
 
-    input("Default set. Hit <enter>")
     ico.add("wsl-end")
     success("WSL has been installed. Please reboot the computer, or you'll get errors.")
 
