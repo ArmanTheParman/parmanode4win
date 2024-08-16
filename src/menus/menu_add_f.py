@@ -6,35 +6,45 @@ from tor.install_tor_f import *
 from config_f import *
 
 def menu_add():
-    if not ico.grep("bitcoin-"):
-        add_bitcoin = f"#                  {green} (b){orange}            Bitcoin Core                                        #"
-        bitcoinmenu = True
-    else: 
-        add_bitcoin ="#                                                                                      #"
-        bitcoinmenu = False
-
-    if not ico.grep("sparrow-"):
-        add_sparrow = f"#                  {green} (s){orange}            Sparrow Bitcoin Wallet                              #"
-        sparrowmenu = True
-    else: 
-        add_sparrow ="#                                                                                      #"
-        sparrowmenu = False
-
-    if not ico.grep("electrum-"):
-        add_electrum = f"#                  {green} (e){orange}            Electrum Bitcoin Wallet                             #"
-        electrummenu = True
-    else: 
-        add_electrum ="#                                                                                      #"
-        electrummenu = False
-
-    if not ico.grep("tor-"):
-        add_tor = f"#                  {green} (t){orange}            Tor                                                 #"
-        tormenu = True
-    else: 
-        add_tor ="#                                                                                      #"
-        tormenu = False
 
     while True:
+        try: del available
+        except: pass
+       
+        available=[] 
+        
+        if not ico.grep("bitcoin-"):
+            add_bitcoin = f"#                  {green} (b){orange}            Bitcoin Core                                        #"
+            bitcoinmenu = True
+            available.append(add_bitcoin)
+        else: 
+            add_bitcoin ="#                                                                                      #"
+            bitcoinmenu = False
+
+        if not ico.grep("sparrow-"):
+            add_sparrow = f"#                  {green} (s){orange}            Sparrow Bitcoin Wallet                              #"
+            sparrowmenu = True
+            available.append(add_sparrow)
+        else: 
+            add_sparrow ="#                                                                                      #"
+            sparrowmenu = False
+
+        if not ico.grep("electrum-"):
+            add_electrum = f"#                  {green} (e){orange}            Electrum Bitcoin Wallet                             #"
+            electrummenu = True
+            available.append(add_electrum)
+        else: 
+            add_electrum ="#                                                                                      #"
+            electrummenu = False
+
+        if not ico.grep("tor-"):
+            add_tor = f"#                  {green} (t){orange}            Tor                                                 #"
+            tormenu = True
+            available.append(add_tor)
+        else: 
+            add_tor ="#                                                                                      #"
+            tormenu = False
+
         set_terminal(h=38)
         print(f"""
 ########################################################################################
@@ -44,15 +54,13 @@ def menu_add():
 ########################################################################################
 #                                                                                      #
 #                                                                                      #
-#                                                                                      #
-{add_bitcoin}
-#                                                                                      #
-{add_sparrow}
-#                                                                                      #
-{add_electrum}
-#                                                                                      #
-{add_tor}
-#                                                                                      #
+#                                                                                      #"""
+
+for i in available:
+    print(f"{i}")
+    print("#                                                                                      #")
+
+print("""#                                                                                      #
 #                                                                                      #
 #                                   {red}          ... more programs soon {orange}                  #
 #                                                                                      #
