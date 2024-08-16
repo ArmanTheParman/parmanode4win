@@ -62,7 +62,7 @@ check_for_emergency("s")
 #     disable_wsl()
 ########################################################################################
 
-tidy_up_before_starting()
+tidy_up_before_starting() #currently just manages Tor installation
 
 ########################################################################################
 

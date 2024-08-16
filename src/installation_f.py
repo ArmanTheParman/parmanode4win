@@ -176,7 +176,8 @@ def dependency_check():
 
         # Check if tor is installed
         if not check_tor():
-            install_pip_with_python()
+            from tor.install_tor_f import install_tor
+            install_tor(no_config=True) #parameter added to make function resiliant, so it doesn't need config to exist
         
         # Check and install a list of pip progrmams
         try: check_pip_dependencies()

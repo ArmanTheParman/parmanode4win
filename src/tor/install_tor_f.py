@@ -2,7 +2,7 @@ from variables import *
 from functions import *
 from config_f import *
 
-def install_tor():
+def install_tor(no_config=False):
 
     set_terminal()
 
@@ -23,8 +23,10 @@ def install_tor():
         announce("Failed to install Tor")
         return False
 
-    ico.add("tor-end")
-    return True
+    if no_config == True: return 0
+    else:
+        ico.add("tor-end")
+        return True
 
 def uninstall_tor():
     set_terminal()

@@ -808,6 +808,20 @@ def check_for_emergency(silence):
         except: pass
     
 def tidy_up_before_starting():
+
+    # Manage Tor installation. Some Parmanodes may have been installed before the installer 
+    # installed Tor by default as a dependency. Newer versions won't need this.
     from installation_f import check_tor
-    if check_tor() == True and ico.grep("tor-end") == False:
+    torstatus = check_tor()
+    if torstatus == True and ico.grep("tor-end") == False:
         ico.add("tor-end")
+    if torstatus == False:
+        if yesorno(f"""Parmanode has detected that{bright_blue} Tor {orange}is not installed on your system.
+
+    Tor is needed for enhancing your privacy, and for future Parmanode features. It
+    runs in the background and you won't notice it. It'll take a minute to install.
+   {green} 
+    Allow Parmanode to install Tor for you now? """):
+            from tor.install_tor_f import install_tor
+            install_tor()
+
