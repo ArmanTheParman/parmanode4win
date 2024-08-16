@@ -33,7 +33,7 @@ def enable_wsl():
     except Exception as e: pass
 
     try:
-        subprocess.run(["powershell", "wsl --update"], check=True)
+        subprocess.run(["powershell", "wsl --update"], check=True) #necessary, install can fail without it
     except Exception as e:
         pass
 
@@ -54,15 +54,20 @@ def enable_wsl():
 
 def install_docker():
     pass
-    # """
+    x = """
     # WSL needs to be installed first
+
     # choco install docker-desktop -y
-    # #restart computer to set path correctly
+
+    # #restart computer to set path correctly -- maybe. test it
+
     # docker bin files:
     #      c:\Program files\Docker\Docker\resources\bin
-    # docker desktop file:
+
+    Run docker desktop, user needs to accept terms first...
     #      c:\Program files\Docker\Docker\"docker desktop.exe"
-    # """
+    
+ """
 
     
 
