@@ -7,10 +7,6 @@ def disable_wsl():
     _unregister_all_wsl_distributions()
 
     try:
-        subprocess.run(["powershell", "wsl --uninstall"], check=True)
-    except Exception as e: input(e)
-
-    try:
         subprocess.run(["powershell", "-Command", "Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart"], check=True)
     except Exception as e: input(e)
 
@@ -32,7 +28,6 @@ def enable_wsl():
 
     try: 
 
-        subprocess.run(["powershell", "wsl --install"], check=True) #"-no-launch" install fails.
         subprocess.run(["powershell", "wsl --install -d debian"], check=True) #"-no-launch" install fails.
         input("debug")
     except Exception as e: pass
