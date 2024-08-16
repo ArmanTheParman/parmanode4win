@@ -3,6 +3,13 @@ from variables import *
 from functions import *
 def enable_wsl():
     #Ensure that virtualization is enabled in your BIOS/UEFI settings. This is required for WSL 2.
+    try:
+        subprocess.run(["powershell", "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart"], check=True)
+    except Exception as e: input(e)
+
+    try:
+        subprocess.run(["powershell", "dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart"], check=True)
+    except Exception as e: input(e)
 
     try: 
         subprocess.run(["wsl", "--install", "-d", "debian"], check=True) #"-no-launch" install fails.
