@@ -25,14 +25,14 @@ class config:
         elif datatype == "set":
             return self.data    
     
-    def write(self): #for adding variable contents to the file.
+    def _write(self): #for adding variable contents to the file.
         with self.file.open('w') as f:
             for line in self.data:
                 f.write(line)
 
     def add(self, toadd: str):
         self.data.add(toadd + '\n')
-        self.write()
+        self._write()
     
     def remove(self, toremove: str):
         temp = self.data.copy()
@@ -40,7 +40,7 @@ class config:
             if toremove in line:
                 temp.remove(line) 
         self.data = temp
-        self.write()
+        self._write()
 
     def grep(self, checkstring: str, returnline=False): 
         #print(checkstring, " -- the checkstring")
