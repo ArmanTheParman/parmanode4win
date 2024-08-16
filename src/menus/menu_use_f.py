@@ -7,35 +7,38 @@ from electrum.menu_electrum_f import *
 from config_f import *
 
 def menu_use():
-
+    
     while True:
+        try: del available
+        except: pass
+        available=[]
 
         if ico.grep("bitcoin-end"): 
             use_bitcoinmenu = f"#                  {green} (b){orange}            Bitcoin Core                                        #"
             bitcoinmenu = True
+            available.append(use_bitcoinmenu)
         else: 
-            use_bitcoinmenu = "#                                                                                      #"
             bitcoinmenu = False
 
         if ico.grep("sparrow-end"): 
             use_sparrowmenu = f"#                  {green} (s){orange}            Sparrow Bitcoin Wallet                              #"
             sparrowmenu = True
+            available.append(use_sparrowmenu)
         else: 
-            use_sparrowmenu = "#                                                                                      #"
             sparrowmenu = False
 
         if ico.grep("electrum-end"): 
             use_electrummenu = f"#                  {green} (e){orange}            Electrum Bitcoin Wallet                             #"
             electrummenu = True
+            available.append(use_electrummenu)
         else: 
-            use_electrummenu = "#                                                                                      #"
             electrummenu = False
 
         if ico.grep("tor-end"): 
             use_tormenu = f"#                  {green} (t){orange}            Tor                                                 #"
             tormenu = True
+            available.append(use_tormenu)
         else: 
-            use_tormenu = "#                                                                                      #"
             tormenu = False
         
         set_terminal(h=38)
@@ -46,15 +49,11 @@ def menu_use():
 #                                                                                      #
 ########################################################################################
 #                                                                                      #
-#                                                                                      #
-{use_bitcoinmenu}
-#                                                                                      #
-{use_sparrowmenu}
-#                                                                                      #
-{use_electrummenu}
-#                                                                                      #
-{use_tormenu}
-#                                                                                      #
+#                                                                                      #""")
+        for i in available:
+            print(f"{i}")
+            print("#                                                                                      #")
+        print("""#                                                                                      #
 ########################################################################################
 """)
         choice = choose("xpmq")
