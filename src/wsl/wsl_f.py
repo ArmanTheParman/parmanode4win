@@ -10,7 +10,7 @@ def enable_wsl():
     except Exception as e: input(e)
     #after that, check if any distro installed.  May not have, but may have. If none, install debian.
     #new username and password is prompted for.
-    #new session in linun entered. type 'exit' to get out.
+    #new session in linux entered. type 'exit' to get out.
     #wsl --list, lists distros, and also docker
     #Look vor version2 of wsl. If not, instruct user to manually enable virualisation and give a website.
     input("install debian done. Hit <enter>")
