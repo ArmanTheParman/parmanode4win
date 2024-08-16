@@ -9,7 +9,7 @@ def install_tor():
     try:
         subprocess.run(["choco", "install", "tor", "-y"], check=True)
         subprocess.run(["tor", "--service", "install"], check=True)
-        subprocess.run(["Start-Service", "-Name", "tor"], check=True)
+        subprocess.run(["powershell", "Start-Service -Name tor"], check=True)
 
         ico.add("tor-end")
         success("Tor has been installed") 
