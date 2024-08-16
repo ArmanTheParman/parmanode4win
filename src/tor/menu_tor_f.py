@@ -5,17 +5,24 @@ from tor.tor_functions import *
 def menu_tor():
     while True:
         tortext = subprocess.run(["powershell", "Get-Service -Name tor"], text=True, capture_output=True, check=True).stdout.strip()
-        input("debug") 
-        tmpo.write(f"tortext")
-        input("debug") 
-        running = tmpo.grep("tor", returnline=True)
-        input("debug") 
-        if "Running" in running:
-            runningmenu = f"Tor is{green} running{orange}"
-            torrunning = True
-        else:
+        tortext = tortext.splitlines()
+        for line in tortext:
+            if "tor" in line:
+                if "Running" in line:
+                    runningmenu = f"Tor is{green} running{orange}"
+                    torrunning = True
+                    flag = 1
+                    break
+                else:
+                    runningmenu = f"Tor is{red} not running{orange}"
+                    torrunning = False
+                    flag = 2
+                    break
+        
+        if flag is not 1: 
             runningmenu = f"Tor is{red} not running{orange}"
             torrunning = False
+
         tmpo.write("")
 
 
