@@ -23,9 +23,6 @@ def menu_tor():
             runningmenu = f"Tor is{red} not running{orange}"
             torrunning = False
 
-        tmpo.write("")
-
-
         set_terminal()
         print(f"""{orange}
 ########################################################################################{cyan}
