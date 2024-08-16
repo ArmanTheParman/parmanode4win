@@ -53,9 +53,12 @@ check_for_emergency("s")
 
 ########################################################################################
 from wsl.wsl_f import *
-if yesorno("yes for enable, no for disable"):
+
+choice = announce("e for enable, d for disable, anything else for skip")
+
+if choice == "e":
     enable_wsl()
-else:
+elif choice == "d":
     disable_wsl()
 ########################################################################################
 
