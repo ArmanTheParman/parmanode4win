@@ -62,6 +62,10 @@ elif choice == "d":
     disable_wsl()
 ########################################################################################
 
+tidy_up_before_starting
+
+########################################################################################
+
 try: from parmanode.intro_f import * 
 except Exception as e: input(e)
 
@@ -76,3 +80,4 @@ except Exception as e: input(e)
 
 try: from parmanode.menu_main_f import * ; menu_main()
 except Exception as e: input(e)
+
