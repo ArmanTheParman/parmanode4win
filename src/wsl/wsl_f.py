@@ -20,6 +20,8 @@ def enable_wsl():
     except Exception as e: input(e)
 
     input("Default set. Hit <enter>")
+    ico.add("wsl-end")
+    success("WSL has been installed. Please reboot the computer, or you'll get errors.")
 
 
 
