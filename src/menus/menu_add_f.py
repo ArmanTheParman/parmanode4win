@@ -10,7 +10,6 @@ def menu_add():
     while True:
         try: del available
         except: pass
-       
         available=[] 
         
         if not ico.grep("bitcoin-"):

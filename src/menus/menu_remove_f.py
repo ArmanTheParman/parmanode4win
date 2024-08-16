@@ -7,35 +7,45 @@ from parmanode.menu_main_f import *
 from config_f import *
 
 def menu_remove():
-    if ico.grep("bitcoin-"): 
-        rem_bitcoin = f"#                  {green} (b){orange}            Bitcoin Core                                        #"
-        bitcoinmenu = True
-    else: 
-        rem_bitcoin ="#                                                                                      #"
-        bitcoinmenu = False
-
-    if ico.grep("sparrow-"): 
-        rem_sparrow = f"#                  {green} (s){orange}            Sparrow Bitcoin Wallet                              #"
-        sparrowmenu = True
-    else: 
-        rem_sparrow ="#                                                                                      #"
-        sparrowmenu = False
-
-    if ico.grep("electrum-"): 
-        rem_electrum = f"#                  {green} (e){orange}            Electrum Bitcoin Wallet                             #"
-        electrummenu = True
-    else: 
-        rem_electrum ="#                                                                                      #"
-        electrummenu = False
-
-    if ico.grep("tor-"): 
-        rem_tor = f"#                  {green} (t){orange}            Tor                                                 #"
-        tormenu = True
-    else: 
-        rem_tor ="#                                                                                      #"
-        tormenu = False
 
     while True:
+
+        try: del available
+        except: pass
+        available=[] 
+
+        if ico.grep("bitcoin-"): 
+            rem_bitcoin = f"#                  {green} (b){orange}            Bitcoin Core                                        #"
+            bitcoinmenu = True
+            available.append(rem_bitcoin)
+        else: 
+            rem_bitcoin ="#                                                                                      #"
+            bitcoinmenu = False
+
+        if ico.grep("sparrow-"): 
+            rem_sparrow = f"#                  {green} (s){orange}            Sparrow Bitcoin Wallet                              #"
+            sparrowmenu = True
+            available.append(rem_sparrow)
+        else: 
+            rem_sparrow ="#                                                                                      #"
+            sparrowmenu = False
+
+        if ico.grep("electrum-"): 
+            rem_electrum = f"#                  {green} (e){orange}            Electrum Bitcoin Wallet                             #"
+            electrummenu = True
+            available.append(rem_electrum)
+        else: 
+            rem_electrum ="#                                                                                      #"
+            electrummenu = False
+
+        if ico.grep("tor-"): 
+            rem_tor = f"#                  {green} (t){orange}            Tor                                                 #"
+            tormenu = True
+            available.append(rem_tor)
+        else: 
+            rem_tor ="#                                                                                      #"
+            tormenu = False
+
         set_terminal()
         print(f"""
 ########################################################################################
@@ -44,14 +54,12 @@ def menu_remove():
 #                                                                                      #
 ########################################################################################
 #                                                                                      #
-#                                                                                      #
-{rem_bitcoin}
-#                                                                                      #
-{rem_sparrow}
-#                                                                                      #
-{rem_electrum}
-#                                                                                      #
-{rem_tor}
+#                                                                                      #""")
+
+        for i in available:
+            print(f"{i}")
+            print("#                                                                                      #")
+        print("""
 #                                                                                      #
 ########################################################################################
 """)
