@@ -16,6 +16,10 @@ def disable_wsl():
 
 def enable_wsl():
     #Ensure that virtualization is enabled in your BIOS/UEFI settings. This is required for WSL 2.
+    try:
+        subprocess.run(["choco", "install", "wsl2-linux-kernel", "-y"], check=True)
+    except Exception as e:
+        pass
 
     try:
         subprocess.run(["powershell", "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart"], check=True)
