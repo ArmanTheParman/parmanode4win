@@ -32,7 +32,7 @@ def enable_wsl():
 
     try: 
 
-        subprocess.run(["powershell", "wsl --install --no-distribution"], check=True) #"-no-launch" install fails.
+        subprocess.run(["powershell", "wsl --install"], check=True) #"-no-launch" install fails.
         subprocess.run(["powershell", "wsl --install -d debian"], check=True) #"-no-launch" install fails.
         input("debug")
     except Exception as e: input(e)
