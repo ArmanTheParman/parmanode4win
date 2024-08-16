@@ -4,7 +4,9 @@ from functions import *
 def enable_wsl():
     #Ensure that virtualization is enabled in your BIOS/UEFI settings. This is required for WSL 2.
 
-    try: subprocess.run(["wsl", "--install", "-d", "debian", "--no-launch"], check=True)
+    try: 
+        subprocess.run(["wsl", "--install", "-d", "debian", "--no-launch"], check=True) 
+        input("debug")
     except Exception as e: input(e)
     #after that, check if any distro installed.  May not have, but may have. If none, install debian.
     #new username and password is prompted for.
@@ -12,8 +14,11 @@ def enable_wsl():
     #wsl --list, lists distros, and also docker
     #Look vor version2 of wsl. If not, instruct user to manually enable virualisation and give a website.
     input("install debian done. Hit <enter>")
-    try: subprocess.run(["wsl", "--set-default-version", "2"], check=True)
+    try: 
+        subprocess.run(["wsl", "--set-default-version", "2"], check=True) 
+        input("debug2")
     except Exception as e: input(e)
+
     input("Default set. Hit <enter>")
 
 

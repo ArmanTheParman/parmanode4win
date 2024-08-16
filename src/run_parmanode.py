@@ -45,7 +45,7 @@ except Exception as e: input(e)
 
 counter("rp")
 
-if check_updates([0, 0, 1]) == "outdated":    #pass compiling version as int list argument
+if check_updates([0, 2, 0]) == "outdated":    #pass compiling version as int list argument
     try: suggestupdate()
     except Exception as e: input(e)
 
