@@ -70,7 +70,6 @@ def _unregister_all_wsl_distributions():
     try:
         result = subprocess.run(['wsl', '--list', '--quiet'], capture_output=True, text=True, check=True)
         distros = result.stdout.splitlines()
-        input("zzzz2a")
 
         for distro in distros:
             print(f"{distros}")
