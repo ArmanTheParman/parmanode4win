@@ -1,6 +1,23 @@
 import subprocess, os
 from variables import *
 from functions import *
+
+def disable_wsl():
+
+    _unregister_all_wsl_distributions()
+
+    try:
+        subprocess.run(["powershell", "wsl --uninstall"], check=True)
+    except Exception as e: input(e)
+
+    try:
+        subprocess.run(["powershell", "-Command", "Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart"], check=True)
+    except Exception as e: input(e)
+
+    try:
+        subprocess.run(["powershell", "-Command", "Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform"], check=True)
+    except Exception as e: input(e)
+
 def enable_wsl():
     #Ensure that virtualization is enabled in your BIOS/UEFI settings. This is required for WSL 2.
     try:
@@ -68,9 +85,3 @@ def _unregister_all_wsl_distributions():
         input(f"An error occurred: {e}")
 
 
-def disable_wsl():
-    _unregister_all_wsl_distributions()
-    try:
-        subprocess.run(["powershell", "-Command", "Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart"], check=True)
-        subprocess.run(["powershell", "-Command", "Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform"], check=True)
-    except Exception as e: input(e)
