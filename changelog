@@ -1,3 +1,13 @@
+v0.2.0
+    -Tor added
+    -smol bugs fixed
+v0.1.3
+    -GPG4win, if installed, needs reboot before continuing.
+    -installer updated to v0.0.2
+v0.1.2
+    -gpg doesn't install, need gpg4win
+v0.1.1
+    - Added extra option for user to install bitcoin to custom directory, internal or external
 v0.1.0
     - Electrum Bitcoin Wallet
 

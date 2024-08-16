@@ -45,7 +45,7 @@ def install_bitcoin():
             #input("disk formatted")
         else:
             thedate = date.today().strftime("%d-%m-%y")
-            dbo.write(f"{thedate}: Bitcoin format_disk exited.")
+            dbo.add(f"{thedate}: Bitcoin format_disk exited.")
             input("format failed")
             return False 
     if not download_bitcoin(): return False #also extracts and moves, zip left, unzipped dir deleted.

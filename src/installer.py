@@ -92,9 +92,9 @@ def install_parmanode():
         return False
 
     try:
-        git_clone_parmanode4win()
         dependency_check() 
         test_installation()
+        git_clone_parmanode4win()
         desktop_shortcut()
         ico.add("parmanode4win-end")
         success(f"Parmanode4Win has been installed. Please run from the Desktop shortcut icon.")
@@ -103,19 +103,9 @@ def install_parmanode():
 
 ########################################################################################
 # Installer
-if p4w.exists():
-    if not yesorno("""Parmanode4Win seems to already have been installed. You can attmpet
-    a full uninstall, before attempting a reinstall."""):
-        sys.exit()
-
-if p4w.exists():
-    announce("""Remnants of Parmanode still exists. Aborting. 
-    You can call Parman for help.""")
-    sys.exit()
-
 
 try: 
-    if check_installer_updates("0.0.1") == "outdated":
+    if check_installer_updates("0.0.2") == "outdated":
 
         if not yesorno(f"""There is a newer version of this installer. You could stop and get that instead.
         Do you want to quit this and get the newer, better version?"""):

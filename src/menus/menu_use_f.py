@@ -2,6 +2,7 @@ from variables import *
 from functions import *
 from bitcoin.menu_bitcoin_f import *
 from sparrow.menu_sparrow_f import *
+from tor.menu_tor_f import *
 from electrum.menu_electrum_f import *
 from config_f import *
 
@@ -29,6 +30,13 @@ def menu_use():
         else: 
             use_electrummenu = "#                                                                                      #"
             electrummenu = False
+
+        if ico.grep("tor-end"): 
+            use_tormenu = f"#                  {green} (t){orange}            Tor                                                 #"
+            tormenu = True
+        else: 
+            use_tormenu = "#                                                                                      #"
+            tormenu = False
         
         set_terminal(h=38)
         print(f"""
@@ -45,6 +53,7 @@ def menu_use():
 #                                                                                      #
 {use_electrummenu}
 #                                                                                      #
+{use_tormenu}
 #                                                                                      #
 ########################################################################################
 """)
@@ -66,6 +75,10 @@ def menu_use():
         elif choice.lower() in {"e", "electrum"}:
             if electrummenu == False: continue
             if not menu_electrum(): return False
+            return True
+        elif choice.lower() in {"t", "tor"}:
+            if tormenu == False: continue
+            if not menu_tor(): return False
             return True
         else:
             invalid()

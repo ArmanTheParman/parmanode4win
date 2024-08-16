@@ -83,10 +83,10 @@ def check_pip_dependencies(answer=False):
     if answer == True:
        if {"colorama", "psutil", "pywin32", "requests", "urllib3", "setuptools", "winshell"}.issubset(set(listofpackages)):
            text = f"{green}All pip dependencies installed{orange}"
-           return (text, True)
+           return [text, True]
        else:
            text = f"{red}Some pip dependencies failed to install{orange}"
-           return (text, False)
+           return [text, False]
 
     for i in {"colorama", "psutil", "pywin32", "requests", "urllib3", "setuptools", "winshell"}:
         if i not in listofpackages:
@@ -135,10 +135,10 @@ def check_gpg():
 def install_gpg_with_chocolatey():
 
     try:
-        subprocess.run(["choco", "install", "gpg", "-y"], check=True)
-        print("gpg installed successfully.")
+        subprocess.run(["choco", "install", "gpg4win", "--force", "-y"], check=True)
+        print("""gpg installed successfully.""")
     except subprocess.CalledProcessError as e:
-        raise Exception(f"Failed to install gog with Chocolatey: {e.stderr}")
+        raise Exception(f"Failed to install gpg with Chocolatey: {e.stderr}")
 
     return True
 
@@ -240,10 +240,6 @@ def test_installation():
         text = check_pip_dependencies(answer=True)
         print(text[0])
         if text[1] == False:
-            ending()
-
-        if not p4w.exists():
-            print(f"{red}Parmanode4Win script directory is not installed") 
             ending()
 
         else:
