@@ -19,7 +19,6 @@ def menu_remove():
             bitcoinmenu = True
             available.append(rem_bitcoin)
         else: 
-            rem_bitcoin ="#                                                                                      #"
             bitcoinmenu = False
 
         if ico.grep("sparrow-"): 
@@ -27,7 +26,6 @@ def menu_remove():
             sparrowmenu = True
             available.append(rem_sparrow)
         else: 
-            rem_sparrow ="#                                                                                      #"
             sparrowmenu = False
 
         if ico.grep("electrum-"): 
@@ -35,7 +33,6 @@ def menu_remove():
             electrummenu = True
             available.append(rem_electrum)
         else: 
-            rem_electrum ="#                                                                                      #"
             electrummenu = False
 
         if ico.grep("tor-"): 
@@ -43,7 +40,6 @@ def menu_remove():
             tormenu = True
             available.append(rem_tor)
         else: 
-            rem_tor ="#                                                                                      #"
             tormenu = False
 
         set_terminal()
@@ -59,8 +55,7 @@ def menu_remove():
         for i in available:
             print(f"{i}")
             print("#                                                                                      #")
-        print("""
-#                                                                                      #
+        print("""#                                                                                      #
 ########################################################################################
 """)
         choice = choose("xpmq")
