@@ -5,7 +5,7 @@ def enable_wsl():
     #Ensure that virtualization is enabled in your BIOS/UEFI settings. This is required for WSL 2.
 
     try: 
-        subprocess.run(["wsl", "--install", "-d", "debian", "--no-launch"], check=True) 
+        subprocess.run(["wsl", "--install", "-d", "debian"], check=True) #"-no-launch" install fails.
         input("debug")
     except Exception as e: input(e)
     #after that, check if any distro installed.  May not have, but may have. If none, install debian.
