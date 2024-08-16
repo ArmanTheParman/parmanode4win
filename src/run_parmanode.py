@@ -53,7 +53,7 @@ check_for_emergency("s")
 
 ########################################################################################
 from wsl.wsl_f import *
-
+input("pause")
 choice = announce("e for enable, d for disable, anything else for skip")
 
 if choice == "e":
