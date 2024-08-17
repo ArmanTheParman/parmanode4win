@@ -14,6 +14,9 @@ def disable_wsl():
         subprocess.run(["powershell", "-Command", "Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform"], check=True)
     except Exception as e: input(e)
 
+    ico.remove("wsl-")
+    success("WSL has been removed")
+
 def enable_wsl():
     #Ensure that virtualization is enabled in your BIOS/UEFI settings. This is required for WSL 2.
 
