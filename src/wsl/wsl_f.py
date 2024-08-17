@@ -33,7 +33,11 @@ def enable_wsl():
     and password. If that happens, you'll then automatically be logged in to the Linux
     Terminal. You need to type {red}'exit'{orange} and then hit {cyan}<enter>{orange} to continue back to 
     Parmanode, and the installation.
-    
+    {red}
+    You'll also need to restart the computer once installation is done, AND, 
+    if an update is needed, testing has shown you need to do that too, but 
+    I could be wrong.
+    {orange} 
     Continue?""") == False: return False
     
     try:
