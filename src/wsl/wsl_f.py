@@ -96,6 +96,7 @@ def _unregister_all_wsl_distributions():
         with open(tmp, 'r') as f:
             for i in f.readlines():
                 if len(i) < 3: continue
+                i = i.replace('\x00', '')  # Remove any null bytes
                 distros.append(i.strip())
 
         for distro in distros:
