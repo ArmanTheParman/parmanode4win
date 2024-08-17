@@ -101,6 +101,7 @@ def _unregister_all_wsl_distributions():
                 distros.append(i.strip())
         print(distros)
         print("distros above, and type here...", type(distros))
+        input("")
         if yesorno('quit?'): sys.exit()
         for distro in distros:
             input(f"{distro}")
