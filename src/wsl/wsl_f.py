@@ -86,8 +86,6 @@ def install_docker():
 def _unregister_all_wsl_distributions():
     try:
         result = subprocess.run(["powershell", "wsl --list --quiet"], capture_output=True, text=True, check=True).stdout.strip()
-        print("result type", type(result))
-        input("pause")
         tmpo.truncate()
         tmpo.add(result)
 
