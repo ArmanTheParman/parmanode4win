@@ -95,7 +95,7 @@ def _unregister_all_wsl_distributions():
 
         with open(tmp, 'r') as f:
             for i in f.readlines():
-                if '\x00' in i.strip(): continue
+                if i == '\x00': continue
                 distros.append(i.strip())
 
         for i in distros:
