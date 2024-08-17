@@ -61,6 +61,10 @@ check_for_emergency("s")
 # elif choice == "d":
 #     disable_wsl()
 ########################################################################################
+if yesorno("test?") == True:
+        try: subprocess.run(["powershell", "choco install docker-desktop -y"], check=True, capture_output=True)
+        except Exception as e : input(e)
+        sys.exit()
 
 tidy_up_before_starting() #currently just manages Tor installation
 
