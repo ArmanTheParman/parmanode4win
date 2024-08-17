@@ -23,9 +23,10 @@ def install_electrs():
 
     if bc.exists() == False:
         announce("""The bitcoin.conf file could not be detected. Can happen if Bitcoin is
-    supposed to sync to the external drive and it is not connected and mounted.
-    Hit{cyan} <enter>{orange} to try again once you connect the drive. Aborting.""")
+    supposed to sync to the external drive and it is not connected and mounted. Aborting.""")
         return False
+
+    if check_pruning_off() == False: return False
 
     sned_sats()
     set_terminal()
@@ -38,3 +39,17 @@ def install_electrs():
     
 def uninstall_electrs():
     pass
+
+def check_pruning_off():
+    try: 
+        prunevalue = bco.grep("purne=", returnline=True).split('=')[1].strip()
+    except: 
+        return True 
+
+    if announce(f"""Parmanode has detected you are using pruning with Bitcoin.
+    Electrum Server won't work if Bitcoin is pruned. You'll have to completely start 
+    bitcoin sync again without pruning to use Electrs. Sorry. If you think this is 
+    wrong and want to proceed, type{cyan} 'yolo'{orange} before hitting{cyan} <enter>{orange}""") == "yolo":
+        return True
+    else:
+        return False

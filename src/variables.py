@@ -77,7 +77,7 @@ blinkon = '\033[5m'
 blinkoff = Style.RESET_ALL
 
 
-global drive_bitcoin, default_bitcoin_data_dir, bitcoin_dir, bitcoinversion
+global drive_bitcoin, default_bitcoin_data_dir, bitcoin_dir, bitcoinversion, bc, b, bco
 
 bitcoinversion="27.1"
 
@@ -87,3 +87,5 @@ drive_bitcoin = None
 default_bitcoin_data_dir = Path.home() / "AppData" / "Roaming" / "Bitcoin"
 b = Path(default_bitcoin_data_dir)
 bc = b / "bitcoin.conf"
+if bc.exists() == True:
+    bco = config(bc)
