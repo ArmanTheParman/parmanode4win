@@ -44,7 +44,7 @@ except Exception as e: input(e)
 ########################################################################################
 
 counter("rp")
-
+#do update version variable in variables_f also
 if check_updates([0, 3, 0]) == "outdated":    #pass compiling version as int list argument
     try: suggestupdate()
     except Exception as e: input(e)
