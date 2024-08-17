@@ -88,7 +88,6 @@ def _unregister_all_wsl_distributions():
         result = subprocess.run(["powershell", "wsl --list --quiet"], capture_output=True, text=True, check=True).stdout.strip()
         tmpo.truncate()
         tmpo.add(result)
-        input("pause")
 
         try: del distros
         except: pass
@@ -102,7 +101,7 @@ def _unregister_all_wsl_distributions():
                 distros.append(i.strip())
 
         for distro in distros:
-            print(f"{distro}")
+            input(f"{distro}")
             print(f"{red}Unregistering distros...{orange}")
             try: subprocess.run(['wsl', '--unregister', distro])
             except: pass
