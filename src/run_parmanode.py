@@ -64,7 +64,7 @@ check_for_emergency("s")
 if yesorno("test?") == True:
     try: 
         import subprocess
-        subprocess.Popen('c:/Program files/Docker/Docker/"docker desktop.exe"')
+        subprocess.Popen('c:/Program files/Docker/Docker/docker desktop.exe')
         input("wait")
     except Exception as e : input(e)
     sys.exit()
