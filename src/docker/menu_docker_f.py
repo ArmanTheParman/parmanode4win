@@ -35,7 +35,8 @@ def menu_docker():
         elif choice.upper() == "M":
             return True
         elif choice.lower() in {"start", "s"}:
-            start_dockerdesktop()
+            try: start_dockerdesktop()
+            except Exception as e: input(e)
             announce("""Docker will open in a moment. You can close the pop-up and Docker
     will continue to runin the background.""")
         elif choice.lower() in {"l", "list"}:
