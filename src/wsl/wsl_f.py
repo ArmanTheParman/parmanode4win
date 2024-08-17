@@ -95,9 +95,7 @@ def _unregister_all_wsl_distributions():
 
         with open(tmp, 'r') as f:
             for i in f.readlines():
-                print(f"Raw line: {repr(i)}")  # Display the raw line content for debugging
-                input("repr")
-                if 'x\00' in i: continue
+                if 'x\00' in i.strip(): continue
                 distros.append(i.strip())
 
         for i in distros:
