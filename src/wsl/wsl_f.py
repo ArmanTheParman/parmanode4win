@@ -3,7 +3,14 @@ from variables import *
 from functions import *
 
 def disable_wsl():
+
     set_terminal()
+
+    if ico.grep("docker-end") == True:
+        if yesorno("Disabling WSL will also disable Docker. Do it?") == False : return False
+    else:
+        if yesorno("Are you sure you want to disable WSL?") == False: return False
+
     _unregister_all_wsl_distributions()
 
     try:
