@@ -828,5 +828,8 @@ def tidy_up_before_starting():
     #check docker installed
     chocolist = subprocess.run(["powershell", "choco list"], check=True, capture_output=True, text=True).stdout.split('\n')
     print(chocolist, type(chocolist))
+    for i in enumerate(chocolist):
+        if "docker-desktop" in i:
+            input("dd found")
     input("exiting")
     sys.exit()
