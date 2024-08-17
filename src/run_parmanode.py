@@ -63,8 +63,8 @@ check_for_emergency("s")
 ########################################################################################
 
 tidy_up_before_starting() #currently just manages Tor installation
-import asyncio
-asyncio.run(check_docker_installed())
+# import asyncio
+# asyncio.run(check_docker_installed())
 ########################################################################################
 
 try: from parmanode.intro_f import * 
