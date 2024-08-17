@@ -10,7 +10,7 @@ def install_docker():
     try: subprocess.run(["powershell", "choco install docker-desktop -y"], check=True, capture_output=True)
     except Exception as e: input(e)
     ico.add("docker-end")
-    subprocess.Popen('c:/Program files/Docker/Docker/"docker desktop.exe"')
+    subprocess.Popen('c:/Program files/Docker/Docker/Docker Desktop.exe')
     success(f"""Docker has been installed. Before it can work, a window (docker-desktop app) 
     will pop up and you need to accept the terms and conditions, and do it's stupid
     survey - it's ok to click 'skip'.""") 
