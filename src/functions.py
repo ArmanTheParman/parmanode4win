@@ -825,7 +825,7 @@ def tidy_up_before_starting():
             from tor.install_tor_f import install_tor
             install_tor()
     
-    result = subprocess.run(["wsl", "--list", "--quiet"], check=True, capture_output=True, text=True).stdout.strip()
+    result = subprocess.run(["wsl", "--list", "--quiet"], check=True, capture_output=True, encoding='utf-8', text=True).stdout.strip()
     print(f"{repr(result)}")
     print(type(result))
     if r"docker-desktop" in result:
