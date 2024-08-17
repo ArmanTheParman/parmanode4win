@@ -88,7 +88,7 @@ def _unregister_all_wsl_distributions():
         print(result)
         input("pause")
 
-        distros_1 = result.splitlines()
+        distros_1 = result.splitlines().strip()
         print("Distros_1 after splitlines:")
         for idx, item in enumerate(distros_1):
             print(f"Item {idx}: {repr(item)} (Type: {type(item)})")  # Check each item type and content
