@@ -5,7 +5,6 @@ from functions import *
 def disable_wsl():
     set_terminal()
     _unregister_all_wsl_distributions()
-    if yesorno("abort?"): sys.exit()
 
     try:
         subprocess.run(["powershell", "-Command", "Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart"], check=True)
@@ -101,8 +100,7 @@ def _unregister_all_wsl_distributions():
 
         for distro in distros:
             print(distro, type(distro))
-            input("check above for what is to be unregistered")
-            print(f"{red}Unregistering distros...{orange}")
+            print(f"{red}Unregistering distro {distro}...{orange}")
             try: subprocess.run(["powershell", f"wsl --unregister {distro}"], capture_output=True, check=True)
             except Exception as e: input(e)
 
