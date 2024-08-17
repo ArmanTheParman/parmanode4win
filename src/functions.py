@@ -825,7 +825,7 @@ def tidy_up_before_starting():
             from tor.install_tor_f import install_tor
             install_tor()
     
-    result = subprocess.run(["powershell", "wsl --list --quiet"], check=True, capture_output=True, text=True).stdout.strip()
+    result = subprocess.run(["powershell", "wsl --list --quiet"], check=True, capture_output=True).stdout
     result = result.decode('utf-8')
     print(f"{repr(result)}")
     print(type(result))
