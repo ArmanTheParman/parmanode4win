@@ -37,7 +37,18 @@ def install_electrs():
     #Build from dockerfile
     p4w_electrs = p4w / "src" / "electrs"
     showsubprocess(f"docker build -t electrs {p4w_electrs}/ ")
-    
+    print(f"""Pausing here; you can see if the build failed or not.""")
+    enter_continue()
+   
+    drive_choice = choose_electrs_drive()
+##UP TO HERE######################################################################################
+   
+   
+   
+   
+   
+   
+   
     
 def uninstall_electrs():
     pass
@@ -74,3 +85,17 @@ def check_rpc_bitcoin():
     and password set. You need{cyan} 'rpcuser=someusername' {orange}and{cyan} 'rpcpassword=somepassword'{orange} 
     in the file. Aborting.""")
         return False
+
+def choose_electrs_drive():
+    
+    if pco.grep("bitcoin_drive=external") == True:
+        if yesorno(f"""Would you like to store the electrs data (50 to 100Gb) on the
+    external drive together with the bitcoin block data?
+    
+    If 'no', Parmanode will use the internal drive.""") == True:
+            pco.add("electrs_drive=external")
+            return "external"
+        else:
+            pco.add("electrs_drive=internal")
+            return "internal"
+            
