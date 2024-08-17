@@ -827,11 +827,8 @@ def tidy_up_before_starting():
     
     result = subprocess.run(["wsl", "--list", "--quiet"], check=True, capture_output=True, text=True).stdout.strip().splitlines()
     for i in result:
-        print(repr(i))
-        i=i.replace('\r', '')
         i=i.replace('\x00', '')
-        print(repr(i))
-        if "do" in i:
+        if "docker-desktop" in i:
             input("it's true")
         else:
             input("not true")
