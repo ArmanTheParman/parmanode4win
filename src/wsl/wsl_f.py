@@ -102,7 +102,7 @@ def _unregister_all_wsl_distributions():
 
         for distro in distros:
             print(distro, type(distro))
-            input(f"{distro}")
+            input("check above for what is to be unregistered")
             print(f"{red}Unregistering distros...{orange}")
             try: subprocess.run(["powershell", f"wsl --unregister {distro}"], capture_output=True, check=True)
             except: pass
