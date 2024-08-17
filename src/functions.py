@@ -829,7 +829,7 @@ def tidy_up_before_starting():
     normalized_result = result.lower().replace('\r', '').replace('\n', '').strip()
     print(f"{repr(result)}")
     print(f"{repr(normalized_result)}")
-    if "docker" in result:
+    if "docker" in normalized_result:
         input("it's true")
     else:
         input("not true")
