@@ -827,7 +827,8 @@ def tidy_up_before_starting():
    
     try: 
         result = subprocess.run(["wsl", "--list", "--quiet"], check=True, capture_output=True, text=True).stdout.strip().replace('\x00', '')
-        if "docker-desktop" in result and ico.grep("docker-end") == False:
+        thepath = "c:/program files/docker/docker/Docker Desktop.exe"
+        if "docker-desktop" in result and ico.grep("docker-end") == False and os.path.exists(thepath):
             ico.add("docker-end")
         if ico.grep("wsl-end") == False:
             ico.add("wsl-end")
