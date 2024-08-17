@@ -63,25 +63,6 @@ def enable_wsl():
 
 
 
-def install_docker():
-    pass
-    x = """
-    # WSL needs to be installed first
-
-    # choco install docker-desktop -y
-
-    # #restart computer to set path correctly -- maybe. test it
-
-    # docker bin files:
-    #      c:\Program files\Docker\Docker\resources\bin
-
-    Run docker desktop, user needs to accept terms first...
-    #      c:\Program files\Docker\Docker\"docker desktop.exe"
-    
- """
-
-    
-
 def _unregister_all_wsl_distributions():
     try:
         result = subprocess.run(["powershell", "wsl --list --quiet"], capture_output=True, text=True, check=True).stdout.strip()

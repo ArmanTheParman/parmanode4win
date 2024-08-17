@@ -4,6 +4,7 @@ from sparrow.install_sparrow_f import *
 from electrum.install_electrum_f import *
 from tor.install_tor_f import *
 from wsl.wsl_f import *
+from docker.docker_f import *
 from config_f import *
 
 def menu_add():
@@ -45,6 +46,13 @@ def menu_add():
             add_wsl = f"#                  {green} (w){orange}            WSL (requires restart)                           #"
             wslmenu = True
             available.append(add_wsl)
+        else: 
+            tormenu = False
+
+        if not ico.grep("docker-"):
+            add_docker= f"#                  {green} (d){orange}            Docker Desktop                                   #"
+            dockermenu = True
+            available.append(add_docker)
         else: 
             tormenu = False
 
@@ -95,6 +103,10 @@ def menu_add():
         elif choice.lower() == "w":
             if wslmenu == False : continue
             if not enable_wsl(): return False
+            return True
+        elif choice.lower() == "d":
+            if dockermenu == False : continue
+            if not install_docker(): return False
             return True
         else:
             invalid()

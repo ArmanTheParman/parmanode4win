@@ -4,6 +4,7 @@ from sparrow.uninstall_sparrow_f import *
 from electrum.uninstall_electrum_f import *
 from tor.install_tor_f import *
 from wsl.wsl_f import *
+from docker.docker_f import *
 from parmanode.menu_main_f import *
 from config_f import *
 
@@ -49,6 +50,13 @@ def menu_remove():
             available.append(rem_wsl)
         else: 
             wslmenu = False
+        
+        if ico.grep("docker-"): 
+            rem_docker = f"#                  {green} (d){orange}            Docker                                              #"
+            dockermenu = True
+            available.append(rem_docker)
+        else: 
+            dockermenu = False
 
         set_terminal()
         print(f"""
@@ -96,6 +104,10 @@ def menu_remove():
         elif choice.lower() == "w":
             if wslmenu == False: continue
             if not disable_wsl(): return False
+            return True
+        elif choice.lower() == "d":
+            if dockermenu == False: continue
+            if not uninstall_docker(): return False
             return True
         else:
             invalid()
