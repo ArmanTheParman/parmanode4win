@@ -837,3 +837,9 @@ def tidy_up_before_starting():
             ico.remove("wsl-end")
         if ico.grep("docker-end") == True:
             ico.remove("docker-end")
+    
+def dosubprocess(command):
+    #can add shell=True if passing single string, not a list to run
+    return subprocess.run(["powershell", f"{command}"], text=True, capture_output=True).stdout
+    #usage
+    #print(dosubprocess(command))

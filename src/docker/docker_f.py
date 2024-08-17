@@ -2,6 +2,9 @@ import subprocess, os
 from variables import *
 from functions import *
 
+    
+def start_dockerdesktop():
+        subprocess.Popen('c:/Program files/Docker/Docker/Docker Desktop.exe')
 
 def install_docker():
 
@@ -11,10 +14,10 @@ def install_docker():
     ANOTHER THING... 
     
     For Docker to work properly, the computer needs 'virtalisation' enabled on
-    the bios. You can see after installation if Docker works, and if it doesn't
+    the BIOS. You can see after installation if Docker works, and if it doesn't
     you can investigate...
     
-    You'd enter the bios menu (look up how to do that on line for your specific
+    You'd enter the BIOS menu (look up how to do that on line for your specific
     computer model), then look for the virtualisation option. Change it from
     <disabled> to <enabled>, save, reboot, and then see if Docker loads up.
 
@@ -40,7 +43,7 @@ def install_docker():
     try: subprocess.run(["powershell", "choco install docker-desktop -y"], check=True, capture_output=True)
     except Exception as e: input(e)
     ico.add("docker-end")
-    subprocess.Popen('c:/Program files/Docker/Docker/Docker Desktop.exe')
+    start_dockerdesktop()
     success(f"""Docker has been installed. Before it can work, a window (docker-desktop app) 
     will pop up and you need to accept the terms and conditions, and do it's stupid
     survey - it's ok to click 'skip'.""") 
@@ -74,8 +77,6 @@ def uninstall_docker():
         success("Docker has been uninstalled")
         return True
     except: return False
-
-    
 
      
 

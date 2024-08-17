@@ -3,6 +3,7 @@ from functions import *
 from bitcoin.menu_bitcoin_f import *
 from sparrow.menu_sparrow_f import *
 from tor.menu_tor_f import *
+from docker.menu_docker_f import *
 from electrum.menu_electrum_f import *
 from config_f import *
 
@@ -40,6 +41,12 @@ def menu_use():
             available.append(use_tormenu)
         else: 
             tormenu = False
+        if ico.grep("docker-end"): 
+            use_dockermenu = f"#                  {green} (d){orange}            Docker                                              #"
+            dockermenu = True
+            available.append(use_dockermenu)
+        else: 
+            dockermenu = False
         
         set_terminal(h=38)
         print(f"""
@@ -78,6 +85,10 @@ def menu_use():
         elif choice.lower() in {"t", "tor"}:
             if tormenu == False: continue
             if not menu_tor(): return False
+            return True
+        elif choice.lower() in {"d", "docker"}:
+            if dockermenu == False: continue
+            if not menu_docker(): return False
             return True
         else:
             invalid()
