@@ -30,6 +30,7 @@ r"""
 
 def uninstall_docker():
     if yesorno(f"""Are you sure you want to uninstall Docker?""") == False: return False
+    please_wait()
 
     try: subprocess.run(["powershell", "wsl --unregister docker-desktop"], capture_output=True, check=True)
     except: pass
