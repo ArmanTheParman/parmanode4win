@@ -824,13 +824,15 @@ def tidy_up_before_starting():
     Allow Parmanode to install Tor for you now? """):
             from tor.install_tor_f import install_tor
             install_tor()
-    
-    result = subprocess.run(["wsl", "--list", "--quiet"], check=True, capture_output=True, text=True).stdout.strip().replace('\x00', '')
-    if "docker-desktop" in result and ico.grep("docker-end") == False:
-        ico.add("docker-end")
+   
+    try: 
+        result = subprocess.run(["wsl", "--list", "--quiet"], check=True, capture_output=True, text=True).stdout.strip().replace('\x00', '')
+        if "docker-desktop" in result and ico.grep("docker-end") == False:
+            ico.add("docker-end")
 
-    result = subprocess.run(["wsl", "--list"], check=True, capture_output=True, text=True).stdout.strip().replace('\x00', '')
-    if "requires the Windows Subsystem" in result and ico.grep("wsl-end") == False:
-        ico.add("wsl-end")
+        result = subprocess.run(["wsl", "--list"], check=True, capture_output=True, text=True).stdout.strip().replace('\x00', '')
+        if "requires the Windows Subsystem" in result and ico.grep("wsl-end") == False:
+            ico.add("wsl-end")
+    except Exception as e: input(e)
 
         
