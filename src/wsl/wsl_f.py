@@ -5,6 +5,7 @@ from functions import *
 def disable_wsl():
     set_terminal()
     _unregister_all_wsl_distributions()
+    if yesorno("abort?"): sys.exit()
 
     try:
         subprocess.run(["powershell", "-Command", "Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart"], check=True)
