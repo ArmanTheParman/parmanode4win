@@ -840,6 +840,25 @@ def tidy_up_before_starting():
     
 def dosubprocess(command):
     #can add shell=True if passing single string, not a list to run
-    return subprocess.run(["powershell", f"{command}"], text=True, capture_output=True).stdout
+    try: return subprocess.run(["powershell", f"{command}"], text=True, capture_output=True).stdout
+    except: return False
     #usage
     #print(dosubprocess(command))
+
+def showsubprocess(command):
+
+    # Run the command and stream the output to the console (asynchronous)
+    process = subprocess.Popen(["powershell", f"{command}"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+
+    # Stream the output line by line
+    for line in process.stdout:
+        print(line, end="")
+
+    # continue only once process is done
+    process.wait()
+
+    # Check if the command was successful
+    if process.returncode == 0:
+        return True
+    else:
+        return False
