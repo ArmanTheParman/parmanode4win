@@ -829,6 +829,7 @@ def tidy_up_before_starting():
     for i in result:
         print(repr(i))
         i=i.replace('\r', '')
+        i=i.replace('\x00', '')
         print(repr(i))
         if "do" in i:
             input("it's true")
