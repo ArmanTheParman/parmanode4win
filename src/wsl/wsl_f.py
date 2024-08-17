@@ -98,6 +98,7 @@ def _unregister_all_wsl_distributions():
 
         for i in distros:
             print(i, type(i))
+        print(type(distros), distros)
         input("printing distros list...")
         
         if yesorno("abort?"): sys.exit()
