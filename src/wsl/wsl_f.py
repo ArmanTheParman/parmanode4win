@@ -86,6 +86,8 @@ def install_docker():
 def _unregister_all_wsl_distributions():
     try:
         result = subprocess.run(["powershell", "wsl --list --quiet"], capture_output=True, text=True, check=True).stdout.strip()
+        print("result type", type(result))
+        input("pause")
         tmpo.truncate()
         tmpo.add(result)
 
@@ -95,11 +97,11 @@ def _unregister_all_wsl_distributions():
 
         with open(tmp, 'r') as f:
             for i in f.readlines():
-                print(i, type(i), len(i))
-                input("print i and type")
                 if len(i) < 3: continue
                 distros.append(i.strip())
-
+        print(distros)
+        print("distros above, and type here...", type(distros))
+        if yesorno('quit?'): sys.exit()
         for distro in distros:
             input(f"{distro}")
             print(f"{red}Unregistering distros...{orange}")
