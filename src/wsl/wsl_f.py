@@ -37,6 +37,11 @@ def enable_wsl():
     You'll also need to restart the computer once installation is done, AND, 
     if an update is needed, testing has shown you need to do that too, but 
     I could be wrong.
+    {bright_blue}
+    AND ANOTHER THING... On some computers, virtualisation is not enabled by default. That's a 
+    feature that needs to be manually enabled from BIOS. Unfortunately, there is no way
+    for Parmanode to modify the BIOS for you. You can do a search online or ask an
+    AI bot like ChatGPT.
     {orange} 
     Continue?""") == False: return False
     
