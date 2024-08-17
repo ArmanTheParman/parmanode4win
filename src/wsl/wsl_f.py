@@ -100,7 +100,7 @@ def _unregister_all_wsl_distributions():
         for i in distros:
             print(i)
 
-        print(len(i))
+        print(len(distros))
 
         input("printing distros list...")
         
