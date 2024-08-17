@@ -43,7 +43,7 @@ def enable_wsl():
     for Parmanode to modify the BIOS for you. You can do a search online or ask an
     AI bot like ChatGPT.
     {orange} 
-    Continue?""") == False: return False
+    Continue?""", h=48) == False: return False
     
     try:
         subprocess.run(["powershell", "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart"], check=True)
