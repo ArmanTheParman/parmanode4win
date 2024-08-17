@@ -41,6 +41,7 @@ def menu_docker():
     will continue to runin the background.""")
         elif choice.lower() in {"l", "list"}:
             print(dosubprocess("docker ps"))
+            enter_continue()
             return True
         else:
             invalid()
