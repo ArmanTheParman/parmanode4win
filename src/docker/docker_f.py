@@ -4,11 +4,13 @@ from functions import *
 
 
 def install_docker():
+    if yesorno(f"""Do you want install Docker? It takes several minutes.""") == False: return False
+    set_terminal()
     please_wait()
     try: subprocess.run(["powershell", "choco install docker-desktop -y"], check=True, capture_output=True)
     except Exception as e: input(e)
     ico.add("docker-end")
-    os.system('c:/Program files/Docker/Docker/"docker desktop.exe')
+    subprocess.Popen('c:/Program files/Docker/Docker/"docker desktop.exe"')
     success(f"""Docker has been installed. Before it can work, a window (docker-desktop app) 
     will pop up and you need to accept the terms and conditions, and do it's stupid
     survey - it's ok to click 'skip'.""") 
