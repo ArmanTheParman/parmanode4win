@@ -4,7 +4,7 @@ from functions import *
 
 
 def install_docker():
-    try: subprocess.run(["powershesll", "choco install docker-desktop -y"], check=True, capture_output=True)
+    try: subprocess.run(["powershell", "choco install docker-desktop -y"], check=True, capture_output=True)
     except Exception as e: input(e)
     ico.add("docker-end")
     os.system('c:/Program files/Docker/Docker/"docker desktop.exe')
