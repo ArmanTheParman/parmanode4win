@@ -27,6 +27,7 @@ def install_electrs():
         return False
 
     if check_pruning_off() == False: return False
+    if check_server_1() == False: return False
 
     sned_sats()
     set_terminal()
@@ -52,4 +53,14 @@ def check_pruning_off():
     wrong and want to proceed, type{cyan} 'yolo'{orange} before hitting{cyan} <enter>{orange}""") == "yolo":
         return True
     else:
+        return False
+
+
+def check_server_1():
+    if bco.grep("server=1") == True: 
+        return True
+    else:
+        announce(f"""{cyan}'server=1'{orange} needs to be included in the bitcoin.conf 
+    file. Please do that, restart Bitcoin, and try again. Note, this will
+    resync the index which will take a long time. Aborting.""")
         return False
