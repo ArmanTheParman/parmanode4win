@@ -827,7 +827,7 @@ def tidy_up_before_starting():
     
     result = subprocess.run(["wsl", "--list", "--quiet"], check=True, capture_output=True, text=True).stdout.strip().splitlines()
     for i in result:
-        if "d" in i:
+        if "doc" in i:
             input("it's true")
         else:
             input("not true")
