@@ -1,7 +1,7 @@
 from variables import *
 from functions import *
 from config_f import *
-from docker_f import *
+from docker.docker_f import *
 
 def menu_docker():
 
