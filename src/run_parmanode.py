@@ -63,7 +63,8 @@ check_for_emergency("s")
 ########################################################################################
 if yesorno("test?") == True:
         try: 
-            subprocess.run(["powershell", "choco install docker-desktop -y"], check=True, capture_output=True)
+            import subprocess
+            subprocess.Popen('c:/Program files/Docker/Docker/"docker desktop.exe"')
             input("wait")
         except Exception as e : input(e)
         sys.exit()
