@@ -12,6 +12,7 @@ from parmanode.about_f import *
 from tools.menu_tools_f import *
 from education.education_f import *
 from parmanode.mentorship_f import *
+import asyncio
 
 async def menu_main():
     await check_docker_installed()
