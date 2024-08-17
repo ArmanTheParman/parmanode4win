@@ -102,6 +102,10 @@ def _unregister_all_wsl_distributions():
         print(distros)
         print("distros above, and type here...", type(distros))
         input("")
+        for distro in distros:
+            print(distro, type(distro))
+            input("pause in for")
+
         if yesorno('quit?'): sys.exit()
         for distro in distros:
             input(f"{distro}")
