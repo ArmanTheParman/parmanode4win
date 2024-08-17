@@ -85,15 +85,25 @@ def install_docker():
 def _unregister_all_wsl_distributions():
     try:
         result = subprocess.run(['wsl', '--list', '--quiet'], capture_output=True, text=True, check=True)
-        distros = result.stdout.splitlines()
+        distros_1 = result.stdout.splitlines()
 
+        try: del distros
+        except: pass
+        distros = []
+
+        for i in distros_1:
+            j = i.split()
+            distros.append(j[0])
+
+        print("printing distros list...")
+        input(f"{distros}") 
+        
         for distro in distros:
             print(f"{distros}")
             print(f"{distro}")
-            input("zzzz2b")
             print(f"{red}Unregistering distros...{orange}")
-            subprocess.run(['wsl', '--unregister', distro])
-            input("zzzz2c")
+            try: subprocess.run(['wsl', '--unregister', distro])
+            except: pass
 
     except subprocess.CalledProcessError as e:
         input(f"An error occurred: {e}")
