@@ -826,7 +826,7 @@ def tidy_up_before_starting():
             install_tor()
     
     #check docker installed
-    chocolist = subprocess.run(["powershell", "choco list"], check=True, capture_output=True, text=True)
+    chocolist = subprocess.run(["powershell", "choco list"], check=True, capture_output=True, text=True).stdout
     print(chocolist, type(chocolist))
     input("exiting")
     sys.exit()
