@@ -4,7 +4,14 @@ from functions import *
 
 
 def install_docker():
+
     if yesorno(f"""Do you want install Docker? It takes several minutes.""") == False: return False
+
+    if ico.grep("wsl-end") == False:
+        announce(f"""To install Docker, you need to install/enable{cyan} WSL {orange}first. You'll find that
+    option in the add menu.""")
+        return False
+
     set_terminal()
     please_wait()
     try: subprocess.run(["powershell", "choco install docker-desktop -y"], check=True, capture_output=True)
