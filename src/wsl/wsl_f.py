@@ -109,7 +109,7 @@ def _unregister_all_wsl_distributions():
                 print(result.stderr)
                 input("see results above")
 
-            except: pass
+            except Exception as e: input(e)
 
     except subprocess.CalledProcessError as e:
         input(f"An error occurred: {e}")
