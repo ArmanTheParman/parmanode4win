@@ -100,20 +100,7 @@ def _unregister_all_wsl_distributions():
                 if len(i) < 3: continue
                 distros.append(i.strip())
 
-        for i in distros:
-            print(i)
-
-        for i in distros:
-            print(i.encode("utf-8"))
-
-        print(len(distros))
-
-        input("printing distros list..., then exiting")
-        
-        sys.exit()
-
         for distro in distros:
-            print(f"{distros}")
             print(f"{distro}")
             print(f"{red}Unregistering distros...{orange}")
             try: subprocess.run(['wsl', '--unregister', distro])
