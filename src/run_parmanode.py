@@ -62,7 +62,9 @@ check_for_emergency("s")
 #     disable_wsl()
 ########################################################################################
 if yesorno("test?") == True:
-        try: subprocess.run(["powershell", "choco install docker-desktop -y"], check=True, capture_output=True)
+        try: 
+            subprocess.run(["powershell", "choco install docker-desktop -y"], check=True, capture_output=True)
+            input("wait")
         except Exception as e : input(e)
         sys.exit()
 
