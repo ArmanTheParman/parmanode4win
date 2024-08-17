@@ -61,13 +61,6 @@ check_for_emergency("s")
 # elif choice == "d":
 #     disable_wsl()
 ########################################################################################
-if yesorno("test?") == True:
-    try: 
-        import subprocess
-        subprocess.Popen('c:/Program files/Docker/Docker/Docker Desktop.exe')
-        input("wait")
-    except Exception as e : input(e)
-    sys.exit()
 
 tidy_up_before_starting() #currently just manages Tor installation
 
