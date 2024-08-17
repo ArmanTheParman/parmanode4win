@@ -50,7 +50,7 @@ def menu_add():
             tormenu = False
 
         if not ico.grep("docker-"):
-            add_docker= f"#                  {green} (d){orange}            Docker Desktop                                      #"
+            add_docker= f"#                  {green} (d){orange}            Docker Desktop (requires WSL)                       #"
             dockermenu = True
             available.append(add_docker)
         else: 
