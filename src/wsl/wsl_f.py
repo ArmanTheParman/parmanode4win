@@ -96,7 +96,7 @@ def _unregister_all_wsl_distributions():
             distros.append(j[0])
 
         print("printing distros list...")
-        input(f"{distros}") 
+        input(f"{distros}") #getting empty list
         
         for distro in distros:
             print(f"{distros}")
@@ -109,3 +109,6 @@ def _unregister_all_wsl_distributions():
         input(f"An error occurred: {e}")
 
 
+# wsl --list
+# if no distros and wsl enabled...
+# Windows Subsystem for Linux has no installed distributions.
