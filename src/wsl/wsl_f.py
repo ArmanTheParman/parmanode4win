@@ -102,7 +102,13 @@ def _unregister_all_wsl_distributions():
             print(distro, type(distro))
             input("check above for what is to be unregistered")
             print(f"{red}Unregistering distros...{orange}")
-            try: subprocess.run(["powershell", f"wsl --unregister {distro}"], capture_output=True, check=True)
+            try: 
+                result = subprocess.run(["powershell", f"wsl --unregister {distro}"], capture_output=True, check=True)
+                print(result.stdout)
+                print("xxx")
+                print(result.stderr)
+                input("see results above")
+
             except: pass
 
     except subprocess.CalledProcessError as e:
