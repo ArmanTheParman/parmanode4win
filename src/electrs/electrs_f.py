@@ -14,6 +14,10 @@ def install_electrs():
         announce(f"""Please make sure Docker is running and try again. Aborting.""")
         return False
 
+    if ico.grep("bitcoin-end") == False:
+        announce(f"""Please install Bitcoin first and try again. Aborting.""")
+        return False
+
     if yesorno(f"""Install electrs? This will use Docker to compile the program in a
     container - it can a while.""") == False: return False
 
