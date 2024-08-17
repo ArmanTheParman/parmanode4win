@@ -14,9 +14,9 @@ from education.education_f import *
 from parmanode.mentorship_f import *
 import asyncio
 
-async def menu_main():
-    try: await check_docker_installed()
-    except Exception as e: input(e)
+def menu_main():
+    # try: await check_docker_installed()
+    # except Exception as e: input(e)
     while True:
         set_terminal(46, 88)
         print(f"""{orange}        
