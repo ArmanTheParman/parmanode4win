@@ -11,6 +11,14 @@ def install_docker():
         announce(f"""To install Docker, you need to install/enable{cyan} WSL {orange}first. You'll find that
     option in the add menu.""")
         return False
+    else:
+        try: 
+            subprocess.run(["wsl", "--list", "--quiet"], check=True)
+        except:
+            announce("""It looks like you've installed WSL, but may not have rebooted yet?
+    Whatever the reason, WSL isn't working properly and Docker can't be installed.
+    When in doubt, turn it off and on again.""")
+            return False
 
     set_terminal()
     please_wait()
