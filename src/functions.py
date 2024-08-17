@@ -829,6 +829,10 @@ def tidy_up_before_starting():
         result = subprocess.run(["wsl", "--list", "--quiet"], check=True, capture_output=True, text=True).stdout.strip().replace('\x00', '')
         if "docker-desktop" in result and ico.grep("docker-end") == False:
             ico.add("docker-end")
-    except:
         if ico.grep("wsl-end") == False:
             ico.add("wsl-end")
+    except:
+        if ico.grep("wsl-end") == True:
+            ico.remove("wsl-end")
+        if ico.grep("docker-end") == True:
+            ico.remove("docker-end")
