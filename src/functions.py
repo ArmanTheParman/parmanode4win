@@ -825,26 +825,3 @@ def tidy_up_before_starting():
             from tor.install_tor_f import install_tor
             install_tor()
     
-    # #check docker installed
-    # chocolist = subprocess.run(["powershell", "choco list"], check=True, capture_output=True, text=True).stdout.split('\n')
-    # for i in chocolist:
-    #     if "docker-desktop" in i and not ico.grep("docker-end"):
-    #         ico.add("docker-end")
-
-import asyncio
-async def check_docker_installed():
-    # Run the subprocess asynchronously
-    process = await asyncio.create_subprocess_exec(
-        'powershell', 'choco list',
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE
-    )
-
-    # Capture and process the output
-    stdout, stderr = await process.communicate()
-
-    # Process the output
-    chocolist = stdout.decode().split('\n')
-    for i in chocolist:
-        if "docker-desktop" in i and not ico.grep("docker-end"):
-            ico.add("docker-end")
