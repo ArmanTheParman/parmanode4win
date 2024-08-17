@@ -31,7 +31,7 @@ def enable_wsl():
             
     During the installation, you may or may not be asked to create a Linux username
     and password. If that happens, you'll then automatically be logged in to the Linux
-    Terminal. You need to type {red}'exit"{orange} and then hit {cyan}<enter>{orange} to continue back to 
+    Terminal. You need to type {red}'exit'{orange} and then hit {cyan}<enter>{orange} to continue back to 
     Parmanode, and the installation.
     
     Continue?""")
