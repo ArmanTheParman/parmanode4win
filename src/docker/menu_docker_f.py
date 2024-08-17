@@ -38,6 +38,8 @@ def menu_docker():
             start_dockerdesktop()
             announce("""Docker will open in a moment. You can close the pop-up and Docker
     will continue to runin the background.""")
+        elif choice.lower() in {"l", "list"}:
+            print(dosubprocess("docker ps"))
             return True
         else:
             invalid()
