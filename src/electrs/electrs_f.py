@@ -21,6 +21,12 @@ def install_electrs():
     if yesorno(f"""Install electrs? This will use Docker to compile the program in a
     container - it can a while.""") == False: return False
 
+    if bc.exists() == False:
+        announce("""The bitcoin.conf file could not be detected. Can happen if Bitcoin is
+    supposed to sync to the external drive and it is not connected and mounted.
+    Hit{cyan} <enter>{orange} to try again once you connect the drive. Aborting.""")
+        return False
+
     sned_sats()
     set_terminal()
     please_wait() 

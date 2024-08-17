@@ -85,4 +85,5 @@ drive_bitcoin = None
 
 # Default Windows Bitcoin data directory
 default_bitcoin_data_dir = Path.home() / "AppData" / "Roaming" / "Bitcoin"
-
+b = Path(default_bitcoin_data_dir)
+bc = b / "bitcoin.conf"
