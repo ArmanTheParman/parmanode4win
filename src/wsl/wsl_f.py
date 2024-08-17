@@ -87,8 +87,11 @@ def _unregister_all_wsl_distributions():
         result = subprocess.run(["powershell", "wsl --list --quiet"], capture_output=True, text=True, check=True).stdout
         print(result)
         input("pause")
+
         distros_1 = result.splitlines()
-        print(distros_1)
+        print("Distros_1 after splitlines:")
+        for idx, item in enumerate(distros_1):
+            print(f"Item {idx}: {repr(item)} (Type: {type(item)})")  # Check each item type and content
         input("pause2")
 
         try: del distros
