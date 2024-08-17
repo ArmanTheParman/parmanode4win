@@ -826,8 +826,9 @@ def tidy_up_before_starting():
             install_tor()
     
     result = subprocess.run(["wsl", "--list", "--quiet"], check=True, capture_output=True, text=True).stdout.strip()
+    normalized_result = result.lower().replace('\r', '').replace('\n', '').strip()
     print(f"{repr(result)}")
-    print(type(result))
+    print(f"{repr(normalized_result)}")
     if "docker" in result:
         input("it's true")
     else:
