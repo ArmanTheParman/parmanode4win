@@ -7,6 +7,21 @@ def install_docker():
 
     if yesorno(f"""Do you want install Docker? It takes several minutes.""") == False: return False
 
+    if yesorno(f"""    {bright_blue}
+    ANOTHER THING... 
+    
+    For Docker to work properly, the computer needs 'virtalisation' enabled on
+    the bios. You can see after installation if Docker works, and if it doesn't
+    you can investigate...
+    
+    You'd enter the bios menu (look up how to do that on line for your specific
+    computer model), then look for the virtualisation option. Change it from
+    <disabled> to <enabled>, save, reboot, and then see if Docker loads up.
+
+    Unfortunately, there is no way for Parmanode to modify the BIOS for you. 
+    You can do a search online or ask an AI bot like ChatGPT if you're having 
+    trouble.{orange}""") == False: return False
+
     if ico.grep("wsl-end") == False:
         announce(f"""To install Docker, you need to install/enable{cyan} WSL {orange}first. You'll find that
     option in the add menu.""")
