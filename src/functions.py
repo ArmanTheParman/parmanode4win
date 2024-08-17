@@ -824,4 +824,9 @@ def tidy_up_before_starting():
     Allow Parmanode to install Tor for you now? """):
             from tor.install_tor_f import install_tor
             install_tor()
-
+    
+    #check docker installed
+    chocolist = subprocess.run(["powershell", "choco list"], check=True, capture_output=True, text=True)
+    print(chocolist, type(chocolist))
+    input("exiting")
+    sys.exit()
