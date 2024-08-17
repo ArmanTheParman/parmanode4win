@@ -3,7 +3,7 @@ from variables import *
 from functions import *
 
 def disable_wsl():
-
+    set_terminal()
     _unregister_all_wsl_distributions()
 
     try:
