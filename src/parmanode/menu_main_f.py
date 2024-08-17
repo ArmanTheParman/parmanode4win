@@ -13,7 +13,8 @@ from tools.menu_tools_f import *
 from education.education_f import *
 from parmanode.mentorship_f import *
 
-def menu_main():
+async def menu_main():
+    await check_docker_installed()
     while True:
         set_terminal(46, 88)
         print(f"""{orange}        
