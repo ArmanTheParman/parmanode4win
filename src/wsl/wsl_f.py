@@ -88,6 +88,8 @@ def _unregister_all_wsl_distributions():
         print(result)
         input("pause")
         distros_1 = result.splitlines()
+        print(distros_1)
+        input("pause2")
 
         try: del distros
         except: pass
