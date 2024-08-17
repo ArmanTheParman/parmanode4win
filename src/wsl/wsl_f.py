@@ -98,6 +98,7 @@ def _unregister_all_wsl_distributions():
                 print(i, type(i))
                 input("print i and type")
                 if i == b'\x00' or i == b'\x00\n': continue
+                input(fr"appending {i}")
                 distros.append(i.strip())
 
         for i in distros:
