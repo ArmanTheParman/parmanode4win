@@ -3,6 +3,7 @@ from bitcoin.uninstall_bitcoin_f import *
 from sparrow.uninstall_sparrow_f import *
 from electrum.uninstall_electrum_f import *
 from tor.install_tor_f import *
+from wsl.wsl_f import *
 from parmanode.menu_main_f import *
 from config_f import *
 
@@ -41,6 +42,13 @@ def menu_remove():
             available.append(rem_tor)
         else: 
             tormenu = False
+
+        if ico.grep("wsl-"): 
+            rem_wsl = f"#                  {green} (w){orange}            WSL                                                 #"
+            wslmenu = True
+            available.append(rem_wsl)
+        else: 
+            wslmenu = False
 
         set_terminal()
         print(f"""
@@ -84,6 +92,10 @@ def menu_remove():
         elif choice.lower() == "t":
             if tormenu == False: continue
             if not uninstall_tor(): return False
+            return True
+        elif choice.lower() == "w":
+            if wslmenu == False: continue
+            if not disable_wsl(): return False
             return True
         else:
             invalid()
