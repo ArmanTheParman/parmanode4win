@@ -826,7 +826,5 @@ def tidy_up_before_starting():
             install_tor()
     
     result = subprocess.run(["wsl", "--list", "--quiet"], check=True, capture_output=True, text=True).stdout.strip().replace('\x00', '')
-    if "docker-desktop" in result:
-        input("it's true")
-    else:
-        input("not true")
+    if "docker-desktop" in result and ico.grep("docker-end") == False:
+        ico.add("docker-end")
