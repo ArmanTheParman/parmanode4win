@@ -27,14 +27,14 @@ def disable_wsl():
 def enable_wsl():
     #Ensure that virtualization is enabled in your BIOS/UEFI settings. This is required for WSL 2.
 
-    yesorno(f"""You are about to install {cyan}WINDOWS SUBSYSTEM FOR LINUX.{orange}
+    if yesorno(f"""You are about to install {cyan}WINDOWS SUBSYSTEM FOR LINUX.{orange}
             
     During the installation, you may or may not be asked to create a Linux username
     and password. If that happens, you'll then automatically be logged in to the Linux
     Terminal. You need to type {red}'exit'{orange} and then hit {cyan}<enter>{orange} to continue back to 
     Parmanode, and the installation.
     
-    Continue?""")
+    Continue?""") == False: return False
     
     try:
         subprocess.run(["powershell", "dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart"], check=True)
