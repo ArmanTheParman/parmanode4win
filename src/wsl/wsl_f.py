@@ -111,4 +111,10 @@ def _unregister_all_wsl_distributions():
 
 # wsl --list
 # if no distros and wsl enabled...
-# Windows Subsystem for Linux has no installed distributions.
+# Line 0...
+# "Windows Subsystem for Linux has no installed distributions.""
+
+# wsl --list
+# if wsl disabled
+# Line 0 ...
+# "This application requires the Windows Subsystem for Linux Optionsl Component."
