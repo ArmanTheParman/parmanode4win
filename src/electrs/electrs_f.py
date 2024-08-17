@@ -28,6 +28,7 @@ def install_electrs():
 
     if check_pruning_off() == False: return False
     if check_server_1() == False: return False
+    if check_rpc_bitcoin() == False: return False
 
     sned_sats()
     set_terminal()
@@ -63,4 +64,13 @@ def check_server_1():
         announce(f"""{cyan}'server=1'{orange} needs to be included in the bitcoin.conf 
     file. Please do that, restart Bitcoin, and try again. Note, this will
     resync the index which will take a long time. Aborting.""")
+        return False
+
+def check_rpc_bitcoin():
+    if bco.grep("rpcuser=") == True and bco.grep("rpcpassword=") == True:
+        return True
+    else:
+        announce(f"""Electrs wont work unless the bitcoin.conf file has a username
+    and password set. You need{cyan} 'rpcuser=someusername' {orange}and{cyan} 'rpcpassword=somepassword'{orange} 
+    in the file. Aborting.""")
         return False
