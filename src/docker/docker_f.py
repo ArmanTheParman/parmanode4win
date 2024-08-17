@@ -34,8 +34,9 @@ def uninstall_docker():
     except: pass
 
     try: 
-        subprocess.run(["powershell", "choco uninstall docker-desktop -y"])
+        subprocess.run(["powershell", "choco uninstall docker-desktop -y"], capture_output=True, check=True)
         ico.remove("docker-")
+        set_terminal()
         success("Docker has been uninstalled")
         return True
     except: return False
