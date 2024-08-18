@@ -99,13 +99,10 @@ def install_electrs():
             input("format failed")
             return False 
     
-    input("pause 5")
-
 ########################################################################################
     pco.remove("disk_number")
     pco.remove("format_disk")
 ########################################################################################
-
 
     
 #disk formatted
