@@ -6,7 +6,7 @@ from parmanode.sned_sats_f import *
 from make_electrs_config_f import *
 
 def install_electrs():
-
+    input("pause 1")
     if ico.grep("docker-end") == False:
         announce(f"""Must install Docker first. Aborting.""")
         return False
@@ -27,6 +27,7 @@ def install_electrs():
     supposed to sync to the external drive and it is not connected and mounted. Aborting.""")
         return False
 
+    input("pause 1")
     if check_pruning_off() == False: return False
     if check_server_1() == False: return False
     if check_rpc_bitcoin() == False: return False
@@ -50,6 +51,7 @@ def install_electrs():
         if electrs_db_exists == False: return False
         electrs_dir.mkdir(exist_ok=True)
 
+    input("pause 1")
 
     if drive_choice == "external" and not pco.grep("bitcoin_drive=external"):
         while True:
