@@ -63,7 +63,7 @@ def install_electrs():
                 #Path(electrs_dir="p:/electrs_db") - added in format function
             else:
                 drive_letter = announce("""Please connect the drive letter you wish to use and
-        then type in the drive letter - eg 'D'""")
+        then type in the drive letter - eg 'P'""")
                 electrs_dir=Path(f"{drive_letter}:/electrs_db")
                 if electrs_db_exists() == False: return False
                 try: 
@@ -190,7 +190,7 @@ def electrs_db_exists():
                     
 {cyan}                    d){red}    delete contents and start fresh
                     
-{cyan}                    a){bright_blue}    abort!   """)
+{cyan}                    a){bright_blue}    abort!  {orange} """)
     
     if choice.lower() == "q": sys.exit()
     if choice.lower() == "p": return False
