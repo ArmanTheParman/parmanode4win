@@ -207,16 +207,16 @@ def docker_run_electrs(db_dir=None):
 
     dot_electrs = str(HOME / ".electrs")
 
-    command = f"""docker run -d --name electrs \\
-                    -p 50005:50005 \\
-                    --restart unless-stopped \\
-                    -p 50006:50006 \\
-                    -p 9060:9060 \\
-                    -v {db_dir}:/electrs_db \\
-                    -v {dot_electrs}:/home/parman/.electrs \\
-                    electrs"""
+    command = ["powershell", "docker", "run", "-d", "--name electrs",
+                    "-p", "50005:50005",
+                    "--restart", "unless-stopped",
+                    "-p", "50006:50006",
+                    "-p", "9060:9060",
+                    "-v", "{db_dir}:/electrs_db",
+                    "-v", "{dot_electrs}:/home/parman/.electrs",
+                    "electrs"]
     
-    try: subprocess.run(["powershell", f"{command}"], check=True, capture_output=True, text=True)
+    try: subprocess.run(f"{command}", check=True, capture_output=True, text=True)
     except Exception as e:
         input(e)
         return False
