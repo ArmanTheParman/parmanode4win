@@ -110,6 +110,7 @@ def install_electrs():
     if not make_electrs_config(db_dir=f"{electrs_dir}"): return False
     input("pause 6")
     if not docker_run_electrs(db_dir=f"{electrs_dir}"): return False
+    input("pause 6.5")
     make_electrs_ssl() 
     input("pause 7")
 
