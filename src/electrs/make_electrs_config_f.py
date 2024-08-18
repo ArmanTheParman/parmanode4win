@@ -10,9 +10,6 @@ def make_electrs_config(db_dir=None):
 
     electrs_config_file = dot_electrs / "config.toml"
 
-    try: os.system(f"rm {electrs_config_file}")
-    except: pass
- 
     try:
         rpcuser = bco.grep("rpcuser=", returnline=True).split('=')[1].strip()
         rpcpassword = bco.grep("rpcpassword=", returnline=True).split('=')[1].strip()
