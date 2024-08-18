@@ -61,6 +61,11 @@ def install_electrs():
             else:
                 drive_letter = announce("""Please connect the drive letter you wish to use and
         then type in the drive letter - eg 'P'""")
+                if drive_letter.isalpha() and len(drive_letter) == 1:
+                    pass
+                else:
+                    announce("Please try again")
+                    continue
                 electrs_dir=Path(f"{drive_letter}:/electrs_db")
                 if electrs_db_exists() == False: return False
                 try: 
