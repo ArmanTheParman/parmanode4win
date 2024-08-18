@@ -47,17 +47,28 @@ def install_electrs():
         electrs_dir=Path("p:/electrs_db")
 
     if drive_choice == "external" and not pco.grep("bitcoin_drive=external"):
+        while True:
+            if yesorno(f"""Do you want to format a Parmanode drive or use an existing one?""", y=["f", "format a drive"], n=["e", "use existing"]) == True:
+                pco.add("format_disk=True")
+                break
+                #Path(electrs_dir="p:/electrs_db")
+            else:
+                drive_letter = announce("""Please connect the drive letter you wish to use and
+        then type in the drive letter - eg 'D'""")
+                electrs_dir=Path(f"{drive_letter}:/electrs_db")
+                try: 
+                    electrs_dir.mkdir(exist_ok=True)
+                    pco.add("format_disk=False")
+                    break
+                except:
+                    announce("Unable to create the directory on this drive. Try again.")
+                    continue
 
-        if yesorno(f"""Do you want to format a Parmanode drive or use an existing one?""", y=["f", "format a drive"], n=["e", "use existing"]) == True:
-            pco.add("format_disk=True")
-            #Path(electrs_dir="p:/electrs_db")
-        else:
-            drive_letter = announce("""Please type in the drive letter you wish to use, eg 'D'""")
-            electrs_dir=Path(f"{drive_letter}:/electrs_db")
-            pco.add("format_disk=False")
+ 
 
     if drive_choice == "internal":
         electrs_dir = Path(HOME / "electrs_db")
+
         
     pco.add(f"electrs_db_path={electrs_dir}")  
     pco.remove("disk_number")
