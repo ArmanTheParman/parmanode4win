@@ -66,7 +66,8 @@ tidy_up_before_starting() #currently just manages Tor installation
 
 if yesorno("""install electrs?""") == True:
     from electrs.electrs_f import *
-    install_electrs() 
+    try: install_electrs() 
+    except Exception as e: input(e)
     input("quitting")
     sys.exit()
 ########################################################################################
