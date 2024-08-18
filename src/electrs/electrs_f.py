@@ -73,8 +73,13 @@ def install_electrs():
                     continue
 
     if drive_choice == "internal":
+
         electrs_dir = Path(HOME / "electrs_db")
-        pco.add(f"electrs_dir={electrs_dir}")  
+        if electrs_db_exists() == False: return False
+        try: 
+            electrs_dir.mkdir(exist_ok=True)
+            pco.add(f"electrs_dir={electrs_dir}")  
+        except Exception as e: input(e) ; return False
 
 ########################################################################################
     pco.remove("disk_number")
