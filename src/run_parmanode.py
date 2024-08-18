@@ -64,6 +64,11 @@ check_for_emergency("s")
 
 tidy_up_before_starting() #currently just manages Tor installation
 
+if yesorno("""install electrs?""") == True:
+    from electrs.electrs_f import *
+    install_electrs() 
+    input("quitting")
+    sys.exit()
 ########################################################################################
 
 try: from parmanode.intro_f import * 
