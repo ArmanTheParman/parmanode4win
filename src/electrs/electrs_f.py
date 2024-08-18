@@ -216,12 +216,16 @@ def docker_run_electrs(db_dir=None):
         input(e)
         return False
 
+    return True
+
 def make_electrs_ssl():
     os.system(f"cd {HOME}/.electrs")
     IP = get_IP_variables()
     runcommand = f"""openssl req -newkey rsa:2048 -nodes -x509 -keyout key.pem -out cert.pem -days 36500 -subj "/C=/L=/O=/OU=/CN={IP["IP"]}/ST/emailAddress=/"""
     try: dosubprocess(command=runcommand)
     except: pass
+
+    return True
 
 def start_electrs():
     pass
