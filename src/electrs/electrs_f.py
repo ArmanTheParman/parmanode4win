@@ -45,17 +45,19 @@ def install_electrs():
 
     if drive_choice == "external" and pco.grep("bitcoin_drive=external"): 
         electrs_dir=Path("p:/electrs_db")
+        pco.add(f"electrs_dir={electrs_dir}")  
 
     if drive_choice == "external" and not pco.grep("bitcoin_drive=external"):
         while True:
             if yesorno(f"""Do you want to format a Parmanode drive or use an existing one?""", y=["f", "format a drive"], n=["e", "use existing"]) == True:
                 pco.add("format_disk=True")
                 break
-                #Path(electrs_dir="p:/electrs_db")
+                #Path(electrs_dir="p:/electrs_db") - added in format function
             else:
                 drive_letter = announce("""Please connect the drive letter you wish to use and
         then type in the drive letter - eg 'D'""")
                 electrs_dir=Path(f"{drive_letter}:/electrs_db")
+                pco.add(f"electrs_dir={electrs_dir}")  
                 try: 
                     electrs_dir.mkdir(exist_ok=True)
                     pco.add("format_disk=False")
@@ -64,16 +66,12 @@ def install_electrs():
                     announce("Unable to create the directory on this drive. Try again.")
                     continue
 
- 
-
     if drive_choice == "internal":
         electrs_dir = Path(HOME / "electrs_db")
-
-        
-    pco.add(f"electrs_db_path={electrs_dir}")  
-    pco.remove("disk_number")
+        pco.add(f"electrs_dir={electrs_dir}")  
 
 ########################################################################################
+    pco.remove("disk_number")
 
     if pco.grep("format_disk=True"):
         if not detect_drive(): input("detect drive failed") ; return False
@@ -89,8 +87,12 @@ def install_electrs():
             input("format failed")
             return False 
     
+########################################################################################
     pco.remove("disk_number")
     pco.remove("format_disk")
+########################################################################################
+
+
     
 #disk formatted
 ##UP TO HERE######################################################################################
