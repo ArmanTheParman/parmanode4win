@@ -27,7 +27,7 @@ def install_electrs():
     supposed to sync to the external drive and it is not connected and mounted. Aborting.""")
         return False
 
-    input("pause 1")
+    input("pause 2")
     if check_pruning_off() == False: return False
     if check_server_1() == False: return False
     if check_rpc_bitcoin() == False: return False
@@ -51,7 +51,7 @@ def install_electrs():
         if electrs_db_exists == False: return False
         electrs_dir.mkdir(exist_ok=True)
 
-    input("pause 1")
+    input("pause 3")
 
     if drive_choice == "external" and not pco.grep("bitcoin_drive=external"):
         while True:
@@ -74,6 +74,8 @@ def install_electrs():
                 except:
                     announce("Unable to create the directory on this drive. Try again.")
                     continue
+
+    input("pause 4")
 
     if drive_choice == "internal":
 
@@ -101,6 +103,8 @@ def install_electrs():
             input("format failed")
             return False 
     
+    input("pause 5")
+
 ########################################################################################
     pco.remove("disk_number")
     pco.remove("format_disk")
@@ -197,7 +201,7 @@ def electrs_db_exists():
     if choice.lower() == "a": return False
     if choice.lower() == "u": return True
     if choice.lower() == "d": 
-        try: delete_directory_contents(electrs_dir) ; return True
+        try: delete_directory(electrs_dir) ; electrs_dir.mkdir() ; return True
         except Exception as e: input(e) ; return True
 
 
