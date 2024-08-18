@@ -120,7 +120,7 @@ def install_electrs():
     input("pause 7")
 
 #Set permissions
-    try: subprocess.run(["powershedll", "docker exec -itu root electrs bash -c 'chown -R parman:parman /home/parman/parmanode/electrs/'"], check=True)
+    try: subprocess.run(["powershell", "docker exec -itu root electrs bash -c 'chown -R parman:parman /home/parman/parmanode/electrs/'"], check=True)
     except: pass
    
 
