@@ -161,7 +161,6 @@ def download(url, dir, silent=False):
                subprocess.run(['curl', '-LOs', url], check=True)  # other options: stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             os.chdir(initial_dir)
         except Exception as e:
-            announce("download failed")
             os.chdir(initial_dir)
             return False
         os.chdir(initial_dir)
@@ -438,7 +437,8 @@ def colour_check():
     
 
 
-def yesorno(message, h=40, Q=False):
+def yesorno(message, h=40, Q=False, y=["y", "yeah"], n=["n", "nah"]):
+
     while True:
         set_terminal(h)
         print(f"""{orange}
@@ -448,10 +448,10 @@ def yesorno(message, h=40, Q=False):
 
                 
 
-{cyan}                                y){orange}        yeah
+{cyan}                                {y[0]}){orange}       {y[1]} 
                                
 
-{cyan}                                n){orange}        nah    
+{cyan}                                {n[0]}){orange}       {n[1]} 
 
 
 ########################################################################################   
@@ -462,9 +462,9 @@ def yesorno(message, h=40, Q=False):
         if choice.upper() in {"Q", "EXIT"}: 
             if Q == True: quit()
             invalid()
-        elif choice.upper() == "Y":
+        elif choice.lower() == f"{y[0]}":
             return True
-        elif choice.upper() == "N":
+        elif choice.lower() == f"{n[0]}":
             return False
         else:
             os.system('cls')
@@ -473,7 +473,10 @@ def yesorno(message, h=40, Q=False):
 
 
 def detect_drive():
-    
+
+    pco.remove("disk_number")
+    pco.remove("format_disk")
+
     set_terminal()
     beforeo.truncate() ; aftero.truncate() ; differenceo.truncate()
     input(f"""{orange}    Please make sure the drive you want to use with Parmanode
@@ -536,7 +539,7 @@ def get_all_disks(when):
     return True
 
 
-def format_disk(disk_number, file_system='NTFS', label="parmanode"):
+def format_disk(disk_number, file_system='NTFS', label="parmanode", program="bitcoin"):
     if disk_number is None:
         return False
     
@@ -572,10 +575,16 @@ def format_disk(disk_number, file_system='NTFS', label="parmanode"):
             file.write(f"assign letter={assign_letter}\n")
        
         #make bitcoin directory  
-        bitcoin_dir = Path(f"{assign_letter}:\\bitcoin")
-        bitcoin_dir.mkdir(parents=True, exist_ok=True)
-        bitcoin_dir = str(bitcoin_dir)
-        pco.add(f"bitcoin_dir={bitcoin_dir}")
+        if program == "bitcoin":
+            bitcoin_dir = Path(f"{assign_letter}:\\bitcoin")
+            bitcoin_dir.mkdir(parents=True, exist_ok=True)
+            bitcoin_dir = str(bitcoin_dir)
+            pco.add(f"bitcoin_dir={bitcoin_dir}")
+        elif program == "electrs":
+            electrs_dir = Path(f"{assign_letter}:\\electrs_db")
+            electrs_dir.mkdir(parents=True, exist_ok=True)
+            electrs_dir = str(electrs_dir)
+            pco.add(f"electrs_dir={electrs_dir}")
 
         subprocess.run(command, check=True)
         return True
@@ -840,6 +849,25 @@ def tidy_up_before_starting():
     
 def dosubprocess(command):
     #can add shell=True if passing single string, not a list to run
-    return subprocess.run(["powershell", f"{command}"], text=True, capture_output=True).stdout
+    try: return subprocess.run(["powershell", f"{command}"], text=True, capture_output=True).stdout
+    except: return False
     #usage
     #print(dosubprocess(command))
+
+def showsubprocess(command):
+
+    # Run the command and stream the output to the console (asynchronous)
+    process = subprocess.Popen(["powershell", f"{command}"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+
+    # Stream the output line by line
+    for line in process.stdout:
+        print(line, end="")
+
+    # continue only once process is done
+    process.wait()
+
+    # Check if the command was successful
+    if process.returncode == 0:
+        return True
+    else:
+        return False
