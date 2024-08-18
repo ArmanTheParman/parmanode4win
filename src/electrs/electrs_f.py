@@ -3,6 +3,7 @@ from functions import *
 from variables import *
 from config_f import *
 from parmanode.sned_sats_f import *
+from make_electrs_config_f import *
 
 def install_electrs():
 
@@ -106,14 +107,20 @@ def install_electrs():
 
     
 #disk formatted
-##UP TO HERE######################################################################################
+##UP TO HERE###################################################################################### 
+    if not make_electrs_config(db_dir=f"{electrs_dir}"): return False
+    if not docker_run_electrs(db_dir=f"{electrs_dir}"): return False
+    make_electrs_ssl() 
+
+#Set permissions
+    try: subprocess.run(["powershedll", "docker exec -itu root electrs bash -c 'chown -R parman:parman /home/parman/parmanode/electrs/'"], check=True)
+    except: pass
    
    
-   
-   
-   
-   
-   
+
+########################################################################################   
+########################################################################################   
+########################################################################################   
     
 def uninstall_electrs():
     pass
@@ -190,3 +197,32 @@ def electrs_db_exists():
     if choice.lower() == "d": 
         try: delete_directory_contents(electrs_dir) ; return True
         except Exception as e: input(e) ; return True
+
+
+def docker_run_electrs(db_dir=None):
+
+    dot_electrs = str(HOME / ".electrs")
+
+    command = f"""docker run -d --name electrs \\
+                    -p 50005:50005 \\
+                    --restart unless-stopped \\
+                    -p 50006:50006 \\
+                    -p 9060:9060 \\
+                    -v {db_dir}:/electrs_db \\
+                    -v {dot_electrs}:/home/parman/.electrs \\
+                    electrs"""
+    
+    try: subprocess.run(["powershell", f"{command}"], check=True, capture_output=True, text=True)
+    except Exception as e:
+        input(e)
+        return False
+
+def make_electrs_ssl():
+    os.system(f"cd {HOME}/.electrs")
+    IP = get_IP_variables()
+    runcommand = f"""openssl req -newkey rsa:2048 -nodes -x509 -keyout key.pem -out cert.pem -days 36500 -subj "/C=/L=/O=/OU=/CN={IP["IP"]}/ST/emailAddress=/"""
+    try: dosubprocess(command=runcommand)
+    except: pass
+
+def start_electrs():
+    pass

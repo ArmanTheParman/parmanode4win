@@ -161,7 +161,6 @@ def download(url, dir, silent=False):
                subprocess.run(['curl', '-LOs', url], check=True)  # other options: stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             os.chdir(initial_dir)
         except Exception as e:
-            announce("download failed")
             os.chdir(initial_dir)
             return False
         os.chdir(initial_dir)
