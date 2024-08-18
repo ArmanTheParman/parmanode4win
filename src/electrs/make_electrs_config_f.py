@@ -27,4 +27,5 @@ auth = \"{rpcuser}:{rpcpassword}\""""
     
     with open(electrs_config_file, 'w') as f:
         f.write(config_text)
- 
+    
+    return True 
