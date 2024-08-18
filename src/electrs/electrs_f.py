@@ -6,7 +6,6 @@ from parmanode.sned_sats_f import *
 from electrs.make_electrs_config_f import *
 
 def install_electrs():
-    input("pause 1")
     if ico.grep("docker-end") == False:
         announce(f"""Must install Docker first. Aborting.""")
         return False
@@ -27,7 +26,6 @@ def install_electrs():
     supposed to sync to the external drive and it is not connected and mounted. Aborting.""")
         return False
 
-    input("pause 2")
     if check_pruning_off() == False: return False
     if check_server_1() == False: return False
     if check_rpc_bitcoin() == False: return False
@@ -51,7 +49,6 @@ def install_electrs():
         if electrs_db_exists == False: return False
         electrs_dir.mkdir(exist_ok=True)
 
-    input("pause 3")
 
     if drive_choice == "external" and not pco.grep("bitcoin_drive=external"):
         while True:
@@ -75,7 +72,6 @@ def install_electrs():
                     announce("Unable to create the directory on this drive. Try again.")
                     continue
 
-    input("pause 4")
 
     if drive_choice == "internal":
 
@@ -115,15 +111,17 @@ def install_electrs():
 #disk formatted
 ##UP TO HERE###################################################################################### 
     if not make_electrs_config(db_dir=f"{electrs_dir}"): return False
+    input("pause 6")
     if not docker_run_electrs(db_dir=f"{electrs_dir}"): return False
     make_electrs_ssl() 
+    input("pause 7")
 
 #Set permissions
     try: subprocess.run(["powershedll", "docker exec -itu root electrs bash -c 'chown -R parman:parman /home/parman/parmanode/electrs/'"], check=True)
     except: pass
    
-   
 
+    input("pause 8")
 ########################################################################################   
 ########################################################################################   
 ########################################################################################   
