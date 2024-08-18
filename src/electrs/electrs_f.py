@@ -210,7 +210,7 @@ def docker_run_electrs(db_dir=None):
 
     dot_electrs = str(HOME / ".electrs")
 
-    command = ["powershell", "docker", "run", "-d", "--name electrs",
+    command = ["powershell", "docker", "run", "-d", "--name", "electrs",
                     "-p", "50005:50005",
                     "--restart", "unless-stopped",
                     "-p", "50006:50006",
