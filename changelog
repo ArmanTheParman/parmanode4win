@@ -1,5 +1,6 @@
 v0.4.0
     -Docker menu added
+    -Hidden from users - spahgetti'd the yesno() function, but more flexible now
 v0.3.0
     -Tor added by default
     -Menu formatting improvements

@@ -41,6 +41,47 @@ def install_electrs():
     enter_continue()
    
     drive_choice = choose_electrs_drive()
+    global electrs_dir
+
+    if drive_choice == "external" and pco.grep("bitcoin_drive=external"): 
+        electrs_dir=Path("p:/electrs_db")
+
+    if drive_choice == "external" and not pco.grep("bitcoin_drive=external"):
+
+        if yesorno(f"""Do you want to format a Parmanode drive or use an existing one?""", y=["f", "format a drive"], n=["e", "use existing"]) == True:
+            pco.add("format_disk=True")
+            #Path(electrs_dir="p:/electrs_db")
+        else:
+            drive_letter = announce("""Please type in the drive letter you wish to use, eg 'D'""")
+            electrs_dir=Path(f"{drive_letter}:/electrs_db")
+            pco.add("format_disk=False")
+
+    if drive_choice == "internal":
+        electrs_dir = Path(HOME / "electrs_db")
+        
+    pco.add(f"electrs_db_path={electrs_dir}")  
+    pco.remove("disk_number")
+
+########################################################################################
+
+    if pco.grep("format_disk=True"):
+        if not detect_drive(): input("detect drive failed") ; return False
+
+        disk_number = pco.grep("disk_number", returnline=True)
+        try: disk_number = disk_number.split('=')[1].strip()
+        except Exception as e: input(e)
+
+        #input("before format") 
+        if not format_disk(disk_number, program="electrs"):
+            thedate = date.today().strftime("%d-%m-%y")
+            dbo.add(f"{thedate}: Bitcoin format_disk exited.")
+            input("format failed")
+            return False 
+    
+    pco.remove("disk_number")
+    pco.remove("format_disk")
+    
+#disk formatted
 ##UP TO HERE######################################################################################
    
    
@@ -89,13 +130,18 @@ def check_rpc_bitcoin():
 def choose_electrs_drive():
     
     if pco.grep("bitcoin_drive=external") == True:
-        if yesorno(f"""Would you like to store the electrs data (50 to 100Gb) on the
-    external drive together with the bitcoin block data?
-    
-    If 'no', Parmanode will use the internal drive.""") == True:
+        if yesorno(f"""Would you like to store the electrs data (50 to 100GB) on the
+    external drive together with the bitcoin block data?""", y=["e", "External drive"], n=["i", "Internal drive"]) == True:
             pco.add("electrs_drive=external")
             return "external"
         else:
             pco.add("electrs_drive=internal")
             return "internal"
+    else: #internal or custom
+        if yesorno(f"""Would you like to store electrs data (50 to 100GB) on the
+    external drive or internal drive?""", y=["e", "External drive"], n=["i", "Internal drive"]) == True:
+            pco.add("electrs_drive=external")
+            return "external"
+        else:
+            pco.add("electrs_drive=internal")
             

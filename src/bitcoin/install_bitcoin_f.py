@@ -40,14 +40,19 @@ def install_bitcoin():
         disk_number = disk_number.split('=')[1].strip()
         #input("before format") 
         if format_disk(disk_number):
-            pco.add(r"bitcoin_dir=P:\bitcoin")
-            if not Path(r"P:\bitcoin").exists(): Path(r"P:\bitcoin").mkdir(parents=True, exist_ok=True)
+            # pco.add(r"bitcoin_dir=P:\bitcoin") #REDUNDANT, REMOVED, ALREADY DONE IN FORMAT_DISK()
+            # REDUNDANT: if not Path(r"P:\bitcoin").exists(): Path(r"P:\bitcoin").mkdir(parents=True, exist_ok=True)
             #input("disk formatted")
+            pass
         else:
             thedate = date.today().strftime("%d-%m-%y")
             dbo.add(f"{thedate}: Bitcoin format_disk exited.")
             input("format failed")
             return False 
+    
+    pco.remove("disk_number")
+    pco.remove("format_disk")
+
     if not download_bitcoin(): return False #also extracts and moves, zip left, unzipped dir deleted.
     if not verify_bitcoin(): return False
     if not make_symlinks(): return False
