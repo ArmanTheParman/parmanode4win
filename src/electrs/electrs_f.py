@@ -113,11 +113,10 @@ def install_electrs():
 #disk formatted
 ##UP TO HERE###################################################################################### 
     if not make_electrs_config(db_dir=f"{electrs_dir}"): return False
-    input("pause 6")
     if not docker_run_electrs(db_dir=f"{electrs_dir}"): return False
-    input("pause 6.5")
+    try: subprocess.run(["choco", "install", "openssl"], check=True)
+    except Exception as e: input(e)
     make_electrs_ssl() 
-    input("pause 7")
 
 #Set permissions
     try: subprocess.run(["powershell", "docker exec -itu root electrs bash -c 'chown -R parman:parman /home/parman/parmanode/electrs/'"], check=True)
@@ -125,6 +124,7 @@ def install_electrs():
    
 
     input("pause 8")
+    return True
 ########################################################################################   
 ########################################################################################   
 ########################################################################################   
@@ -221,9 +221,7 @@ def docker_run_electrs(db_dir=None):
 def make_electrs_ssl():
     os.system(f"cd {HOME}/.electrs")
     IP = get_IP_variables()
-    runcommand = f"""openssl req -newkey rsa:2048 -nodes -x509 -keyout key.pem -out cert.pem -days 36500 -subj "/C=/L=/O=/OU=/CN={IP["IP"]}/ST/emailAddress=/"""
-    try: dosubprocess(command=runcommand)
-    except: pass
+    subprocess.run(["openssl", "req", "-newkey", "rsa:2048", "-nodes", "-x509", "-keyout", "key.pem", "-out", "cert.pem", "-days", "36500", "-subj", f"/C=/L=/O=/OU=/CN={IP['IP']}/ST/emailAddress=/"], check=True)
 
     return True
 
