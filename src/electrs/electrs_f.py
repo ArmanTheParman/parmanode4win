@@ -210,8 +210,8 @@ def docker_run_electrs(db_dir=None):
                     "--restart", "unless-stopped",
                     "-p", "50006:50006",
                     "-p", "9060:9060",
-                    "-v", "{db_dir}:/electrs_db",
-                    "-v", "{dot_electrs}:/home/parman/.electrs",
+                    "-v", f"{db_dir}:/electrs_db",
+                    "-v", f"{dot_electrs}:/home/parman/.electrs",
                     "electrs"]
     
     try: subprocess.run(f"{command}", check=True, capture_output=True, text=True)
