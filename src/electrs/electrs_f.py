@@ -46,9 +46,14 @@ def install_electrs():
     if drive_choice == "external" and pco.grep("bitcoin_drive=external"): 
         electrs_dir=Path("p:/electrs_db")
         pco.add(f"electrs_dir={electrs_dir}")  
+        if electrs_db_exists == False: return False
+        electrs_dir.mkdir(exist_ok=True)
+
 
     if drive_choice == "external" and not pco.grep("bitcoin_drive=external"):
         while True:
+            pco.remove("format_disk") #clear first
+            pco.remove("electrs_dir") #clear first
             if yesorno(f"""Do you want to format a Parmanode drive or use an existing one?""", y=["f", "format a drive"], n=["e", "use existing"]) == True:
                 pco.add("format_disk=True")
                 break
@@ -57,10 +62,11 @@ def install_electrs():
                 drive_letter = announce("""Please connect the drive letter you wish to use and
         then type in the drive letter - eg 'D'""")
                 electrs_dir=Path(f"{drive_letter}:/electrs_db")
-                pco.add(f"electrs_dir={electrs_dir}")  
+                if electrs_db_exists() == False: return False
                 try: 
                     electrs_dir.mkdir(exist_ok=True)
                     pco.add("format_disk=False")
+                    pco.add(f"electrs_dir={electrs_dir}")  
                     break
                 except:
                     announce("Unable to create the directory on this drive. Try again.")
@@ -158,3 +164,24 @@ def choose_electrs_drive():
         else:
             pco.add("electrs_drive=internal")
             
+
+def electrs_db_exists():
+    if not electrs_dir.exists(): return True
+
+    choice = announce(f"""Parmanode has detected that an electrs database directory already
+    exists. What would you like to do?
+    
+
+{cyan}                    u){green}    use it
+                    
+{cyan}                    d){red}    delete contents and start fresh
+                    
+{cyan}                    a){bright_blue}    abort!   """)
+    
+    if choice.lower() == "q": sys.exit()
+    if choice.lower() == "p": return False
+    if choice.lower() == "a": return False
+    if choice.lower() == "u": return True
+    if choice.lower() == "d": 
+        try: delete_directory_contents(electrs_dir) ; return True
+        except Exception as e: input(e) ; return True
