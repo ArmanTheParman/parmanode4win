@@ -42,6 +42,7 @@ def install_electrs():
    
     drive_choice = choose_electrs_drive()
     global electrs_dir
+    pco.remove(f"electrs_dir=")
 
     if drive_choice == "external" and pco.grep("bitcoin_drive=external"): 
         electrs_dir=Path("p:/electrs_db")
@@ -84,6 +85,7 @@ def install_electrs():
         if electrs_db_exists() == False: return False
         try: 
             electrs_dir.mkdir(exist_ok=True)
+            pco.remove(f"electrs_dir=")
             pco.add(f"electrs_dir={electrs_dir}")  
         except Exception as e: input(e) ; return False
 
@@ -109,26 +111,30 @@ def install_electrs():
     pco.remove("format_disk")
 ########################################################################################
 
-    
-#disk formatted
-##UP TO HERE###################################################################################### 
     if not make_electrs_config(db_dir=f"{electrs_dir}"): return False
+
     if not docker_run_electrs(db_dir=f"{electrs_dir}"): return False
-    try: subprocess.run(["choco", "install", "openssl"], check=True)
-    except Exception as e: input(e)
+
     make_electrs_ssl() 
+    input("check ssl certs")
+
+
+########################################################################################
+########################################################################################
+########################################################################################
 
 #Set permissions
     try: subprocess.run(["powershell", "docker exec -itu root electrs bash -c 'chown -R parman:parman /home/parman/parmanode/electrs/'"], check=True)
     except: pass
-   
+
+# Not finished...  start_electrs_docker()
+
 
     input("pause 8")
     return True
-########################################################################################   
-########################################################################################   
-########################################################################################   
-    
+
+#################################################################################################################################    
+
 def uninstall_electrs():
     pass
 
@@ -219,11 +225,27 @@ def docker_run_electrs(db_dir=None):
     return True
 
 def make_electrs_ssl():
+    
+    IP=get_IP_variables()
+    address=f"{IP["IP"]}"
     os.system(f"cd {HOME}/.electrs")
-    IP = get_IP_variables()
-    subprocess.run(["openssl", "req", "-newkey", "rsa:2048", "-nodes", "-x509", "-keyout", "key.pem", "-out", "cert.pem", "-days", "36500", "-subj", f"/C=/L=/O=/OU=/CN={IP['IP']}/ST/emailAddress=/"], check=True)
-
+    try:
+        subprocess.run(["docker", "exec", "-d", "electrs",
+                        "bash", "-c",
+                        f"openssl req -newkey rsa:2048 -nodes -x509 -keyout key.pem -out cert.pem -days 36500 -subj /C=/L=/O=/OU=/CN={address}/ST/emailAddress="],
+                        check=True)
+    except Exception as e: input(e)                    
     return True
 
 def start_electrs():
     pass
+
+def start_electrs_docker():
+
+    if dosubprocess("docker ps") == False:
+        announce(f"""Please make sure Docker is running and try again. Aborting.""")
+        return False
+
+    try: subprocess.run("docker ps | grep electrs", check=True, shell=True) ; return True
+    except : pass
+    
