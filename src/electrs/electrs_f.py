@@ -127,8 +127,7 @@ def install_electrs():
     try: subprocess.run(["powershell", "docker exec -itu root electrs bash -c 'chown -R parman:parman /home/parman/parmanode/electrs/'"], check=True)
     except: pass
 
-# Not finished...  start_electrs_docker()
-
+    if not start_electrs_docker(): return False
 
     input("pause 8")
     return True
@@ -248,4 +247,15 @@ def start_electrs_docker():
 
     try: subprocess.run("docker ps | grep electrs", check=True, shell=True) ; return True
     except : pass
+
+    try:
+        subprocess.run(["docker", "exec", "-d electrs", "/bin/bash -c", 
+                        "/home/parman/parmanode/electrs/target/release/electrs --conf /home/parman/.electrs/config.toml >> /home/parman/run_electrs.log 2>&1"], check=True)
+        subprocess.run(["docker", "exec", "-d electrs", "/bin/bash -c", 
+                        "/usr/bin/socat OPENSSL-LISTEN:50006,reuseaddr,fork,cert=/home/parman/.electrs/cert.pem,key=/home/parman/.electrs/key.pem,verify=0 TCP:127.0.0.1:50005"], check=True)
+    except Exception as e: input(e)
+
+    return True
+
+    
     
