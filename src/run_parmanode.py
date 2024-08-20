@@ -69,6 +69,7 @@ except Exception as e: input(e)
 
 parmanode_keys()
 input("temp patch done")
+sys.exit()
 hello()
 input("hello done")
 
