@@ -67,7 +67,7 @@ tidy_up_before_starting() #currently just manages Tor installation
 try: from electrs.electrs_f import *
 except Exception as e: input(e)
 
-parmanode_keys()
+parmanode_ssl()
 input("temp patch done")
 sys.exit()
 hello()
