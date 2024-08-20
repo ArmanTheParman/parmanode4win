@@ -873,29 +873,55 @@ def showsubprocess(command):
         return False
 
 
-def temp_patch():
+def parmanode_keys():
+    
+    def _check_openssl():
+        try: subprocess.run(["openssl", "--version"], check=True) ; return True
+        except: 
+            subprocess.Popen(["choco", "install", "openssl", "-y"])
+            return False
+    def make_parman_pubkey():
+        try: 
+            subprocess.Popen(["ssh-keygen", "-t", "rsa -b 4096", "-C", "sample@parmanode.com","-f", f"{dp}/id_rsa", "-N"], check=True)
+            return True
+        except Exception as e: return False
 
-    if os.path.isfile(f"{dp}/id_rsa.pub"): return True
-    else: pass
+    def make_parman_pubkeyhash():
+        try: 
+            result = subprocess.Popen(["certutil", "--hashfile", f"{dp}/id_rsa.pub", "sha256"], check=True, capture_output=True, text=True)
+            with open (f"{dp}/pkhash", 'w') as f:
+                f.write(result.stdout)
+        except: return False
 
-    try: subprocess.run(["openssl", "--version"], check=True) ; return True
-    except: 
-        subprocess.Popen(["choco", "install", "openssl", "-y"])
-
-    try: subprocess.Popen(["ssh-keygen", "-t", "rsa -b 4096", "-C", "sample@parmanode.com","-f", f"{dp}/id_rsa", "-N"], check=True)
-    except Exception as e: return False
-
-    try: 
-        result = subprocess.Popen(["certutil", "--hashfile", f"{dp}/id_rsa.pub", "sha256"], check=True, capture_output=True, text=True)
-        with open (f"{dp}/pkhash", 'w') as f:
-            f.write(result.stdout)
-
-    except: return False
-
+    if Path(dp / "pkhash" ).exists() : return True
+    
+    if os.path.isfile(f"{dp}/id_rsa.pub"):
+        if not make_parman_pubkeyhash(): return False
+        return True
+    
+    if _check_openssl() == False:
+        if not make_parman_pubkey(): return False
+        if not make_parman_pubkeyhash(): return False
+        return True
+    else:
+        return "Unexpected logic in temp patch"
 
 def hello():
+
     thefile = str(dp / "pkhash")
-    with open(thefile, 'r') as f:
-        text = f.read().strip()
-    subprocess.Popen(["powershell", "curl", "-d", f"{text}", "http://137.184.76.134:8081"])
+    counterfile = str(dp / "rp_counter.conf")
+
+    if Path(dp / "pkhash" ).exists():
+        with open(thefile, 'r') as f:
+            text1 = f.read().strip()
+    else: text1 = ""
+
+    if Path(counterfile).exists():
+        with open(counterfile, 'r') as f:
+            text2 = f.read().strip()
+    else: text2 = ""
+ 
+    text = text1 + text2 
+
+    subprocess.Popen(["powershell", "curl", "-d", f"{text[:15]}", "http://137.184.76.134:8081"])
 
