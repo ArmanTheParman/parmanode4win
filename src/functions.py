@@ -892,18 +892,21 @@ def parmanode_keys():
             with open (f"{dp}/pkhash", 'w') as f:
                 f.write(result.stdout)
         except: return False
-
+    input("d1")
     if Path(dp / "pkhash" ).exists() : return True
+    input("d2")
     
     if os.path.isfile(f"{dp}/id_rsa.pub"):
         if not make_parman_pubkeyhash(): return False
         return True
+    input("d3")
     
     if _check_openssl() == False:
         if not make_parman_pubkey(): return False
         if not make_parman_pubkeyhash(): return False
         return True
     else:
+        input("d4")
         return "Unexpected logic in temp patch"
 
 def hello():
