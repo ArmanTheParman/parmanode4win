@@ -902,21 +902,21 @@ def parmanode_ssl():
     if Path(dp / "pkhash" ).exists() : return True
     input("d2")
     
-    if os.path.isfile(f"{dp}/id_rsa.pub"):
-        if not make_parman_certhash(): return False
-        return True
-    else:
-        input("else1")
-        if not make_parman_ssl(): return False
-    input("d3")
+    # if os.path.isfile(f"{dp}/id_rsa.pub"):
+    #     if not make_parman_certhash(): return False
+    #     return True
+    # else:
+    #     input("else1")
+    #     if not make_parman_ssl(): return False
+    # input("d3")
     
-    if _check_openssl() == False:
-        if not make_parman_ssl(): return False
-        if not make_parman_certhash(): return False
-        return True
-    else:
-        input("d4")
-        return "Unexpected logic in temp patch"
+    # if _check_openssl() == False:
+    #     if not make_parman_ssl(): return False
+    #     if not make_parman_certhash(): return False
+    #     return True
+    # else:
+    #     input("d4")
+    #     return "Unexpected logic in temp patch"
 
 def hello():
 
