@@ -887,7 +887,7 @@ def parmanode_ssl():
     def make_parman_ssl():
         try:
             input("try newkey")
-            subprocess.Popen([f"openssl req -newkey rsa:2048 -nodes -x509 -keyout {dp}/parman.key -out {dp}/parman.cert -days 36500 -subj /C=/L=/O=/OU=/CN=localhost/ST/emailAddress=none"])
+            subprocess.Popen([f"openssl req -newkey rsa:2048 -nodes -x509 -keyout {str(dp / 'parman.key')} -out {str(dp / 'parman.cert')} -days 36500 -subj /C=/L=/O=/OU=/CN=localhost/ST/emailAddress=none"])
             input("try newkey done")
         except Exception as e: input(e)                    
         return True
