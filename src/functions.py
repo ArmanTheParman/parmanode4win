@@ -876,9 +876,13 @@ def showsubprocess(command):
 def parmanode_keys():
     
     def _check_openssl():
-        try: subprocess.run(["openssl", "--version"], check=True) ; return True
+        try: 
+            subprocess.run(["openssl", "--version"], check=True) 
+            return True
+            input("d0")
         except: 
             subprocess.Popen(["choco", "install", "openssl", "-y"])
+            input("d0f")
             return False
     def make_parman_pubkey():
         try: 
