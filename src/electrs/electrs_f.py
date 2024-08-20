@@ -132,7 +132,7 @@ def install_electrs():
 ########################################################################################
 
     if not make_electrs_config(db_dir=f"{electrs_dir}"): return False
-
+    pco.add("electrs-start")
     if not docker_run_electrs(db_dir=f"{electrs_dir}"): return False
 
     #make sure /electrs_db has permissions for "parman" user
@@ -151,6 +151,9 @@ def install_electrs():
 
     if not start_electrs_docker(): return False
 
+
+    pco.add("electrs-end")
+    success("Electrs has been installed")
     return True
 
 #################################################################################################################################    
