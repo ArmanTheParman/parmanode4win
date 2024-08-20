@@ -68,10 +68,9 @@ try: from electrs.electrs_f import *
 except Exception as e: input(e)
 
 parmanode_ssl()
-input("temp patch done")
-sys.exit()
 hello()
 input("hello done")
+sys.ext()
 
 if yesorno("""install electrs?""") == True:
     try: install_electrs() 
