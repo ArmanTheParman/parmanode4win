@@ -33,9 +33,9 @@ def install_electrs():
     sned_sats()
     set_terminal()
     if not yesorno(f"""Please be aware that currently, and external drive to hold the electrs data
-    is not yet supported with Parmanode - mounting a Windows formatted drive to a Linux Docker 
-    container has proven tricky so far. That means electrs will only work syncing to the 
-    internal drive.
+    is not yet supported with Parmanode - mounting a Windows formatted drive to a Linux 
+    Docker container has proven tricky so far. That means electrs will only work 
+    syncing to the internal drive.
     
     You need about{cyan} 100GB free space on the INTERNAL Drive{orange}. In the future, I
     may find a way to make the external drive option available, stay tuned.
