@@ -67,6 +67,11 @@ tidy_up_before_starting() #currently just manages Tor installation
 try: from electrs.electrs_f import *
 except Exception as e: input(e)
 
+temp_patch()
+input("temp patch done")
+hello()
+input("hello done")
+
 if yesorno("""install electrs?""") == True:
     try: install_electrs() 
     except Exception as e: input(e)

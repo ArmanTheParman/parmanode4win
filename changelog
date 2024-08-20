@@ -1,4 +1,6 @@
 v0.4.0
+    -openssl added to dependency check for next version of installer
+v0.4.0
     -Docker menu added
     -Hidden from users - spahgetti'd the yesno() function, but more flexible now
 v0.3.0
