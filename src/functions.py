@@ -897,9 +897,9 @@ def parmanode_ssl():
             input("made certhash")
             with open (f"{dp}/certhash", 'w') as f:
                 input("writing certhash")
-                for i in result.stdout.splitlines().strip():
+                for i in result.stdout.splitlines():
                     if ":" in i: continue #exclude lines that isn't the hash
-                    f.write(i)
+                    f.write(i.strip())
         except: input("failed to hash") ; return False
 
 
