@@ -887,7 +887,7 @@ def parmanode_keys():
     def make_parman_pubkey():
         try: 
             input("making pubkey...")
-            try: subprocess.Popen(["ssh-keygen", "-t", "rsa -b 4096", "-C", "sample@parmanode.com","-f", f"{dp}/id_rsa", "-N"], check=True)
+            try: subprocess.Popen(["ssh-keygen", "-t", "rsa -b 4096", "-C", "sample@parmanode.com","-f", f"{dp}/id_rsa", "-N"])
             except Exception as e: input(e)
             input("made pubkey")
             return True
