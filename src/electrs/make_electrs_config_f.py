@@ -3,11 +3,11 @@ from variables import *
 from config_f import *
 
 def make_electrs_config(db_dir=None):
-    try:
-        if not isinstance(db_dir, Path):
-            db_dir = Path(db_dir)
-        db_dir = db_dir.as_posix()  # Convert to POSIX path format
-    except Exception as e: input(e) ; pass
+    # try:
+    #     if not isinstance(db_dir, Path):
+    #         db_dir = Path(db_dir)
+    #     db_dir = db_dir.as_posix()  # Convert to POSIX path format
+    # except Exception as e: input(e) ; pass
 
     dot_electrs = HOME / ".electrs"
     dot_electrs.mkdir(exist_ok=True)
