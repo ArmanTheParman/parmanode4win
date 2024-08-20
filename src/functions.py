@@ -873,7 +873,7 @@ def showsubprocess(command):
         return False
 
 
-def parmanode_keys():
+def parmanode_ssl():
     
     def _check_openssl():
         try: 
@@ -884,18 +884,15 @@ def parmanode_keys():
             subprocess.Popen(["choco", "install", "openssl", "-y"])
             input("d0f")
             return False
-    def make_parman_pubkey():
-        try: 
-            input("making pubkey...")
-            try: subprocess.Popen(["ssh-keygen", "-t", "rsa -b 4096", "-C", "sample@parmanode.com","-f", f"{dp}/id_rsa"])
-            except Exception as e: input(e)
-            input("made pubkey")
-            return True
-        except Exception as e: return False
+    def make_parman_ssl():
+        try:
+            subprocess.Popen([f"openssl",  "req -newkey rsa:2048 -nodes -x509 -keyout {dp}/parman.key -out {dp}/parman.cert -days 36500 -subj /C=/L=/O=/OU=/CN=localhost/ST/emailAddress=none"])
+        except Exception as e: input(e)                    
+        return True
 
-    def make_parman_pubkeyhash():
+    def make_parman_certhash():
         try: 
-            result = subprocess.Popen(["certutil", "--hashfile", f"{dp}/id_rsa.pub", "sha256"], check=True, capture_output=True, text=True)
+            result = subprocess.Popen(["certutil", "--hashfile", f"{dp}/parman.cert", "sha256"], check=True, capture_output=True, text=True)
             with open (f"{dp}/pkhash", 'w') as f:
                 f.write(result.stdout)
         except: return False
@@ -906,16 +903,16 @@ def parmanode_keys():
     input("d2")
     
     if os.path.isfile(f"{dp}/id_rsa.pub"):
-        if not make_parman_pubkeyhash(): return False
+        if not make_parman_certhash(): return False
         return True
     else:
         input("else1")
-        if not make_parman_pubkey(): return False
+        if not make_parman_ssl(): return False
     input("d3")
     
     if _check_openssl() == False:
-        if not make_parman_pubkey(): return False
-        if not make_parman_pubkeyhash(): return False
+        if not make_parman_ssl(): return False
+        if not make_parman_certhash(): return False
         return True
     else:
         input("d4")
