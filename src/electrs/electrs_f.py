@@ -133,8 +133,6 @@ def install_electrs():
     #make sure /electrs_db has permissions for "parman" user
 
     make_electrs_ssl() 
-    input("check ssl certs")
-
 
 ########################################################################################
 ########################################################################################
@@ -148,7 +146,6 @@ def install_electrs():
 
     if not start_electrs_docker(): return False
 
-    input("pause 8")
     return True
 
 #################################################################################################################################    
