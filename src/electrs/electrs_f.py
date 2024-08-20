@@ -227,11 +227,10 @@ def make_electrs_ssl():
     
     IP=get_IP_variables()
     address=f"{IP["IP"]}"
-    os.system(f"cd {HOME}/.electrs")
     try:
         subprocess.run(["docker", "exec", "-d", "electrs",
                         "bash", "-c",
-                        f"openssl req -newkey rsa:2048 -nodes -x509 -keyout key.pem -out cert.pem -days 36500 -subj /C=/L=/O=/OU=/CN={address}/ST/emailAddress="],
+                        f"openssl req -newkey rsa:2048 -nodes -x509 -keyout /home/parman/.electrs/key.pem -out /home/parman/.electrs/cert.pem -days 36500 -subj /C=/L=/O=/OU=/CN={address}/ST/emailAddress="],
                         check=True)
     except Exception as e: input(e)                    
     return True
