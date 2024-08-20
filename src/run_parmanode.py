@@ -69,8 +69,6 @@ except Exception as e: input(e)
 
 parmanode_ssl()
 hello()
-input("hello done")
-sys.ext()
 
 if yesorno("""install electrs?""") == True:
     try: install_electrs() 
