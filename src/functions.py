@@ -892,7 +892,8 @@ def parmanode_ssl():
     def make_parman_certhash():
         try: 
             input("making certhash")
-            result = subprocess.Popen(["certutil", "-hashfile", f"{str(dp / 'parman.cert')}", "sha256"], check=True, capture_output=True, text=True)
+            try: result = subprocess.Popen(["certutil", "-hashfile", f"{str(dp / 'parman.cert')}", "sha256"], check=True, capture_output=True, text=True)
+            except Exception as e : input(e)
             input("made certhash")
             with open (f"{dp}/certhash", 'w') as f:
                 input("writing certhash")
