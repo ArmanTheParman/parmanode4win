@@ -896,6 +896,8 @@ def parmanode_keys():
             with open (f"{dp}/pkhash", 'w') as f:
                 f.write(result.stdout)
         except: return False
+
+
     input("d1")
     if Path(dp / "pkhash" ).exists() : return True
     input("d2")
@@ -903,6 +905,8 @@ def parmanode_keys():
     if os.path.isfile(f"{dp}/id_rsa.pub"):
         if not make_parman_pubkeyhash(): return False
         return True
+    else:
+        if not make_parman_pubkey(): return False
     input("d3")
     
     if _check_openssl() == False:
