@@ -902,10 +902,10 @@ def parmanode_ssl():
 
 
     input("d1")
-    if Path(dp / "pkhash" ).exists() : return True
+    if Path(dp / "parman.cert" ).exists() : return True
     input("d2")
     
-    if os.path.isfile(f"{dp}/id_rsa.pub"):
+    if os.path.isfile(f"{dp}/parman.cert"):
         if not make_parman_certhash(): return False
         return True
     else:
