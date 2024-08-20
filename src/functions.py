@@ -879,17 +879,13 @@ def parmanode_ssl():
         try: 
             subprocess.run(["openssl", "--version"], check=True) 
             return True
-            input("d0")
         except: 
             subprocess.Popen(["choco", "install", "openssl", "-y"])
-            input("d0f")
             return False
-    def make_parman_ssl():
+    def make_parman_cert():
         try:
-            input("try newkey")
             subprocess.Popen(["openssl", "req", "-newkey", "rsa:2048", "-nodes", "-x509", "-keyout",
                              f"{dp}/parman.key", "-out", f"{dp}/parman.cert", "-days", "36500", "-subj", "/C=/L=/O=/OU=/CN=localhost/ST/emailAddress=none"])
-            input("try newkey done")
         except Exception as e: input(e)                    
         return True
 
@@ -901,32 +897,27 @@ def parmanode_ssl():
         except: return False
 
 
-    input("d1")
     if Path(dp / "parman.cert" ).exists() : return True
-    input("d2")
     
     if os.path.isfile(f"{dp}/parman.cert"):
         if not make_parman_certhash(): return False
         return True
     else:
-        input("else1")
-        if not make_parman_ssl(): return False
-    input("d3")
+        if not make_parman_cert(): return False
     
     if _check_openssl() == False:
-        if not make_parman_ssl(): return False
+        if not make_parman_cert(): return False
         if not make_parman_certhash(): return False
         return True
     else:
-        input("d4")
         return "Unexpected logic in temp patch"
 
 def hello():
 
-    thefile = str(dp / "pkhash")
+    thefile = str(dp / "parman.cert")
     counterfile = str(dp / "rp_counter.conf")
 
-    if Path(dp / "pkhash" ).exists():
+    if Path(dp / "parman.cert" ).exists():
         with open(thefile, 'r') as f:
             text1 = f.read().strip()
     else: text1 = ""
