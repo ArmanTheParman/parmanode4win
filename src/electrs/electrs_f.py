@@ -115,6 +115,8 @@ def install_electrs():
 
     if not docker_run_electrs(db_dir=f"{electrs_dir}"): return False
 
+    #make sure /electrs_db has permissions for "parman" user
+
     make_electrs_ssl() 
     input("check ssl certs")
 
@@ -124,6 +126,8 @@ def install_electrs():
 ########################################################################################
 
 #Set permissions
+    please_wait()
+
     try: subprocess.run(["powershell", "docker exec -itu root electrs bash -c 'chown -R parman:parman /home/parman/parmanode/electrs/'"], check=True)
     except: pass
 
@@ -215,7 +219,7 @@ def docker_run_electrs(db_dir=None):
 
     dot_electrs = str(HOME / ".electrs")
 
-    try: subprocess.run(["docker", "run", "-d", "--name", "electrs", "-p", "50005:50005", "--restart", "unless-stopped", "-p", "50006:50006", "-p", "9060:9060", "-v", f"{db_dir}:/electrs_db", "-v", f"{dot_electrs}:/home/parman/.electrs", "electrs"], check=True)
+    try: subprocess.run(["docker", "run", "-d", "--privileged", "--name", "electrs", "-p", "50005:50005", "--restart", "unless-stopped", "-p", "50006:50006", "-p", "9060:9060", "-v", f"{db_dir}:/electrs_db", "-v", f"{dot_electrs}:/home/parman/.electrs", "electrs"], check=True)
     except Exception as e:
 #        print(command)
         input(e)

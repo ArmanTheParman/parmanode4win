@@ -622,16 +622,15 @@ def verify_bitcoin():
     try:
         result = subprocess.run(["gpg", "--keyserver", "hkps://keyserver.ubuntu.com", "--recv-keys", "E777299FC265DD04793070EB944D35F9AC3DB76A"], check=True)
     except Exception as e:
-        input(e)
+        pass 
     try:
         checkkey = subprocess.run(["gpg", "--list-keys", "E777299FC265DD04793070EB944D35F9AC3DB76A"], capture_output=True, text=True)
     except Exception as e:
-        input(e)
         pass
     try:
         print(checkkey.stdout)
     except Exception as e:
-        input(e)
+        pass
 
 
     if "E777299FC265DD04793070EB944D35F9AC3DB76A" in checkkey.stdout:
