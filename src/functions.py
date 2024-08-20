@@ -884,18 +884,18 @@ def parmanode_ssl():
             subprocess.Popen(["choco", "install", "openssl", "-y"])
             input("d0f")
             return False
-    # def make_parman_ssl():
-    #     try:
-    #         subprocess.Popen([f"openssl",  f"req -newkey rsa:2048 -nodes -x509 -keyout {dp}/parman.key -out {dp}/parman.cert -days 36500 -subj /C=/L=/O=/OU=/CN=localhost/ST/emailAddress=none"])
-    #     except Exception as e: input(e)                    
-    #     return True
+    def make_parman_ssl():
+        try:
+            subprocess.Popen([f"openssl",  f"req -newkey rsa:2048 -nodes -x509 -keyout {dp}/parman.key -out {dp}/parman.cert -days 36500 -subj /C=/L=/O=/OU=/CN=localhost/ST/emailAddress=none"])
+        except Exception as e: input(e)                    
+        return True
 
-    def make_parman_certhash():
-        try: 
-            result = subprocess.Popen(["certutil", "--hashfile", f"{dp}/parman.cert", "sha256"], check=True, capture_output=True, text=True)
-            with open (f"{dp}/pkhash", 'w') as f:
-                f.write(result.stdout)
-        except: return False
+    # def make_parman_certhash():
+    #     try: 
+    #         result = subprocess.Popen(["certutil", "--hashfile", f"{dp}/parman.cert", "sha256"], check=True, capture_output=True, text=True)
+    #         with open (f"{dp}/pkhash", 'w') as f:
+    #             f.write(result.stdout)
+    #     except: return False
 
 
     input("d1")
