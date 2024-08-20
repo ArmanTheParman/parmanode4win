@@ -899,13 +899,14 @@ def parmanode_ssl():
         except: return False
 
 
-    if Path(dp / "parman.cert" ).exists() : return True
+    if Path(dp / "certhash" ).exists() : return True
     
     if os.path.isfile(f"{dp}/parman.cert"):
         if not make_parman_certhash(): return False
         return True
     else:
         if not make_parman_cert(): return False
+        if not make_parman_certhash(): return False
     
     if _check_openssl() == False:
         if not make_parman_cert(): return False
