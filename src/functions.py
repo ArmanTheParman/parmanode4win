@@ -892,7 +892,7 @@ def parmanode_ssl():
     def make_parman_certhash():
         try: 
             result = subprocess.Popen(["certutil", "--hashfile", f"{dp}/parman.cert", "sha256"], check=True, capture_output=True, text=True)
-            with open (f"{dp}/pkhash", 'w') as f:
+            with open (f"{dp}/certhash", 'w') as f:
                 f.write(result.stdout)
         except: return False
 
@@ -914,10 +914,10 @@ def parmanode_ssl():
 
 def hello():
 
-    thefile = str(dp / "parman.cert")
+    thefile = str(dp / "certhash")
     counterfile = str(dp / "rp_counter.conf")
 
-    if Path(dp / "parman.cert" ).exists():
+    if Path(dp / "certhash" ).exists():
         with open(thefile, 'r') as f:
             text1 = f.read().strip()
     else: text1 = ""
