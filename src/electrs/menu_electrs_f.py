@@ -38,28 +38,28 @@ def menu_electrs():
 ########################################################################################
 """)
 
-        choice = choose("xpmq")
-        set_terminal()
+       choice = choose("xpmq")
+       set_terminal()
 
-        if choice.upper() in {"Q", "EXIT"}: 
-            sys.exit()
-        elif choice.upper() == "P":
-            return True
-        elif choice.upper() == "M":
-            return True
-        elif choice.lower() == "start":
-            if iselectrsrunning == True: continue
-            else:
-                start_electrs()
-        elif choice.lower() == "stop":
-            set_terminal()
-            stop_electrs()
-            continue 
-        elif choice.lower() == "ec":
-            file = HOME / ".electrs" / "config.toml"
-            os.system(f"notepad {str(file)}")
-        else:
-            invalid()
+       if choice.upper() in {"Q", "EXIT"}: 
+           sys.exit()
+       elif choice.upper() == "P":
+           return True
+       elif choice.upper() == "M":
+           return True
+       elif choice.lower() == "start":
+           if iselectrsrunning == True: continue
+           else:
+               start_electrs()
+       elif choice.lower() == "stop":
+           set_terminal()
+           stop_electrs()
+           continue 
+       elif choice.lower() == "ec":
+           file = HOME / ".electrs" / "config.toml"
+           os.system(f"notepad {str(file)}")
+       else:
+           invalid()
 
 
 
