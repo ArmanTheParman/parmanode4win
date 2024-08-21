@@ -58,7 +58,7 @@ def menu_add():
             dockermenu = False
 
         if not ico.grep("electrs-"):
-            add_electrs= f"#                  {green} (ers){orange}            Electrs {grey}(requires Docker){orange}                         #"
+            add_electrs= f"#                  {green} (ers){orange}         Electrs {grey}(requires Docker){orange}                            #"
             electrsmenu = True
             available.append(add_electrs)
         else: 
