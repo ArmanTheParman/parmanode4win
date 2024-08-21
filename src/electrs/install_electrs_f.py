@@ -4,6 +4,7 @@ from variables import *
 from config_f import *
 from parmanode.sned_sats_f import *
 from electrs.make_electrs_config_f import *
+from electrs.electrs_start_stop_f import *
 electrs_dir = HOME / "electrs_db"
 
 def install_electrs():
