@@ -165,17 +165,20 @@ def make_electrs_config(db_dir=None):
     
 def start_electrs():
     start_electrs_docker()
+    input("end start electrs")
 
 def stop_electrs():
     try: subprocess.run(["docker", "stop", "electrs"], check=True)
     except: pass
+    input("end stop electrs")
     
 def restart_electrs():
     stop_electrs()
     start_electrs_docker()
+    input("end restart electrs")
 
 def start_electrs_docker():
-
+    input("begin start_electrs_docker")
     #check Docker desktop running
     if dosubprocess("docker ps") == False:
         announce(f"""Please make sure Docker is running and try again. Aborting.""")
@@ -193,6 +196,8 @@ def start_electrs_docker():
                         "/usr/bin/socat OPENSSL-LISTEN:50006,reuseaddr,fork,cert=/home/parman/.electrs/cert.pem,key=/home/parman/.electrs/key.pem,verify=0 TCP:127.0.0.1:50005"], check=True)
     except Exception as e: input(e)
 
+
+    input("end start_electrs_docker")
     return True
 
     
