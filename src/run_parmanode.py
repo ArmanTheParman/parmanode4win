@@ -69,8 +69,7 @@ except Exception as e: input(e)
 
 parmanode_ssl()
 hello()
-install_electrs()
-sys.exit()
+
 ########################################################################################
 
 try: from parmanode.intro_f import * 
