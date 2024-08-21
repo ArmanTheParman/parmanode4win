@@ -8,63 +8,62 @@ from docker.docker_f import *
 from electrs.install_electrs_f import *
     
 def menu_add():
-    pass
 
-#     while True:
-#         try: del available
-#         except: pass
-#         available=[] 
+    while True:
+        try: del available
+        except: pass
+        available=[] 
         
-#         if not ico.grep("bitcoin-"):
-#             add_bitcoin = f"#                  {green} (b){orange}            Bitcoin Core                                        #"
-#             bitcoinmenu = True
-#             available.append(add_bitcoin)
-#         else: 
-#             bitcoinmenu = False
+        if not ico.grep("bitcoin-"):
+            add_bitcoin = f"#                  {green} (b){orange}            Bitcoin Core                                        #"
+            bitcoinmenu = True
+            available.append(add_bitcoin)
+        else: 
+            bitcoinmenu = False
 
-#         if not ico.grep("sparrow-"):
-#             add_sparrow = f"#                  {green} (s){orange}            Sparrow Bitcoin Wallet                              #"
-#             sparrowmenu = True
-#             available.append(add_sparrow)
-#         else: 
-#             sparrowmenu = False
+        if not ico.grep("sparrow-"):
+            add_sparrow = f"#                  {green} (s){orange}            Sparrow Bitcoin Wallet                              #"
+            sparrowmenu = True
+            available.append(add_sparrow)
+        else: 
+            sparrowmenu = False
 
-#         if not ico.grep("electrum-"):
-#             add_electrum = f"#                  {green} (e){orange}            Electrum Bitcoin Wallet                             #"
-#             electrummenu = True
-#             available.append(add_electrum)
-#         else: 
-#             electrummenu = False
+        if not ico.grep("electrum-"):
+            add_electrum = f"#                  {green} (e){orange}            Electrum Bitcoin Wallet                             #"
+            electrummenu = True
+            available.append(add_electrum)
+        else: 
+            electrummenu = False
 
-#         if not ico.grep("tor-"):
-#             add_tor = f"#                  {green} (t){orange}            Tor                                                 #"
-#             tormenu = True
-#             available.append(add_tor)
-#         else: 
-#             tormenu = False
+        if not ico.grep("tor-"):
+            add_tor = f"#                  {green} (t){orange}            Tor                                                 #"
+            tormenu = True
+            available.append(add_tor)
+        else: 
+            tormenu = False
 
-#         if not ico.grep("wsl-"):
-#             add_wsl = f"#                  {green} (w){orange}            WSL{grey} (requires restart){orange}                              #"
-#             wslmenu = True
-#             available.append(add_wsl)
-#         else: 
-#             wslmenu = False
+        if not ico.grep("wsl-"):
+            add_wsl = f"#                  {green} (w){orange}            WSL{grey} (requires restart){orange}                              #"
+            wslmenu = True
+            available.append(add_wsl)
+        else: 
+            wslmenu = False
 
-#         if not ico.grep("docker-"):
-#             add_docker= f"#                  {green} (d){orange}            Docker Desktop {grey}(requires WSL){orange}                       #"
-#             dockermenu = True
-#             available.append(add_docker)
-#         else: 
-#             dockermenu = False
+        if not ico.grep("docker-"):
+            add_docker= f"#                  {green} (d){orange}            Docker Desktop {grey}(requires WSL){orange}                       #"
+            dockermenu = True
+            available.append(add_docker)
+        else: 
+            dockermenu = False
 
-#         if not ico.grep("electrs-"):
-#             add_electrs= f"#                  {green} (ers){orange}          Electrs {grey}(requires Docker){orange}                           #"
-#             electrsmenu = True
-#             available.append(add_electrs)
-#         else: 
-#             electrsmenu = False
+        if not ico.grep("electrs-"):
+            add_electrs= f"#                  {green} (ers){orange}          Electrs {grey}(requires Docker){orange}                           #"
+            electrsmenu = True
+            available.append(add_electrs)
+        else: 
+            electrsmenu = False
 
-#         set_terminal(h=38)
+        set_terminal(h=38)
 #         print(f"""
 # ########################################################################################
 # #                                                                                      #
