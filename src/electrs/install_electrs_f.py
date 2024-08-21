@@ -194,6 +194,8 @@ def start_electrs_docker():
     #start processes in the container
     try:
         subprocess.run(["docker", "exec", "-du", "root", "electrs", "/bin/bash -c /home/parman/parmanode/electrs/target/release/electrs --conf /home/parman/.electrs/config.toml >> /home/parman/run_electrs.log 2>&1"], check=True)
+    except Exception as e: input(e)
+    try:
         subprocess.run(["docker", "exec", "-d electrs", "/bin/bash -c /usr/bin/socat OPENSSL-LISTEN:50006,reuseaddr,fork,cert=/home/parman/.electrs/cert.pem,key=/home/parman/.electrs/key.pem,verify=0 TCP:127.0.0.1:50005"], check=True)
     except Exception as e: input(e)
 
