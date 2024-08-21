@@ -64,29 +64,29 @@ def menu_add():
             electrsmenu = False
 
         set_terminal(h=38)
-#         print(f"""
-# ########################################################################################
-# #                                                                                      #
-# #    P A R M A N O D E --> Main Menu -->{cyan} Install Menu {orange}                                 #
-# #                                                                                      #
-# ########################################################################################
-# #                                                                                      #
-# #                                                                                      #
-# #                                                                                      #""")
+        print(f"""
+########################################################################################
+#                                                                                      #
+#    P A R M A N O D E --> Main Menu -->{cyan} Install Menu {orange}                                 #
+#                                                                                      #
+########################################################################################
+#                                                                                      #
+#                                                                                      #
+#                                                                                      #""")
 
-#         for i in available:
-#             print(f"{i}")
-#             print("#                                                                                      #")
+        for i in available:
+            print(f"{i}")
+            print("#                                                                                      #")
 
-#         print(f"""#                                                                                      #
-# #                                                                                      #
-# #                                   {red}          ... more programs soon {orange}                  #
-# #                                                                                      #
-# ########################################################################################
-# """)
-#         choice = choose("xpmq")
-#         if choice in {"q", "Q", "Quit", "exit", "EXIT"}: 
-#             sys.exit()
+        print(f"""#                                                                                      #
+#                                                                                      #
+#                                   {red}          ... more programs soon {orange}                  #
+#                                                                                      #
+########################################################################################
+""")
+        choice = choose("xpmq")
+        if choice in {"q", "Q", "Quit", "exit", "EXIT"}: 
+            sys.exit()
 #         elif choice in {"p", "P"}:
 #             return True
 #         elif choice in {"m", "M"}:
