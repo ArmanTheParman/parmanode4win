@@ -118,7 +118,9 @@ def menu_add():
             return True
         elif choice.lower() == "ers":
             if electrsmenu == False : continue
-            if not install_electrs(): return False
+            try: 
+                if not install_electrs(): return False
+            except Exception as e: input(e)
             return True
         else:
             invalid()
