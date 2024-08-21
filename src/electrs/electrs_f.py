@@ -7,40 +7,6 @@ from electrs.make_electrs_config_f import *
 
 electrs_dir = HOME / "electrs_db"
 
-
-def check_pruning_off():
-    try: 
-        prunevalue = bco.grep("purne=", returnline=True).split('=')[1].strip()
-    except: 
-        return True 
-
-    if announce(f"""Parmanode has detected you are using pruning with Bitcoin.
-    Electrum Server won't work if Bitcoin is pruned. You'll have to completely start 
-    bitcoin sync again without pruning to use Electrs. Sorry. If you think this is 
-    wrong and want to proceed, type{cyan} 'yolo'{orange} before hitting{cyan} <enter>{orange}""") == "yolo":
-        return True
-    else:
-        return False
-
-
-def check_server_1():
-    if bco.grep("server=1") == True: 
-        return True
-    else:
-        announce(f"""{cyan}'server=1'{orange} needs to be included in the bitcoin.conf 
-    file. Please do that, restart Bitcoin, and try again. Note, this will
-    resync the index which will take a long time. Aborting.""")
-        return False
-
-def check_rpc_bitcoin():
-    if bco.grep("rpcuser=") == True and bco.grep("rpcpassword=") == True:
-        return True
-    else:
-        announce(f"""Electrs wont work unless the bitcoin.conf file has a username
-    and password set. You need{cyan} 'rpcuser=someusername' {orange}and{cyan} 'rpcpassword=somepassword'{orange} 
-    in the file. Aborting.""")
-        return False
-
 def choose_electrs_drive():
     
     if pco.grep("bitcoin_drive=external") == True:
