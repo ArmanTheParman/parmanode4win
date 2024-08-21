@@ -57,7 +57,6 @@ def menu_electrs():
        elif choice.lower() == "stop":
            set_terminal()
            stop_electrs()
-           input("after stop")
            continue 
        elif choice.lower() == "ec":
            file = HOME / ".electrs" / "config.toml"
