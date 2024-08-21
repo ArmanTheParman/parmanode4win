@@ -20,7 +20,7 @@ def uninstall_electrs():
     delete_directory(str(HOME / '.electrs'))
 
     if yesorno(f"If you want to clean up space, you can delete the electrs database.") == True:
-        try: delete_directory(str(HOME / 'electrs_db'))
+        try: delete_directory(electrs_db)
         except: pass
     
     pco.remove("electrs")

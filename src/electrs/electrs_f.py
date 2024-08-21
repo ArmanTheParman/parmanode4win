@@ -1,10 +1,7 @@
-import subprocess, os
 from functions import *
 from variables import *
 from config_f import *
 from electrs.make_electrs_config_f import *
-
-electrs_dir = HOME / "electrs_db"
 
 def choose_electrs_drive():
     

@@ -89,3 +89,8 @@ b = Path(default_bitcoin_data_dir)
 bc = b / "bitcoin.conf"
 if bc.exists() == True:
     bco = config(bc)
+
+# Electrs defaults
+electrs_dir = HOME / "electrs_db"
+electrs_db = str(electrs_dir)
+dot_electrs = str(HOME / ".electrs")

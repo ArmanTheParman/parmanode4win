@@ -5,7 +5,6 @@ from config_f import *
 from parmanode.sned_sats_f import *
 from electrs.make_electrs_config_f import *
 from electrs.electrs_start_stop_f import *
-electrs_dir = HOME / "electrs_db"
 
 def install_electrs():
     if ico.grep("docker-end") == False:
@@ -132,8 +131,9 @@ def install_electrs():
 ########################################################################################
 
     if not make_electrs_config(db_dir=f"{electrs_dir}"): return False
+
     ico.add("electrs-start")
-    if not docker_run_electrs(db_dir=f"{electrs_dir}"): return False
+    if not docker_run_electrs(): return False #change function later to pass db dir variable
 
     #make sure /electrs_db has permissions for "parman" user
 
@@ -191,12 +191,9 @@ def check_rpc_bitcoin():
     in the file. Aborting.""")
         return False
 
-def docker_run_electrs(db_dir=None):
+def docker_run_electrs():
 
-    dot_electrs = str(HOME / ".electrs")
-    db_dir = str(electrs_dir)
-
-    try: subprocess.run(["docker", "run", "-d", "--privileged", "--name", "electrs", "-p", "50005:50005", "--restart", "unless-stopped", "-p", "50006:50006", "-p", "9060:9060", "-v", f"{db_dir}:/electrs_db", "-v", f"{dot_electrs}:/home/parman/.electrs", "electrs"], check=True)
+    try: subprocess.run(["docker", "run", "-d", "--privileged", "--name", "electrs", "-p", "50005:50005", "--restart", "unless-stopped", "-p", "50006:50006", "-p", "9060:9060", "-v", f"{electrs_dir}:/electrs_db", "-v", f"{dot_electrs}:/home/parman/.electrs", "electrs"], check=True)
     except Exception as e:
 #        print(command)
         input(e)
