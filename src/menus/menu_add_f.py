@@ -115,11 +115,11 @@ def menu_add():
 #             if dockermenu == False : continue
 #             if not install_docker(): return False
 #             return True
-#         elif choice.lower() == "ers":
-#             if electrsmenu == False : continue
-#             try: 
-#                 install_electrs()
-#             except Exception as e: input(e)
-#             return True
-#         else:
-#             invalid()
+        elif choice.lower() == "ers":
+            if electrsmenu == False : continue
+            try: 
+                install_electrs()
+            except Exception as e: input(e)
+            return True
+        else:
+            invalid()
