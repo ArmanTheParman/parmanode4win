@@ -26,7 +26,7 @@ def install_electrs():
 
 
     if yesorno(f"""Install electrs? This will use Docker to compile the program in a
-    container - it can a while.""") == False: return False
+    container - it can take a while.""") == False: return False
 
     if bc.exists() == False:
         announce("""The bitcoin.conf file could not be detected. Can happen if Bitcoin is
