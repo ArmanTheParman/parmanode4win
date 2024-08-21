@@ -87,18 +87,18 @@ def menu_add():
         choice = choose("xpmq")
         if choice in {"q", "Q", "Quit", "exit", "EXIT"}: 
             sys.exit()
-#         elif choice in {"p", "P"}:
-#             return True
-#         elif choice in {"m", "M"}:
-#             return True 
-#         elif choice in {"b", "B", "Bitcoin", "bitcoin"}:
-#             if bitcoinmenu == False : continue
-#             if not install_bitcoin(): return False
-#             return True
-#         elif choice.lower() == "s":
-#             if sparrowmenu == False : continue
-#             if not install_sparrow(): return False
-#             return True
+        elif choice in {"p", "P"}:
+            return True
+        elif choice in {"m", "M"}:
+            return True 
+        elif choice in {"b", "B", "Bitcoin", "bitcoin"}:
+            if bitcoinmenu == False : continue
+            if not install_bitcoin(): return False
+            return True
+        elif choice.lower() == "s":
+            if sparrowmenu == False : continue
+            if not install_sparrow(): return False
+            return True
 #         elif choice.lower() == "e":
 #             if electrummenu == False : continue
 #             if not install_electrum(): return False
