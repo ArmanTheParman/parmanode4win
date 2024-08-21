@@ -7,7 +7,8 @@ from wsl.wsl_f import *
 from docker.docker_f import *
 from electrs.install_electrs_f import *
     
-# def menu_add():
+def menu_add():
+    pass
 
 #     while True:
 #         try: del available
