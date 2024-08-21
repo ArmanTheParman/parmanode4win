@@ -64,9 +64,6 @@ check_for_emergency("s")
 
 tidy_up_before_starting() #currently just manages Tor installation
 
-try: from electrs.electrs_f import *
-except Exception as e: input(e)
-
 parmanode_ssl()
 hello()
 
