@@ -20,8 +20,7 @@ def install_electrs():
         return False
 
     if is_process_running("bitcoind.exe") == False:
-        announce(f"""Please make sure Bitcoin is running first, give it minute 
-    to think and compose itself, then try again.""") 
+        announce(f"""Please make sure Bitcoin is running first.""") 
         return False
 
 
