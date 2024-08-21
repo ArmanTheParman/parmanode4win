@@ -5,7 +5,7 @@ from sparrow.menu_sparrow_f import *
 from tor.menu_tor_f import *
 from docker.menu_docker_f import *
 from electrum.menu_electrum_f import *
-from electrs.menu_electrs_f import *
+from electrs.install_electrs_f import *
 from config_f import *
 
 def menu_use():

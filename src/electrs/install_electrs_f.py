@@ -3,8 +3,6 @@ from functions import *
 from variables import *
 from config_f import *
 from parmanode.sned_sats_f import *
-from electrs.make_electrs_config_f import *
-from electrs.electrs_start_stop_f import *
 
 def install_electrs():
     if ico.grep("docker-end") == False:
@@ -56,79 +54,6 @@ def install_electrs():
     print(f"""Pausing here; you can see if the build failed or not.""")
     enter_continue()
 
-########################################################################################   
-# Can't get docker to mount the Windows drive yet, so abandoning option to
-# use an external drive for now
-########################################################################################
-#     drive_choice = choose_electrs_drive()
-#     pco.remove(f"electrs_dir=")
-
-#     if drive_choice == "external" and pco.grep("bitcoin_drive=external"): 
-#         electrs_dir=Path("p:/electrs_db")
-#         pco.add(f"electrs_dir={electrs_dir}")  
-#         if electrs_db_exists == False: return False
-#         electrs_dir.mkdir(exist_ok=True)
-
-
-#     if drive_choice == "external" and not pco.grep("bitcoin_drive=external"):
-#         while True:
-#             pco.remove("format_disk") #clear first
-#             pco.remove("electrs_dir") #clear first
-#             if yesorno(f"""Do you want to format a Parmanode drive or use an existing one?""", y=["f", "format a drive"], n=["e", "use existing"]) == True:
-#                 pco.add("format_disk=True")
-#                 break
-#                 #Path(electrs_dir="p:/electrs_db") - added in format function
-#             else:
-#                 drive_letter = announce("""Please connect the drive letter you wish to use and
-#         then type in the drive letter - eg 'P'""")
-#                 if drive_letter.isalpha() and len(drive_letter) == 1:
-#                     pass
-#                 else:
-#                     announce("Please try again")
-#                     continue
-#                 electrs_dir=Path(f"{drive_letter}:/electrs_db")
-#                 if electrs_db_exists() == False: return False
-#                 try: 
-#                     electrs_dir.mkdir(exist_ok=True)
-#                     pco.add("format_disk=False")
-#                     pco.add(f"electrs_dir={electrs_dir}")  
-#                     break
-#                 except:
-#                     announce("Unable to create the directory on this drive. Try again.")
-#                     continue
-
-
-#     if drive_choice == "internal":
-
-#         electrs_dir = Path(HOME / "electrs_db")
-#         if electrs_db_exists() == False: return False
-#         try: 
-#             electrs_dir.mkdir(exist_ok=True)
-#             pco.remove(f"electrs_dir=")
-#             pco.add(f"electrs_dir={electrs_dir}")  
-#         except Exception as e: input(e) ; return False
-
-# ########################################################################################
-#     pco.remove("disk_number")
-
-#     if pco.grep("format_disk=True"):
-#         if not detect_drive(): input("detect drive failed") ; return False
-
-#         disk_number = pco.grep("disk_number", returnline=True)
-#         try: disk_number = disk_number.split('=')[1].strip()
-#         except Exception as e: input(e)
-
-#         #input("before format") 
-#         if not format_disk(disk_number, program="electrs"):
-#             thedate = date.today().strftime("%d-%m-%y")
-#             dbo.add(f"{thedate}: Bitcoin format_disk exited.")
-#             input("format failed")
-#             return False 
-    
-# ########################################################################################
-#     pco.remove("disk_number")
-#     pco.remove("format_disk")
-########################################################################################
 
     if not make_electrs_config(db_dir=f"{electrs_dir}"): return False
 
@@ -138,10 +63,6 @@ def install_electrs():
     #make sure /electrs_db has permissions for "parman" user
 
     make_electrs_ssl() 
-
-########################################################################################
-########################################################################################
-########################################################################################
 
 #Set permissions
     please_wait()
@@ -212,3 +133,65 @@ def make_electrs_ssl():
                         check=True)
     except Exception as e: input(e)                    
     return True
+
+def make_electrs_config(db_dir=None):
+
+    dot_electrs = HOME / ".electrs"
+    dot_electrs.mkdir(exist_ok=True)
+
+    electrs_config_file = dot_electrs / "config.toml"
+
+    try:
+        rpcuser = bco.grep("rpcuser=", returnline=True).split('=')[1].strip()
+        rpcpassword = bco.grep("rpcpassword=", returnline=True).split('=')[1].strip()
+    except Exception as e: 
+        input(e)
+        return False
+
+    config_text=f"""    
+    daemon_rpc_addr = \"host.docker.internal:8332\"
+    daemon_p2p_addr = \"host.docker.internal:8333\"
+    db_dir = \"/electrs_db\"
+    network = \"bitcoin\"
+    electrum_rpc_addr = \"0.0.0.0:50005\"
+    log_filters = \"INFO\" # Options are ERROR, WARN, INFO, DEBUG, TRACE
+                        # Changing this will affect parmanode menu output negatively
+    auth = \"{rpcuser}:{rpcpassword}\""""
+
+    with open(electrs_config_file, 'w') as f:
+        f.write(config_text)
+
+    return True 
+
+    
+def start_electrs():
+    start_electrs_docker()
+
+def stop_electrs():
+    try: subprocess.run(["docker", "stop", "electrs"], check=True)
+    except: pass
+    
+def restart_electrs():
+    stop_electrs()
+    start_electrs_docker()
+
+def start_electrs_docker():
+
+    if dosubprocess("docker ps") == False:
+        announce(f"""Please make sure Docker is running and try again. Aborting.""")
+        return False
+
+    try: subprocess.run("docker ps | grep electrs", check=True, shell=True) ; return True
+    except : pass
+
+    try:
+        subprocess.run(["docker", "exec", "-du", "root", "electrs", "/bin/bash -c", 
+                        "/home/parman/parmanode/electrs/target/release/electrs --conf /home/parman/.electrs/config.toml >> /home/parman/run_electrs.log 2>&1"], check=True)
+        subprocess.run(["docker", "exec", "-d electrs", "/bin/bash -c", 
+                        "/usr/bin/socat OPENSSL-LISTEN:50006,reuseaddr,fork,cert=/home/parman/.electrs/cert.pem,key=/home/parman/.electrs/key.pem,verify=0 TCP:127.0.0.1:50005"], check=True)
+    except Exception as e: input(e)
+
+    return True
+
+    
+    

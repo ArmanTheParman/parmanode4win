@@ -1,6 +1,6 @@
 from variables import *
 from functions import *
-from electrs.electrs_f import *
+from electrs.install_electrs_f import *
 from config_f import *
 
 def menu_electrs():

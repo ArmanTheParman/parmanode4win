@@ -99,22 +99,22 @@ def menu_add():
             if sparrowmenu == False : continue
             if not install_sparrow(): return False
             return True
-#         elif choice.lower() == "e":
-#             if electrummenu == False : continue
-#             if not install_electrum(): return False
-#             return True
-#         elif choice.lower() == "t":
-#             if tormenu == False : continue
-#             if not install_tor(): return False
-#             return True
-#         elif choice.lower() == "w":
-#             if wslmenu == False : continue
-#             if not enable_wsl(): return False
-#             return True
-#         elif choice.lower() == "d":
-#             if dockermenu == False : continue
-#             if not install_docker(): return False
-#             return True
+        elif choice.lower() == "e":
+            if electrummenu == False : continue
+            if not install_electrum(): return False
+            return True
+        elif choice.lower() == "t":
+            if tormenu == False : continue
+            if not install_tor(): return False
+            return True
+        elif choice.lower() == "w":
+            if wslmenu == False : continue
+            if not enable_wsl(): return False
+            return True
+        elif choice.lower() == "d":
+            if dockermenu == False : continue
+            if not install_docker(): return False
+            return True
         elif choice.lower() == "ers":
             if electrsmenu == False : continue
             try: 
