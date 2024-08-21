@@ -260,7 +260,15 @@ def make_electrs_ssl():
     return True
 
 def start_electrs():
-    pass
+    start_electrs_docker()
+
+def stop_electrs():
+    try: subprocess.run(["docker", "stop", "electrs"], check=True)
+    except: pass
+    
+def restart_electrs():
+    stop_electrs()
+    start_electrs_docker()
 
 def start_electrs_docker():
 
