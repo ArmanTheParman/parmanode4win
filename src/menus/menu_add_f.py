@@ -58,7 +58,7 @@ def menu_add():
             dockermenu = False
 
         if not ico.grep("electrs-"):
-            add_electrs= f"#                  {green} (ers){orange}         Electrs {grey}(requires Docker){orange}                            #"
+            add_electrs= f"#                  {green} (ers){orange}          Electrs {grey}(requires Docker){orange}                           #"
             electrsmenu = True
             available.append(add_electrs)
         else: 
@@ -119,7 +119,7 @@ def menu_add():
         elif choice.lower() == "ers":
             if electrsmenu == False : continue
             try: 
-                if not install_electrs(): return False
+                install_electrs()
             except Exception as e: input(e)
             return True
         else:
