@@ -5,7 +5,7 @@ from electrum.install_electrum_f import *
 from tor.install_tor_f import *
 from wsl.wsl_f import *
 from docker.docker_f import *
-from electrs.install_electrs_f import install_electrs 
+#from electrs.install_electrs_f import install_electrs 
 from config_f import *
 
 def menu_add():
