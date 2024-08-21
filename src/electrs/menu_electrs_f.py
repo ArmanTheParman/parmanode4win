@@ -7,16 +7,16 @@ def menu_electrs():
 
     while True:
 
-#        if subprocess.run("docker ps | grep electrs", check=True, shell=True, capture_output=True).returncode == 0:
-#            iselectrsrunning = True
+       if subprocess.run("docker ps | grep electrs", check=True, shell=True, capture_output=True).returncode == 0:
+           iselectrsrunning = True
 
-        # if iselectrsrunning == True:
-        #     output1=f"""                                Electrs is{green} RUNNING{orange}"""
-        # else:
-        #     output1=f"""                                Electrs is{red} NOT running{orange}""" 
+       if iselectrsrunning == True:
+           output1=f"""                                Electrs is{green} RUNNING{orange}"""
+       else:
+           output1=f"""                                Electrs is{red} NOT running{orange}""" 
 
-        set_terminal()
-        print(f"""{orange}
+       set_terminal()
+       print(f"""{orange}
 ########################################################################################{cyan}
                                   Electrs Menu{orange}                   
 ########################################################################################
@@ -53,7 +53,7 @@ def menu_electrs():
                 start_electrs()
         elif choice.lower() == "stop":
             set_terminal()
-                stop_electrs()
+            stop_electrs()
             continue 
         elif choice.lower() == "ec":
             file = HOME / ".electrs" / "config.toml"

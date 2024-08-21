@@ -70,11 +70,6 @@ except Exception as e: input(e)
 parmanode_ssl()
 hello()
 
-if yesorno("""install electrs?""") == True:
-    try: install_electrs() 
-    except Exception as e: input(e)
-    input("quitting")
-    sys.exit()
 ########################################################################################
 
 try: from parmanode.intro_f import * 
