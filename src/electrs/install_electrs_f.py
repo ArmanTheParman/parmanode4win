@@ -188,6 +188,7 @@ def start_electrs_docker():
     try:
         if not subprocess.run("docker ps | grep electrs", check=True, shell=True, capture_output=True).returncode == 0:
            subprocess.run("docker start electrs", shell=True, check=True, capture_output=True) 
+    except: pass
 
     #start processes in the container
     try:
