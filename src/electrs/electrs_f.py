@@ -48,27 +48,3 @@ def electrs_db_exists():
         except Exception as e: input(e) ; return True
 
 
-def docker_run_electrs(db_dir=None):
-
-    dot_electrs = str(HOME / ".electrs")
-    db_dir = str(electrs_dir)
-
-    try: subprocess.run(["docker", "run", "-d", "--privileged", "--name", "electrs", "-p", "50005:50005", "--restart", "unless-stopped", "-p", "50006:50006", "-p", "9060:9060", "-v", f"{db_dir}:/electrs_db", "-v", f"{dot_electrs}:/home/parman/.electrs", "electrs"], check=True)
-    except Exception as e:
-#        print(command)
-        input(e)
-        return False
-
-    return True
-
-def make_electrs_ssl():
-    
-    IP=get_IP_variables()
-    address=f"{IP["IP"]}"
-    try:
-        subprocess.run(["docker", "exec", "-d", "electrs",
-                        "bash", "-c",
-                        f"openssl req -newkey rsa:2048 -nodes -x509 -keyout /home/parman/.electrs/key.pem -out /home/parman/.electrs/cert.pem -days 36500 -subj /C=/L=/O=/OU=/CN={address}/ST/emailAddress="],
-                        check=True)
-    except Exception as e: input(e)                    
-    return True
