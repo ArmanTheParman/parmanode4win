@@ -8,7 +8,9 @@ def menu_electrs():
     while True:
 
        try: 
-           if subprocess.run("docker ps | grep electrs", check=True, shell=True, capture_output=True).returncode == 0: iselectrsrunning = True
+            if subprocess.run("docker ps | grep electrs", check=True, shell=True, capture_output=True).returncode == 0: 
+               iselectrsrunning = True
+            else: iselectrsrunning = False
        except: pass
 
        if iselectrsrunning == True:
