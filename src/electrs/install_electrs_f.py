@@ -22,6 +22,7 @@ def install_electrs():
     if is_process_running("bitcoind.exe") == False:
         announce(f"""Please make sure Bitcoin is running first, give it minute 
     to think and compose itself, then try again.""") 
+        return False
 
 
     if yesorno(f"""Install electrs? This will use Docker to compile the program in a
