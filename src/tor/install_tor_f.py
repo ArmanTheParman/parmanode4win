@@ -35,6 +35,7 @@ def install_tor(no_config=False):
 
 def uninstall_tor():
     set_terminal()
+    stop_tor()
     
     try:
         subprocess.run(["choco", "uninstall", "tor", "-y"], check=True)
