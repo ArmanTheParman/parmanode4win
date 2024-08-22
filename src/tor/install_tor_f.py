@@ -59,6 +59,9 @@ def initialise_torrc():
     try: tor_directory.mkdir(exist_ok=True)
     except Exception as e: input(e)
 
+    try: torrc_dir.mkdir(exist_ok=True)
+    except Exception as e: input(e)
+
     torrc_text=f"""# Additions by Parmanode...
 ControlPort 9051
 CookieAuthentication 1
