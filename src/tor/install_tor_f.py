@@ -7,6 +7,11 @@ def install_tor(no_config=False):
 
     set_terminal()
 
+    try : initialise_torrc()
+    except Exception as e: input(e)
+
+    ico.add("tor-start")
+
     try:
         subprocess.run(["choco", "install", "tor", "-y"], check=True)
     except subprocess.CalledProcessError as e:
@@ -23,8 +28,7 @@ def install_tor(no_config=False):
         announce("Failed to install Tor")
         return False
 
-    try : initialise_torrc()
-    except Exception as e: input(e)
+ 
 
     success("Tor has been installed") 
 
