@@ -16,9 +16,6 @@ def install_tor(no_config=False):
         subprocess.run(["powershell", "Start-Service -Name tor"], check=True)
     except: pass
 
-    ico.add("tor-end")
-    success("Tor has been installed") 
-
     try:
         subprocess.run(["tor", "--version"], check=True, stdout=subprocess.DEVNULL) 
     except (subprocess.CalledProcessError, FileNotFoundError):
@@ -26,6 +23,8 @@ def install_tor(no_config=False):
         return False
 
     initialise_torrc()
+
+    success("Tor has been installed") 
 
     if no_config == True: return 0
     else:
