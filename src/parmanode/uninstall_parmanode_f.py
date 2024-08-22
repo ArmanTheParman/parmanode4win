@@ -7,9 +7,15 @@ from pathlib import Path
 import os, sys
 from config_f import *
 
-def delete_parmanode4win_script_directory():
+def delete_parmanode4win_script_directory(thedir=None):
 
-    path = pp / "parmanode4win" 
+    if thedir == None:
+        path = pp / "parmanode4win" 
+    else:
+        if isinstance(thedir, Path):
+            path = thedir
+        else:
+            path = Path(thedir)
 
     def handle_remove_readonly(func, path):
         os.chmod(path, 0o777)
