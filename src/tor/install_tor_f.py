@@ -58,7 +58,6 @@ def initialise_torrc():
 
     try: tor_services.mkdir(exist_ok=True)
     except Exception as e: input(e)
-    input("pause 1")
     try: torrc_dir.mkdir(exist_ok=True)
     except Exception as e: input(e)
 
