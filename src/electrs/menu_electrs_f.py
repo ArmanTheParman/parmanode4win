@@ -92,7 +92,7 @@ def menu_electrs():
 # "
 
 
-def __iselectrsrunning():
+def _iselectrsrunning():
     try: 
         output = subprocess.run(["docker", "exec", "electrs", "ps"], capture_output=True, check=True, text=True).stdout.splitlines()
         for i in output:
@@ -101,12 +101,3 @@ def __iselectrsrunning():
         return False
     except Exception as e:
         return False
-    
-def _iselectrsrunning():
-
-    try: 
-        return subprocess.run("docker exec electrs ps | grep -q electrs", check=True).returncode == 0
-    except:
-        return False
-    
-
