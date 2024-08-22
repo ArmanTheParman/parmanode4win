@@ -35,11 +35,16 @@ def uninstall_tor():
     
     try:
         subprocess.run(["choco", "uninstall", "tor", "-y"], check=True)
-        ico.remove("tor-")
-        success("Tor has been uninstalled")
     except subprocess.CalledProcessError as e:
         announce("Failed to uninstall Tor")
         return False
+
+    try:
+        delete_directory(torrc_dir)
+    except: pass
+
+    ico.remove("tor-")
+    success("Tor has been uninstalled")
 
 def initialise_torrc():
 
