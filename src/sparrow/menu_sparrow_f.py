@@ -23,11 +23,13 @@ def menu_sparrow():
 {green}
                    (s){orange}    Start/open Sparrow
 {green}
-                   (w){orange}    View saved wallet files 
-{green}
                    (b){orange}    Make Sparrow connect to {yellow}Bitcoin Core {orange}directly
 {green}
                    (e){orange}    Make Sparrow connect to {blue}electrs {black}(better and faster)
+{green}
+                   (pp){orange}   Make Sparrow connect to {red}PUBLIC electrs {black}(avoid)
+{green}
+                   (w){orange}    View saved wallet files 
          
 
 {orange}
@@ -48,6 +50,12 @@ def menu_sparrow():
             subprocess.Popen(sparrowexe)
             enter_continue("Sparrow will open in a moment. Hit <enter> to continue.")
             return True
+        elif choice.lower() == "b":
+            _sparrow_connect_bitcoin()
+        elif choice.lower() == "e":
+            _sparrow_connect_electrs()
+        elif choice.lower() == "pp":
+            _sparrow_connect_public()
         elif choice.lower() == "w":
             show_sparrow_wallets()
         else:
@@ -98,7 +106,9 @@ def _sparrow_connect_electrs():
     try:
 
         configfile = get_sparrow_config()
+        configfile = ["serverType"] = "ELECTRUM_SERVER"
         configfile["electrumServer"] = "tcp://127.0.0.1:50005"
+        configfile["useProxy"] = "false"
 
     except: return False
 
