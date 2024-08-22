@@ -21,7 +21,7 @@ def menu_main():
 #                                                                                      #
 #    P A R M A N O D E {red}4 W I N{orange} --> {bright_blue}Main Menu{orange}                                           #
 #                                                                                      #
-#    Version: {bright_blue} {version_text}{orange}                                                                   #
+#    Version: {bright_blue} {version_text} (Note, you really should be using the Linux version){orange}              #
 #                                                                                      #
 ########################################################################################
 #                                                                                      #
