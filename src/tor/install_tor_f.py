@@ -26,7 +26,6 @@ def install_tor(no_config=False):
     try : initialise_torrc()
     except: pass
 
-    input("pausing")
     success("Tor has been installed") 
 
     if no_config == True: return 0
