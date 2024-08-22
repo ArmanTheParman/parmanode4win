@@ -62,7 +62,7 @@ def check_tx_index_1():
 
 def clone_mempool():
 
-    command=["git", "clone", "https://github.com/mempool/mempool.git", f"{pp}/mempool"]
+    command=["git", "clone", "--depth", "1", "https://github.com/mempool/mempool.git", f"{pp}/mempool"]
 
     try:
         subprocess.run(command, check=True, capture_output=True) 
