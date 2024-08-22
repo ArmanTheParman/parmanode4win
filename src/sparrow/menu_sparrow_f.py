@@ -54,12 +54,16 @@ def menu_sparrow():
 
         
 def _sparrow_connection_type():
-    return get_sparrow_config()["serverType"]
+    try:
+        return get_sparrow_config()["serverType"]
+    except:
+        return False 
         
 
 def show_sparrow_wallets():
 
-    thefiles = subprocess.run(f"ls {sparrow_wallet_directory}", shell=True, capture_output=True, text=True).stdout
+    try: thefiles = subprocess.run(f"ls {sparrow_wallet_directory}", shell=True, capture_output=True, text=True).stdout
+    except: announce(f"""Directory does not exists.""") ; return False
 
     set_terminal()
     print(f"""
@@ -91,4 +95,4 @@ def _sparrow_connect_electrs():
         return True
 
     configfile = get_sparrow_config()
-    configfile["electrumServer"] = "tcp://127.0.0.1:50005"
+#    configfile["electrumServer"] = "tcp://127.0.0.1:50005"
