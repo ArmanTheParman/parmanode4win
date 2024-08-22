@@ -95,7 +95,8 @@ def get_sparrow_config():
         with open(sparrow_config_path, 'r') as file: 
             data = json.load(file)
         return data
-    except:
+    except Exception as e:
+        input(e) 
         return False
 
 def _sparrow_connect_electrs():
