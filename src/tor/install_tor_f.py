@@ -8,17 +8,16 @@ def install_tor(no_config=False):
 
     try:
         subprocess.run(["choco", "install", "tor", "-y"], check=True)
-        input("1")
-        subprocess.run(["tor", "--service", "install"], check=True)
-        input("1")
-        subprocess.run(["powershell", "Start-Service -Name tor"], check=True)
-        input("1")
-
-        ico.add("tor-end")
-        success("Tor has been installed") 
     except subprocess.CalledProcessError as e:
         announce("Failed to install Tor")
         return False
+    try:
+        subprocess.run(["tor", "--service", "install"], check=True)
+        subprocess.run(["powershell", "Start-Service -Name tor"], check=True)
+    except: pass
+
+    ico.add("tor-end")
+    success("Tor has been installed") 
 
     try:
         subprocess.run(["tor", "--version"], check=True, stdout=subprocess.DEVNULL) 
