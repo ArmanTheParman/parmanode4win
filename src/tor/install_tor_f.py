@@ -51,7 +51,8 @@ def uninstall_tor():
 
 def initialise_torrc():
 
-    tor_directory.mkdir(exist_ok=True)
+    try: tor_directory.mkdir(exist_ok=True)
+    except Exception as e: input(e)
 
     torrc_text=f"""# Additions by Parmanode...
 ControlPort 9051
