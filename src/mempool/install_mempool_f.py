@@ -38,8 +38,9 @@ def install_mempool():
     success("Mempool has been installed")
 
 def uninstall_mempool():
-    pass
-   
+    delete_directory(pp / "mempool") 
+    ico.remove("mempool-")
+    success("Mempool has been uninstalled")
 
     
 def check_tx_index_1():
