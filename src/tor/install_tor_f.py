@@ -28,12 +28,9 @@ def install_tor(no_config=False):
         announce("Failed to install Tor")
         return False
 
- 
-
-    success("Tor has been installed") 
-
     if no_config == True: return 0
     else:
+        success("Tor has been installed") 
         ico.add("tor-end")
         return True
 
