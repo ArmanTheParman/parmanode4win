@@ -33,6 +33,8 @@ def install_mempool():
     please_wait() 
 
     clone_mempool()
+
+    success("Mempool has been installed")
    
 
     
