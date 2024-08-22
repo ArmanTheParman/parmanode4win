@@ -30,6 +30,9 @@ def menu_electrs():
             (restart){orange}  Restart electrs 
         {blue}
             (ec){orange}       View and edit the electrs config file
+        {blue}
+            (log){orange}      View electrs log
+        
 
 
 {orange}
@@ -56,6 +59,8 @@ def menu_electrs():
        elif choice.lower() == "ec":
            file = HOME / ".electrs" / "config.toml"
            os.system(f"notepad {str(file)}")
+#       elif choice.lower() == "loc":
+#           subprocess.run(["start cmd /C  
        else:
            invalid()
 
