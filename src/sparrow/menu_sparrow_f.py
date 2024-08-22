@@ -21,7 +21,7 @@ def menu_sparrow():
 
 {green}
                          (s){orange}    Start/open Sparrow
-
+{green}
                          (w){orange}    View saved wallet files 
          
 
@@ -59,6 +59,7 @@ def _sparrow_connection_type():
 
 def show_sparrow_wallets():
 
+    thefiles = subprocess.run(f"ls {sparrow_wallet_directory}", shell=True, capture_output=True, text=True).stdout
 
     set_terminal()
     print(f"""
@@ -70,8 +71,7 @@ def show_sparrow_wallets():
 
     Files: {bright_blue}
 
-{subprocess.run(f"ls {sparrow_wallet_directory}", shell=True)}
-
+{thefiles}
 {orange}
 ########################################################################################
 """)
