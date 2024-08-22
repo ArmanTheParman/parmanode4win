@@ -52,6 +52,8 @@ def menu_electrum():
             _electrum_connect_electrs()
         elif choice.lower() == "pp":
             _electrum_connect_public()
+        elif choice.lower() == "w":
+            show_electrum_wallets()
         else:
             invalid()
        
