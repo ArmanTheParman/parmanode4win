@@ -143,6 +143,9 @@ def _sparrow_connect_public():
 
 def _sparrow_connect_bitcoin():
 
+    if _sparrow_connection_type == "BITCOIN_CORE":
+        return True
+
     bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).strip().split('=')[1]
 
     coreDD = ""
@@ -160,8 +163,6 @@ def _sparrow_connect_bitcoin():
         rpcuser = bco.grep("rpcuser=", returnline=True).strip().split('=')[1]
         rpcpassword = bco.grep("rpcpassword=", returnline=True).strip().split('=')[1]
         break
-    if _sparrow_connection_type == "BITCOIN_CORE":
-        return True
 
     configfile = get_sparrow_config()
     configfile["coreServer"] = "http://127.0.0.1:8332"
@@ -173,4 +174,5 @@ def _sparrow_connect_bitcoin():
     with open(sparrow_config_path, 'w') as file:
         json.dump(configfile, file, indent=4)
 
+    success("Sparrow connection changed to Bitcoin Core")
     return True
