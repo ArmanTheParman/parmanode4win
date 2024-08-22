@@ -111,7 +111,7 @@ def _sparrow_connect_electrs():
         configfile["useProxy"] = "false"
 
         with open(sparrow_config_path, 'w') as file:
-            file.write(configfile)
+            json.dump(configfile, file, indent=4)
 
     except: return False
 
@@ -129,7 +129,7 @@ def _sparrow_connect_public():
     configfile["serverType"] = "PUBLIC_ELECTRUM_SERVER"
 
     with open(sparrow_config_path, 'w') as file:
-        file.write(configfile)
+        json.dump(configfile, file, indent=4)
     
     return True
 
@@ -163,6 +163,6 @@ def _sparrow_connect_bitcoin():
     configfile["coreAuth"] = f"{rpcuser}:{rpcpassword}"
 
     with open(sparrow_config_path, 'w') as file:
-        file.write(configfile)
+        json.dump(configfile, file, indent=4)
 
     return True
