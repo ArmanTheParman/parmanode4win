@@ -9,6 +9,7 @@ def menu_sparrow():
     while True:
 
         connection = _sparrow_connection_type()
+        if connection == False: connection = "NONE"
 
         set_terminal()
         print(f"""{orange}
@@ -94,5 +95,9 @@ def _sparrow_connect_electrs():
     if _sparrow_connection_type == "ELECTRUM_SERVER":
         return True
 
-    configfile = get_sparrow_config()
-#    configfile["electrumServer"] = "tcp://127.0.0.1:50005"
+    try:
+
+        configfile = get_sparrow_config()
+        configfile["electrumServer"] = "tcp://127.0.0.1:50005"
+
+    except: return False
