@@ -100,5 +100,4 @@ def _iselectrsrunning():
                 return True
         return False
     except Exception as e:
-        input(e)
         return False
