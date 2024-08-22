@@ -177,37 +177,37 @@ def unzip_file(zippath: str, directory_destination: str):
     except:
         return False
 
-def delete_directory_contents(path_given):
+def delete_directory_force(thedir=None):
 
-    if isinstance(path_given, str):
-        try: path = Path(path_given)
-        except Exception as e: input(e) ; return False
-        print(type(path))
-
-    if isinstance(path_given, Path):
-        try: path = Path(path_given)
-        except Exception as e: input(e) ; return False
-
-
-    if isinstance(path, Path): 
-
-        if not path.exists(): return True
-
-        for item in path.iterdir(): 
-
-            if item.is_dir(): 
-                delete_directory(item)  # Recursively delete contents of subdirectories
-                if item.exists(): 
-                    try: item.rmdir()            # Remove the now-empty SUBdirectory
-                    except: os.chmod(item, 0o77) ; item.rmdir()
-
-            else:
-                if item.exists(): 
-                    try: item.unlink()  # Remove the file
-                    except: os.chmod(item, 0o77) ; item.unlink()
-        return True
+    if isinstance(thedir, Path):
+        path = thedir
     else:
-        raise ValueError(f"""unexpect type in delete_directory_contents()""")
+        path = Path(thedir)
+
+    def handle_remove_readonly(func, path):
+        os.chmod(path, 0o777)
+        func(path)
+
+    def delete_directory_contents(directory):
+        for item in directory.iterdir():
+            try:
+                if item.is_dir():
+                    delete_directory_contents(item)
+                    item.rmdir()
+                else:
+                    item.chmod(0o777)  # Change the file to writable before deleting
+                    item.unlink()
+            except Exception as e:
+                handle_remove_readonly(lambda p: path.rmdir(), path)
+    
+    if path.exists() and path.is_dir():
+        delete_directory_contents(path)
+        try:
+            path.rmdir()
+        except Exception as e:
+            handle_remove_readonly(path.rmdir, path)
+    else:
+        print(f"{path} directory does not exist")
 
 
 def delete_directory(path_given):

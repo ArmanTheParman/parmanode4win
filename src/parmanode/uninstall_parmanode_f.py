@@ -7,42 +7,6 @@ from pathlib import Path
 import os, sys
 from config_f import *
 
-def delete_parmanode4win_script_directory(thedir=None):
-
-    if thedir == None:
-        path = pp / "parmanode4win" 
-    else:
-        if isinstance(thedir, Path):
-            path = thedir
-        else:
-            path = Path(thedir)
-
-    def handle_remove_readonly(func, path):
-        os.chmod(path, 0o777)
-        func(path)
-
-    def delete_directory_contents(directory):
-        for item in directory.iterdir():
-            try:
-                if item.is_dir():
-                    delete_directory_contents(item)
-                    item.rmdir()
-                else:
-                    item.chmod(0o777)  # Change the file to writable before deleting
-                    item.unlink()
-            except Exception as e:
-                handle_remove_readonly(lambda p: path.rmdir(), path)
-    
-    if path.exists() and path.is_dir():
-        delete_directory_contents(path)
-        try:
-            path.rmdir()
-        except Exception as e:
-            handle_remove_readonly(path.rmdir, path)
-    else:
-        print(f"{path} directory does not exist")
-
-
 
 def uninstall_parmanode():
 
@@ -69,8 +33,7 @@ def uninstall_parmanode():
             if shortcut.exists():
                 try: shortcut.unlink()
                 except: pass
-            delete_parmanode4win_script_directory()
-            delete_directory(dp)
+            delete_directory_force(p4w)
         except Exception as e: 
             input(e) 
             sys.exit()
