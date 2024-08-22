@@ -8,7 +8,9 @@ def menu_electrs():
     while True:
        if _iselectrsrunning() == True:
            output1=f"""                                Electrs is{green} RUNNING{orange}"""
+           iselectrsrunning = True
        else:
+           iselectrsrunning = False
            output1=f"""                                Electrs is{red} NOT running{orange}""" 
 
        set_terminal()
