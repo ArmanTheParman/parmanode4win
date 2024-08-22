@@ -50,7 +50,7 @@ def uninstall_tor():
 
 def initialise_torrc():
 
-    if not tor_directory: tor_directory.mkdir()
+    if not tor_directory.exists(): tor_directory.mkdir()
 
     torrc_text=f"""# Additions by Parmanode...
 ControlPort 9051
