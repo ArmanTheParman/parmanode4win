@@ -2,13 +2,13 @@
 from variables import *
 from functions import *
 from config_f import *
-import subprocess
+import subprocess, json
 
 def menu_sparrow():
 
     while True:
 
-        _sparrow_connection_type()
+        connection = _sparrow_connection_type()
 
         set_terminal()
         print(f"""{orange}
@@ -16,23 +16,14 @@ def menu_sparrow():
                             Sparrow Bitcoin Wallet Menu{orange}                   
 ########################################################################################
 
+{black}
+    CONNECTION TYPE: {connection}
 
 {green}
                          (s){orange}    Start/open Sparrow
-{black}
-    CONNECTION:
-         
-         Parmanode has already configured to connect Sparrow to Bitcoin Core
-         running on this machine.
 
-         If having connection issues, try the oldest trick in the book...
+                         (w){orange}    View saved wallet files 
          
-                                - Sparrow restart
-                                - Bitcoin Core restart
-                                - Computer restart
-{blue}
-
-         More connection options will come in the future.
 
 {orange}
 ########################################################################################
@@ -52,10 +43,36 @@ def menu_sparrow():
             subprocess.Popen(sparrowexe)
             enter_continue("Sparrow will open in a moment. Hit <enter> to continue.")
             return True
+        elif choice.lower() == "w":
+            show_sparrow_wallets()
         else:
             invalid()
 
         
 def _sparrow_connection_type():
     
-    
+    with open(sparrow_config_path, 'r') as file: 
+        data = json.load(file)
+
+    return data["serverType"]
+        
+
+def show_sparrow_wallets():
+
+
+    set_terminal()
+    print(f"""
+########################################################################################
+
+
+    Directory:{cyan} {sparrow_wallet_directory} {orange}
+
+
+    Files: {bright_blue}
+
+{subprocess.run(f"ls {sparrow_wallet_directory}", shell=True)}
+
+{orange}
+########################################################################################
+""")
+    enter_continue()

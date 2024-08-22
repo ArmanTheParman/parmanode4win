@@ -155,9 +155,6 @@ both sha256 and gpg.{orange}
 
 def make_sparrow_config():
 
-    global sparrow_config1, sparrow_config2, sparrow_config3
-    sparrow_config_dir = HOME / "Appdata" / "Roaming" / "Sparrow"
-    sparrow_config_path = sparrow_config_dir / "config"
     if not sparrow_config_dir.exists():
         sparrow_config_dir.mkdir()
 
