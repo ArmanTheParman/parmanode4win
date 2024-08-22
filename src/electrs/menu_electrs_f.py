@@ -65,33 +65,6 @@ def menu_electrs():
            invalid()
 
 
-
-
-
-
-
-# {orange}
-#       (n)        Access Bitcoin node information ....................(bitcoin-cli)
-
-#       (bc)       Inspect and edit bitcoin.conf file 
-
-#       (up)       Set, remove, or change RPC user/pass
-# {bright_blue}
-#       (tor){orange}      Tor menu options for Bitcoin...
-
-#       (mm)       Migrate/Revert an external drive...
-
-#       (delete)   Delete blockchain data and start over (eg if data corrupted)
-
-#       (update)   Update Bitcoin wizard
-# {output3}
-#       (o)        OTHER...
-
-
-# ########################################################################################
-# "
-
-
 def _iselectrsrunning():
     try: 
         output = subprocess.run(["docker", "exec", "electrs", "ps"], capture_output=True, check=True, text=True).stdout.splitlines()
