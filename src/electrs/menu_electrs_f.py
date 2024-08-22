@@ -94,11 +94,12 @@ def menu_electrs():
 
 def _iselectrsrunning():
     try: 
-        output = subprocess.run(["docker", "exec", "electrs", "ps"], capture_output=True, check=True, text=True).stdout.splitlines()
-        input(afteroutput)
+        output = subprocess.run(["docker", "exec", "electrs", "ps"], stderr=subprocess.DEVNULL, capture_output=True, check=True, text=True).stdout.splitlines()
+        input("afteroutput")
         for i in output:
             if "electrs" in i:
                 return True
         return False
     except Exception as e:
+        input("afteroutput exception")
         return False
