@@ -44,6 +44,10 @@ def uninstall_tor():
         return False
 
     try:
+        subprocess.run(["tor", "--service", "install"], check=True)
+    except: pass
+
+    try:
         delete_directory(torrc_dir)
     except: pass
 
