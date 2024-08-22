@@ -166,6 +166,7 @@ def _sparrow_connect_bitcoin():
 
     try:
         configfile = get_sparrow_config()
+        configfile["serverType"] = "BITCOIN_CORE""
         configfile["coreServer"] = "http://127.0.0.1:8332"
         configfile["coreAuthType"] = "USERPASS"
         configfile["useProxy"] = "false"
