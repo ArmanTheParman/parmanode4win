@@ -26,14 +26,13 @@ def menu_sparrow():
 {green}
                    (s){orange}    Start/open Sparrow
 {green}
-                   (b){orange}    Make Sparrow connect to {yellow}Bitcoin Core {orange}directly
+                   (b){orange}    Connect to {yellow}Bitcoin Core {orange}directly
 {green}
-                   (e){orange}    Make Sparrow connect to {blue}electrs {black}(better and faster)
+                   (e){orange}    Connect to {blue}electrs {black}(better and faster)
 {green}
-                   (pp){orange}   Make Sparrow connect to {red}PUBLIC electrs {black}(avoid)
+                   (pp){orange}   Connect to {red}PUBLIC electrs {black}(avoid)
 {green}
-                   (w){orange}    View saved wallet files 
-         
+                   (w){orange}    Show saved wallet files 
 
 {orange}
 ########################################################################################
@@ -65,13 +64,6 @@ def menu_sparrow():
             invalid()
 
         
-def _sparrow_connection_type():
-    try:
-        return get_sparrow_config()["serverType"]
-    except:
-        return False 
-        
-
 def show_sparrow_wallets():
 
     try: thefiles = subprocess.run(f"ls {sparrow_wallet_directory}", shell=True, capture_output=True, text=True).stdout
@@ -92,6 +84,12 @@ def show_sparrow_wallets():
 ########################################################################################
 """)
     enter_continue()
+
+def _sparrow_connection_type():
+    try:
+        return get_sparrow_config()["serverType"]
+    except:
+        return False 
 
 def get_sparrow_config():
     try:

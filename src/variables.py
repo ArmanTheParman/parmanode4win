@@ -96,7 +96,11 @@ electrs_db = str(electrs_dir)
 dot_electrs = str(HOME / ".electrs")
 
 # Sparrow variables
-global sparrow_config_dir, sparrow_config_path, sparrow_wallet_directory
 sparrow_config_dir = HOME / "Appdata" / "Roaming" / "Sparrow"
 sparrow_config_path = sparrow_config_dir / "config"
 sparrow_wallet_directory = Path (sparrow_config_dir / "wallets")    
+
+# Electrum variables
+electrum_config_dir = HOME / "Appdata" / "Roaming" / "electrum"
+electrum_config_path = electrum_config_dir / "config"
+electrum_wallet_directory = Path (electrum_config_dir / "wallets")    
