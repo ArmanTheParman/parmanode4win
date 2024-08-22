@@ -22,7 +22,8 @@ def install_tor(no_config=False):
         announce("Failed to install Tor")
         return False
 
-    initialise_torrc()
+    try : initialise_torrc()
+    except: pass
 
     success("Tor has been installed") 
 
