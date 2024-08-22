@@ -94,8 +94,9 @@ def menu_electrs():
 
 def _iselectrsrunning():
     try: 
-        output = subprocess.run(["docker", "exec", "electrs", "ps"], capture_output=True, check=True, text=True).stdout.splitlines()
-        for i in output:
+        output1 = subprocess.run(["docker", "exec", "electrs", "ps"], capture_output=True, check=True, text=True, stout=subprocess.PIPE)
+        output2 = subprocess.run(["grep", "-q", "electrs"], stdin=output1).stdout. splitlines()
+        for i in output2:
             if "electrs" in i:
                 return True
         return False
