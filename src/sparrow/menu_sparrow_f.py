@@ -8,7 +8,10 @@ def menu_sparrow():
 
     while True:
 
-        connection = _sparrow_connection_type()
+        try:
+            connection = _sparrow_connection_type()
+        except Exception as e :input(e)
+
         if connection == False: connection = "NONE"
 
         set_terminal()
