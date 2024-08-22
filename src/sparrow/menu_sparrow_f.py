@@ -20,9 +20,13 @@ def menu_sparrow():
     CONNECTION TYPE: {black}{connection}
 
 {green}
-                         (s){orange}    Start/open Sparrow
+                   (s){orange}    Start/open Sparrow
 {green}
-                         (w){orange}    View saved wallet files 
+                   (w){orange}    View saved wallet files 
+
+                   (b){orange}    Make Sparrow connect to Bitcoin Core directly
+
+                   (e){orange}    Make Sparrow connect to electrs (better, faster)
          
 
 {orange}
