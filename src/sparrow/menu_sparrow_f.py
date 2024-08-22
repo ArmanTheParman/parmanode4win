@@ -16,8 +16,8 @@ def menu_sparrow():
                             Sparrow Bitcoin Wallet Menu{orange}                   
 ########################################################################################
 
-{black}
-    CONNECTION TYPE: {connection}
+{red}
+    CONNECTION TYPE: {black}{connection}
 
 {green}
                          (s){orange}    Start/open Sparrow
