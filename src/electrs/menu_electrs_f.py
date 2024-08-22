@@ -5,28 +5,29 @@ from config_f import *
 
 def menu_electrs():
 
-    if torrc_file.exists():
-        onion = tor_directory / "electrs-service" / "hostname"
-        with open(onion, 'r') as file:
-            onionADDR = file.readline().strip()
-
-    toroutput = f"""{cyan}    {onionADDR}:70004:t          
-    {yellow} {move_to_start}{move_to_column_41}(From any home network computer){orange}"""
-
     IP = get_IP_variables()
     move_to_start = "\033[G"
     move_to_column_41 = "\033[41G"
 
     while True:
-       if _iselectrsrunning() == True:
-           output1=f"""                                Electrs is{green} RUNNING{orange}"""
-           iselectrsrunning = True
-       else:
-           iselectrsrunning = False
-           output1=f"""                                Electrs is{red} NOT running{orange}""" 
 
-       set_terminal()
-       print(f"""{orange}
+        if torrc_file.exists():
+            onion = tor_directory / "electrs-service" / "hostname"
+            with open(onion, 'r') as file:
+                onionADDR = file.readline().strip()
+
+        toroutput = f"""{cyan}    {onionADDR}:70004:t          
+{yellow} {move_to_start}{move_to_column_41}(From any home network computer){orange}"""
+
+        if _iselectrsrunning() == True:
+            output1=f"""                                Electrs is{green} RUNNING{orange}"""
+            iselectrsrunning = True
+        else:
+            iselectrsrunning = False
+            output1=f"""                                Electrs is{red} NOT running{orange}""" 
+
+        set_terminal()
+        print(f"""{orange}
 ########################################################################################{cyan}
                                   Electrs Menu{orange}                   
 ########################################################################################
@@ -57,33 +58,33 @@ def menu_electrs():
 ########################################################################################
 """)
 
-       choice = choose("xpmq")
-       set_terminal()
+        choice = choose("xpmq")
+        set_terminal()
 
-       if choice.upper() in {"Q", "EXIT"}: 
+        if choice.upper() in {"Q", "EXIT"}: 
            sys.exit()
-       elif choice.upper() == "P":
+        elif choice.upper() == "P":
            return True
-       elif choice.upper() == "M":
+        elif choice.upper() == "M":
            return True
-       elif choice.lower() == "start":
+        elif choice.lower() == "start":
            if iselectrsrunning == True: continue
            else:
                start_electrs()
-       elif choice.lower() == "stop":
+        elif choice.lower() == "stop":
            set_terminal()
            stop_electrs()
            continue 
-       elif choice.lower() == "restart":
+        elif choice.lower() == "restart":
            set_terminal()
            restart_electrs()
            continue 
-       elif choice.lower() == "ec":
+        elif choice.lower() == "ec":
            file = HOME / ".electrs" / "config.toml"
            os.system(f"notepad {str(file)}")
-       elif choice.lower() == "log":
+        elif choice.lower() == "log":
            subprocess.run(f"start cmd /C tail -f {str(HOME / ".electrs" / "run_electrs.log")}", shell=True)
-       else:
+        else:
            invalid()
 
 
