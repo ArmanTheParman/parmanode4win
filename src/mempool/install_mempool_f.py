@@ -4,6 +4,7 @@ from variables import *
 from config_f import *
 from electrs.install_electrs_f import check_server_1 
 from parmanode.sned_sats_f import *
+from parmanode.uninstall_parmanode_f import *
 
 def install_mempool():
     if ico.grep("docker-end") == False:
@@ -41,7 +42,7 @@ def uninstall_mempool():
     thedir = str(pp / "mempool") 
     subprocess.run(["wsl", "-d", "ubuntu", "sudo", "rm", "-rf", thedir], check=True)
     input("test")
-    try: delete_directory_contents(thedir)
+    try: delete_parmanode4win_script_directory(thedir)
     except Exception as e: input(e)
     try: delete_directory(thedir)
     except Exception as e: input(e)
