@@ -26,7 +26,7 @@ def menu_electrum():
 {green}
                    (e){orange}    Connect to {blue}YOUR electrs {black}
 {green}
-                   (pp){orange}   Connect to {red}PUBLIC electrs {black}(avoid)
+                   (pp){orange}   Connect to {red}PUBLIC Bitaroo electrs {black}(avoid)
 {green}
                    (w){orange}    Show saved wallet files
 
@@ -99,7 +99,7 @@ def _electrum_connect_electrs():
     try:
 
         configfile = get_electrum_config()
-        configfile["server"] = "\"127.0.0.1:50005:t\""
+        configfile["server"] = "127.0.0.1:50005:t"
         configfile["oneserver"] = "true"
 
         with open(electrum_config_path, 'w') as file:
@@ -118,7 +118,7 @@ def _electrum_connect_public():
     Really connect to a public server?"""): return False
 
     configfile = get_electrum_config()
-    configfile["server"] = "\"electrum.bitaroo.net:50002:s\""
+    configfile["server"] = "electrum.bitaroo.net:50002:s"
 
     with open(electrum_config_path, 'w') as file:
         json.dump(configfile, file, indent=4)
