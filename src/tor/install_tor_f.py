@@ -56,7 +56,7 @@ def uninstall_tor():
 
 def initialise_torrc():
 
-    try: tor_directory.mkdir(exist_ok=True)
+    try: tor_services.mkdir(exist_ok=True)
     except Exception as e: input(e)
 
     try: torrc_dir.mkdir(exist_ok=True)
