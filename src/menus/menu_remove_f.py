@@ -61,14 +61,14 @@ def menu_remove():
             dockermenu = False
 
         if ico.grep("electrs-"): 
-            rem_electrs = f"#                  {green} (ers){orange}         Electrs                                              #"
+            rem_electrs = f"#                  {green} (ers){orange}          Electrs                                             #"
             electrsmenu = True
             available.append(rem_electrs)
         else: 
             electrsmenu = False
 
         if ico.grep("mempool-"): 
-            rem_mempool = f"#                  {green} (mem){orange}         Mempool                                              #"
+            rem_mempool = f"#                  {green} (mem){orange}          Mempool                                             #"
             mempoolmenu = True
             available.append(rem_mempool)
         else: 
