@@ -16,8 +16,8 @@ def menu_electrs():
             with open(onion, 'r') as file:
                 onionADDR = file.readline().strip()
 
-        toroutput = f"""{bright_blue}         {onionADDR}:70004:t          
-{yellow} {move_to_start}{move_to_column_41}(From any home network computer){orange}"""
+        toroutput = f"""{bright_blue}         {onionADDR}:70004:t
+{yellow} {move_to_start}{move_to_column_41}(Tor from any home computer in the world){orange}"""
 
         if _iselectrsrunning() == True:
             output1=f"""                                Electrs is{green} RUNNING{orange}"""
