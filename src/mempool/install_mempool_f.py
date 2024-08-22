@@ -39,7 +39,7 @@ def install_mempool():
 
 def uninstall_mempool():
     thedir = str(pp / "mempool") 
-    subprocess.run(["wsl", "rm", "-rf", thedir], check=True)
+    subprocess.run(["wsl", "sudo", "rm", "-rf", thedir], check=True)
     input("test")
     try: delete_directory_contents(thedir)
     except Exception as e: input(e)
