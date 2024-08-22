@@ -5,6 +5,14 @@ from config_f import *
 
 def menu_electrs():
 
+    if torrc_file.exists():
+        onion = tor_directory / "electrs-service" / "hostname"
+        with open(onion, 'r') as file:
+            onionADDR = file.readline().strip()
+
+    toroutput = f"""{cyan}    {onionADDR}:70004:t          
+    {yellow} {move_to_start}{move_to_column_41}(From any home network computer){orange}"""
+
     IP = get_IP_variables()
     move_to_start = "\033[G"
     move_to_column_41 = "\033[41G"
@@ -30,7 +38,7 @@ def menu_electrs():
  CONNECT:{cyan}    127.0.0.1:50005:t         {yellow} (From this computer only){orange}
          {cyan}    127.0.0.1:50006:s         {yellow} (From this computer only){orange} 
          {cyan}    {IP["IP"]}:50006:s          {yellow} {move_to_start}{move_to_column_41}(From any home network computer){orange}
-
+{toroutput}
 
         {green}
             (start){orange}    Start electrs 

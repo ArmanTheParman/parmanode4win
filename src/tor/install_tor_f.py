@@ -23,6 +23,8 @@ def install_tor(no_config=False):
         announce("Failed to install Tor")
         return False
 
+    initialise_torrc()
+
     if no_config == True: return 0
     else:
         ico.add("tor-end")
@@ -38,3 +40,32 @@ def uninstall_tor():
     except subprocess.CalledProcessError as e:
         announce("Failed to uninstall Tor")
         return False
+
+def initialise_torrc():
+
+    if not tor_directory: tor_directory.mkdir()
+
+    torrc_text=f"""# Additions by Parmanode...
+ControlPort 9051
+CookieAuthentication 1
+CookieAuthFileGroupReadable 1
+DataDirectoryGroupReadable 1
+
+HiddenServiceDir {tor_directory}/btcpay-service
+HiddenServicePort 7003 127.0.0.1:23001
+
+HiddenServiceDir {tor_directory}/electrs-service
+HiddenServicePort 7004 127.0.0.1:50005
+
+HiddenServiceDir {tor_directory}/rtl-service
+HiddenServicePort 7005 127.0.0.1:3000
+
+HiddenServiceDir {tor_directory}/mempool-service
+HiddenServicePort 8280 127.0.0.1:8180
+
+HiddenServiceDir {tor_directory}/bitcoin-service
+HiddenServicePort 8332 127.0.0.1:8332
+""" 
+
+    with open(torrc_file, 'w') as file:
+        file.write(torrc_text)

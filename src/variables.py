@@ -104,3 +104,8 @@ sparrow_wallet_directory = Path (sparrow_config_dir / "wallets")
 electrum_config_dir = HOME / "Appdata" / "Roaming" / "electrum"
 electrum_config_path = electrum_config_dir / "config"
 electrum_wallet_directory = Path (electrum_config_dir / "wallets")    
+
+# Tor variables
+tor_directory = pp / "tor"
+torrc_dir = HOME / "Appdata" / "Roaming" / "tor" 
+torrc_file = torrc_dir / "torrc"
