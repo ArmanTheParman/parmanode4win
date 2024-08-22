@@ -118,6 +118,9 @@ def _sparrow_connect_electrs():
             json.dump(configfile, file, indent=4)
 
     except: return False
+    
+    success("Sparrow connection changed to your private electrs Server")
+    return True
 
 def _sparrow_connect_public():
     
@@ -135,6 +138,7 @@ def _sparrow_connect_public():
     with open(sparrow_config_path, 'w') as file:
         json.dump(configfile, file, indent=4)
     
+    success("Sparrow connection changed to a Public Electrum Server")
     return True
 
 def _sparrow_connect_bitcoin():
