@@ -51,7 +51,7 @@ def uninstall_tor():
 
 def initialise_torrc():
 
-    restart_tor()
+    tor_directory.mkdir(exist_ok=True)
 
     torrc_text=f"""# Additions by Parmanode...
 ControlPort 9051
@@ -80,4 +80,3 @@ HiddenServicePort 8332 127.0.0.1:8332
             file.write(torrc_text)
     except: pass
     
-    restart_tor()
