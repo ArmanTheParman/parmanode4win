@@ -106,6 +106,6 @@ electrum_config_path = electrum_config_dir / "config"
 electrum_wallet_directory = Path (electrum_config_dir / "wallets")    
 
 # Tor variables
-tor_directory = pp / "tor"
+tor_services = Path("c:/Windows/ServiceProfiles/LocalService/Appdata/Roaming/torservices")
 torrc_dir = Path("c:/Windows/ServiceProfiles/LocalService/Appdata/Roaming/tor")
 torrc_file = torrc_dir / "torrc"

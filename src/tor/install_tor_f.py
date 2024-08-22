@@ -68,19 +68,19 @@ CookieAuthentication 1
 CookieAuthFileGroupReadable 1
 DataDirectoryGroupReadable 1
 
-HiddenServiceDir {tor_directory}/btcpay-service
+HiddenServiceDir {tor_services}/btcpay-service
 HiddenServicePort 7003 127.0.0.1:23001
 
-HiddenServiceDir {tor_directory}/electrs-service
+HiddenServiceDir {tor_services}/electrs-service
 HiddenServicePort 7004 127.0.0.1:50005
 
-HiddenServiceDir {tor_directory}/rtl-service
+HiddenServiceDir {tor_services}/rtl-service
 HiddenServicePort 7005 127.0.0.1:3000
 
-HiddenServiceDir {tor_directory}/mempool-service
+HiddenServiceDir {tor_services}/mempool-service
 HiddenServicePort 8280 127.0.0.1:8180
 
-HiddenServiceDir {tor_directory}/bitcoin-service
+HiddenServiceDir {tor_services}/bitcoin-service
 HiddenServicePort 8332 127.0.0.1:8332
 """ 
 

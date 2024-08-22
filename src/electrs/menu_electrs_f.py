@@ -12,7 +12,7 @@ def menu_electrs():
     while True:
 
         if torrc_file.exists():
-            onion = tor_directory / "electrs-service" / "hostname"
+            onion = tor_services / "electrs-service" / "hostname"
             with open(onion, 'r') as file:
                 onionADDR = file.readline().strip()
 
