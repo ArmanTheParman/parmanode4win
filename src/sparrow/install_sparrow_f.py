@@ -203,7 +203,7 @@ def make_sparrow_config():
     "enumerateHwPeriod": 30,
     "useZbar": true,
     "serverType": "BITCOIN_CORE",
-    "publicElectrumServer": "ssl://bitcoin.lu.ke:50002|bitcoin.lu.ke",
+    "publicElectrumServer": "ssl://electrum.bitaroo.net:50002|electrum.bitaroo.net",
     "coreServer": "http://127.0.0.1:8332",
     "coreAuthType": "USERPASS","""
     sparrow_config2 = f"""    "coreDataDir": "{coreDD}","""

@@ -122,6 +122,15 @@ def _sparrow_connect_bitcoin():
          i = '/'
        coreDD = coreDD + i 
 
+    while True:
+        try: bco.grep("rpcuser") 
+        except: 
+           rpcpassword="parman"
+           rpcuser="parman"
+           break
+        rpcuser = bco.grep("rpcuser=", returnline=True).strip().split('=')[1]
+        rpcpassword = bco.grep("rpcpassword=", returnline=True).strip().split('=')[1]
+        break
     if _sparrow_connection_type == "BITCOIN_CORE":
         return True
 
@@ -130,3 +139,4 @@ def _sparrow_connect_bitcoin():
     configfile["coreAuthType"] = "USERPASS"
     configfile["useProxy"] = "false"
     configfile["coreDataDir"] = f"{coreDD}"
+    configfile["coreAuth"] = f"{rpcuser}:{rpcpassword}"
