@@ -1,3 +1,5 @@
+v0.4.2
+    -Electrum and Sparrow connection choices made available
 v0.4.1
     -openssl added to dependency check for next version of installer
     -counter
