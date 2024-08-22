@@ -94,25 +94,10 @@ def menu_electrs():
 
 def _iselectrsrunning():
     try: 
-        process = subprocess.Popen(["docker", "exec", "electrs", "ps"], capture_output=True, check=True, text=True)
-
-        # Wait for the process to complete
-        stdout, _ = process.communicate()
-        
-        # Process the output
-        output = stdout.splitlines()
-
+        output = subprocess.run(["docker", "exec", "electrs", "ps"], capture_output=True, check=True, text=True).stdout.splitlines()
         for i in output:
             if "electrs" in i:
                 return True
         return False
-
-    except Exception:
+    except Exception as e:
         return False
-
-    #     for i in output:
-    #         if "electrs" in i:
-    #             return True
-    #     return False
-    # except Exception as e:
-    #     return False
