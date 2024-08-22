@@ -50,7 +50,9 @@ def uninstall_tor():
 
 def initialise_torrc():
 
-    if not tor_directory.exists(): tor_directory.mkdir()
+    try:
+        if not tor_directory.exists(): tor_directory.mkdir()
+    except: pass
 
     torrc_text=f"""# Additions by Parmanode...
 ControlPort 9051
@@ -74,5 +76,7 @@ HiddenServiceDir {tor_directory}/bitcoin-service
 HiddenServicePort 8332 127.0.0.1:8332
 """ 
 
-    with open(torrc_file, 'w') as file:
-        file.write(torrc_text)
+    try:
+        with open(torrc_file, 'w') as file:
+            file.write(torrc_text)
+    except: pass
