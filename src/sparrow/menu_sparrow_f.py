@@ -106,7 +106,7 @@ def _sparrow_connect_electrs():
     try:
 
         configfile = get_sparrow_config()
-        configfile = ["serverType"] = "ELECTRUM_SERVER"
+        configfile["serverType"] = "ELECTRUM_SERVER"
         configfile["electrumServer"] = "tcp://127.0.0.1:50005"
         configfile["useProxy"] = "false"
 
