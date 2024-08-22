@@ -41,7 +41,6 @@ def install_mempool():
 def uninstall_mempool():
     thedir = str(pp / "mempool") 
     subprocess.run(["wsl", "-d", "ubuntu", "sudo", "rm", "-rf", thedir], check=True)
-    input("test")
     try: delete_directory_force(thedir)
     except Exception as e: input(e)
     try: delete_directory(thedir)
