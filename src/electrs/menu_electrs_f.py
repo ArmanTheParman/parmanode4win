@@ -59,8 +59,8 @@ def menu_electrs():
        elif choice.lower() == "ec":
            file = HOME / ".electrs" / "config.toml"
            os.system(f"notepad {str(file)}")
-#       elif choice.lower() == "loc":
-#           subprocess.run(["start cmd /C  
+       elif choice.lower() == "log":
+           subprocess.run(f"start cmd /C tail -f {str(HOME / ".electrs" / "run_electrs.log")}", shell=True)
        else:
            invalid()
 
