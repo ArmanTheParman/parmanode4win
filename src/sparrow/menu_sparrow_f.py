@@ -101,3 +101,32 @@ def _sparrow_connect_electrs():
         configfile["electrumServer"] = "tcp://127.0.0.1:50005"
 
     except: return False
+
+def _sparrow_connect_public():
+    
+    if not yesorno("""This is bad for privacy, try to avoid it unless you know exactly
+    what you are doing, or if it's an emergency.
+    
+    Really connect to a public server?"""): return False
+
+    if _sparrow_connection_type == "PUBLIC_ELECTRUM_SERVER":
+        return True
+
+def _sparrow_connect_bitcoin():
+
+    bitcoin_dir = pco.grep("bitcoin_dir=", returnline=True).strip().split('=')[1]
+
+    coreDD = ""
+    for i in bitcoin_dir:
+       if i == "\\":
+         i = '/'
+       coreDD = coreDD + i 
+
+    if _sparrow_connection_type == "BITCOIN_CORE":
+        return True
+
+    configfile = get_sparrow_config()
+    configfile["coreServer"] = "http://127.0.0.1:8332"
+    configfile["coreAuthType"] = "USERPASS"
+    configfile["useProxy"] = "false"
+    configfile["coreDataDir"] = f"{coreDD}"

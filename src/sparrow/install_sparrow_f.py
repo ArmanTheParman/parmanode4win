@@ -165,6 +165,16 @@ def make_sparrow_config():
          i = '/'
        coreDD = coreDD + i
 
+    while True:
+        try: bco.grep("rpcuser") 
+        except: 
+           rpcpassword="parman"
+           rpcuser="parman"
+           break
+        rpcuser = bco.grep("rpcuser=", returnline=True).strip().split('=')[1]
+        rpcpassword = bco.grep("rpcpassword=", returnline=True).strip().split('=')[1]
+        break
+
     #can't use f string because of true/false interpretation
     sparrow_config1 = """{
     "mode": "ONLINE",
@@ -197,7 +207,7 @@ def make_sparrow_config():
     "coreServer": "http://127.0.0.1:8332",
     "coreAuthType": "USERPASS","""
     sparrow_config2 = f"""    "coreDataDir": "{coreDD}","""
-    sparrow_config3 = """    "coreAuth": "parman:parman",
+    sparrow_config3 = f"""    "coreAuth": "{rpcuser}:{rpcpassword}",
     "useLegacyCoreWallet": false,
     "useProxy": false,
     "autoSwitchProxy": true,
@@ -207,7 +217,7 @@ def make_sparrow_config():
     "mempoolFullRbf": false,
     "appWidth": 1083.0,
     "appHeight": 805.5
-  }"""
+  }}"""
     sparrow_config_final = f"{sparrow_config1}\n{sparrow_config2}\n{sparrow_config3}"
       
     with sparrow_config_path.open('w') as f:
