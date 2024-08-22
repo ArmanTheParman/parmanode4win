@@ -14,3 +14,7 @@ def stop_tor():
         return True
     except Exception as e:
         input(e)
+
+def restart_tor():
+    stop_tor()
+    start_tor()

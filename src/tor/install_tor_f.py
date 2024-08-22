@@ -1,6 +1,7 @@
 from variables import *
 from functions import *
 from config_f import *
+from tor.tor_functions import *
 
 def install_tor(no_config=False):
 
@@ -50,9 +51,7 @@ def uninstall_tor():
 
 def initialise_torrc():
 
-    try:
-        if not tor_directory.exists(): tor_directory.mkdir()
-    except: pass
+    restart_tor()
 
     torrc_text=f"""# Additions by Parmanode...
 ControlPort 9051
@@ -80,3 +79,5 @@ HiddenServicePort 8332 127.0.0.1:8332
         with open(torrc_file, 'w') as file:
             file.write(torrc_text)
     except: pass
+    
+    restart_tor()
