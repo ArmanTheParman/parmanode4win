@@ -6,14 +6,7 @@ from config_f import *
 def menu_electrs():
 
     while True:
-
-       try: 
-            if subprocess.run("docker ps | grep electrs", check=True, shell=True, capture_output=True).returncode == 0: 
-               iselectrsrunning = True
-            else: iselectrsrunning = False
-       except: iselectrsrunning = False
-
-       if iselectrsrunning == True:
+       if _iselectrsrunning() == True:
            output1=f"""                                Electrs is{green} RUNNING{orange}"""
        else:
            output1=f"""                                Electrs is{red} NOT running{orange}""" 
@@ -90,3 +83,15 @@ def menu_electrs():
 
 # ########################################################################################
 # "
+
+
+def _iselectrsrunning():
+    try: 
+        output = subprocess.run(["docker", "exec", "electrs", "ps"], capture_output=True, check=True, text=True).stdout.splitlines().strip()
+        for i in output:
+            if "electrs" in i:
+                return True
+        return False
+    except Exception as e:
+        input(e)
+        return False
