@@ -24,7 +24,7 @@ def install_tor(no_config=False):
         return False
 
     try : initialise_torrc()
-    except: pass
+    except Exception as e: input(e)
 
     success("Tor has been installed") 
 
@@ -58,7 +58,7 @@ def initialise_torrc():
 
     try: tor_services.mkdir(exist_ok=True)
     except Exception as e: input(e)
-
+    input("pause 1")
     try: torrc_dir.mkdir(exist_ok=True)
     except Exception as e: input(e)
 
