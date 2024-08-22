@@ -38,7 +38,10 @@ def install_mempool():
     success("Mempool has been installed")
 
 def uninstall_mempool():
-    delete_directory(pp / "mempool") 
+    thedir = str(pp / "mempool") 
+    try: subprocess.run(f"cmd /c rmdir /S /Q {thedir}", shell=True, check=True)
+    except Exception as e: input(e)
+
     ico.remove("mempool-")
     success("Mempool has been uninstalled")
 
