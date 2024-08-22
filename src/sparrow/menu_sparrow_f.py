@@ -26,7 +26,7 @@ def menu_sparrow():
 {green}
                    (b){orange}    Make Sparrow connect to {yellow}Bitcoin Core {orange}directly
 {green}
-                   (e){orange}    Make Sparrow connect to {blue}electrs {black}(better, faster)
+                   (e){orange}    Make Sparrow connect to {blue}electrs {black}(better and faster)
          
 
 {orange}
@@ -54,11 +54,7 @@ def menu_sparrow():
 
         
 def _sparrow_connection_type():
-    
-    with open(sparrow_config_path, 'r') as file: 
-        data = json.load(file)
-
-    return data["serverType"]
+    return get_sparrow_config()["serverType"]
         
 
 def show_sparrow_wallets():
@@ -80,3 +76,19 @@ def show_sparrow_wallets():
 ########################################################################################
 """)
     enter_continue()
+
+def get_sparrow_config():
+    try:
+        with open(sparrow_config_path, 'r') as file: 
+            data = json.load(file)
+        return data
+    except:
+        return False
+
+def _sparrow_connect_electrs():
+    
+    if _sparrow_connection_type == "ELECTRUM_SERVER":
+        return True
+
+    configfile = get_sparrow_config()
+    configfile["electrumServer"] = "tcp://127.0.0.1:50005"
