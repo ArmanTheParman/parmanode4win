@@ -105,16 +105,11 @@ def verify_sparrow():
     try:
         result = subprocess.run(["gpg", "--keyserver", "hkps://keyserver.ubuntu.com", "--recv-keys", "D4D0D3202FC06849A257B38DE94618334C674B40"], check=True)
     except Exception as e:
-        input(e)
+        pass
     try:
         checkkey = subprocess.run(["gpg", "--list-keys", "D4D0D3202FC06849A257B38DE94618334C674B40"], capture_output=True, text=True)
     except Exception as e:
-        input(e)
         pass
-    try:
-        print(checkkey.stdout)
-    except Exception as e:
-        input(e)
 
 
     if "D4D0D3202FC06849A257B38DE94618334C674B40" in checkkey.stdout:

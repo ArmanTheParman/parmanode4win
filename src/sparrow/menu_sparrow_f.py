@@ -8,6 +8,8 @@ def menu_sparrow():
 
     while True:
 
+        _sparrow_connection_type()
+
         set_terminal()
         print(f"""{orange}
 ########################################################################################{cyan}
@@ -52,3 +54,8 @@ def menu_sparrow():
             return True
         else:
             invalid()
+
+        
+def _sparrow_connection_type():
+    
+    
