@@ -33,8 +33,12 @@ def install_mempool():
     please_wait() 
 
     clone_mempool()
-
+    
+    ico.add("mempool-end")
     success("Mempool has been installed")
+
+def uninstall_mempool():
+    pass
    
 
     
