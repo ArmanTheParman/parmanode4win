@@ -5,6 +5,8 @@ from config_f import *
 
 def menu_electrs():
 
+    IP = get_IP_variables()
+
     while True:
        if _iselectrsrunning() == True:
            output1=f"""                                Electrs is{green} RUNNING{orange}"""
@@ -21,6 +23,11 @@ def menu_electrs():
 
 
 {output1}
+
+ CONNECT:{cyan}    127.0.0.1:50005:t    {yellow} (From this computer only){orange}
+         {cyan}    127.0.0.1:50006:s    {yellow} (From this computer only){orange} 
+         {cyan}    {IP["IP"]}:50006:s          {yellow} \e[G\e[41G(From any home network computer){orange}
+
 
         {green}
             (start){orange}    Start electrs 
