@@ -16,7 +16,7 @@ def menu_electrs():
             with open(onion, 'r') as file:
                 onionADDR = file.readline().strip()
 
-        toroutput = f"""{cyan}    {onionADDR}:70004:t          
+        toroutput = f"""{bright_blue}         {onionADDR}:70004:t          
 {yellow} {move_to_start}{move_to_column_41}(From any home network computer){orange}"""
 
         if _iselectrsrunning() == True:
@@ -39,6 +39,7 @@ def menu_electrs():
  CONNECT:{cyan}    127.0.0.1:50005:t         {yellow} (From this computer only){orange}
          {cyan}    127.0.0.1:50006:s         {yellow} (From this computer only){orange} 
          {cyan}    {IP["IP"]}:50006:s          {yellow} {move_to_start}{move_to_column_41}(From any home network computer){orange}
+
 {toroutput}
 
         {green}
