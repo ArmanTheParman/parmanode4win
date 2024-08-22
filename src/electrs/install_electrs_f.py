@@ -36,7 +36,7 @@ def install_electrs():
 
     sned_sats()
     set_terminal()
-    if not yesorno(f"""Please be aware that currently, and external drive to hold the electrs data
+    if not yesorno(f"""Please be aware that currently, an external drive to hold the electrs data
     is not yet supported with Parmanode - mounting a Windows formatted drive to a Linux 
     Docker container has proven tricky so far. That means electrs will only work 
     syncing to the internal drive.
@@ -99,8 +99,7 @@ def check_server_1():
         return True
     else:
         announce(f"""{cyan}'server=1'{orange} needs to be included in the bitcoin.conf 
-    file. Please do that, restart Bitcoin, and try again. Note, this will
-    resync the index which will take a long time. Aborting.""")
+    file. Please do that, restart Bitcoin, and try again.""")
         return False
 
 def check_rpc_bitcoin():
