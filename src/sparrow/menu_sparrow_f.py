@@ -23,10 +23,10 @@ def menu_sparrow():
                    (s){orange}    Start/open Sparrow
 {green}
                    (w){orange}    View saved wallet files 
-
-                   (b){orange}    Make Sparrow connect to Bitcoin Core directly
-
-                   (e){orange}    Make Sparrow connect to electrs (better, faster)
+{green}
+                   (b){orange}    Make Sparrow connect to {yellow}Bitcoin Core {orange}directly
+{green}
+                   (e){orange}    Make Sparrow connect to {blue}electrs {black}(better, faster)
          
 
 {orange}
