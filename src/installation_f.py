@@ -131,6 +131,22 @@ def install_curl_with_chocolatey():
 
     return True
 
+def check_openssl():
+    try:
+        subprocess.run(["openssl", "--version"], check=True)
+        return True
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return False
+
+def install_openssl_with_chocolatey():
+    try:
+        subprocess.run(["choco", "install", "openssl", "-y"], check=True)
+        print("openssl installed successfully.")
+    except subprocess.CalledProcessError as e:
+        raise Exception(f"Failed to install curl with Chocolatey: {e.stderr}")
+
+    return True
+
 def check_gpg():
     try:
         subprocess.run(["gpg", "--version"], check=True)
@@ -161,6 +177,9 @@ def dependency_check():
 
         if not check_curl():
             install_curl_with_chocolatey()
+
+        if not check_openssl():
+            install_openssl_with_chocolatey()
 
         # Check if gpg is installed
         if not check_gpg():

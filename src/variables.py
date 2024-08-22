@@ -6,7 +6,7 @@ from classes import config
 ########################################################################################
 
 global version 
-version = [0, 3, 0]
+version = [0, 4, 2]
 version_text=f"{str(version[0])}.{str(version[1])}.{str(version[2])}"
 installer_version = [0, 0, 2]
 
@@ -89,3 +89,18 @@ b = Path(default_bitcoin_data_dir)
 bc = b / "bitcoin.conf"
 if bc.exists() == True:
     bco = config(bc)
+
+# Electrs defaults
+electrs_dir = HOME / "electrs_db"
+electrs_db = str(electrs_dir)
+dot_electrs = str(HOME / ".electrs")
+
+# Sparrow variables
+sparrow_config_dir = HOME / "Appdata" / "Roaming" / "Sparrow"
+sparrow_config_path = sparrow_config_dir / "config"
+sparrow_wallet_directory = Path (sparrow_config_dir / "wallets")    
+
+# Electrum variables
+electrum_config_dir = HOME / "Appdata" / "Roaming" / "electrum"
+electrum_config_path = electrum_config_dir / "config"
+electrum_wallet_directory = Path (electrum_config_dir / "wallets")    

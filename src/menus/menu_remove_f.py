@@ -5,6 +5,7 @@ from electrum.uninstall_electrum_f import *
 from tor.install_tor_f import *
 from wsl.wsl_f import *
 from docker.docker_f import *
+from electrs.uninstall_electrs_f import *
 from parmanode.menu_main_f import *
 from config_f import *
 
@@ -58,6 +59,13 @@ def menu_remove():
         else: 
             dockermenu = False
 
+        if ico.grep("electrs-"): 
+            rem_electrs = f"#                  {green} (ers){orange}         Electrs                                              #"
+            electrsmenu = True
+            available.append(rem_electrs)
+        else: 
+            electrsmenu = False
+
         set_terminal()
         print(f"""
 ########################################################################################
@@ -108,6 +116,10 @@ def menu_remove():
         elif choice.lower() == "d":
             if dockermenu == False: continue
             if not uninstall_docker(): return False
+            return True
+        elif choice.lower() == "ers":
+            if electrsmenu == False: continue
+            if not uninstall_electrs(): return False
             return True
         else:
             invalid()

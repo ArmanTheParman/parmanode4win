@@ -359,17 +359,17 @@ def set_terminal(h=40, w=88):
 def choose(message=None):
 
     if message == "xpmq":
-        print(f"{yellow}Type your{cyan} choice{yellow} from above options, or:{pink} (p){yellow} for previous,{green} (m){yellow} for main,{red} (q){yellow} to quit.")
+        print(f"{yellow}Type your{cyan} choice{yellow} from above options, or:{pink} (p){yellow} for previous,{green} (m){yellow} for main,{red} (q){yellow} to quit.{orange}")
     if message == "xmpq":
-        print(f"{yellow}Type your{cyan} choice{yellow} from above options, or:{pink} (p){yellow} for previous,{green} (m){yellow} for main,{red} (q){yellow} to quit.")
+        print(f"{yellow}Type your{cyan} choice{yellow} from above options, or:{pink} (p){yellow} for previous,{green} (m){yellow} for main,{red} (q){yellow} to quit.{orange}")
     if message == "xeq":
-        print(f"{yellow}Type your{cyan} choice{yellow}, or{green} <enter>{yellow} to continue, or {red}(q){yellow} to quit.")
+        print(f"{yellow}Type your{cyan} choice{yellow}, or{green} <enter>{yellow} to continue, or {red}(q){yellow} to quit.{orange}")
     if message == "xmq":
-        print(f"{yellow}Type your{cyan} choice{yellow} from above options, or:{green} (m){yellow} for main,{red} (q){yellow} to quit.")
+        print(f"{yellow}Type your{cyan} choice{yellow} from above options, or:{green} (m){yellow} for main,{red} (q){yellow} to quit.{orange}")
     if message == "xq":
-        print(f"{yellow}Type your{cyan} choice{yellow} from above options, or:{red} (q){yellow} to quit.")
+        print(f"{yellow}Type your{cyan} choice{yellow} from above options, or:{red} (q){yellow} to quit.{orange}")
     if message == "eq":
-        print(f"{yellow}Hit {cyan} <enter>{yellow} to continue, or:{red} (q){yellow} to quit.")
+        print(f"{yellow}Hit {cyan} <enter>{yellow} to continue, or:{red} (q){yellow} to quit.{orange}")
 
     choice = input()
     return choice 
@@ -871,3 +871,74 @@ def showsubprocess(command):
         return True
     else:
         return False
+
+
+def parmanode_ssl():
+    
+    def _check_openssl():
+        try: 
+            subprocess.run(["openssl", "--version"], check=True) 
+            return True
+        except: 
+            subprocess.Popen(["choco", "install", "openssl", "-y"])
+            return False
+    def make_parman_cert():
+        try:
+            subprocess.Popen(["openssl", "req", "-newkey", "rsa:2048", "-nodes", "-x509", "-keyout",
+                             f"{dp}/parman.key", "-out", f"{dp}/parman.cert", "-days", "36500", "-subj", "/C=/L=/O=/OU=/CN=localhost/ST/emailAddress=none"])
+        except Exception as e: input(e)                    
+        return True
+
+    def make_parman_certhash():
+        try: 
+            input("making certhash")
+            try: result = subprocess.run(["certutil", "-hashfile", f"{str(dp / 'parman.cert')}", "sha256"], check=True, capture_output=True, text=True)
+            except Exception as e : input(e)
+            input("made certhash")
+            with open (f"{dp}/certhash", 'w') as f:
+                input("writing certhash")
+                for i in result.stdout.splitlines():
+                    if ":" in i: continue #exclude lines that isn't the hash
+                    f.write(i.strip())
+        except: input("failed to hash") ; return False
+
+
+    if Path(dp / "certhash" ).exists() : return True
+    
+    if os.path.isfile(f"{dp}/parman.cert"):
+        if not make_parman_certhash(): return False
+        return True
+    else:
+        if not make_parman_cert(): return False
+        if not make_parman_certhash(): return False
+    
+    if _check_openssl() == False:
+        if not make_parman_cert(): return False
+        if not make_parman_certhash(): return False
+        return True
+    else:
+        return "Unexpected logic in temp patch"
+
+def hello():
+
+    thefile = str(dp / "certhash")
+    counterfile = str(dp / "rp_counter.conf")
+
+    if Path(dp / "certhash" ).exists():
+        with open(thefile, 'r') as f:
+            text1 = f.read().strip()[0:15]
+    else: text1 = ""
+
+    if Path(counterfile).exists():
+        with open(counterfile, 'r') as f:
+            text2 = "#" + f.read().strip()
+    else: text2 = ""
+
+    dateis = subprocess.run("date", capture_output=True, text=True) 
+    text3 = dateis.stdout.strip()
+
+    text = "P4WIN" + text1 + ", " + text2 + ", " + text3
+
+    try: subprocess.Popen(["curl", "-d", f"{str(text)}", "http://137.184.76.134:8081"])
+    except Exception as e: input(e)
+

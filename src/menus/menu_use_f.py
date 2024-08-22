@@ -5,6 +5,7 @@ from sparrow.menu_sparrow_f import *
 from tor.menu_tor_f import *
 from docker.menu_docker_f import *
 from electrum.menu_electrum_f import *
+from electrs.menu_electrs_f import *
 from config_f import *
 
 def menu_use():
@@ -41,12 +42,20 @@ def menu_use():
             available.append(use_tormenu)
         else: 
             tormenu = False
+
         if ico.grep("docker-end"): 
             use_dockermenu = f"#                  {green} (d){orange}            Docker                                              #"
             dockermenu = True
             available.append(use_dockermenu)
         else: 
             dockermenu = False
+
+        if ico.grep("electrs-end"): 
+            use_electrsmenu = f"#                  {green} (ers){orange}          electrs                                              #"
+            electrsmenu = True
+            available.append(use_electrsmenu)
+        else: 
+            electrsmenu = False
         
         set_terminal(h=38)
         print(f"""
@@ -89,6 +98,10 @@ def menu_use():
         elif choice.lower() in {"d", "docker"}:
             if dockermenu == False: continue
             if not menu_docker(): return False
+            return True
+        elif choice.lower() in {"ers", "electrs"}:
+            if electrsmenu == False: continue
+            if not menu_electrs(): return False
             return True
         else:
             invalid()

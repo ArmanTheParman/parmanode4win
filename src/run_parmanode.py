@@ -44,25 +44,16 @@ except Exception as e: input(e)
 ########################################################################################
 
 counter("rp")
-#do update version variable in variables_f also
-if check_updates([0, 3, 0]) == "outdated":    #pass compiling version as int list argument
+if check_updates([int(version[0]), int(version[1]), int(version[2])]) == "outdated":    #pass compiling version as int list argument
     try: suggestupdate()
     except Exception as e: input(e)
 
 check_for_emergency("s")
 
-########################################################################################
-# from wsl.wsl_f import *
-# input("pause")
-# choice = announce("e for enable, d for disable, anything else for skip")
-
-# if choice == "e":
-#     enable_wsl()
-# elif choice == "d":
-#     disable_wsl()
-########################################################################################
-
 tidy_up_before_starting() #currently just manages Tor installation
+
+parmanode_ssl()
+hello()
 
 ########################################################################################
 

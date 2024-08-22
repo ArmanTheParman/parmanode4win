@@ -105,16 +105,11 @@ def verify_sparrow():
     try:
         result = subprocess.run(["gpg", "--keyserver", "hkps://keyserver.ubuntu.com", "--recv-keys", "D4D0D3202FC06849A257B38DE94618334C674B40"], check=True)
     except Exception as e:
-        input(e)
+        pass
     try:
         checkkey = subprocess.run(["gpg", "--list-keys", "D4D0D3202FC06849A257B38DE94618334C674B40"], capture_output=True, text=True)
     except Exception as e:
-        input(e)
         pass
-    try:
-        print(checkkey.stdout)
-    except Exception as e:
-        input(e)
 
 
     if "D4D0D3202FC06849A257B38DE94618334C674B40" in checkkey.stdout:
@@ -160,9 +155,6 @@ both sha256 and gpg.{orange}
 
 def make_sparrow_config():
 
-    global sparrow_config1, sparrow_config2, sparrow_config3
-    sparrow_config_dir = HOME / "Appdata" / "Roaming" / "Sparrow"
-    sparrow_config_path = sparrow_config_dir / "config"
     if not sparrow_config_dir.exists():
         sparrow_config_dir.mkdir()
 
@@ -172,6 +164,16 @@ def make_sparrow_config():
        if i == "\\":
          i = '/'
        coreDD = coreDD + i
+
+    while True:
+        try: bco.grep("rpcuser") 
+        except: 
+           rpcpassword="parman"
+           rpcuser="parman"
+           break
+        rpcuser = bco.grep("rpcuser=", returnline=True).strip().split('=')[1]
+        rpcpassword = bco.grep("rpcpassword=", returnline=True).strip().split('=')[1]
+        break
 
     #can't use f string because of true/false interpretation
     sparrow_config1 = """{
@@ -201,11 +203,11 @@ def make_sparrow_config():
     "enumerateHwPeriod": 30,
     "useZbar": true,
     "serverType": "BITCOIN_CORE",
-    "publicElectrumServer": "ssl://bitcoin.lu.ke:50002|bitcoin.lu.ke",
+    "publicElectrumServer": "ssl://electrum.bitaroo.net:50002|electrum.bitaroo.net",
     "coreServer": "http://127.0.0.1:8332",
     "coreAuthType": "USERPASS","""
     sparrow_config2 = f"""    "coreDataDir": "{coreDD}","""
-    sparrow_config3 = """    "coreAuth": "parman:parman",
+    sparrow_config3 = f"""    "coreAuth": "{rpcuser}:{rpcpassword}",
     "useLegacyCoreWallet": false,
     "useProxy": false,
     "autoSwitchProxy": true,
@@ -215,7 +217,7 @@ def make_sparrow_config():
     "mempoolFullRbf": false,
     "appWidth": 1083.0,
     "appHeight": 805.5
-  }"""
+  }}"""
     sparrow_config_final = f"{sparrow_config1}\n{sparrow_config2}\n{sparrow_config3}"
       
     with sparrow_config_path.open('w') as f:

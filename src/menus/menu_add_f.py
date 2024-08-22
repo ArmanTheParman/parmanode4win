@@ -1,3 +1,4 @@
+from electrs.install_electrs_f import *
 from functions import *
 from bitcoin.install_bitcoin_f import *
 from sparrow.install_sparrow_f import *
@@ -5,8 +6,7 @@ from electrum.install_electrum_f import *
 from tor.install_tor_f import *
 from wsl.wsl_f import *
 from docker.docker_f import *
-from config_f import *
-
+    
 def menu_add():
 
     while True:
@@ -47,14 +47,21 @@ def menu_add():
             wslmenu = True
             available.append(add_wsl)
         else: 
-            tormenu = False
+            wslmenu = False
 
         if not ico.grep("docker-"):
             add_docker= f"#                  {green} (d){orange}            Docker Desktop {grey}(requires WSL){orange}                       #"
             dockermenu = True
             available.append(add_docker)
         else: 
-            tormenu = False
+            dockermenu = False
+
+        if not ico.grep("electrs-"):
+            add_electrs= f"#                  {green} (ers){orange}          Electrs {grey}(requires Docker){orange}                           #"
+            electrsmenu = True
+            available.append(add_electrs)
+        else: 
+            electrsmenu = False
 
         set_terminal(h=38)
         print(f"""
@@ -107,6 +114,12 @@ def menu_add():
         elif choice.lower() == "d":
             if dockermenu == False : continue
             if not install_docker(): return False
+            return True
+        elif choice.lower() == "ers":
+            if electrsmenu == False : continue
+            try: 
+                install_electrs()
+            except Exception as e: input(e)
             return True
         else:
             invalid()

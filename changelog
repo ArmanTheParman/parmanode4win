@@ -1,3 +1,11 @@
+v0.4.2
+    -Electrum and Sparrow connection choices made available
+v0.4.1
+    -openssl added to dependency check for next version of installer
+    -counter
+v0.4.0
+    -Docker menu added
+    -Hidden from users - spahgetti'd the yesno() function, but more flexible now
 v0.3.0
     -Tor added by default
     -Menu formatting improvements
