@@ -107,5 +107,9 @@ electrum_wallet_directory = Path (electrum_config_dir / "wallets")
 
 # Tor variables
 tor_services = Path("c:/Windows/ServiceProfiles/LocalService/Appdata/Roaming/torservices")
+try: tor_services.mkdir()
+except Exception as e: input(e)
+import sys
+sys.exit()
 torrc_dir = Path("c:/Windows/ServiceProfiles/LocalService/Appdata/Roaming/tor")
 torrc_file = torrc_dir / "torrc"
