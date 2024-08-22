@@ -164,15 +164,18 @@ def _sparrow_connect_bitcoin():
         rpcpassword = bco.grep("rpcpassword=", returnline=True).strip().split('=')[1]
         break
 
-    configfile = get_sparrow_config()
-    configfile["coreServer"] = "http://127.0.0.1:8332"
-    configfile["coreAuthType"] = "USERPASS"
-    configfile["useProxy"] = "false"
-    configfile["coreDataDir"] = f"{coreDD}"
-    configfile["coreAuth"] = f"{rpcuser}:{rpcpassword}"
+    try:
+        configfile = get_sparrow_config()
+        configfile["coreServer"] = "http://127.0.0.1:8332"
+        configfile["coreAuthType"] = "USERPASS"
+        configfile["useProxy"] = "false"
+        configfile["coreDataDir"] = f"{coreDD}"
+        configfile["coreAuth"] = f"{rpcuser}:{rpcpassword}"
 
-    with open(sparrow_config_path, 'w') as file:
-        json.dump(configfile, file, indent=4)
+        with open(sparrow_config_path, 'w') as file:
+            json.dump(configfile, file, indent=4)
+
+    except Exception as e: input(e) ; return False
 
     success("Sparrow connection changed to Bitcoin Core")
     return True
