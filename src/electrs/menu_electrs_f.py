@@ -26,6 +26,7 @@ def menu_electrs():
 
 {output1}
 
+
  CONNECT:{cyan}    127.0.0.1:50005:t         {yellow} (From this computer only){orange}
          {cyan}    127.0.0.1:50006:s         {yellow} (From this computer only){orange} 
          {cyan}    {IP["IP"]}:50006:s          {yellow} {move_to_start}{move_to_column_41}(From any home network computer){orange}
@@ -64,6 +65,10 @@ def menu_electrs():
        elif choice.lower() == "stop":
            set_terminal()
            stop_electrs()
+           continue 
+       elif choice.lower() == "restart":
+           set_terminal()
+           restart_electrs()
            continue 
        elif choice.lower() == "ec":
            file = HOME / ".electrs" / "config.toml"
