@@ -104,7 +104,7 @@ volumes:
   mariadb_data:
   mysql_data:"""
     
-    # file = pp / "mempool" / "docker" / "docker-compose.yml"
-    # file = config(file)
-    # tmpo.truncate()
-    # tmpo.add(config)
+    file = pp / "mempool" / "docker" / "docker-compose.yml"
+    fileo = config(file)
+    fileo.truncate()
+    fileo.add(text)
