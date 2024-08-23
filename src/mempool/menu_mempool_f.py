@@ -111,6 +111,8 @@ def get_mempool_backend():
     if tmpo.grep("electrum"): return "ELECTRUM SERVER"
 
 def change_mempool_backend(backend):
+    try: os.system(f"cp {mempool_yml} {mempool_yml}.backup")
+    except Exception as e: input(e)
 
     with open(mempool_yml, 'r') as file:
         data = file.readlines()
@@ -118,7 +120,7 @@ def change_mempool_backend(backend):
     with open(mempool_yml, 'w') as file:
         for i in data:
             if "MEMPOOL_BACKEND" in i:
-                file.write(f"      MEMPOOL_BACKEND: \"{backend}\"")
+                file.write(f"      MEMPOOL_BACKEND: \"{backend}\""+ '\n')
             else:
                 file.write(i)
 
