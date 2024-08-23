@@ -5,22 +5,22 @@ from functions import *
 
 def make_mempool_docker_compose():
 
-    IP = get_IP_variables
+    IP = get_IP_variables()
     print(IP["IP"])
     input()
 
-    # while True:
-    #     try: bco.grep("rpcuser") 
-    #     except: 
-    #         rpcpassword="parman"
-    #         rpcuser="parman"
-    #         break
-    #     rpcuser = bco.grep("rpcuser=", returnline=True).strip().split('=')[1]
-    #     rpcpassword = bco.grep("rpcpassword=", returnline=True).strip().split('=')[1]
-    #     break
+    while True:
+        try: bco.grep("rpcuser") 
+        except: 
+            rpcpassword="parman"
+            rpcuser="parman"
+            break
+        rpcuser = bco.grep("rpcuser=", returnline=True).strip().split('=')[1]
+        rpcpassword = bco.grep("rpcpassword=", returnline=True).strip().split('=')[1]
+        break
 
-    # print(rpcuser)
-    # input()
+    print(rpcuser)
+    input()
 
 
     mariadb_data="mariadb_data"
