@@ -72,6 +72,7 @@ def enable_wsl():
 
     ico.add("wsl-end")
     success("WSL has been installed. You may need to reboot the computer for it to take effect.")
+    return True
 
 
 

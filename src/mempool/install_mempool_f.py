@@ -42,6 +42,7 @@ def install_mempool():
 
     ico.add("mempool-end")
     success("Mempool has been installed")
+    return True
 
 def uninstall_mempool():
 

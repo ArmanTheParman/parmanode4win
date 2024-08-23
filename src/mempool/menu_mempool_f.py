@@ -49,7 +49,7 @@ def menu_mempool():
             (restart){orange}  Restart Mempool
         {blue}
             (ec){orange}       View and edit the Mempool config file
-            
+        {blue}    
             (bk){orange}       Change backend. Current: {green}{backend}{orange}
         
 
@@ -112,22 +112,15 @@ def get_mempool_backend():
 
 def change_mempool_backend(backend):
 
+    with open(mempool_yml, 'r') as file:
+        data = file.readlines()
 
-   with open(mempool_yml, 'r') as file:
-       data = file.readlines()
-
-   #custom object
-   tmpo.truncate()
-   for i in data:
-       if "MEMPOOL_BACKEND" in i:
-           tmpo.add(f"      MEMPOOL_BACKEND: \"{backend}\"")
-       else:
-           tmpo.add(i)
-   data = tmpo.read()
-
-   with open(mempool_yml, 'w') as file:
+    with open(mempool_yml, 'w') as file:
         for i in data:
-            file.write(i)
+            if "MEMPOOL_BACKEND" in i:
+                file.write(f"      MEMPOOL_BACKEND: \"{backend}\"")
+            else:
+                file.write(i)
 
 
     

@@ -63,6 +63,7 @@ def install_electrs():
     #make sure /electrs_db has permissions for "parman" user
 
     make_electrs_ssl() 
+    return True
 
 #Set permissions
     please_wait()

@@ -47,21 +47,7 @@ def install_docker():
     success(f"""Docker has been installed. Before it can work, a window (docker-desktop app) 
     will pop up and you need to accept the terms and conditions, and do it's stupid
     survey - it's ok to click 'skip'.""") 
-
-r"""
-    # WSL needs to be installed first
-
-    # choco install docker-desktop -y
-
-    # #restart computer to set path correctly -- maybe. test it
-
-    # docker bin files:
-    #      c:\Program files\Docker\Docker\resources\bin
-
-    Run docker desktop, user needs to accept terms first...
-    #      c:\Program files\Docker\Docker\"docker desktop.exe"
-    
- """
+    return True
 
 def uninstall_docker():
     if yesorno(f"""Are you sure you want to uninstall Docker?""") == False: return False
