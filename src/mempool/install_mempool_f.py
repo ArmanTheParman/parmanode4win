@@ -44,6 +44,9 @@ def install_mempool():
     success("Mempool has been installed")
 
 def uninstall_mempool():
+
+    if not yesorno(f"""Are you sure you want to uninstall Mempool?"""): return False
+
     thedir = str(pp / "mempool") 
     try: delete_directory_force(thedir)
     except Exception as e: input(e)
@@ -75,7 +78,8 @@ def start_mempool():
         announce(f"""Please make sure Docker is running and try again. Aborting.""")
         return False
 
-    command = ["docker", "compose", "-f", f"{pp / "mempool" / "docker" / "docker-compose.yml" }", "up", "-d"]
+    os.chdir(pp / "mempool" / "docker")
+    command = ["docker", "compose", "up", "-d"]
 
     try:
         subprocess.run(command, check=True)
