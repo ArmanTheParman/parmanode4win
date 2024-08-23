@@ -11,10 +11,12 @@ def install_mempool():
     if ico.grep("docker-end") == False:
         announce(f"""Must install Docker first. Aborting.""")
         return False
-    
-    if not subprocess.run("docker ps", check=True, shell=True).returncode == 0:
+
+    try: subprocess.run("docker ps", check=True, shell=True)
+    except:
         announce(f"""Please make sure Docker is running and try again. Aborting.""")
         return False
+    
 
     if ico.grep("bitcoin-end") == False:
         announce(f"""Please install Bitcoin first and try again. Aborting.""")
@@ -48,7 +50,8 @@ def uninstall_mempool():
 
     if not yesorno(f"""Are you sure you want to uninstall Mempool?"""): return False
 
-    if not subprocess.run("docker ps", check=True, shell=True).returncode == 0:
+    try: subprocess.run("docker ps", check=True, shell=True)
+    except:
         announce(f"""Please make sure Docker is running and try again. Aborting.""")
         return False
 
