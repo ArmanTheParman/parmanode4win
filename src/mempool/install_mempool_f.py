@@ -12,7 +12,7 @@ def install_mempool():
         announce(f"""Must install Docker first. Aborting.""")
         return False
     
-    if dosubprocess("docker ps") == False:
+    if not subprocess.run("docker ps", check=True, shell=True).returncode == 0:
         announce(f"""Please make sure Docker is running and try again. Aborting.""")
         return False
 
@@ -47,6 +47,10 @@ def install_mempool():
 def uninstall_mempool():
 
     if not yesorno(f"""Are you sure you want to uninstall Mempool?"""): return False
+
+    if not subprocess.run("docker ps", check=True, shell=True).returncode == 0:
+        announce(f"""Please make sure Docker is running and try again. Aborting.""")
+        return False
 
     thedir = str(pp / "mempool") 
     try: delete_directory_force(thedir)
