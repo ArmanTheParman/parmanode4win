@@ -6,8 +6,6 @@ from functions import *
 def make_mempool_docker_compose():
 
     IP = get_IP_variables()
-    print(IP["IP"])
-    input()
 
     while True:
         try: bco.grep("rpcuser") 
@@ -19,42 +17,38 @@ def make_mempool_docker_compose():
         rpcpassword = bco.grep("rpcpassword=", returnline=True).strip().split('=')[1]
         break
 
-    print(rpcuser)
-    input()
-
 
     mariadb_data="mariadb_data"
     mysql_data="mysql_data"
 
-#     text = f"""networks:
-#     PM_network:
-#       driver: bridge
+    text = f"""networks:
+    PM_network:
+      driver: bridge
 
-# services:
-#   mempool_web:
-#     environment:
-#       FRONTEND_HTTP_PORT: "8180"
-#       BACKEND_MAINNET_HTTP_HOST: "api"
-#     image: mempool/frontend:latest
-#     user: "0:0"
-#     restart: on-failure
-#     stop_grace_period: 1m
-#     command: "./wait-for db:3306 --timeout=720 -- nginx -g 'daemon off;'"
-#     ports:
-#       - 8180:8180
-#     networks:
-#       - PM_network
-#   api:
-#     environment:
-#       MEMPOOL_BACKEND: "none"
-#       CORE_RPC_HOST: "{IP["IP"]}"
-#       CORE_RPC_PORT: "8332"
-#       ELECTRUM_HOST: "{IP["IP"]}"
-#       ELECTRUM_PORT: "50005"
-#       ELECTRUM_TLS_ENABLED: "false"
-#       CORE_RPC_USERNAME: "{rpcuser}"
-#       CORE_RPC_PASSWORD: "{rpcpassword}"
-    text = f"""
+services:
+  mempool_web:
+    environment:
+      FRONTEND_HTTP_PORT: "8180"
+      BACKEND_MAINNET_HTTP_HOST: "api"
+    image: mempool/frontend:latest
+    user: "0:0"
+    restart: on-failure
+    stop_grace_period: 1m
+    command: "./wait-for db:3306 --timeout=720 -- nginx -g 'daemon off;'"
+    ports:
+      - 8180:8180
+    networks:
+      - PM_network
+  api:
+    environment:
+      MEMPOOL_BACKEND: "none"
+      CORE_RPC_HOST: "{IP["IP"]}"
+      CORE_RPC_PORT: "8332"
+      ELECTRUM_HOST: "{IP["IP"]}"
+      ELECTRUM_PORT: "50005"
+      ELECTRUM_TLS_ENABLED: "false"
+      CORE_RPC_USERNAME: "{rpcuser}"
+      CORE_RPC_PASSWORD: "{rpcpassword}"
       DATABASE_ENABLED: "true"
       DATABASE_HOST: "db"
       DATABASE_DATABASE: "mempool"
@@ -110,7 +104,7 @@ volumes:
   mariadb_data:
   mysql_data:"""
     
-    file = pp / "mempool" / "docker" / "docker-compose.yml"
-    file = config(file)
-    tmpo.truncate()
-    tmpo.add(config)
+    # file = pp / "mempool" / "docker" / "docker-compose.yml"
+    # file = config(file)
+    # tmpo.truncate()
+    # tmpo.add(config)
