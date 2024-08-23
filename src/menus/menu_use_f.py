@@ -6,6 +6,7 @@ from tor.menu_tor_f import *
 from docker.menu_docker_f import *
 from electrum.menu_electrum_f import *
 from electrs.menu_electrs_f import *
+from mempool.menu_mempool_f import *
 from config_f import *
 
 def menu_use():
@@ -56,6 +57,13 @@ def menu_use():
             available.append(use_electrsmenu)
         else: 
             electrsmenu = False
+
+        if ico.grep("mempool-end"): 
+            use_mempoolmenu = f"#                  {green} (mem){orange}          Mempool                                              #"
+            mempoolmenu = True
+            available.append(use_mempoolmenu)
+        else: 
+            mempoolmenu = False
         
         set_terminal(h=38)
         print(f"""
@@ -102,6 +110,10 @@ def menu_use():
         elif choice.lower() in {"ers", "electrs"}:
             if electrsmenu == False: continue
             if not menu_electrs(): return False
+            return True
+        elif choice.lower() == "mem": 
+            if mempoolmenu == False: continue
+            if not menu_mempool(): return False
             return True
         else:
             invalid()
