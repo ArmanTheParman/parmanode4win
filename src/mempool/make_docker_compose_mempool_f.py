@@ -75,8 +75,9 @@ services:
       LIGHTNING_LOGGER_UPDATE_INTERVAL: 30
       LND_TLS_CERT_PATH: "{str(HOME / '.lnd').replace('\\', '/')}"
       LND_MACAROON_PATH: "{str(HOME / '.lnd/data/chain/bitcoin/mainnet').replace('\\', '/')}"
-      LND_ata/chain/bitcoin/mainnet'"
-      LND_LND_TIMEOUT: 10000
+      LND_REST_API_URL: "https://localhost:8080"
+      LND_TIMEOUT: 10000
+ 
     image: mempool/backend:latest
     user: "0:0"
     restart: on-failure
