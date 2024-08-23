@@ -41,11 +41,6 @@ def install_mempool():
     success("Mempool has been installed")
 
 def uninstall_mempool():
-
-    print(f"""
-    Your computer "sudo" password may be requied...
-    """)
-
     thedir = str(pp / "mempool") 
     try: delete_directory_force(thedir)
     except Exception as e: input(e)
