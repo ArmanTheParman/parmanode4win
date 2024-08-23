@@ -34,6 +34,7 @@ def install_mempool():
     please_wait() 
 
     clone_mempool()
+    ico.add("mempool-start")
     
     ico.add("mempool-end")
     success("Mempool has been installed")
