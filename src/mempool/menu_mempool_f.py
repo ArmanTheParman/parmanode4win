@@ -115,7 +115,8 @@ def change_mempool_backend(backend):
 
    with open(mempool_yml, 'r') as file:
        data = file.readlines()
-   
+   input(data) 
+
    #custom object
    tmpo.truncate()
    for i in data:
@@ -124,6 +125,8 @@ def change_mempool_backend(backend):
        else:
            tmpo.add(i)
    data = tmpo.read()
+   input(data)
+   input(type(data))
 
    with open(mempool_yml, 'w') as file:
         for i in data:
