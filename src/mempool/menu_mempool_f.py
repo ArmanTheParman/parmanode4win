@@ -106,7 +106,7 @@ def get_mempool_backend():
     fileo = config(mempool_yml)
     text = fileo.grep("MEMPOOL_BACKEND", returnline=True)
     tmpo.truncate()
-    tmpo.write(text)
+    tmpo.add(text)
     if tmpo.grep("none"): return "BITCOIN CORE"
     if tmpo.grep("electrum"): return "ELECTRUM SERVER"
 
