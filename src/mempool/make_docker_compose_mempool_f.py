@@ -21,7 +21,7 @@ def make_mempool_docker_compose():
     mariadb_data="mariadb_data"
     mysql_data="mysql_data"
 
-    text1 = f"""networks:
+    text = f"""networks:
     PM_network:
       driver: bridge
 
@@ -103,3 +103,5 @@ services:
 volumes:
   mariadb_data:
   mysql_data:"""
+
+    tmpo.write(text)
