@@ -50,7 +50,7 @@ def menu_mempool():
         {blue}
             (ec){orange}       View and edit the Mempool config file
             
-            (bk)               Change backend. Current: {green}{backend}{orange}
+            (bk){orange}       Change backend. Current: {green}{backend}{orange}
         
 
 {orange}
