@@ -93,7 +93,7 @@ def menu_mempool():
 
 def _ismempoolrunning():
     try: 
-        if subprocess.run("docker ps | grep frontent", shell=True, capture_output=True, check=True, text=True).returncode == 0:
+        if subprocess.run("docker ps | grep frontend", shell=True, capture_output=True, check=True, text=True).returncode == 0:
            input("grep frontend true")
            if subprocess.run("docker ps | grep backend", shell=True, capture_output=True, check=True, text=True).returncode == 0:
                input("grep backend true")
