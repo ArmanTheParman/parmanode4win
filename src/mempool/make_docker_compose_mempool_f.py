@@ -103,5 +103,7 @@ services:
 volumes:
   mariadb_data:
   mysql_data:"""
-
-    tmpo.write(text)
+    
+    file = pp / "mempool" / "docker" / "docker-compose.yml"
+    file = config(file)
+    tmpo.write(config)
