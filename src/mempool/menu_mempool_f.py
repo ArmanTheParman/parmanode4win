@@ -94,8 +94,11 @@ def menu_mempool():
 def _ismempoolrunning():
     try: 
         if subprocess.run("docker ps | grep frontent", shell=True, capture_output=True, check=True, text=True).returncode == 0:
+           input("grep frontend true")
            if subprocess.run("docker ps | grep backend", shell=True, capture_output=True, check=True, text=True).returncode == 0:
+               input("grep backend true")
                if subprocess.run("docker ps | grep mariadb", shell=True, capture_output=True, check=True, text=True).returncode == 0:
+                    input("grep mariadb true")
                     return True
     except:
         return False
