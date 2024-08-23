@@ -101,3 +101,7 @@ def stop_mempool():
 
     except Exception as e: input(e)
 
+def restart_mempool():
+    stop_mempool()
+    start_mempool()
+

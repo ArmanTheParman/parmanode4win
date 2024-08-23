@@ -86,6 +86,7 @@ def menu_mempool():
                 change_mempool_backend("electrum")
             else:
                 change_mempool_backend("none")
+            announce("Please restart mempool for the change to take effect")
         else:
            invalid()
 
