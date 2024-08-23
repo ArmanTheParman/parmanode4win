@@ -130,7 +130,7 @@ def change_mempool_backend(backend):
 
    with open(mempool_yml, 'w') as file:
         for i in data:
-            file.write(i + '\n')
+            file.write(i)
 
 
     
