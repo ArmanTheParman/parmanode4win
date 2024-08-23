@@ -5,6 +5,7 @@ from config_f import *
 from electrs.install_electrs_f import check_server_1 
 from parmanode.sned_sats_f import *
 from parmanode.uninstall_parmanode_f import *
+from mempool.make_docker_compose_mempool_f import *
 
 def install_mempool():
     if ico.grep("docker-end") == False:
@@ -35,7 +36,7 @@ def install_mempool():
 
     clone_mempool()
     ico.add("mempool-start")
-    
+    make_mempool_docker_compose()
     ico.add("mempool-end")
     success("Mempool has been installed")
 
