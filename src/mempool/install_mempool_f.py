@@ -36,7 +36,10 @@ def install_mempool():
 
     clone_mempool()
     ico.add("mempool-start")
+
     make_mempool_docker_compose()
+    start_mempool()
+
     ico.add("mempool-end")
     success("Mempool has been installed")
 
@@ -66,3 +69,14 @@ def clone_mempool():
         subprocess.run(command, check=True, capture_output=True) 
     except Exception as e: input(e)
     
+def start_mempool():
+
+    if dosubprocess("docker ps") == False:
+        announce(f"""Please make sure Docker is running and try again. Aborting.""")
+        return False
+
+    command = ["docker", "compose", "-f", f"{pp / "mempool" / "docker" / "docker-compose.yml" }", "up", "-d"]
+
+    try:
+        subprocess.run(command, check=True)
+    except Exception as e: input(e)
