@@ -59,7 +59,7 @@ def menu_use():
             electrsmenu = False
 
         if ico.grep("mempool-end"): 
-            use_mempoolmenu = f"#                  {green} (mem){orange}          Mempool                                              #"
+            use_mempoolmenu = f"#                  {green} (mem){orange}          Mempool                                             #"
             mempoolmenu = True
             available.append(use_mempoolmenu)
         else: 
