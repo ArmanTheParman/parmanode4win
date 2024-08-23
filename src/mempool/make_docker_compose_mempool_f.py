@@ -73,8 +73,6 @@ services:
       LIGHTNING_STATS_REFRESH_INTERVAL: 600
       LIGHTNING_GRAPH_REFRESH_INTERVAL: 600
       LIGHTNING_LOGGER_UPDATE_INTERVAL: 30
-      LND_TLS_CERT_PATH: "{HOME / '.lnd'}"
-      LND_MACAROON_PATH: "{HOME / '.lnd/data/chain/bitcoin/mainnet'}"
       LND_REST_API_URL: "https://localhost:8080"
       LND_TIMEOUT: 10000
     image: mempool/backend:latest
