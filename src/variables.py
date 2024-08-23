@@ -109,3 +109,6 @@ electrum_wallet_directory = Path (electrum_config_dir / "wallets")
 tor_services = Path("c:/Windows/ServiceProfiles/LocalService/Appdata/Roaming/torservices")
 torrc_dir = Path("c:/Windows/ServiceProfiles/LocalService/Appdata/Roaming/tor")
 torrc_file = torrc_dir / "torrc"
+
+# Mempool variables
+mempool_yml = pp / "mempool" / "docker" / "docker-compose.yml"

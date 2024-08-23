@@ -83,4 +83,21 @@ def start_mempool():
 
     try:
         subprocess.run(command, check=True)
+
     except Exception as e: input(e)
+
+def stop_mempool():
+    
+
+    if dosubprocess("docker ps") == False:
+        announce(f"""Please make sure Docker is running and try again. Aborting.""")
+        return False
+
+    os.chdir(pp / "mempool" / "docker")
+    command = ["docker", "compose", "down"]
+
+    try:
+        subprocess.run(command, check=True)
+
+    except Exception as e: input(e)
+
