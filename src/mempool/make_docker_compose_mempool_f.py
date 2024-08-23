@@ -6,7 +6,7 @@ from functions import *
 def make_mempool_docker_compose():
 
     IP = get_IP_variables
-    print(IP)
+    print(IP["IP"])
     input()
 
     # while True:
@@ -112,4 +112,5 @@ volumes:
     
     file = pp / "mempool" / "docker" / "docker-compose.yml"
     file = config(file)
-    tmpo.write(config)
+    tmpo.truncate()
+    tmpo.add(config)
