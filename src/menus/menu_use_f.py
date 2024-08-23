@@ -52,7 +52,7 @@ def menu_use():
             dockermenu = False
 
         if ico.grep("electrs-end"): 
-            use_electrsmenu = f"#                  {green} (ers){orange}          electrs                                              #"
+            use_electrsmenu = f"#                  {green} (ers){orange}          electrs                                             #"
             electrsmenu = True
             available.append(use_electrsmenu)
         else: 
