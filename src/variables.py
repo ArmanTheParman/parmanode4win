@@ -6,7 +6,7 @@ from classes import config
 ########################################################################################
 
 global version 
-version = [0, 5, 0] 
+version = [0, 5, 1] 
 version_text=f"{str(version[0])}.{str(version[1])}.{str(version[2])}"
 installer_version = [0, 0, 2]
 
