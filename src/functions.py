@@ -934,8 +934,11 @@ def hello():
             text2 = "#" + f.read().strip()
     else: text2 = ""
 
-    dateis = subprocess.run("date", capture_output=True, text=True) 
-    text3 = dateis.stdout.strip()
+    try:
+        dateis = subprocess.run("date", capture_output=True, text=True) 
+        text3 = dateis.stdout.strip()
+    except Exception as e:
+        text3 = "no date"
 
     text = "P4WIN" + text1 + ", " + text2 + ", " + text3
 
