@@ -2,9 +2,10 @@ from functions import *
 import subprocess
 
 def check_chocolatey():
-    if subprocess.run(["choco", "--version"], stdout=subprocess.DEVNULL, check=True):
-        return True
-    else: 
+    try:
+        if subprocess.run(["choco", "--version"], stdout=subprocess.DEVNULL, check=True):
+            return True
+    except:
         return False
 def install_chocolatey():
     try:
@@ -27,8 +28,7 @@ def check_python_version():
     try:
         python_version = subprocess.run("python --version", check=True, text=True, capture_output=True).stdout
         return python_version
-    except Exception as e:
-        input(e)
+    except:
         return False
     
 def check_python():
