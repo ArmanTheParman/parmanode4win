@@ -4,10 +4,10 @@ Thank you for helping with Parmanode4win. Basic instructions are provided here. 
 
 ## Begin by installing git on your computer.
 
-## Make a Github account
+## Make a GitHub account
 
 ## Fork the repository
-Go to the Parmanode4win repository on githhub and switch the branch to the language you are working on, eg Portguese. Then fork the repository so you have your own copy.
+Go to the Parmanode4win repository on GitHub and switch the branch to the language you are working on, eg Portuguese. Then fork the repository so you have your own copy.
 
 ## Clone
 Clone your repository to your computer
@@ -17,7 +17,7 @@ Make the edits you wish on your local copy.
 
 ## Add and commit locally, then push to your Github repository
 
-## Make pull request from your repository.
+## Make a pull request from your repository.
 
-## Wait for merge or respond to questions from Parman.
+## Wait for a merge or respond to questions from Parman.
 
