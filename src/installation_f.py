@@ -6,6 +6,7 @@ def check_chocolatey():
         if subprocess.run(["choco", "--version"], stdout=subprocess.DEVNULL, check=True):
             return True
     except:
+        print("Chocolatey not installed on the system.")
         return False
 def install_chocolatey():
     try:
@@ -19,6 +20,7 @@ def install_chocolatey():
             print("Chocolatey installed successfully.")
 
     except subprocess.CalledProcessError as e:
+        input(f"Failed to installed Chocolatey. {e}")
         return False
 
     return True
@@ -35,6 +37,7 @@ def check_python():
     try:
         python_version = check_python_version()
     except (subprocess.CalledProcessError, FileNotFoundError):
+        print("Python not installed on the system.")
         return False
 
     if python_version == False: return False  
@@ -50,6 +53,7 @@ def install_python_with_chocolatey():
         subprocess.run(["choco", "install", "python", "-y"], check=True)
         print("Python installed successfully.")
     except subprocess.CalledProcessError as e:
+        input(f"Failed to install Python. {e.stderr}")
         raise Exception(f"Failed to install Python with Chocolatey: {e.stderr}")
 
     return True
@@ -59,6 +63,7 @@ def check_pip():
         subprocess.run(["pip", "--version"], check=True, stdout=subprocess.DEVNULL) 
         return True
     except (subprocess.CalledProcessError, FileNotFoundError):
+        print("Pip not installed on the system.")
         return False
 def check_tor():
     try:
@@ -75,6 +80,7 @@ def install_pip_with_python():
         subprocess.run(["python", "get-pip.py"], check=True)
         print("PIP installed successfully.")
     except subprocess.CalledProcessError as e:
+        input(f"Failed to install pip.") 
         raise Exception(f"Failed to install pip with Python: {e.stderr}")
 
     return True
