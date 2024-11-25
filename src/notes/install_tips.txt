@@ -1,3 +1,6 @@
 To make an execuatble, need pyinstaller:
 pip install -U pyinstaller
 build command: "pyinstaller --onefile run_parmanode.py"
+
+If building on Mac, need wine.
+wine cmd
