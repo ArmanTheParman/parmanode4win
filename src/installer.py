@@ -88,7 +88,12 @@ def install_parmanode():
 {cyan}                  - python and python packages {black} 
 {cyan}                  - curl, git and gpg programs {black} 
 {green}    
-     3){black} A shorcut to the program will be left on your Desktop.{orange}""", h=41): 
+     3){black} A shorcut to the program will be left on your Desktop.{orange}
+
+    NOTE: If the installation fails, sometimes just running it again will work.
+          If that doesn't work, manually make sure chocolatey and python are installed
+          then try again.""", h=41): 
+
         return False
 
     try:

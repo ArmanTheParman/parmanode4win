@@ -3,8 +3,8 @@ import subprocess
 
 def check_chocolatey():
     try:
-        if subprocess.run(["choco", "--version"], stdout=subprocess.DEVNULL, check=True):
-            return True
+        subprocess.run(["choco", "--version"], stdout=subprocess.DEVNULL, check=True)
+        return True
     except:
         return False
 def install_chocolatey():
