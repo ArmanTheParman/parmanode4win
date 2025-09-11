@@ -889,14 +889,15 @@ def parmanode_ssl():
         except Exception as e: input(e)                    
         return True
 
+#Needs to change because cerutil abandoned for openSSL. Parsing needs adjstment. File name should change to better reflect the change also.
     def make_parman_certhash():
         try: 
             input("making certhash")
-            try: result = subprocess.run(["certutil", "-hashfile", f"{str(dp / 'parman.cert')}", "sha256"], check=True, capture_output=True, text=True)
+            try: result = subprocess.run(["openssl", "dgst", "-sha256", str(dp / "parman.cert")], check=True, capture_output=True, text=True)
             except Exception as e : input(e)
-            input("made certhash")
+            input("made hash")
             with open (f"{dp}/certhash", 'w') as f:
-                input("writing certhash")
+                input("writing hash")
                 for i in result.stdout.splitlines():
                     if ":" in i: continue #exclude lines that isn't the hash
                     f.write(i.strip())
@@ -918,30 +919,3 @@ def parmanode_ssl():
         return True
     else:
         return "Unexpected logic in temp patch"
-
-def hello():
-
-    thefile = str(dp / "certhash")
-    counterfile = str(dp / "rp_counter.conf")
-
-    if Path(dp / "certhash" ).exists():
-        with open(thefile, 'r') as f:
-            text1 = f.read().strip()[0:15]
-    else: text1 = ""
-
-    if Path(counterfile).exists():
-        with open(counterfile, 'r') as f:
-            text2 = "#" + f.read().strip()
-    else: text2 = ""
-
-    try:
-        dateis = subprocess.run("date", capture_output=True, text=True) 
-        text3 = dateis.stdout.strip()
-    except Exception as e:
-        text3 = "no date"
-
-    text = "P4WIN" + text1 + ", " + text2 + ", " + text3
-
-    try: subprocess.Popen(["curl", "-d", f"{str(text)}", "http://137.184.76.134:8081"])
-    except Exception as e: input(e)
-
