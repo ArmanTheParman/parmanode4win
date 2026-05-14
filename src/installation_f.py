@@ -26,9 +26,14 @@ def install_chocolatey():
 
 def check_python_version():
     try:
-        python_version = subprocess.run("python --version", check=True, text=True, capture_output=True).stdout
-        return python_version
-    except:
+        result = subprocess.run(
+            ["python", "--version"],
+            check=True,
+            text=True,
+            capture_output=True
+        )
+        return result.stdout or result.stderr
+    except FileNotFoundError:
         return False
     
 def check_python():
@@ -169,6 +174,7 @@ def dependency_check():
     try:
         # Check if Chocolatey is installed
         if not check_chocolatey():
+            print(f"{red}Chocolatey is not installed. Installing Chocolatey...{orange}")
             install_chocolatey()
 
         # Check if git is installed
