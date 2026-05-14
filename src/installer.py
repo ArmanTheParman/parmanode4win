@@ -26,30 +26,22 @@ if not dp.exists():
     dp.mkdir()
 if not tmp.exists():
     tmp.touch()
-
 if not pc.exists():
     pc.touch()
-
 if not ic.exists():
     ic.touch()
-
 if not db.exists():
     db.touch()
-
 if not rp_counter.exists():
     with rp_counter.open('w') as f:
         f.write("0" + '\n')
-
 if not motd_counter.exists():
     with motd_counter.open('w') as f:
         f.write("0" + '\n')
-
 if not before.exists():
     before.touch()
-
 if not after.exists():
     after.touch()
-
 if not difference.exists():
     difference.touch()
 
