@@ -1,3 +1,25 @@
 To make an execuatble, need pyinstaller:
 pip install -U pyinstaller
 build command: "pyinstaller --onefile run_parmanode.py"
+
+USING WINDOWS
+pyinstaller --onefile yourscript.py
+
+USING MAC
+
+brew install --cask wine-stable
+brew install --cask whisky
+brew install --cask xquartz
+softwareupdate --install-rosetta
+
+python installer from python.org 
+    python-3.x.x-amd64.exe
+
+run it with win
+    wine python-3.x.x-amd64.exe
+
+then
+    wine ~/.wine/drive_c/users/$USER/AppData/Local/Programs/Python/Python3*/python.exe -m pip install pyinstaller
+
+build
+    wine ~/.wine/drive_c/users/$USER/AppData/Local/Programs/Python/Python3*/Scripts/pyinstaller.exe --onefile yourscript.py
