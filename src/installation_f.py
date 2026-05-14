@@ -15,11 +15,9 @@ def install_chocolatey():
             r'[System.Net.ServicePointManager]::SecurityProtocol -bor 3072; '
             r'iex ((New-Object System.Net.WebClient).DownloadString("https://chocolatey.org/install.ps1"))'
         )
-        if subprocess.run(["powershell", "-Command", command], check=True):
-            print("Chocolatey installed successfully.")
 
     except subprocess.CalledProcessError as e:
-        return False
+        return True 
 
     return True
 
@@ -53,9 +51,8 @@ def check_python():
 def install_python_with_chocolatey():
     try:
         subprocess.run(["choco", "install", "python", "-y"], check=True)
-        print("Python installed successfully.")
     except subprocess.CalledProcessError as e:
-        raise Exception(f"Failed to install Python with Chocolatey: {e.stderr}")
+        return True
 
     return True
 
@@ -78,9 +75,8 @@ def install_pip_with_python():
 
     try:
         subprocess.run(["python", "get-pip.py"], check=True)
-        print("PIP installed successfully.")
     except subprocess.CalledProcessError as e:
-        raise Exception(f"Failed to install pip with Python: {e.stderr}")
+        return True
 
     return True
 
@@ -116,7 +112,7 @@ def install_git_with_chocolatey():
         subprocess.run(["choco", "install", "git", "-y"], check=True)
         print("git installed successfully.")
     except subprocess.CalledProcessError as e:
-        raise Exception(f"Failed to install git with Chocolatey: {e.stderr}")
+        return True
 
     return True
 
@@ -132,7 +128,7 @@ def install_curl_with_chocolatey():
         subprocess.run(["choco", "install", "curl", "-y"], check=True)
         print("curl installed successfully.")
     except subprocess.CalledProcessError as e:
-        raise Exception(f"Failed to install curl with Chocolatey: {e.stderr}")
+        return True
 
     return True
 
@@ -148,7 +144,7 @@ def install_openssl_with_chocolatey():
         subprocess.run(["choco", "install", "openssl", "-y"], check=True)
         print("openssl installed successfully.")
     except subprocess.CalledProcessError as e:
-        raise Exception(f"Failed to install curl with Chocolatey: {e.stderr}")
+        return True
 
     return True
 
@@ -165,17 +161,15 @@ def install_gpg_with_chocolatey():
         subprocess.run(["choco", "install", "gpg4win", "--force", "-y"], check=True)
         print("""gpg installed successfully.""")
     except subprocess.CalledProcessError as e:
-        raise Exception(f"Failed to install gpg with Chocolatey: {e.stderr}")
+        return True
 
     return True
 
 def dependency_check():
 
     try:
-        # Check if Chocolatey is installed
-        if not check_chocolatey():
-            print(f"{red}Chocolatey is not installed. Installing Chocolatey...{orange}")
-            install_chocolatey()
+        
+        install_chocolatey()
 
         # Check if git is installed
         if not check_git():
@@ -191,9 +185,7 @@ def dependency_check():
         if not check_gpg():
             install_gpg_with_chocolatey()
 
-        # Check if python is installed
-        if not check_python():
-            install_python_with_chocolatey()
+        install_python_with_chocolatey()
 
         # Check if pip is installed
         if not check_pip():

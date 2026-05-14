@@ -1,7 +1,7 @@
 Can manage services from powershell.
 Need to enable ssh
 
-Powershel...
+Powershell...
 Start-Service -Name "ServiceName"
 Stop-Service -Name "ServiceName"
 Restart-Service -Name "ServiceName"

@@ -1,0 +1,5 @@
+chocolatey
+git
+python
+
+pip install pywin32 colorama winshell requests psutil urllib3 setuptools
